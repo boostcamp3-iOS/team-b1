@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR">
+            <rect key="frame" x="0.0" y="0.0" width="321" height="142"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="위치와 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmX-lx-XZj">
+                    <rect key="frame" x="30" y="91.5" width="78" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정보 보기 &gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gP9-MT-j7f">
+                    <rect key="frame" x="212" y="91.5" width="79" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.22942523548626526" green="0.34721993008240826" blue="0.098626145902331153" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSm-mF-niX">
+                    <rect key="frame" x="0.0" y="132" width="321" height="10"/>
+                    <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="VKF-4E-64k"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="kSm-mF-niX" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="7EJ-T8-CpG"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="gP9-MT-j7f" secondAttribute="trailing" constant="30" id="A2G-zx-Pj4"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="kSm-mF-niX" secondAttribute="trailing" id="BRQ-D2-mfR"/>
+                <constraint firstItem="kSm-mF-niX" firstAttribute="top" secondItem="bmX-lx-XZj" secondAttribute="bottom" constant="20" id="PB3-EB-lWh"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="kSm-mF-niX" secondAttribute="bottom" id="imP-y6-Eqc"/>
+                <constraint firstItem="bmX-lx-XZj" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="30" id="jOb-Pe-2N4"/>
+                <constraint firstItem="kSm-mF-niX" firstAttribute="top" secondItem="gP9-MT-j7f" secondAttribute="bottom" constant="20" id="sk7-MQ-zNK"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <point key="canvasLocation" x="-84" y="146"/>
+        </collectionReusableView>
+    </objects>
+</document>
