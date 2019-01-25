@@ -18,7 +18,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     //@IBOutlet var stPageControl: UIPageControl!
     @IBOutlet var scrollView: UIScrollView!
     
-    var images: [String] = ["1", "2", "3","4","5"]
+    var images: [String] = ["1_1", "2_1", "3_1","4_1","5_1","6_1"]
     var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
     
     //자동으로 scrollivew 움직이도록
@@ -27,11 +27,33 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     var collectionViewItems:[Int] = []
     
     lazy var stPageControl: UIPageControl = {
-        let pc = UIPageControl(frame: CGRect(x: 0, y: scrollView.frame.height - 200, width: scrollView.frame.width - 280, height: 37))
+        let pc = UIPageControl(frame: CGRect(x: 50, y: scrollView.frame.height - 40, width: scrollView.frame.width - 280, height: 37))
         //pc.translatesAutoresizingMaskIntoConstraints = false
         pc.currentPage = 0
         return pc
     }()
+    
+    private lazy var recommendTableLabel: UILabel = {
+        let rtl = UILabel()
+        rtl.translatesAutoresizingMaskIntoConstraints = false
+        rtl.text = "추천요리"
+        return rtl
+    }()
+    
+    private lazy var NearestTableLabel: UILabel = {
+        let rtl = UILabel()
+        rtl.translatesAutoresizingMaskIntoConstraints = false
+        rtl.text = "가까운 인기 레스토랑"
+        return rtl
+    }()
+    
+    private lazy var ExpaectTimeTableLabel: UILabel = {
+        let rtl = UILabel()
+        rtl.translatesAutoresizingMaskIntoConstraints = false
+        rtl.text = "예상 시간 30분 이하 레스토랑"
+        return rtl
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,19 +79,14 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         //MARK:- pageControl
         gameTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
     }
-    
     @objc func runTimedCode() {
-        
-        //        print("4초마다 실행 되길 ...")
-        //
-        //        let nextPage = stPageControl.currentPage + 1
-        //
-        //        if nextPage >= images.count {
-        //            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        //        }else {
-        //            self.scrollView.setContentOffset(CGPoint(x: view.frame.width * CGFloat(nextPage), y: 0), animated: true)
-        //        }
-        
+        //print("4초마다 실행 되길 ...")
+        let nextPage = stPageControl.currentPage + 1
+        if nextPage >= images.count {
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        }else {
+            self.scrollView.setContentOffset(CGPoint(x: view.frame.width * CGFloat(nextPage), y: 0), animated: true)
+        }
     }
     
     func setupScrollView() {
@@ -98,39 +115,48 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         
         frame.origin.x = frame.size.width * CGFloat(pageNumber)
         frame.origin.y = 0
+        
         scrollView.scrollRectToVisible(frame, animated: true) //?
+    }
+    
+    //스크롤 시작
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        //remove timer from Roop
+        gameTimer.invalidate()
+    }
+    //스크롤 끝
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        gameTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        if scrollView.contentOffset.x <= -1 {
-            scrollView.isScrollEnabled = false
-            //self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-            scrollView.isScrollEnabled = true
+        if scrollView == self.scrollView {
+            if scrollView.contentOffset.x <= -1 {
+                scrollView.isScrollEnabled = false
+                //self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                scrollView.isScrollEnabled = true
+            }
+            
+            if scrollView.contentOffset.x >= view.frame.width * CGFloat(images.count - 1) {
+                scrollView.isScrollEnabled = false
+                scrollView.isScrollEnabled = true
+            }
+            
+            let page = scrollView.contentOffset.x / scrollView.frame.size.width
+            stPageControl.currentPage = Int(page)
         }
-        
-        if scrollView.contentOffset.x >= view.frame.width * CGFloat(images.count - 1) {
-            scrollView.isScrollEnabled = false
-            scrollView.isScrollEnabled = true
-        }
-        
-        var page = scrollView.contentOffset.x / scrollView.frame.size.width
-        stPageControl.currentPage = Int(page)
-        
-        //        print("scrollView.contentOffset.x \(scrollView.contentOffset.x)")
-        //        print("scrollView.contentSize.width \(scrollView.contentSize.width)")
-        //        print("view.frame.width \(view.frame.width)")
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
-        var page = scrollView.contentOffset.x / scrollView.frame.size.width
-        //        print("scrollView.contentOffset.x \(scrollView.contentOffset.x)")
-        //        print("scrollView.frame.size.width \(scrollView.frame.size.width)")
-        //        print("page \(page)")
-        var currentEndPoint = scrollView.contentOffset.x
-        
-        stPageControl.currentPage = Int(page)
+//        var page = scrollView.contentOffset.x / scrollView.frame.size.width
+//        //        print("scrollView.contentOffset.x \(scrollView.contentOffset.x)")
+//        //        print("scrollView.frame.size.width \(scrollView.frame.size.width)")
+//        //        print("page \(page)")
+//        var currentEndPoint = scrollView.contentOffset.x
+//
+//        stPageControl.currentPage = Int(page)
     }
 }
 
@@ -176,6 +202,23 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             let RecommendCollectionViewCellNIB = UINib(nibName: "RecommendCollectionViewCell", bundle: nil)
             tablecell.collectionView.register(RecommendCollectionViewCellNIB, forCellWithReuseIdentifier: "RecommendCollectionViewCellId")
+            
+            tablecell.addSubview(recommendTableLabel)
+            NSLayoutConstraint.activate([
+                tablecell.collectionView.leftAnchor.constraint(equalTo: tablecell.leftAnchor),
+                tablecell.collectionView.topAnchor.constraint(equalTo: tablecell.topAnchor, constant: 60),
+                tablecell.collectionView.rightAnchor.constraint(equalTo: tablecell.rightAnchor),
+                tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor),
+                
+                recommendTableLabel.leftAnchor.constraint(equalTo: tablecell.leftAnchor, constant: 30),
+                recommendTableLabel.topAnchor.constraint(equalTo: tablecell.topAnchor, constant: 17),
+                recommendTableLabel.widthAnchor.constraint(equalTo: tablecell.widthAnchor),
+                recommendTableLabel.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.1),
+            ])
+            
+            tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
@@ -183,6 +226,25 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         case 2:
             let NearestCollectionViewCellNIB = UINib(nibName: "NearestCollectionViewCell", bundle: nil)
             tablecell.collectionView.register(NearestCollectionViewCellNIB, forCellWithReuseIdentifier: "NearestCollectionViewCellId")
+            
+            tablecell.addSubview(NearestTableLabel)
+            
+            NearestTableLabel.text = "가까운 인기 레스토랑"
+            NSLayoutConstraint.activate([
+                tablecell.collectionView.leftAnchor.constraint(equalTo: tablecell.leftAnchor),
+                tablecell.collectionView.topAnchor.constraint(equalTo: tablecell.topAnchor, constant: 60),
+                tablecell.collectionView.rightAnchor.constraint(equalTo: tablecell.rightAnchor),
+                tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor),
+                
+                NearestTableLabel.leftAnchor.constraint(equalTo: tablecell.leftAnchor, constant: 30),
+                NearestTableLabel.topAnchor.constraint(equalTo: tablecell.topAnchor, constant: 17),
+                NearestTableLabel.widthAnchor.constraint(equalTo: tablecell.widthAnchor),
+                NearestTableLabel.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.1),
+                ])
+            
+            tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
@@ -190,6 +252,23 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         case 3:
             let NearestCollectionViewCellNIB = UINib(nibName: "ExpectTimeCollectionViewCell", bundle: nil)
             tablecell.collectionView.register(NearestCollectionViewCellNIB, forCellWithReuseIdentifier: "ExpectTimeCollectionViewCellId")
+            
+            tablecell.addSubview(ExpaectTimeTableLabel)
+            NSLayoutConstraint.activate([
+                tablecell.collectionView.leftAnchor.constraint(equalTo: tablecell.leftAnchor),
+                tablecell.collectionView.topAnchor.constraint(equalTo: tablecell.topAnchor, constant: 60),
+                tablecell.collectionView.rightAnchor.constraint(equalTo: tablecell.rightAnchor),
+                tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor),
+                
+                ExpaectTimeTableLabel.leftAnchor.constraint(equalTo: tablecell.leftAnchor, constant: 30),
+                ExpaectTimeTableLabel.topAnchor.constraint(equalTo: tablecell.topAnchor, constant: 17),
+                ExpaectTimeTableLabel.widthAnchor.constraint(equalTo: tablecell.widthAnchor),
+                ExpaectTimeTableLabel.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.1),
+                ])
+            
+            tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
@@ -224,9 +303,9 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 200
         case 1:
-            return 250
+            return 300
         case 2:
-            return 180
+            return 240
         case 3:
             return 200
         case 4:
@@ -250,13 +329,13 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         switch collectionView.tag {
         case 0:
             return 0
-        case 1://추천요리
+        case 1://UberEatas 신규 레스토랑
             return 7
         case 2://가까운 인기 레스토랑
             return 6
-        case 3://예상 시간
+        case 3://예상 시간,추천요리
             return 6
-        case 4://신규 레스토랑
+        case 4://신규 레스토랑 , 추천요리
             return 4
         case 5://주문시 5천원 할인
             collectionView.backgroundColor = .green
@@ -284,16 +363,20 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell2
         case 2://가까운 인기 레스토랑
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "NearestCollectionViewCellId", for: indexPath) as! NearestCollectionViewCell
+            cell2.layer.cornerRadius = 5
             return cell2
         case 3://예상 시간
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "ExpectTimeCollectionViewCellId", for: indexPath) as! ExpectTimeCollectionViewCell
+            cell2.backgroundColor = .lightGray
             return cell2
         case 4://신규 레스토랑
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "NewRestCollectionViewCellId", for: indexPath) as! NewRestCollectionViewCell
+            cell2.backgroundColor = .lightGray
             return cell2
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendCollectionViewCellId", for: indexPath)
                 as! RecommendCollectionViewCell
+            cell.backgroundColor = .lightGray
             return cell
         }
         
@@ -309,9 +392,9 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         case 0:
             print("0")
         case 1://추천요리
-            return CGSize(width: 200, height: 240)
+            return CGSize(width: 200, height: 231)
         case 2://가까운 인기 레스토랑
-            return CGSize(width: 100, height: 100)
+            return CGSize(width: 170, height: 240)
         case 3://예상 시간
             return CGSize(width: 150, height: 150)
         case 4://신규 레스토랑
@@ -321,4 +404,22 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         }
         return CGSize(width: 180, height: 180)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        switch collectionView.tag {
+        case 0:
+            return UIEdgeInsets(top: 30, left: 30, bottom: 0, right: 30)
+        case 1://추천요리
+            return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+        case 2://가까운 인기 레스토랑
+            return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+        case 3://예상 시간
+            return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+        case 4://신규 레스토랑
+            return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+        default:
+            return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+        }
+    }
 }
+
