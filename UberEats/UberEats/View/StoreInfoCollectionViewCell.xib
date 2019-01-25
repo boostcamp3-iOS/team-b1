@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="StoreInfoCollectionViewCell" customModule="UberEats" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="298" height="139"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="298" height="139"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jT3-N1-44a">
+                        <rect key="frame" x="0.0" y="129" width="298" height="10"/>
+                        <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="F76-ed-2cY"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="위치와 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vi2-r7-BxF">
+                        <rect key="frame" x="25" y="88" width="78" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정보 보기 &gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbV-0W-Erw">
+                        <rect key="frame" x="194.5" y="88" width="78.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.22942523549999999" green="0.34721993010000002" blue="0.098626145900000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="jT3-N1-44a" firstAttribute="top" secondItem="mbV-0W-Erw" secondAttribute="bottom" constant="20" id="5fh-On-geX"/>
+                <constraint firstItem="vi2-r7-BxF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="25" id="Dwu-FE-20L"/>
+                <constraint firstItem="jT3-N1-44a" firstAttribute="top" secondItem="vi2-r7-BxF" secondAttribute="bottom" constant="20" id="IET-eZ-34l"/>
+                <constraint firstItem="jT3-N1-44a" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="O6U-WZ-fLt"/>
+                <constraint firstAttribute="bottom" secondItem="jT3-N1-44a" secondAttribute="bottom" id="Ot1-BS-47V"/>
+                <constraint firstAttribute="trailing" secondItem="mbV-0W-Erw" secondAttribute="trailing" constant="25" id="ROb-98-K1q"/>
+                <constraint firstAttribute="trailing" secondItem="jT3-N1-44a" secondAttribute="trailing" id="S3B-EF-Iou"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="298" height="139"/>
+            <point key="canvasLocation" x="336" y="187.55622188905548"/>
+        </collectionViewCell>
+    </objects>
+</document>

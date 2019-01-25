@@ -34,17 +34,25 @@ class CollectionViewController: UICollectionViewController {
     fileprivate let cellId = "cellId"
     fileprivate let headerId = "headerId"
     fileprivate let tempId = "tempId"
-    fileprivate let storeTitleId = "storeTitleId"
     fileprivate let storeId = "storeId"
     fileprivate let menuId = "menuId"
     fileprivate let smallMenuId = "smallMenuId"
     fileprivate let menuDetailId = "menuDetailId"
     fileprivate let menuSectionId = "menuSectionId"
     
-    private var index: IndexPath?
     private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     private var likeStatus: Bool = false
+    
+    let searchBarController = UISearchController()
+    
+    
+    let searchBarView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        return view
+    }()
     
     let backButton: UIButton = {
         let button = UIButton()
@@ -58,6 +66,24 @@ class CollectionViewController: UICollectionViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(#imageLiteral(resourceName: "like"), for: .normal)
         return button
+    }()
+    
+    let titleView: TitleCustomView = {
+        let view = TitleCustomView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.zPosition = .greatestFiniteMagnitude
+        view.layer.cornerRadius = 5
+        
+        //shadow
+        view.layer.masksToBounds = false
+        view.layer.shadowColor = UIColor.gray.cgColor
+        view.layer.shadowOpacity = 0.3
+        view.layer.shadowOffset = CGSize(width: 0, height: 5)
+        view.layer.shadowRadius = 10
+        //        view.layer.shouldRasterize = true
+        view.layer.rasterizationScale = UIScreen.main.scale
+        return view
     }()
     
     lazy var menuSectionIndexCollectionView: UICollectionView = {
@@ -85,6 +111,7 @@ class CollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        setupNavigationBar()
         setupCollectionView()
         setupCollectionViewLayout()
     }
@@ -99,26 +126,37 @@ class CollectionViewController: UICollectionViewController {
         view.addSubview(backButton)
         view.addSubview(likeButton)
         view.addSubview(menuSectionIndexCollectionView)
+        collectionView.addSubview(titleView)
         
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
         likeButton.addTarget(self, action: #selector(touchUpLikeButton(_:)), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
+            titleView.topAnchor.constraint(equalTo: view.topAnchor, constant: 230),
+            titleView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            titleView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            
             menuSectionIndexCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 85),
             menuSectionIndexCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             menuSectionIndexCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             menuSectionIndexCollectionView.heightAnchor.constraint(equalToConstant: 80),
             
-            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
             backButton.widthAnchor.constraint(equalToConstant: 30),
             backButton.heightAnchor.constraint(equalToConstant: 30),
             
-            likeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            likeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             likeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             likeButton.widthAnchor.constraint(equalToConstant: 30),
             likeButton.heightAnchor.constraint(equalToConstant: 30)
             ])
+    }
+    
+    func setupNavigationBar() {
+        navigationController?.isNavigationBarHidden = true
+        
+        navigationItem.searchController = self.searchBarController
     }
     
     func setupCollectionView() {
@@ -129,13 +167,13 @@ class CollectionViewController: UICollectionViewController {
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.register(TempCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: tempId)
-        collectionView.register(StoreInfoCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: storeTitleId)
+        
         collectionView.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: menuDetailId)
         
-        let storeNib = UINib(nibName: "StoreInfomationView", bundle: nil)
+        let storeNib = UINib(nibName: "StoreInfoCollectionViewCell", bundle: nil)
         self.collectionView.register(storeNib, forCellWithReuseIdentifier: storeId)
         
-        let menuNib = UINib(nibName: "MenuView", bundle: nil)
+        let menuNib = UINib(nibName: "SearchCollectionViewCell", bundle: nil)
         self.collectionView.register(menuNib, forCellWithReuseIdentifier: menuId)
         
         let smallMenuNib = UINib(nibName: "SmallMenuHeaderView", bundle: nil)
@@ -209,7 +247,9 @@ class CollectionViewController: UICollectionViewController {
                 return UICollectionViewCell()
             }
             
+            
             cell.sectionName = "나를 위한 메뉴"
+            cell.isSelected = collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false
             
             return cell
         }
@@ -217,9 +257,13 @@ class CollectionViewController: UICollectionViewController {
         switch indexPath.section {
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: storeId, for: indexPath)
+            
             return cell
         case 2:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuId, for: indexPath)
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuId, for: indexPath) as? SearchCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.searchBarDelegate = self
             return cell
         case 3, 4, 5, 6:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuDetailId, for: indexPath) as? FoodCollectionViewCell else {
@@ -245,12 +289,6 @@ class CollectionViewController: UICollectionViewController {
             switch indexPath.section {
             case 0:
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
-                return header
-            case 1:
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: storeTitleId, for: indexPath)
-                
-                header.layoutIfNeeded()
-                
                 return header
             case 3, 4, 5, 6:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: smallMenuId, for: indexPath) as? SmallMenuHeaderView else {
@@ -289,42 +327,16 @@ class CollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.menuSectionIndexCollectionView {
-            guard let cell = collectionView.cellForItem(at: indexPath) as? MenuSectionCollectionViewCell else {
-                return
-            }
-            cell.colorView.backgroundColor = .clear
-            cell.sectionNameLabel.textColor = .clear
-            
-            cell.colorView.backgroundColor = .black
-            cell.sectionNameLabel.textColor = .white
-            
             // 선택한 section목록으로 이동시키는 부분
             let indx = IndexPath(item: 0, section: indexPath.row + 3)
             self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
-            
-            index = indexPath
-        }
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if collectionView == self.menuSectionIndexCollectionView {
-            
-            //guard let index = index else { return }
-           // print(collectionView.debugDescription)
-           // collectionView(collectionView, cellForItemAt: indexPath)
-            guard let cell = collectionView.cellForItem(at: indexPath) as? MenuSectionCollectionViewCell else {
-                return
+        } else {
+            switch indexPath.section {
+            case 1:
+                print("touchUp store location and time infomation")
+            default:
+                print("")
             }
-            
-            
-            print("qqq")
-            cell.colorView.backgroundColor = .clear
-            cell.sectionNameLabel.textColor = .clear
-            
-            cell.colorView.backgroundColor = .white
-            cell.sectionNameLabel.textColor = .black
-            
-            
         }
     }
     
@@ -334,13 +346,17 @@ class CollectionViewController: UICollectionViewController {
         if scrollView != self.menuSectionIndexCollectionView {
             if scrollView.contentOffset.y > 350 {
                 self.likeButton.setImage(#imageLiteral(resourceName: "search"), for: .normal)
+                self.collectionView.contentInset = UIEdgeInsets(top: 238, left: 0, bottom: 0, right: 0)
             } else {
                 if likeStatus == true {
                     self.likeButton.setImage(#imageLiteral(resourceName: "selectLike"), for: .normal)
                 } else {
                     self.likeButton.setImage(#imageLiteral(resourceName: "like"), for: .normal)
                 }
+                
+                self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             }
+            
             if scrollView.contentOffset.y > 220 && backButton.currentImage == #imageLiteral(resourceName: "arrow") {
                 self.backButton.setImage(#imageLiteral(resourceName: "blackArrow"), for: .normal)
                 menuSectionIndexCollectionView.isHidden = false
@@ -353,7 +369,6 @@ class CollectionViewController: UICollectionViewController {
             self.setNeedsStatusBarAppearanceUpdate()
         }
     }
-    
 }
 
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
@@ -377,7 +392,22 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
             
             return .init(width: view.frame.width - 2 * padding, height: estimatedForm.height + 45)
         default:
-            return .init(width: view.frame.width - 2 * padding, height: 0.1)
+            return .init(width: view.frame.width - 2 * padding, height: 0)
         }
+    }
+}
+
+extension CollectionViewController: SearchBarDelegate {
+    func showSeachBar() {
+        print("showSearchBar")
+        let myStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let searchController = myStoryBoard.instantiateViewController(withIdentifier: "searchViewController")
+        
+        self.addChild(searchController)
+        searchController.view.frame = self.view.frame
+        
+        self.view.addSubview(searchController.view)
+        searchController.didMove(toParent: self)
+        
     }
 }

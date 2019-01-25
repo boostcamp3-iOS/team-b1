@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SearchCollectionViewCell" customModule="UberEats" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="295" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="295" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메뉴 Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E65-Zm-Pjm">
+                        <rect key="frame" x="20" y="14.5" width="77" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Inp-Is-pgH">
+                        <rect key="frame" x="250" y="12.5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="kGw-Ws-ibP"/>
+                            <constraint firstAttribute="width" constant="25" id="xPv-7L-4a1"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="search"/>
+                        <connections>
+                            <action selector="touchUpSearchButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="kz4-FC-erR"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Inp-Is-pgH" secondAttribute="trailing" constant="20" id="7JY-tK-QEc"/>
+                <constraint firstItem="Inp-Is-pgH" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="WLM-A2-fLN"/>
+                <constraint firstItem="E65-Zm-Pjm" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="rGK-hF-pft"/>
+                <constraint firstItem="E65-Zm-Pjm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="rhd-hq-TDS"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="295" height="50"/>
+            <point key="canvasLocation" x="68" y="112"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="search" width="24" height="24"/>
+    </resources>
+</document>

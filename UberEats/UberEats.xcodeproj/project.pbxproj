@@ -25,22 +25,24 @@
 		9956F7F821F98468004E9854 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9956F7F621F98468004E9854 /* Main.storyboard */; };
 		9956F7FA21F98468004E9854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9956F7F921F98468004E9854 /* Assets.xcassets */; };
 		9956F7FD21F98468004E9854 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9956F7FB21F98468004E9854 /* LaunchScreen.storyboard */; };
+		D115BBB321F9D49E00C57809 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115BBB121F9D49E00C57809 /* SearchCollectionViewCell.swift */; };
+		D115BBB421F9D49E00C57809 /* SearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D115BBB221F9D49E00C57809 /* SearchCollectionViewCell.xib */; };
+		D115BBB721F9D66100C57809 /* StoreInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115BBB521F9D66100C57809 /* StoreInfoCollectionViewCell.swift */; };
+		D115BBB821F9D66100C57809 /* StoreInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D115BBB621F9D66100C57809 /* StoreInfoCollectionViewCell.xib */; };
 		D1AF1E9D21F9A5A6004CA3A5 /* SmallMenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1AF1E9021F9A5A6004CA3A5 /* SmallMenuHeaderView.xib */; };
 		D1AF1E9E21F9A5A6004CA3A5 /* TempCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9121F9A5A6004CA3A5 /* TempCollectionReusableView.swift */; };
 		D1AF1E9F21F9A5A6004CA3A5 /* TitleCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9221F9A5A6004CA3A5 /* TitleCustomView.swift */; };
 		D1AF1EA021F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9321F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.swift */; };
-		D1AF1EA121F9A5A6004CA3A5 /* StoreInfomationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1AF1E9421F9A5A6004CA3A5 /* StoreInfomationView.xib */; };
-		D1AF1EA221F9A5A6004CA3A5 /* StoreInfomationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9521F9A5A6004CA3A5 /* StoreInfomationView.swift */; };
 		D1AF1EA321F9A5A6004CA3A5 /* SmallMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9621F9A5A6004CA3A5 /* SmallMenuHeaderView.swift */; };
 		D1AF1EA421F9A5A6004CA3A5 /* StoreInfoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9721F9A5A6004CA3A5 /* StoreInfoCollectionReusableView.swift */; };
 		D1AF1EA521F9A5A6004CA3A5 /* FoodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9821F9A5A6004CA3A5 /* FoodCollectionViewCell.swift */; };
 		D1AF1EA621F9A5A6004CA3A5 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9921F9A5A6004CA3A5 /* HeaderView.swift */; };
 		D1AF1EA721F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1AF1E9A21F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.xib */; };
-		D1AF1EA821F9A5A6004CA3A5 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1AF1E9B21F9A5A6004CA3A5 /* MenuView.xib */; };
-		D1AF1EA921F9A5A6004CA3A5 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9C21F9A5A6004CA3A5 /* MenuView.swift */; };
 		D1AF1EAB21F9A631004CA3A5 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1EAA21F9A631004CA3A5 /* Food.swift */; };
 		D1AF1EAD21F9A647004CA3A5 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1EAC21F9A647004CA3A5 /* CollectionViewController.swift */; };
 		D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1EAF21F9A654004CA3A5 /* StretchyHeaderLayout.swift */; };
+		D1EA630221FA9B1D0024CD68 /* SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */; };
+		D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,22 +66,24 @@
 		9956F7F921F98468004E9854 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9956F7FC21F98468004E9854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9956F7FE21F98468004E9854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D115BBB121F9D49E00C57809 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		D115BBB221F9D49E00C57809 /* SearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionViewCell.xib; sourceTree = "<group>"; };
+		D115BBB521F9D66100C57809 /* StoreInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		D115BBB621F9D66100C57809 /* StoreInfoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreInfoCollectionViewCell.xib; sourceTree = "<group>"; };
 		D1AF1E9021F9A5A6004CA3A5 /* SmallMenuHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SmallMenuHeaderView.xib; sourceTree = "<group>"; };
 		D1AF1E9121F9A5A6004CA3A5 /* TempCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempCollectionReusableView.swift; sourceTree = "<group>"; };
 		D1AF1E9221F9A5A6004CA3A5 /* TitleCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCustomView.swift; sourceTree = "<group>"; };
 		D1AF1E9321F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSectionCollectionViewCell.swift; sourceTree = "<group>"; };
-		D1AF1E9421F9A5A6004CA3A5 /* StoreInfomationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreInfomationView.xib; sourceTree = "<group>"; };
-		D1AF1E9521F9A5A6004CA3A5 /* StoreInfomationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreInfomationView.swift; sourceTree = "<group>"; };
 		D1AF1E9621F9A5A6004CA3A5 /* SmallMenuHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallMenuHeaderView.swift; sourceTree = "<group>"; };
 		D1AF1E9721F9A5A6004CA3A5 /* StoreInfoCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreInfoCollectionReusableView.swift; sourceTree = "<group>"; };
 		D1AF1E9821F9A5A6004CA3A5 /* FoodCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCollectionViewCell.swift; sourceTree = "<group>"; };
 		D1AF1E9921F9A5A6004CA3A5 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		D1AF1E9A21F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSectionCollectionViewCell.xib; sourceTree = "<group>"; };
-		D1AF1E9B21F9A5A6004CA3A5 /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
-		D1AF1E9C21F9A5A6004CA3A5 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		D1AF1EAA21F9A631004CA3A5 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		D1AF1EAC21F9A647004CA3A5 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		D1AF1EAF21F9A654004CA3A5 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
+		D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarDelegate.swift; sourceTree = "<group>"; };
+		D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,13 +139,15 @@
 				D1AF1E8F21F9A5A6004CA3A5 /* View */,
 				9956F7F021F98468004E9854 /* AppDelegate.swift */,
 				9956F7F221F98468004E9854 /* FirstViewController.swift */,
-				D1AF1EAC21F9A647004CA3A5 /* CollectionViewController.swift */,
 				9956F7F421F98468004E9854 /* SecondViewController.swift */,
+				D1AF1EAC21F9A647004CA3A5 /* CollectionViewController.swift */,
+				D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */,
 				9956F7F621F98468004E9854 /* Main.storyboard */,
 				D1AF1EAE21F9A654004CA3A5 /* Custom */,
 				9956F7F921F98468004E9854 /* Assets.xcassets */,
 				9956F7FB21F98468004E9854 /* LaunchScreen.storyboard */,
 				9956F7FE21F98468004E9854 /* Info.plist */,
+				D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */,
 			);
 			path = UberEats;
 			sourceTree = "<group>";
@@ -153,16 +159,16 @@
 				D1AF1E9021F9A5A6004CA3A5 /* SmallMenuHeaderView.xib */,
 				D1AF1E9121F9A5A6004CA3A5 /* TempCollectionReusableView.swift */,
 				D1AF1E9221F9A5A6004CA3A5 /* TitleCustomView.swift */,
-				D1AF1E9321F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.swift */,
-				D1AF1E9421F9A5A6004CA3A5 /* StoreInfomationView.xib */,
-				D1AF1E9521F9A5A6004CA3A5 /* StoreInfomationView.swift */,
 				D1AF1E9621F9A5A6004CA3A5 /* SmallMenuHeaderView.swift */,
 				D1AF1E9721F9A5A6004CA3A5 /* StoreInfoCollectionReusableView.swift */,
 				D1AF1E9821F9A5A6004CA3A5 /* FoodCollectionViewCell.swift */,
 				D1AF1E9921F9A5A6004CA3A5 /* HeaderView.swift */,
 				D1AF1E9A21F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.xib */,
-				D1AF1E9B21F9A5A6004CA3A5 /* MenuView.xib */,
-				D1AF1E9C21F9A5A6004CA3A5 /* MenuView.swift */,
+				D1AF1E9321F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.swift */,
+				D115BBB121F9D49E00C57809 /* SearchCollectionViewCell.swift */,
+				D115BBB221F9D49E00C57809 /* SearchCollectionViewCell.xib */,
+				D115BBB521F9D66100C57809 /* StoreInfoCollectionViewCell.swift */,
+				D115BBB621F9D66100C57809 /* StoreInfoCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -234,9 +240,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				84DC184121F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib in Resources */,
+				D115BBB821F9D66100C57809 /* StoreInfoCollectionViewCell.xib in Resources */,
 				9956F7FD21F98468004E9854 /* LaunchScreen.storyboard in Resources */,
 				9956F7FA21F98468004E9854 /* Assets.xcassets in Resources */,
-				D1AF1EA821F9A5A6004CA3A5 /* MenuView.xib in Resources */,
+				D115BBB421F9D49E00C57809 /* SearchCollectionViewCell.xib in Resources */,
 				D1AF1E9D21F9A5A6004CA3A5 /* SmallMenuHeaderView.xib in Resources */,
 				84DC184721F9A51D008EE6D3 /* NearestCollectionViewCell.xib in Resources */,
 				84DC184821F9A51D008EE6D3 /* RecommendTableViewCell.xib in Resources */,
@@ -257,16 +264,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1AF1EA521F9A5A6004CA3A5 /* FoodCollectionViewCell.swift in Sources */,
-				D1AF1EA921F9A5A6004CA3A5 /* MenuView.swift in Sources */,
 				9956F7F521F98468004E9854 /* SecondViewController.swift in Sources */,
 				84DC184521F9A51D008EE6D3 /* RecommendTableViewCell.swift in Sources */,
 				84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */,
 				84DC184A21F9ACE0008EE6D3 /* ItemViewController.swift in Sources */,
 				D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */,
-				D1AF1EA221F9A5A6004CA3A5 /* StoreInfomationView.swift in Sources */,
+				D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */,
+				D115BBB721F9D66100C57809 /* StoreInfoCollectionViewCell.swift in Sources */,
 				D1AF1EAD21F9A647004CA3A5 /* CollectionViewController.swift in Sources */,
+				D115BBB321F9D49E00C57809 /* SearchCollectionViewCell.swift in Sources */,
 				D1AF1EA421F9A5A6004CA3A5 /* StoreInfoCollectionReusableView.swift in Sources */,
 				D1AF1EA021F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.swift in Sources */,
+				D1EA630221FA9B1D0024CD68 /* SearchBarDelegate.swift in Sources */,
 				D1AF1E9F21F9A5A6004CA3A5 /* TitleCustomView.swift in Sources */,
 				84DC184D21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift in Sources */,
 				9956F7F121F98468004E9854 /* AppDelegate.swift in Sources */,
@@ -423,13 +432,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = P55BH5C78Q;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -441,13 +450,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = P55BH5C78Q;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

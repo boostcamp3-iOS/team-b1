@@ -22,10 +22,8 @@ class StretchyHeaderLayout: UICollectionViewFlowLayout {
                 guard let collectionView = collectionView else { return }
                 
                 let contentOffsetY = collectionView.contentOffset.y
-//                print("\(collectionView.contentOffset), \(collectionView.bounds.origin)")
                 
                 if contentOffsetY > 0 {
-                    // 타이틀뷰 점점 키움
                     return
                 }
                 
@@ -36,6 +34,10 @@ class StretchyHeaderLayout: UICollectionViewFlowLayout {
                 
                 attributes.frame = CGRect(x: 0, y: contentOffsetY, width: width, height: height)
             }
+//            
+//            if attributes.isKind(of: TitleCustomView.self) {
+//                
+//            }
         })
         return layoutAttributes
     }

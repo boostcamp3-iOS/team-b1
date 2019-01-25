@@ -13,6 +13,18 @@ class MenuSectionCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var sectionNameLabel: UILabel!
     @IBOutlet weak var colorView: UIView!
     
+    override var isSelected: Bool {
+        didSet {
+            if self.isSelected {
+                self.sectionNameLabel.textColor = .white
+                self.colorView.backgroundColor = .black
+            } else {
+                self.sectionNameLabel.textColor = .black
+                self.colorView.backgroundColor = .white
+            }
+        }
+    }
+    
     var sectionName: String? {
         didSet {
             guard let sectionName = sectionName else {
@@ -30,12 +42,4 @@ class MenuSectionCollectionViewCell: UICollectionViewCell {
         sectionNameLabel.textColor = .black
         sectionName = nil
     }
-    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
 }
