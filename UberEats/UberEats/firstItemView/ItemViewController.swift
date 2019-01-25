@@ -130,6 +130,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 }
 
 extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
+    // 섹션 7개
     func numberOfSections(in tableView: UITableView) -> Int {
         return ItemViewController.numberOfSection
     }
@@ -406,4 +407,3 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
-
