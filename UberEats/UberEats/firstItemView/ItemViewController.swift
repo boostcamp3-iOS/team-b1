@@ -9,83 +9,89 @@
 import UIKit
 
 class ItemViewController: UIViewController, UIScrollViewDelegate {
-    let headerId = "headerId"
-    //    @IBOutlet var scrollView: UIScrollView!
-    //    @IBOutlet var tableView: UITableView!
-    //    @IBOutlet var stPageControl: UIPageControl!
+    private static let headerId = "headerId"
     
     @IBOutlet var tableView: UITableView!
-    //@IBOutlet var stPageControl: UIPageControl!
     @IBOutlet var scrollView: UIScrollView!
     
-    var images: [String] = ["1_1", "2_1", "3_1","4_1","5_1","6_1"]
-    var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+    private var bannerImages: [String] = ["1_1", "2_1", "3_1","4_1","5_1","6_1"]
+ 
     
-    var labelString: [String] = ["추천요리","가까운 인기 레스토랑","예상 시간 30분 이하","Uber Eats 신규 레스토랑","주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
+    private var labelString: [String] = ["추천요리","가까운 인기 레스토랑","예상 시간 30분 이하","Uber Eats 신규 레스토랑","주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
     
-    //자동으로 scrollivew 움직이도록
-    var gameTimer: Timer!
+    private var bannerTimer: Timer!
     
-    var collectionViewItems:[Int] = []
-    
-    lazy var stPageControl: UIPageControl = {
+    private lazy var stPageControl: UIPageControl = {
         let pc = UIPageControl(frame: CGRect(x: 50, y: scrollView.frame.height - 40, width: scrollView.frame.width - 280, height: 37))
-        //pc.translatesAutoresizingMaskIntoConstraints = false
+    
         pc.currentPage = 0
         return pc
     }()
     
+    private var isScrolledByUser: Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = .clear
-        tableView.showsVerticalScrollIndicator = false
-        collectionViewItems = [1,10,10,10,10,1,1,1]
+        
         setupLayout()
         setupScrollView()
         
+        stPageControl.currentPage = 0
+        isScrolledByUser = false
+        
+        
+        bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
+    }
+    
+    private func setupLayout() {
+        tableView.backgroundColor = .clear
+        tableView.showsVerticalScrollIndicator = false
         tableView.addSubview(stPageControl)
         tableView.bringSubviewToFront(stPageControl)
-        
-        stPageControl.currentPage = 0
-        
-        //view.addSubview(pageControl)
-        
-        gameTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
     }
     
-    func setupLayout() {
-        //        tableView.register(MainTableHeaderView.self, forCellReuseIdentifier: headerId)
-    }
-    
-    @objc func runTimedCode() {
+    @objc func scrolledBanner() {
         //print("4초마다 실행 되길 ...")
-        let nextPage = stPageControl.currentPage + 1
-        if nextPage >= images.count {
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        }else {
-            self.scrollView.setContentOffset(CGPoint(x: view.frame.width * CGFloat(nextPage), y: 0), animated: true)
+        
+        /* guard로 false 처리
+        guard isAutoScrollMode else {
+            return
         }
+        */
+        
+        
+        
+            let nextPage = stPageControl.currentPage + 1
+            
+            let point = nextPage >= bannerImages.count ?
+                CGPoint(x: 0, y: 0) :
+                CGPoint(x: view.frame.width * CGFloat(nextPage), y: 0)
+            
+            scrollView.setContentOffset(point, animated: true)
+        
     }
     
     func setupScrollView() {
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.isPagingEnabled = true
+        //scrollView.isPagingEnabled = true
         
-        for index in 0..<images.count {
+        var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        
+        for index in 0..<bannerImages.count {
             frame.origin.x = view.frame.width * CGFloat(index)
             frame.size = scrollView.frame.size
             
-            let imageView = UIImageView(frame: frame)
-            imageView.image = UIImage(named: images[index])
-            self.scrollView.addSubview(imageView)
+            let bannerImage = UIImageView(frame: frame)
+            bannerImage.image = UIImage(named: bannerImages[index])
+            
+            scrollView.addSubview(bannerImage)
         }
         
-        scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(images.count), height: scrollView.frame.height)
+        scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(bannerImages.count), height: scrollView.frame.height)
+        
         scrollView.delegate = self
         
-        stPageControl.numberOfPages = images.count
+        stPageControl.numberOfPages = bannerImages.count
         stPageControl.addTarget(self, action: #selector(pageChanged), for: .valueChanged)
     }
     
@@ -102,23 +108,24 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     //스크롤 시작
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         //remove timer from Roop
-        gameTimer.invalidate()
+        bannerTimer.invalidate()
+        
+       // isScrolledByUser = true
+        //ㅇ
     }
     //스크롤 끝
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        gameTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+        
+        bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
+        
+        //isScrolledByUser = false
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if scrollView == self.scrollView {
-            if scrollView.contentOffset.x <= -1 {
-                scrollView.isScrollEnabled = false
-                //self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-                scrollView.isScrollEnabled = true
-            }
-            
-            if scrollView.contentOffset.x >= view.frame.width * CGFloat(images.count - 1) {
+            //수정하기
+            if scrollView.contentOffset.x >= view.frame.width * CGFloat(bannerImages.count - 1) {
                 scrollView.isScrollEnabled = false
                 scrollView.isScrollEnabled = true
             }
@@ -127,19 +134,17 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
             stPageControl.currentPage = Int(page)
         }
     }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
-        //        var page = scrollView.contentOffset.x / scrollView.frame.size.width
-        //        //        print("scrollView.contentOffset.x \(scrollView.contentOffset.x)")
-        //        //        print("scrollView.frame.size.width \(scrollView.frame.size.width)")
-        //        //        print("page \(page)")
-        //        var currentEndPoint = scrollView.contentOffset.x
-        //
-        //        stPageControl.currentPage = Int(page)
-        
-    }
 }
+
+enum Section: Int {
+    case bannerScroll = 0
+    case recommendFood = 1
+    case nearestRest = 2
+    case expectedTime = 3
+    case newRest = 4
+    case discount = 5
+}
+
 
 //MARK:- tableview
 extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
@@ -147,21 +152,21 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 7
     }
-    
+ 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        switch section {
-        case 0:
+        switch section {            
+        case Section.bannerScroll.rawValue:
             return 0
-        case 1:
+        case Section.recommendFood.rawValue:
             return 1
-        case 2:
+        case Section.nearestRest.rawValue:
             return 1
-        case 3:
+        case Section.expectedTime.rawValue:
             return 1
-        case 4:
+        case Section.newRest.rawValue:
             return 1
-        case 5:
+        case Section.discount.rawValue:
             return 1
         case 6:
             return 10
@@ -190,6 +195,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
                 label.translatesAutoresizingMaskIntoConstraints = false
                 return label
             }()
+            
             headerView.addSubview(headerLabel)
             
             NSLayoutConstraint.activate([
