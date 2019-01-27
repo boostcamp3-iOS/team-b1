@@ -19,6 +19,9 @@
 		84DC184D21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC184B21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift */; };
 		84DC184E21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC184C21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib */; };
 		84DC185021F9AD7C008EE6D3 /* ItemView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84DC184F21F9AD7C008EE6D3 /* ItemView.storyboard */; };
+		99342CC421FB12CF0029DB10 /* UberEatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99342CC321FB12CF0029DB10 /* UberEatsTests.swift */; };
+		99342CCE21FB13550029DB10 /* Throttler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99342CCD21FB13550029DB10 /* Throttler.swift */; };
+		99342CD021FB13790029DB10 /* ThrottlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99342CCF21FB13790029DB10 /* ThrottlerTests.swift */; };
 		9956F7F121F98468004E9854 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956F7F021F98468004E9854 /* AppDelegate.swift */; };
 		9956F7F321F98468004E9854 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956F7F221F98468004E9854 /* FirstViewController.swift */; };
 		9956F7F521F98468004E9854 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956F7F421F98468004E9854 /* SecondViewController.swift */; };
@@ -43,6 +46,16 @@
 		D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1EAF21F9A654004CA3A5 /* StretchyHeaderLayout.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		99342CC621FB12CF0029DB10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9956F7E521F98468004E9854 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9956F7EC21F98468004E9854;
+			remoteInfo = UberEats;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpectTimeCollectionViewCell.xib; sourceTree = "<group>"; };
 		84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -56,6 +69,11 @@
 		84DC184B21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRestCollectionViewCell.swift; sourceTree = "<group>"; };
 		84DC184C21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewRestCollectionViewCell.xib; sourceTree = "<group>"; };
 		84DC184F21F9AD7C008EE6D3 /* ItemView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ItemView.storyboard; sourceTree = "<group>"; };
+		99342CC121FB12CF0029DB10 /* UberEatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UberEatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		99342CC321FB12CF0029DB10 /* UberEatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberEatsTests.swift; sourceTree = "<group>"; };
+		99342CC521FB12CF0029DB10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99342CCD21FB13550029DB10 /* Throttler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Throttler.swift; sourceTree = "<group>"; };
+		99342CCF21FB13790029DB10 /* ThrottlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrottlerTests.swift; sourceTree = "<group>"; };
 		9956F7ED21F98468004E9854 /* UberEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9956F7F021F98468004E9854 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9956F7F221F98468004E9854 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +101,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		99342CBE21FB12CF0029DB10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9956F7EA21F98468004E9854 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -112,10 +137,37 @@
 			path = firstItemView;
 			sourceTree = "<group>";
 		};
+		99342CC221FB12CF0029DB10 /* UberEatsTests */ = {
+			isa = PBXGroup;
+			children = (
+				99342CCC21FB13110029DB10 /* Utill */,
+				99342CC321FB12CF0029DB10 /* UberEatsTests.swift */,
+				99342CC521FB12CF0029DB10 /* Info.plist */,
+			);
+			path = UberEatsTests;
+			sourceTree = "<group>";
+		};
+		99342CCB21FB12FE0029DB10 /* Utill */ = {
+			isa = PBXGroup;
+			children = (
+				99342CCD21FB13550029DB10 /* Throttler.swift */,
+			);
+			path = Utill;
+			sourceTree = "<group>";
+		};
+		99342CCC21FB13110029DB10 /* Utill */ = {
+			isa = PBXGroup;
+			children = (
+				99342CCF21FB13790029DB10 /* ThrottlerTests.swift */,
+			);
+			path = Utill;
+			sourceTree = "<group>";
+		};
 		9956F7E421F98468004E9854 = {
 			isa = PBXGroup;
 			children = (
 				9956F7EF21F98468004E9854 /* UberEats */,
+				99342CC221FB12CF0029DB10 /* UberEatsTests */,
 				9956F7EE21F98468004E9854 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				9956F7ED21F98468004E9854 /* UberEats.app */,
+				99342CC121FB12CF0029DB10 /* UberEatsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,6 +184,7 @@
 		9956F7EF21F98468004E9854 /* UberEats */ = {
 			isa = PBXGroup;
 			children = (
+				99342CCB21FB12FE0029DB10 /* Utill */,
 				84DC183821F9A51D008EE6D3 /* firstItemView */,
 				D1AF1E8F21F9A5A6004CA3A5 /* View */,
 				9956F7F021F98468004E9854 /* AppDelegate.swift */,
@@ -178,6 +232,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		99342CC021FB12CF0029DB10 /* UberEatsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 99342CCA21FB12CF0029DB10 /* Build configuration list for PBXNativeTarget "UberEatsTests" */;
+			buildPhases = (
+				99342CBD21FB12CF0029DB10 /* Sources */,
+				99342CBE21FB12CF0029DB10 /* Frameworks */,
+				99342CBF21FB12CF0029DB10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				99342CC721FB12CF0029DB10 /* PBXTargetDependency */,
+			);
+			name = UberEatsTests;
+			productName = UberEatsTests;
+			productReference = 99342CC121FB12CF0029DB10 /* UberEatsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		9956F7EC21F98468004E9854 /* UberEats */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9956F80121F98468004E9854 /* Build configuration list for PBXNativeTarget "UberEats" */;
@@ -205,6 +277,10 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "team-b1";
 				TargetAttributes = {
+					99342CC021FB12CF0029DB10 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 9956F7EC21F98468004E9854;
+					};
 					9956F7EC21F98468004E9854 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -224,11 +300,19 @@
 			projectRoot = "";
 			targets = (
 				9956F7EC21F98468004E9854 /* UberEats */,
+				99342CC021FB12CF0029DB10 /* UberEatsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		99342CBF21FB12CF0029DB10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9956F7EB21F98468004E9854 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -252,6 +336,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		99342CBD21FB12CF0029DB10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99342CD021FB13790029DB10 /* ThrottlerTests.swift in Sources */,
+				99342CC421FB12CF0029DB10 /* UberEatsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9956F7E921F98468004E9854 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -274,6 +367,7 @@
 				D1AF1EAB21F9A631004CA3A5 /* Food.swift in Sources */,
 				D1AF1E9E21F9A5A6004CA3A5 /* TempCollectionReusableView.swift in Sources */,
 				D1AF1EA321F9A5A6004CA3A5 /* SmallMenuHeaderView.swift in Sources */,
+				99342CCE21FB13550029DB10 /* Throttler.swift in Sources */,
 				9956F7F321F98468004E9854 /* FirstViewController.swift in Sources */,
 				84DC184221F9A51D008EE6D3 /* RecommendCollectionViewCell.swift in Sources */,
 				84DC184421F9A51D008EE6D3 /* NearestCollectionViewCell.swift in Sources */,
@@ -281,6 +375,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		99342CC721FB12CF0029DB10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9956F7EC21F98468004E9854 /* UberEats */;
+			targetProxy = 99342CC621FB12CF0029DB10 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9956F7F621F98468004E9854 /* Main.storyboard */ = {
@@ -302,6 +404,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		99342CC821FB12CF0029DB10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = UberEatsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEatsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UberEats.app/UberEats";
+			};
+			name = Debug;
+		};
+		99342CC921FB12CF0029DB10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = UberEatsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEatsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UberEats.app/UberEats";
+			};
+			name = Release;
+		};
 		9956F7FF21F98468004E9854 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -457,6 +597,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		99342CCA21FB12CF0029DB10 /* Build configuration list for PBXNativeTarget "UberEatsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				99342CC821FB12CF0029DB10 /* Debug */,
+				99342CC921FB12CF0029DB10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9956F7E821F98468004E9854 /* Build configuration list for PBXProject "UberEats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
