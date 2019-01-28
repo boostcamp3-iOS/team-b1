@@ -11,5 +11,5 @@ import UIKit
 class SmallMenuHeaderView: UICollectionReusableView {
 
     @IBOutlet weak var menuLabel: UILabel!
-    
+
 }

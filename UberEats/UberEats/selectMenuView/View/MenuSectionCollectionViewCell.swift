@@ -12,7 +12,7 @@ class MenuSectionCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var sectionNameLabel: UILabel!
     @IBOutlet weak var colorView: UIView!
-    
+
     override var isSelected: Bool {
         didSet {
             if self.isSelected {
@@ -24,18 +24,18 @@ class MenuSectionCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    
+
     var sectionName: String? {
         didSet {
             guard let sectionName = sectionName else {
                 return
             }
-            
+
             sectionNameLabel.text = sectionName
             colorView.layer.cornerRadius = 20
         }
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         colorView.backgroundColor = .white

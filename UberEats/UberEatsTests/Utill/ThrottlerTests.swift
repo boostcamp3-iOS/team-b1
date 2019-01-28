@@ -17,19 +17,19 @@ class ThrottlerTests: XCTestCase {
     override func tearDown() { }
 
     func testSingleJob() {
-        
+
         let throttler = Throttler(DispatchTimeInterval.milliseconds(500))
         let expectation = self.expectation(description: "testSingleJob")
-        
-        throttler.run() {
+
+        throttler.run {
             expectation.fulfill()
         }
-        
+
         waitForExpectations(timeout: 1, handler: nil)
     }
-    
+
     func testSingleJobAutherThread() {
-        
+
         let throttler = Throttler(DispatchTimeInterval.milliseconds(500))
         let expectation = self.expectation(description: "testSingleJobAutherThread")
 
@@ -38,12 +38,12 @@ class ThrottlerTests: XCTestCase {
                 expectation.fulfill()
             }
         }
-        
+
         waitForExpectations(timeout: 1, handler: nil)
     }
-    
+
     func testMultipleJobs() {
-        
+
         let throttler = Throttler(DispatchTimeInterval.milliseconds(500))
         let expectation = self.expectation(description: "testMultipleJobs")
 
@@ -51,16 +51,16 @@ class ThrottlerTests: XCTestCase {
         throttler.run {
             XCTFail()
         }
-        
+
         throttler.run {
             expectation.fulfill()
         }
-        
+
         waitForExpectations(timeout: 1, handler: nil)
     }
-    
+
     func testJobRangeSuccess() {
-        
+
         let throttler = Throttler(DispatchTimeInterval.milliseconds(200))
         let firstExpectation = self.expectation(description: "testJobRangeSuccess_first")
         let secondExpectation = self.expectation(description: "testJobRangeSuccess_second")
@@ -69,14 +69,14 @@ class ThrottlerTests: XCTestCase {
         var numberForSecond = 0
         let expectationNumberForFirst = 1
         let expectationNumberForSecond = 2
-        
+
         throttler.run {
             numberForFirst = expectationNumberForFirst
             firstExpectation.fulfill()
         }
-        
+
         Thread.sleep(forTimeInterval: 0.3)
-        
+
         throttler.run {
             numberForSecond = expectationNumberForSecond
             secondExpectation.fulfill()
@@ -88,11 +88,10 @@ class ThrottlerTests: XCTestCase {
     }
 
     func testBulkJob() {
-        
+
         let throttler = Throttler(DispatchTimeInterval.milliseconds(500))
         let expectation = self.expectation(description: "testBulkJob")
-        
-        
+
         // 10ms * 100 == 1s
         for _ in 1..<100 {
             //2
@@ -101,12 +100,12 @@ class ThrottlerTests: XCTestCase {
                 XCTFail()
             }
         }
-        
+
         throttler.run {
             expectation.fulfill()
         }
-        
+
         waitForExpectations(timeout: 3, handler: nil)
     }
-    
+
 }

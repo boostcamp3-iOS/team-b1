@@ -10,117 +10,117 @@ import UIKit
 
 class ItemViewController: UIViewController, UIScrollViewDelegate {
     private static let headerId = "headerId"
-    
+
     @IBOutlet var tableView: UITableView!
     @IBOutlet var scrollView: UIScrollView!
-    
-    private var bannerImages: [String] = ["1_1", "2_1", "3_1","4_1","5_1","6_1"]
-    private var labelString: [String] = ["추천요리","가까운 인기 레스토랑","예상 시간 30분 이하","Uber Eats 신규 레스토랑","주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
+
+    private var bannerImages: [String] = ["1_1", "2_1", "3_1", "4_1", "5_1", "6_1"]
+    private var labelString: [String] = ["추천요리", "가까운 인기 레스토랑", "예상 시간 30분 이하", "Uber Eats 신규 레스토랑", "주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
     private var bannerTimer: Timer!
     private var isScrolledByUser: Bool!
-    
+
     private lazy var pageControl: UIPageControl = {
         let pc = UIPageControl(frame: CGRect(x: 50, y: scrollView.frame.height - 40, width: scrollView.frame.width - 280, height: 37))
         pc.currentPage = 0
         return pc
     }()
-    
+
     private let numberOfSection = 7
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupTableView()
         setupScrollView()
-        
+
         pageControl.currentPage = 0
         isScrolledByUser = false
-        
+
         bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
     }
-    
+
     private func setupTableView() {
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.addSubview(pageControl)
         tableView.bringSubviewToFront(pageControl)
     }
-    
+
     @objc func scrolledBanner() {
         //print("4초마다 실행 되길 ...")
-        
+
         /* guard로 false 처리
          guard isAutoScrollMode else {
          return
          }
          */
         let nextPage = pageControl.currentPage + 1
-        
+
         let point = nextPage >= bannerImages.count ?
             CGPoint(x: 0, y: 0) :
             CGPoint(x: view.frame.width * CGFloat(nextPage), y: 0)
-        
+
         scrollView.setContentOffset(point, animated: true)
-        
+
     }
-    
+
     func setupScrollView() {
         scrollView.showsHorizontalScrollIndicator = false
-        
+
         var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-        
+
         for index in 0..<bannerImages.count {
             frame.origin.x = view.frame.width * CGFloat(index)
             frame.size = scrollView.frame.size
-            
+
             let bannerImage = UIImageView(frame: frame)
             bannerImage.image = UIImage(named: bannerImages[index])
-            
+
             scrollView.addSubview(bannerImage)
         }
-        
+
         scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(bannerImages.count), height: scrollView.frame.height)
         scrollView.delegate = self
-        
+
         pageControl.numberOfPages = bannerImages.count
         pageControl.addTarget(self, action: #selector(pageChanged), for: .valueChanged)
     }
-    
+
     @objc func pageChanged() {
         let pageNumber = pageControl.currentPage
         var frame = scrollView.frame
-        
+
         frame.origin.x = frame.size.width * CGFloat(pageNumber)
         frame.origin.y = 0
-        
+
         scrollView.scrollRectToVisible(frame, animated: true) //?
     }
-    
+
     //스크롤 시작
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         //remove timer from Roop
         bannerTimer.invalidate()
-        
+
         // isScrolledByUser = true
         //ㅇ
     }
     //스크롤 끝
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
+
         bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
-        
+
         //isScrolledByUser = false
     }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+
         if scrollView == self.scrollView {
             //수정하기
             if scrollView.contentOffset.x >= view.frame.width * CGFloat(bannerImages.count - 1) {
                 scrollView.isScrollEnabled = false
                 scrollView.isScrollEnabled = true
             }
-            
+
             let page = scrollView.contentOffset.x / scrollView.frame.size.width
             pageControl.currentPage = Int(page)
         }
@@ -138,16 +138,15 @@ enum Section: Int {
     case searchAndSee = 7
 }
 
-
-//MARK:- tableview
+// MARK: - tableview
 extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return numberOfSection
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch section {            
+
+        switch section {
         case Section.bannerScroll.rawValue:
             return 0
         case Section.recommendFood.rawValue:
@@ -168,15 +167,15 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == Section.bannerScroll.rawValue {
             return 0
-        }else {
+        } else {
             return 30
         }
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0:
@@ -184,38 +183,37 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             let headerView = UIView()
             headerView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-            
+
             let headerLabel: UILabel = {
                 let label = UILabel()
                 label.translatesAutoresizingMaskIntoConstraints = false
                 return label
             }()
-            
+
             headerView.addSubview(headerLabel)
-            
+
             NSLayoutConstraint.activate([
                 headerLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
                 headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20)
                 ])
-            
+
             headerLabel.text = labelString[section - 1]
-            
+
             return headerView
         }
     }
-    
+
     // 셀 만드는 부분
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let RecommendTableViewCellNIB = UINib(nibName: "RecommendTableViewCell", bundle: nil)
         tableView.register(RecommendTableViewCellNIB, forCellReuseIdentifier: "RecommendTableViewCellId")
-        
+
         let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as! RecommendTableViewCell
-        
+
         tablecell.selectionStyle = .none
         tablecell.collectionView.tag = indexPath.section
-        
-        
+
         //tableview의 섹션별로 collectionview를 관리한다.
         switch tablecell.collectionView.tag {
         case 0 :
@@ -225,27 +223,27 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             scrollView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
             tablecell.backgroundColor = .green
             tableView.backgroundColor = .green
-            
+
         case 1:
             let RecommendCollectionViewCellNIB = UINib(nibName: "RecommendCollectionViewCell", bundle: nil)
             tablecell.collectionView.register(RecommendCollectionViewCellNIB, forCellWithReuseIdentifier: "RecommendCollectionViewCellId")
-            
+
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-            
+
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
-            
+
             //tableView.backgroundColor = .green
             return tablecell
         case 2:
             let NearestCollectionViewCellNIB = UINib(nibName: "NearestCollectionViewCell", bundle: nil)
             tablecell.collectionView.register(NearestCollectionViewCellNIB, forCellWithReuseIdentifier: "NearestCollectionViewCellId")
-            
+
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-            
+
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
@@ -253,11 +251,10 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         case 3:
             let NearestCollectionViewCellNIB = UINib(nibName: "ExpectTimeCollectionViewCell", bundle: nil)
             tablecell.collectionView.register(NearestCollectionViewCellNIB, forCellWithReuseIdentifier: "ExpectTimeCollectionViewCellId")
-            
-            
+
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-            
+
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
@@ -265,10 +262,10 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         case 4:
             let NewRestCollectionViewCellNIB = UINib(nibName: "NewRestCollectionViewCell", bundle: nil)
             tablecell.collectionView.register(NewRestCollectionViewCellNIB, forCellWithReuseIdentifier: "NewRestCollectionViewCellId")
-            
+
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-            
+
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
@@ -282,11 +279,11 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return tablecell
     }
-    
+
 //    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
 //        return 50
 //    }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
@@ -311,10 +308,10 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK:- Collectionview
+// MARK: - Collectionview
 extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+
         switch collectionView.tag {
         case 0:
             return 0
@@ -339,10 +336,10 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return 10
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         collectionView.showsHorizontalScrollIndicator = false
-        
+
         switch collectionView.tag {
         case 0:
             collectionView.backgroundColor = .lightGray
@@ -368,22 +365,22 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.backgroundColor = .lightGray
             return cell
         }
-        
+
         let cell = UICollectionViewCell()
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storboard = UIStoryboard.init(name: "Main", bundle: nil)
         let collectionViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController")
-        
+
       //  self.present(collectionViewController, animated: true, completion: nil)
-    
+
         self.navigationController?.pushViewController(collectionViewController, animated: true)
     }
 }
 
-//MARK:- UICollectionViewFlowLayout
+// MARK: - UICollectionViewFlowLayout
 extension ItemViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView.tag {
@@ -403,7 +400,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         }
         return CGSize(width: 180, height: 180)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch collectionView.tag {
         case 0:

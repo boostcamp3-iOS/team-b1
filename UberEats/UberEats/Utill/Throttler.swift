@@ -10,22 +10,20 @@ import Foundation
 import UIKit
 
 class Throttler {
-    
+
     private let queue: DispatchQueue = DispatchQueue.global(qos: .background)
     private let interval: DispatchTimeInterval
-    
+
     private var scheduledTask: DispatchWorkItem = DispatchWorkItem(block: {})
-    
+
     init(_ interval: DispatchTimeInterval) {
         self.interval = interval
     }
-    
-    public func run(executionTask task: @escaping () -> ()) {
+
+    public func run(executionTask task: @escaping () -> Void) {
         scheduledTask.cancel()
-        scheduledTask = DispatchWorkItem() { task() }
+        scheduledTask = DispatchWorkItem { task() }
         queue.asyncAfter(deadline: .now() + interval, execute: scheduledTask)
     }
-    
+
 }
-
-

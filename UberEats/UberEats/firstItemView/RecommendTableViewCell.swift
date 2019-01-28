@@ -11,7 +11,7 @@ import UIKit
 class RecommendTableViewCell: UITableViewCell, UICollectionViewDelegate {
 
     @IBOutlet var collectionView: UICollectionView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,9 +22,9 @@ class RecommendTableViewCell: UITableViewCell, UICollectionViewDelegate {
 
         // Configure the view for the selected state
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
     }
-    
+
 }
