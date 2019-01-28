@@ -60,7 +60,7 @@ class HeaderView: UICollectionReusableView {
         addSubview(titleView)
         imageView.layer.addSublayer(gradientView)
         
-        titleViewWidthConstraint = NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1, constant: -50)
+        titleViewWidthConstraint = NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.9, constant: 0)
         titleViewWidthConstraint.isActive = true
         
         NSLayoutConstraint.activate([

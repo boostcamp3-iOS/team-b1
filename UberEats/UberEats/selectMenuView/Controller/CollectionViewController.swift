@@ -31,6 +31,8 @@ class CollectionViewController: UICollectionViewController {
                                    price: "₩8,900",
                                    foodImage: nil)]
     
+    var firstHeaderView: HeaderView?
+    
     fileprivate let cellId = "cellId"
     fileprivate let headerId = "headerId"
     fileprivate let tempId = "tempId"
@@ -155,7 +157,9 @@ class CollectionViewController: UICollectionViewController {
     }
 
     func setupCollectionViewLayout() {
-        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
+        if let layout = collectionViewLayout as? StretchyHeaderLayout {
+            layout.itemSizeDelegate = self
+            
             // header와 collectionview와의 거리
             layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
 //            layout.sectionHeadersPinToVisibleBounds = true
@@ -255,7 +259,12 @@ class CollectionViewController: UICollectionViewController {
             
             switch indexPath.section {
             case 0:
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as? HeaderView else {
+                    return UICollectionReusableView()
+                }
+                
+                firstHeaderView = header
+                
                 return header
             case 3, 4, 5, 6:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: smallMenuId, for: indexPath) as? SmallMenuHeaderView else {
@@ -375,6 +384,28 @@ extension CollectionViewController: SearchBarDelegate {
         
         self.view.addSubview(searchController.view)
         searchController.didMove(toParent: self)
+        
+    }
+}
+
+extension CollectionViewController: HeaderItemSizeDelegate {
+    func changedContentOffset(value: CGFloat) {
+        guard let firstHeaderView = self.firstHeaderView else {
+            return
+        }
+        let width = self.collectionView.frame.width
+        
+        print(width)
+        print("value: \(value)")
+        print("width: \(value + (width * 0.9))")
+        
+        if value < width {
+            firstHeaderView.titleViewWidthConstraint.isActive = false
+            firstHeaderView.titleViewWidthConstraint.constant = value + (width * 0.9)
+            firstHeaderView.titleViewWidthConstraint.isActive = true
+        }
+        
+        self.collectionView.layoutIfNeeded()
         
     }
 }
