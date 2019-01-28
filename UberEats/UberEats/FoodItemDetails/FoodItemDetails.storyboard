@@ -13,7 +13,7 @@
         <!--Food Item Details View Controller-->
         <scene sceneID="qG2-DB-Vmg">
             <objects>
-                <viewController id="AXi-XS-cxW" customClass="FoodItemDetailsViewController" customModule="UberEats" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FoodItemDetailsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AXi-XS-cxW" customClass="FoodItemDetailsViewController" customModule="UberEats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eoL-ay-tmT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,7 +70,7 @@
                                     <constraint firstAttribute="height" constant="300" id="W5Y-yd-USI"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KI2-Nm-Axi" customClass="GradientView" customModule="UITestApp" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KI2-Nm-Axi" customClass="GradientView" customModule="UberEats" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="90.333333333333329"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zG-yT-rpx" userLabel="ToolBar">
