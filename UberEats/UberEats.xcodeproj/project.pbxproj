@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7B07DCA2617C7027DEBD3B1E /* Pods_UberEatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B151BE5FF725EBA9E065F31 /* Pods_UberEatsTests.framework */; };
 		842CC7B921FEBC100045D084 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CC7B821FEBC100045D084 /* CollectionViewController.swift */; };
+		84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */; };
 		84DC184121F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */; };
 		84DC184221F9A51D008EE6D3 /* RecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */; };
 		84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183B21F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift */; };
@@ -73,6 +74,7 @@
 		754714E789542F3590FBCC3B /* Pods-UberEats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEats.debug.xcconfig"; path = "Target Support Files/Pods-UberEats/Pods-UberEats.debug.xcconfig"; sourceTree = "<group>"; };
 		7B151BE5FF725EBA9E065F31 /* Pods_UberEatsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UberEatsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		842CC7B821FEBC100045D084 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpectTimeCollectionViewCell.xib; sourceTree = "<group>"; };
 		84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCollectionViewCell.swift; sourceTree = "<group>"; };
 		84DC183B21F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpectTimeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				99342CCD21FB13550029DB10 /* Throttler.swift */,
+				84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */,
 			);
 			path = Utill;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				992EDCEF21FDB11B006CC894 /* FoodItemDetailsCell.swift in Sources */,
 				9956F7F521F98468004E9854 /* SecondViewController.swift in Sources */,
 				84DC184521F9A51D008EE6D3 /* RecommendTableViewCell.swift in Sources */,
+				84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */,
 				84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */,
 				84DC184A21F9ACE0008EE6D3 /* ItemViewController.swift in Sources */,
 				D1F96F0221FE8D9400D79396 /* HeaderItemSizeDelegate.swift in Sources */,
