@@ -12,6 +12,11 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var tableView: UITableView!
     
     @IBOutlet var scrollView: UIScrollView!
+    private var images: [String] = ["1_1", "2_1", "3_1","4_1","5_1","6_1"]
+    private var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+    private var labelString: [String] = ["추천요리","가까운 인기 레스토랑","예상 시간 30분 이하","Uber Eats 신규 레스토랑","주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
+    private var gameTimer: Timer!
+    private var collectionViewItems:[Int] = []
     
     private var images: [String] = ["1_1", "2_1", "3_1", "4_1", "5_1", "6_1"]
     

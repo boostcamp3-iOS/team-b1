@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "99342CC021FB12CF0029DB10"
-               BuildableName = "UberEatsTests.xctest"
+               BuildableName = "UberEatsTests"
                BlueprintName = "UberEatsTests"
                ReferencedContainer = "container:UberEats.xcodeproj">
             </BuildableReference>
