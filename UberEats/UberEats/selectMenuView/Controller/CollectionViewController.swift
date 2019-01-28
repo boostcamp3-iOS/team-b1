@@ -29,9 +29,7 @@ class CollectionViewController: UICollectionViewController {
                                    foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
                                    price: "₩8,900",
                                    foodImage: nil)]
-
-    var firstHeaderView: HeaderView?
-
+    
     fileprivate let cellId = "cellId"
     fileprivate let headerId = "headerId"
     fileprivate let tempId = "tempId"
@@ -44,7 +42,11 @@ class CollectionViewController: UICollectionViewController {
     private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     private var likeStatus: Bool = false
-
+    
+    private var titleViewTopConstraint = NSLayoutConstraint()
+    private var titleViewWidthConstraint = NSLayoutConstraint()
+    private var titleViewHeightConstraint = NSLayoutConstraint()
+    
     let searchBarView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +67,25 @@ class CollectionViewController: UICollectionViewController {
         button.setImage(#imageLiteral(resourceName: "like"), for: .normal)
         return button
     }()
-
+    
+    let titleView: TitleCustomView = {
+        let view = TitleCustomView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+//        view.layer.zPosition = .greatestFiniteMagnitude
+        view.layer.cornerRadius = 5
+        
+        //shadow
+        view.layer.masksToBounds = false
+        view.layer.shadowColor = UIColor.gray.cgColor
+        view.layer.shadowOpacity = 0.3
+        view.layer.shadowOffset = CGSize(width: 0, height: 5)
+        view.layer.shadowRadius = 10
+        //        view.layer.shouldRasterize = true
+        view.layer.rasterizationScale = UIScreen.main.scale
+        return view
+    }()
+    
     lazy var menuSectionIndexCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -92,27 +112,44 @@ class CollectionViewController: UICollectionViewController {
         collectionView.backgroundColor = .white
         // scrollBar 없애기 위함
         collectionView.showsVerticalScrollIndicator = false
-
+        
+        view.addSubview(titleView)
         view.addSubview(backButton)
         view.addSubview(likeButton)
         view.addSubview(menuSectionIndexCollectionView)
 
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
         likeButton.addTarget(self, action: #selector(touchUpLikeButton(_:)), for: .touchUpInside)
-
+        
+        titleViewTopConstraint = NSLayoutConstraint(item: titleView, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: 155)
+        titleViewTopConstraint.isActive = true
+        
+        titleViewWidthConstraint = NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: -50)
+        titleViewWidthConstraint.isActive = true
+        
+        titleViewHeightConstraint = NSLayoutConstraint(item: titleView, attribute: .height, relatedBy: .equal, toItem: titleView, attribute: .width, multiplier: 0.5, constant: 0)
+        titleViewHeightConstraint.isActive = true
+        
+//        titleViewLeadingConstraint = NSLayoutConstraint(item: titleView, attribute: .leading, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: 25)
+//        titleViewLeadingConstraint.isActive = true
+//
+//        titleViewTrailingConstraint = NSLayoutConstraint(item: titleView, attribute: .trailing, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1, constant: -25)
+//        titleViewTrailingConstraint.isActive = true
+        
         NSLayoutConstraint.activate([
-
+            titleView.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
+            
             menuSectionIndexCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 85),
             menuSectionIndexCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             menuSectionIndexCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             menuSectionIndexCollectionView.heightAnchor.constraint(equalToConstant: 60),
-
-            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
             backButton.widthAnchor.constraint(equalToConstant: 25),
             backButton.heightAnchor.constraint(equalToConstant: 25),
-
-            likeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            
+            likeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             likeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             likeButton.widthAnchor.constraint(equalToConstant: 25),
             likeButton.heightAnchor.constraint(equalToConstant: 25)
@@ -252,9 +289,7 @@ class CollectionViewController: UICollectionViewController {
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as? HeaderView else {
                     return UICollectionReusableView()
                 }
-
-                firstHeaderView = header
-
+                
                 return header
             case 3, 4, 5, 6:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: smallMenuId, for: indexPath) as? SmallMenuHeaderView else {
@@ -332,6 +367,7 @@ class CollectionViewController: UICollectionViewController {
                 statusBarStyle = .lightContent
             }
             self.setNeedsStatusBarAppearanceUpdate()
+            self.view.layoutIfNeeded()
         }
     }
 }
@@ -376,47 +412,44 @@ extension CollectionViewController: SearchBarDelegate {
     }
 }
 
-extension CollectionViewController: HeaderItemSizeDelegate {
-    func changedContentOffset(value: CGFloat, lastValue: CGFloat) {
-        guard let firstHeaderView = self.firstHeaderView else {
-            return
+extension CollectionViewController: ItemSizeDelegate {
+    func changedContentOffset(curOffsetY: CGFloat, lastOffsetY: CGFloat) {
+        print(curOffsetY)
+        if curOffsetY < 210 {
+            self.titleViewTopConstraint.constant = 155 - curOffsetY
         }
-        let width = self.collectionView.frame.width
-
-//        if value < 100 {
-//            firstHeaderView.titleView.titleLabel.numberOfLines = 1
-//        } else {
-        if value > 100 {
-            firstHeaderView.titleView.titleLabel.numberOfLines = 1
+        
+        if curOffsetY > 100 {
+            titleView.titleLabel.numberOfLines = 1
         } else {
-            firstHeaderView.titleView.titleLabel.numberOfLines = 0
+            titleView.titleLabel.numberOfLines = 0
         }
 
-        if value < 190 {
-
-            firstHeaderView.titleViewWidthConstraint.constant = value/3 - 50
-            firstHeaderView.titleViewHeightConstraint.constant = -value/7
-            if value > lastValue {
-                firstHeaderView.titleView.detailLabel.alpha = firstHeaderView.titleView.detailLabel.alpha - 0.006
-                firstHeaderView.titleView.timeAndGradeLabel.alpha = firstHeaderView.titleView.timeAndGradeLabel.alpha - 0.006
-                firstHeaderView.titleView.titleLabelLeadingConstraint.constant =
-                    firstHeaderView.titleView.titleLabelLeadingConstraint.constant + value * 0.002
-                firstHeaderView.titleView.titleLabelTrailingConstraint.constant =
-                    firstHeaderView.titleView.titleLabelTrailingConstraint.constant - value * 0.002
-                firstHeaderView.titleView.titleLabelTopConstraint.constant = firstHeaderView.titleView.titleLabelTopConstraint.constant + value * 0.002
-            } else if value < lastValue {
-                firstHeaderView.titleView.detailLabel.alpha = firstHeaderView.titleView.detailLabel.alpha + 0.006
-                firstHeaderView.titleView.timeAndGradeLabel.alpha = firstHeaderView.titleView.timeAndGradeLabel.alpha + 0.006
-                firstHeaderView.titleView.titleLabelLeadingConstraint.constant =
-                    firstHeaderView.titleView.titleLabelLeadingConstraint.constant - value * 0.002
-
-                firstHeaderView.titleView.titleLabelTrailingConstraint.constant =
-                    firstHeaderView.titleView.titleLabelTrailingConstraint.constant + value * 0.002
-
-                firstHeaderView.titleView.titleLabelTopConstraint.constant = firstHeaderView.titleView.titleLabelTopConstraint.constant - value * 0.002
+        if curOffsetY < 190 && curOffsetY > 0 {
+            titleViewWidthConstraint.constant = curOffsetY/3 - 50
+            titleViewHeightConstraint.constant = -(curOffsetY/3)
+            
+            if curOffsetY > lastOffsetY {
+                titleView.detailLabel.alpha = titleView.detailLabel.alpha - 0.007
+                titleView.timeAndGradeLabel.alpha = titleView.timeAndGradeLabel.alpha - 0.007
+//                titleView.titleLabelLeadingConstraint.constant = titleView.titleLabelLeadingConstraint.constant + value * 0.002
+//                firstHeaderView.titleView.titleLabelTrailingConstraint.constant =
+//                    firstHeaderView.titleView.titleLabelTrailingConstraint.constant - value * 0.002
+                titleView.titleLabelTopConstraint.constant = curOffsetY/5 + 25
+            } else if curOffsetY < lastOffsetY {
+                titleView.detailLabel.alpha = titleView.detailLabel.alpha + 0.007
+                titleView.timeAndGradeLabel.alpha = titleView.timeAndGradeLabel.alpha + 0.007
+//                firstHeaderView.titleView.titleLabelLeadingConstraint.constant =
+//                    firstHeaderView.titleView.titleLabelLeadingConstraint.constant - value * 0.002
+//
+//                firstHeaderView.titleView.titleLabelTrailingConstraint.constant =
+//                    firstHeaderView.titleView.titleLabelTrailingConstraint.constant + value * 0.002
+//
+//
+                titleView.titleLabelTopConstraint.constant = curOffsetY*5 - 25
             }
 
         }
-        self.collectionView.layoutIfNeeded()
+        self.view.layoutIfNeeded()
     }
 }
