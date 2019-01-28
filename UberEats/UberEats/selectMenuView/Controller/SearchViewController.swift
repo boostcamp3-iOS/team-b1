@@ -9,14 +9,14 @@
 import UIKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate {
-    
+
     @IBOutlet weak var searchTextField: UITextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
     }
-    
+
     func setupLayout() {
 //        navigationController?.setNavigationBarHidden(false, animated: true)
         searchTextField.becomeFirstResponder()
