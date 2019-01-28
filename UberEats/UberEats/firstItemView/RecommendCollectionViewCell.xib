@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RecommendCollectionViewCell" customModule="uberEats" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="RecommendCollectionViewCell" customModule="UberEats" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="223" height="231"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ii-8O-EtO">
-                        <rect key="frame" x="0.0" y="0.0" width="223" height="283"/>
+                        <rect key="frame" x="0.0" y="0.0" width="223" height="231"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Recommend1" translatesAutoresizingMaskIntoConstraints="NO" id="5jX-Jq-NAO">
@@ -72,6 +72,7 @@
             <connections>
                 <outlet property="image" destination="5jX-Jq-NAO" id="0rM-mT-lQW"/>
                 <outlet property="label" destination="h9C-H8-sg3" id="ZNE-EB-hNj"/>
+                <outlet property="view" destination="8ii-8O-EtO" id="89u-cR-jd5"/>
             </connections>
             <point key="canvasLocation" x="120.8" y="213.64317841079463"/>
         </collectionViewCell>
