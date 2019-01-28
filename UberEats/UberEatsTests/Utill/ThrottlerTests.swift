@@ -95,6 +95,7 @@ class ThrottlerTests: XCTestCase {
         
         // 10ms * 100 == 1s
         for _ in 1..<100 {
+            //2
             Thread.sleep(forTimeInterval: 0.01)
             throttler.run {
                 XCTFail()

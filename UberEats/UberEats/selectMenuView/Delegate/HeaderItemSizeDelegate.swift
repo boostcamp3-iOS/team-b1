@@ -9,5 +9,5 @@
 import UIKit
 
 protocol HeaderItemSizeDelegate {
-    func changedContentOffset(value: CGFloat)
+    func changedContentOffset(value: CGFloat, lastValue: CGFloat)
 }
