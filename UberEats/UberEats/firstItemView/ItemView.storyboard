@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="57" width="375" height="610"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <scrollView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" pagingEnabled="YES" id="UHB-oF-TxY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="137"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <connections>
                                         <outlet property="delegate" destination="oTS-wt-uxH" id="2Xv-m9-eSl"/>
@@ -60,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IM7-uB-7Bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-598" y="-187"/>
+            <point key="canvasLocation" x="-599.20000000000005" y="-187.55622188905548"/>
         </scene>
     </scenes>
 </document>

@@ -15,65 +15,60 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var scrollView: UIScrollView!
     
     private var bannerImages: [String] = ["1_1", "2_1", "3_1","4_1","5_1","6_1"]
- 
-    
     private var labelString: [String] = ["추천요리","가까운 인기 레스토랑","예상 시간 30분 이하","Uber Eats 신규 레스토랑","주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
-    
     private var bannerTimer: Timer!
+    private var isScrolledByUser: Bool!
     
-    private lazy var stPageControl: UIPageControl = {
+    private lazy var pageControl: UIPageControl = {
         let pc = UIPageControl(frame: CGRect(x: 50, y: scrollView.frame.height - 40, width: scrollView.frame.width - 280, height: 37))
-    
         pc.currentPage = 0
         return pc
     }()
     
-    private var isScrolledByUser: Bool!
+    private let numberOfSection = 7
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupLayout()
+        setupTableView()
         setupScrollView()
         
-        stPageControl.currentPage = 0
+        pageControl.currentPage = 0
         isScrolledByUser = false
-        
         
         bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
     }
     
-    private func setupLayout() {
+    private func setupTableView() {
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
-        tableView.addSubview(stPageControl)
-        tableView.bringSubviewToFront(stPageControl)
+        tableView.addSubview(pageControl)
+        tableView.bringSubviewToFront(pageControl)
     }
     
     @objc func scrolledBanner() {
         //print("4초마다 실행 되길 ...")
         
         /* guard로 false 처리
-        guard isAutoScrollMode else {
-            return
-        }
-        */
+         guard isAutoScrollMode else {
+         return
+         }
+         */
         
         
         
-            let nextPage = stPageControl.currentPage + 1
-            
-            let point = nextPage >= bannerImages.count ?
-                CGPoint(x: 0, y: 0) :
-                CGPoint(x: view.frame.width * CGFloat(nextPage), y: 0)
-            
-            scrollView.setContentOffset(point, animated: true)
+        let nextPage = pageControl.currentPage + 1
+        
+        let point = nextPage >= bannerImages.count ?
+            CGPoint(x: 0, y: 0) :
+            CGPoint(x: view.frame.width * CGFloat(nextPage), y: 0)
+        
+        scrollView.setContentOffset(point, animated: true)
         
     }
     
     func setupScrollView() {
         scrollView.showsHorizontalScrollIndicator = false
-        //scrollView.isPagingEnabled = true
         
         var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         
@@ -88,15 +83,14 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         }
         
         scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(bannerImages.count), height: scrollView.frame.height)
-        
         scrollView.delegate = self
         
-        stPageControl.numberOfPages = bannerImages.count
-        stPageControl.addTarget(self, action: #selector(pageChanged), for: .valueChanged)
+        pageControl.numberOfPages = bannerImages.count
+        pageControl.addTarget(self, action: #selector(pageChanged), for: .valueChanged)
     }
     
     @objc func pageChanged() {
-        let pageNumber = stPageControl.currentPage
+        let pageNumber = pageControl.currentPage
         var frame = scrollView.frame
         
         frame.origin.x = frame.size.width * CGFloat(pageNumber)
@@ -110,7 +104,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         //remove timer from Roop
         bannerTimer.invalidate()
         
-       // isScrolledByUser = true
+        // isScrolledByUser = true
         //ㅇ
     }
     //스크롤 끝
@@ -131,7 +125,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
             }
             
             let page = scrollView.contentOffset.x / scrollView.frame.size.width
-            stPageControl.currentPage = Int(page)
+            pageControl.currentPage = Int(page)
         }
     }
 }
@@ -143,16 +137,17 @@ enum Section: Int {
     case expectedTime = 3
     case newRest = 4
     case discount = 5
+    case moreRest = 6
+    case searchAndSee = 7
 }
 
 
 //MARK:- tableview
 extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
-    // 섹션 7개
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 7
+        return numberOfSection
     }
- 
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {            
@@ -168,9 +163,9 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             return 1
         case Section.discount.rawValue:
             return 1
-        case 6:
+        case Section.moreRest.rawValue:
             return 10
-        case 7:
+        case Section.searchAndSee.rawValue:
             return 1
         default:
             return 0
@@ -178,8 +173,11 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return 30
+        if section == Section.bannerScroll.rawValue {
+            return 0
+        }else {
+            return 30
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -218,11 +216,19 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as! RecommendTableViewCell
         
         tablecell.selectionStyle = .none
-        
         tablecell.collectionView.tag = indexPath.section
+        
         
         //tableview의 섹션별로 collectionview를 관리한다.
         switch tablecell.collectionView.tag {
+        case 0 :
+            scrollView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
+            scrollView.topAnchor.constraint(equalTo: tablecell.topAnchor).isActive = true
+            scrollView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
+            scrollView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
+            tablecell.backgroundColor = .green
+            tableView.backgroundColor = .green
+            
         case 1:
             let RecommendCollectionViewCellNIB = UINib(nibName: "RecommendCollectionViewCell", bundle: nil)
             tablecell.collectionView.register(RecommendCollectionViewCellNIB, forCellWithReuseIdentifier: "RecommendCollectionViewCellId")
@@ -233,11 +239,12 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
+            
+            //tableView.backgroundColor = .green
             return tablecell
         case 2:
             let NearestCollectionViewCellNIB = UINib(nibName: "NearestCollectionViewCell", bundle: nil)
             tablecell.collectionView.register(NearestCollectionViewCellNIB, forCellWithReuseIdentifier: "NearestCollectionViewCellId")
-            
             
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
@@ -271,22 +278,17 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             return tablecell
         case 5://주문시 5천원 할인
             if indexPath.row == 0 {
-                
-                
                 tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-                
-                
             }
         default:
             print("default")
         }
-        //
         return tablecell
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 5
-    }
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 50
+//    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
