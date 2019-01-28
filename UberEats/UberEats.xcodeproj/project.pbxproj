@@ -136,26 +136,33 @@
 			isa = PBXGroup;
 			children = (
 				84DC183821F9A51D008EE6D3 /* firstItemView */,
-				D1AF1E8F21F9A5A6004CA3A5 /* View */,
+				D1AF1E8F21F9A5A6004CA3A5 /* selectMenuView */,
 				9956F7F021F98468004E9854 /* AppDelegate.swift */,
 				9956F7F221F98468004E9854 /* FirstViewController.swift */,
 				9956F7F421F98468004E9854 /* SecondViewController.swift */,
-				D1AF1EAC21F9A647004CA3A5 /* CollectionViewController.swift */,
-				D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */,
 				9956F7F621F98468004E9854 /* Main.storyboard */,
-				D1AF1EAE21F9A654004CA3A5 /* Custom */,
 				9956F7F921F98468004E9854 /* Assets.xcassets */,
 				9956F7FB21F98468004E9854 /* LaunchScreen.storyboard */,
 				9956F7FE21F98468004E9854 /* Info.plist */,
-				D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */,
 			);
 			path = UberEats;
 			sourceTree = "<group>";
 		};
-		D1AF1E8F21F9A5A6004CA3A5 /* View */ = {
+		D1AF1E8F21F9A5A6004CA3A5 /* selectMenuView */ = {
 			isa = PBXGroup;
 			children = (
-				D1AF1EAA21F9A631004CA3A5 /* Food.swift */,
+				D1AF1EAF21F9A654004CA3A5 /* StretchyHeaderLayout.swift */,
+				D1F96F0021FE8D0C00D79396 /* Delegate */,
+				D1F96EFE21FE8CEB00D79396 /* Controller */,
+				D1F96EFF21FE8CF200D79396 /* Model */,
+				D1F96EFD21FE8CD100D79396 /* View */,
+			);
+			path = selectMenuView;
+			sourceTree = "<group>";
+		};
+		D1F96EFD21FE8CD100D79396 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				D1AF1E9021F9A5A6004CA3A5 /* SmallMenuHeaderView.xib */,
 				D1AF1E9121F9A5A6004CA3A5 /* TempCollectionReusableView.swift */,
 				D1AF1E9221F9A5A6004CA3A5 /* TitleCustomView.swift */,
@@ -173,12 +180,29 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		D1AF1EAE21F9A654004CA3A5 /* Custom */ = {
+		D1F96EFE21FE8CEB00D79396 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D1AF1EAF21F9A654004CA3A5 /* StretchyHeaderLayout.swift */,
+				D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */,
+				D1AF1EAC21F9A647004CA3A5 /* CollectionViewController.swift */,
 			);
-			path = Custom;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D1F96EFF21FE8CF200D79396 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D1AF1EAA21F9A631004CA3A5 /* Food.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D1F96F0021FE8D0C00D79396 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,7 +275,6 @@
 				9956F7F821F98468004E9854 /* Main.storyboard in Resources */,
 				84DC185021F9AD7C008EE6D3 /* ItemView.storyboard in Resources */,
 				84DC184E21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib in Resources */,
-				D1AF1EA121F9A5A6004CA3A5 /* StoreInfomationView.xib in Resources */,
 				D1AF1EA721F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
