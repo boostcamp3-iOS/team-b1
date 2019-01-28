@@ -10,6 +10,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="qqT-2e-RVv">
+            <objects>
+                <navigationController storyboardIdentifier="NavigationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" navigationBarHidden="YES" id="hwt-0n-DLC" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BCB-2x-AbG">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="oTS-wt-uxH" kind="relationship" relationship="rootViewController" id="bql-YA-a6E"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zy4-QF-Oxv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2258" y="-189"/>
+        </scene>
         <!--Item View Controller-->
         <scene sceneID="5gb-eD-ZWD">
             <objects>
@@ -53,6 +68,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gXm-Qx-GJ1"/>
                     </view>
+                    <navigationItem key="navigationItem" id="kOl-ey-Hdq"/>
                     <connections>
                         <outlet property="scrollView" destination="UHB-oF-TxY" id="7J2-ay-zrh"/>
                         <outlet property="tableView" destination="vIN-KP-eu6" id="TAQ-qK-bbF"/>
@@ -60,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IM7-uB-7Bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-599.20000000000005" y="-187.55622188905548"/>
+            <point key="canvasLocation" x="-1158" y="-189"/>
         </scene>
     </scenes>
 </document>

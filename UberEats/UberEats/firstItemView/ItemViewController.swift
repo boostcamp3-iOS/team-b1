@@ -54,9 +54,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
          return
          }
          */
-        
-        
-        
         let nextPage = pageControl.currentPage + 1
         
         let point = nextPage >= bannerImages.count ?
@@ -375,6 +372,15 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = UICollectionViewCell()
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let collectionViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController")
+        
+      //  self.present(collectionViewController, animated: true, completion: nil)
+    
+        self.navigationController?.pushViewController(collectionViewController, animated: true)
+    }
 }
 
 //MARK:- UICollectionViewFlowLayout
@@ -415,4 +421,5 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         }
     }
+
 }

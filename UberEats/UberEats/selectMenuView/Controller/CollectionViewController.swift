@@ -5,7 +5,6 @@
 //  Created by 이혜주 on 21/01/2019.
 //  Copyright © 2019 leehyeju. All rights reserved.
 //
-
 import UIKit
 
 class CollectionViewController: UICollectionViewController {
@@ -45,7 +44,7 @@ class CollectionViewController: UICollectionViewController {
     private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     private var likeStatus: Bool = false
-
+    
     let searchBarView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -153,16 +152,16 @@ class CollectionViewController: UICollectionViewController {
         
         let menuSectionNib = UINib(nibName: "MenuSectionCollectionViewCell", bundle: nil)
         menuSectionIndexCollectionView.register(menuSectionNib, forCellWithReuseIdentifier: menuSectionId)
-
+        
     }
-
+    
     func setupCollectionViewLayout() {
         if let layout = collectionViewLayout as? StretchyHeaderLayout {
             layout.itemSizeDelegate = self
             
             // header와 collectionview와의 거리
             layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
-//            layout.sectionHeadersPinToVisibleBounds = true
+            //            layout.sectionHeadersPinToVisibleBounds = true
         }
     }
     
@@ -314,6 +313,12 @@ class CollectionViewController: UICollectionViewController {
                 print("")
             }
         }
+        
+        let storyboard = UIStoryboard.init(name: "FoodItemDetails", bundle: nil)
+        let FoodItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
+        
+        //self.present(FoodItemVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(FoodItemVC, animated: true)
     }
     
     //MARK:- ScrollView

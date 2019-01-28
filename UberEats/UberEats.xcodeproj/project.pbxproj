@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		842CC7B921FEBC100045D084 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CC7B821FEBC100045D084 /* CollectionViewController.swift */; };
 		84DC184121F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */; };
 		84DC184221F9A51D008EE6D3 /* RecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */; };
 		84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183B21F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift */; };
@@ -46,7 +47,6 @@
 		D1AF1EA621F9A5A6004CA3A5 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9921F9A5A6004CA3A5 /* HeaderView.swift */; };
 		D1AF1EA721F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1AF1E9A21F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.xib */; };
 		D1AF1EAB21F9A631004CA3A5 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1EAA21F9A631004CA3A5 /* Food.swift */; };
-		D1AF1EAD21F9A647004CA3A5 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1EAC21F9A647004CA3A5 /* CollectionViewController.swift */; };
 		D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1EAF21F9A654004CA3A5 /* StretchyHeaderLayout.swift */; };
 		D1EA630221FA9B1D0024CD68 /* SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */; };
 		D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */; };
@@ -64,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		842CC7B821FEBC100045D084 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpectTimeCollectionViewCell.xib; sourceTree = "<group>"; };
 		84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCollectionViewCell.swift; sourceTree = "<group>"; };
 		84DC183B21F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpectTimeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -107,7 +108,6 @@
 		D1AF1E9921F9A5A6004CA3A5 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		D1AF1E9A21F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSectionCollectionViewCell.xib; sourceTree = "<group>"; };
 		D1AF1EAA21F9A631004CA3A5 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
-		D1AF1EAC21F9A647004CA3A5 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		D1AF1EAF21F9A654004CA3A5 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
 		D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarDelegate.swift; sourceTree = "<group>"; };
 		D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -214,7 +214,6 @@
 				D1AF1E8F21F9A5A6004CA3A5 /* selectMenuView */,
 				9956F7F021F98468004E9854 /* AppDelegate.swift */,
 				9956F7F221F98468004E9854 /* FirstViewController.swift */,
-				D1AF1EAC21F9A647004CA3A5 /* CollectionViewController.swift */,
 				84DC185321F9C426008EE6D3 /* TabBarVC.swift */,
 				9956F7F421F98468004E9854 /* SecondViewController.swift */,
 				9956F7F621F98468004E9854 /* Main.storyboard */,
@@ -261,7 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */,
-				D1AF1EAC21F9A647004CA3A5 /* CollectionViewController.swift */,
+				842CC7B821FEBC100045D084 /* CollectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -376,7 +375,6 @@
 				9956F7FD21F98468004E9854 /* LaunchScreen.storyboard in Resources */,
 				9956F7FA21F98468004E9854 /* Assets.xcassets in Resources */,
 				D115BBB421F9D49E00C57809 /* SearchCollectionViewCell.xib in Resources */,
-				D1AF1EA821F9A5A6004CA3A5 /* MenuView.xib in Resources */,
 				992EDCEB21FDB0A7006CC894 /* FoodItemDetails.storyboard in Resources */,
 				D1AF1E9D21F9A5A6004CA3A5 /* SmallMenuHeaderView.xib in Resources */,
 				84DC184721F9A51D008EE6D3 /* NearestCollectionViewCell.xib in Resources */,
@@ -407,7 +405,6 @@
 			files = (
 				D1AF1EA521F9A5A6004CA3A5 /* FoodCollectionViewCell.swift in Sources */,
 				992EDCEF21FDB11B006CC894 /* FoodItemDetailsCell.swift in Sources */,
-				D1AF1EA921F9A5A6004CA3A5 /* MenuView.swift in Sources */,
 				9956F7F521F98468004E9854 /* SecondViewController.swift in Sources */,
 				84DC184521F9A51D008EE6D3 /* RecommendTableViewCell.swift in Sources */,
 				84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */,
@@ -416,12 +413,11 @@
 				D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */,
 				D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */,
 				D115BBB721F9D66100C57809 /* StoreInfoCollectionViewCell.swift in Sources */,
-				D1AF1EA221F9A5A6004CA3A5 /* StoreInfomationView.swift in Sources */,
 				84DC185421F9C426008EE6D3 /* TabBarVC.swift in Sources */,
-				D1AF1EAD21F9A647004CA3A5 /* CollectionViewController.swift in Sources */,
 				D115BBB321F9D49E00C57809 /* SearchCollectionViewCell.swift in Sources */,
 				D1AF1EA421F9A5A6004CA3A5 /* StoreInfoCollectionReusableView.swift in Sources */,
 				D1AF1EA021F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.swift in Sources */,
+				842CC7B921FEBC100045D084 /* CollectionViewController.swift in Sources */,
 				D1EA630221FA9B1D0024CD68 /* SearchBarDelegate.swift in Sources */,
 				D1AF1E9F21F9A5A6004CA3A5 /* TitleCustomView.swift in Sources */,
 				84DC184D21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift in Sources */,

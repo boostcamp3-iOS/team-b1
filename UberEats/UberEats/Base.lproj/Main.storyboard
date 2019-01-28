@@ -50,7 +50,7 @@
         <!--Collection View Controller-->
         <scene sceneID="Ymu-kM-ace">
             <objects>
-                <collectionViewController id="RbL-5d-q5f" customClass="CollectionViewController" customModule="UberEats" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="CollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RbL-5d-q5f" customClass="CollectionViewController" customModule="UberEats" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="UNb-ad-WSs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,7 +80,52 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ark-l6-v1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2863.1999999999998" y="-321.58920539730138"/>
+            <point key="canvasLocation" x="3668" y="-352"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2ff-vB-hag">
+            <objects>
+                <viewController storyboardIdentifier="searchView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gZM-xl-yKL" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uHS-oW-zMY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="w0G-iG-GOb"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tyU-Oy-osV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5344" y="-340"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="npj-Pe-p0m">
+            <objects>
+                <viewController storyboardIdentifier="orderHistory" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Oy3-q9-x7N" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HD9-eb-Mgl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="UDj-K0-g4s"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N9b-TA-wD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5324" y="375"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Yv4-5q-uST">
+            <objects>
+                <viewController storyboardIdentifier="myPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nt2-rY-AdJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="upQ-ns-9mJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="kcI-To-8hQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uBR-K7-Yvn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5303" y="1071"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="rn6-nd-u1D">
@@ -165,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dJh-eZ-JGQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2856.8000000000002" y="361.16941529235385"/>
+            <point key="canvasLocation" x="3736" y="341"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
