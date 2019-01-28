@@ -9,6 +9,7 @@
 import UIKit
 
 class FoodItemDetailsViewController: UIViewController {
+    
     @IBOutlet weak var toolbar: UIView!
     
     @IBOutlet weak var coverToolBar: UIView!
@@ -29,8 +30,6 @@ class FoodItemDetailsViewController: UIViewController {
     
     private static let coveredToolbarAnimationInterval = 500
     
-    private var coveredToolbarThrottler: Throttler?
-    
     private lazy var stretchableHeaderMinumumHeight = {
         return self.toolbar.frame.height
     }
@@ -43,28 +42,18 @@ class FoodItemDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        coveredToolbarThrottler = Throttler(
-            DispatchTimeInterval.microseconds(FoodItemDetailsViewController.coveredToolbarAnimationInterval)
-        )
         initView()
     }
-    
-    @IBAction func coveredBackButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func uncoveredBackButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
+ 
     private func initView() {
-        
         self.coveredToolBarBottom.constant = -toolbar.frame.height
-        
         tableView.contentInset = UIEdgeInsets(top: FoodItemDetailsViewController.stretchableHeaderImageHeight, left: 0, bottom: 0, right: 0)
         tableView.rowHeight = UITableView.automaticDimension
-        
         orderButton.layer.cornerRadius = FoodItemDetailsViewController.orderButtonCornerRadius
+    }
+    
+    @IBAction func clickedBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -79,36 +68,27 @@ class FoodItemDetailsViewController: UIViewController {
         
         func coveredToolBarStatus() -> CoveredToolBarStatus {
             if (stretchableHeaderHeight <= stretchableHeaderMinumumHeight()) {
-                return .uncovered
+                return .covered
             }
-            return .covered
+            return .uncovered
         }
         
         func coveredToolBarHeight(status: CoveredToolBarStatus) -> CGFloat {
-            return coveredToolBarStatus() == .covered ? -self.toolbar.frame.height : 0
+            return coveredToolBarStatus() == .uncovered ? -self.toolbar.frame.height : 0
         }
         
-        
-        coveredToolbarThrottler?.run {
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
-                    
-                    self.coveredToolBarBottom.constant = coveredToolBarHeight(status: coveredToolBarStatus())
-                    self.setNeedsStatusBarAppearanceUpdate()
-                    self.view.layoutIfNeeded()
-                    
-                }, completion: nil)
-            }
-        }
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
+            
+            self.coveredToolBarBottom.constant = coveredToolBarHeight(status: coveredToolBarStatus())
+            self.setNeedsStatusBarAppearanceUpdate()
+            self.view.layoutIfNeeded()
+            
+        }, completion: nil)
         
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return self.style
-    }
-    
-    @objc func touchUpBackButton(_: UIButton) {
-        self.navigationController?.popViewController(animated: true)
     }
 }
 
