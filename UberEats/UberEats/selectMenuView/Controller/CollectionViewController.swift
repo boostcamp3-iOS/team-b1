@@ -43,10 +43,7 @@ class CollectionViewController: UICollectionViewController {
     private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     private var likeStatus: Bool = false
-    
-    let searchBarController = UISearchController()
-    
-    
+
     let searchBarView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -66,24 +63,6 @@ class CollectionViewController: UICollectionViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(#imageLiteral(resourceName: "like"), for: .normal)
         return button
-    }()
-    
-    let titleView: TitleCustomView = {
-        let view = TitleCustomView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
-        view.layer.zPosition = .greatestFiniteMagnitude
-        view.layer.cornerRadius = 5
-        
-        //shadow
-        view.layer.masksToBounds = false
-        view.layer.shadowColor = UIColor.gray.cgColor
-        view.layer.shadowOpacity = 0.3
-        view.layer.shadowOffset = CGSize(width: 0, height: 5)
-        view.layer.shadowRadius = 10
-        //        view.layer.shouldRasterize = true
-        view.layer.rasterizationScale = UIScreen.main.scale
-        return view
     }()
     
     lazy var menuSectionIndexCollectionView: UICollectionView = {
@@ -111,7 +90,6 @@ class CollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
-        setupNavigationBar()
         setupCollectionView()
         setupCollectionViewLayout()
     }
@@ -126,15 +104,11 @@ class CollectionViewController: UICollectionViewController {
         view.addSubview(backButton)
         view.addSubview(likeButton)
         view.addSubview(menuSectionIndexCollectionView)
-        collectionView.addSubview(titleView)
         
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
         likeButton.addTarget(self, action: #selector(touchUpLikeButton(_:)), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            titleView.topAnchor.constraint(equalTo: view.topAnchor, constant: 230),
-            titleView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            titleView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
             
             menuSectionIndexCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 85),
             menuSectionIndexCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -151,12 +125,6 @@ class CollectionViewController: UICollectionViewController {
             likeButton.widthAnchor.constraint(equalToConstant: 30),
             likeButton.heightAnchor.constraint(equalToConstant: 30)
             ])
-    }
-    
-    func setupNavigationBar() {
-        navigationController?.isNavigationBarHidden = true
-        
-        navigationItem.searchController = self.searchBarController
     }
     
     func setupCollectionView() {
@@ -247,7 +215,6 @@ class CollectionViewController: UICollectionViewController {
                 return UICollectionViewCell()
             }
             
-            
             cell.sectionName = "나를 위한 메뉴"
             cell.isSelected = collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false
             
@@ -315,7 +282,7 @@ class CollectionViewController: UICollectionViewController {
         
         switch section {
         case 0:
-            return CGSize(width: self.view.frame.width, height: 300)
+            return CGSize(width: self.view.frame.width, height: 280)
         case 1:
             return CGSize(width: self.view.frame.width, height: 1)
         case 3, 4, 5, 6:

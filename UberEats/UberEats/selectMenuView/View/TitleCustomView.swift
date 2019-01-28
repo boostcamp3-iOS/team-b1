@@ -53,18 +53,18 @@ class TitleCustomView: UIView {
         addSubview(timeAndGradeLabel)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 25),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
             
             detailLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
-            detailLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            detailLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            detailLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            detailLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
             
             timeAndGradeLabel.topAnchor.constraint(equalTo: detailLabel.bottomAnchor, constant: 15),
-            timeAndGradeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            timeAndGradeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-            timeAndGradeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15)
+            timeAndGradeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            timeAndGradeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
+            timeAndGradeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25)
             ])
     }
 }

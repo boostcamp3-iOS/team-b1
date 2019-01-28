@@ -9,6 +9,25 @@
 import UIKit
 
 class HeaderView: UICollectionReusableView {
+    var titleViewWidthConstraint = NSLayoutConstraint()
+    
+    let titleView: TitleCustomView = {
+        let view = TitleCustomView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.zPosition = .greatestFiniteMagnitude
+        view.layer.cornerRadius = 5
+        
+        //shadow
+        view.layer.masksToBounds = false
+        view.layer.shadowColor = UIColor.gray.cgColor
+        view.layer.shadowOpacity = 0.3
+        view.layer.shadowOffset = CGSize(width: 0, height: 5)
+        view.layer.shadowRadius = 10
+        //        view.layer.shouldRasterize = true
+        view.layer.rasterizationScale = UIScreen.main.scale
+        return view
+    }()
     
     lazy var gradientView: CAGradientLayer = {
         let gradient = CAGradientLayer()
@@ -38,9 +57,16 @@ class HeaderView: UICollectionReusableView {
     
     func setupLayout() {
         addSubview(imageView)
+        addSubview(titleView)
         imageView.layer.addSublayer(gradientView)
         
+        titleViewWidthConstraint = NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1, constant: -50)
+        titleViewWidthConstraint.isActive = true
+        
         NSLayoutConstraint.activate([
+            titleView.centerYAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -10),
+            titleView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
