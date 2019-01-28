@@ -9,14 +9,14 @@
 import UIKit
 
 class StoreInfoCollectionReusableView: UICollectionReusableView {
-    
+
     lazy var titleView: TitleCustomView = {
         let view = TitleCustomView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         view.layer.zPosition = .greatestFiniteMagnitude
         view.layer.cornerRadius = 5
-        
+
         //shadow
         view.layer.masksToBounds = false
         view.layer.shadowColor = UIColor.gray.cgColor
@@ -27,24 +27,24 @@ class StoreInfoCollectionReusableView: UICollectionReusableView {
         view.layer.rasterizationScale = UIScreen.main.scale
         return view
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
     }
-    
+
     func setupLayout() {
         addSubview(titleView)
-        
+
         NSLayoutConstraint.activate([
             titleView.centerYAnchor.constraint(equalTo: bottomAnchor),
             titleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
             titleView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25)
             ])
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
 }

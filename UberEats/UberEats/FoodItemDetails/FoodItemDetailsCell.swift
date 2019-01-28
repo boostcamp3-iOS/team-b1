@@ -13,7 +13,7 @@ class FoodItemDetailsCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     // aleary description
     @IBOutlet weak var descriptionLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
