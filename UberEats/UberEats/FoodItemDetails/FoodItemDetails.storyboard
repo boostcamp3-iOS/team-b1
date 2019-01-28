@@ -84,7 +84,7 @@
                                         </constraints>
                                         <state key="normal" image="back3x"/>
                                         <connections>
-                                            <action selector="uncoveredBackButton:" destination="AXi-XS-cxW" eventType="touchUpInside" id="ry3-pc-kue"/>
+                                            <action selector="clickedBackButton:" destination="AXi-XS-cxW" eventType="touchUpInside" id="ry3-pc-kue"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNJ-Dv-zUZ">
@@ -120,7 +120,7 @@
                                         </constraints>
                                         <state key="normal" image="back_black3x"/>
                                         <connections>
-                                            <action selector="coveredBackButton:" destination="AXi-XS-cxW" eventType="touchUpInside" id="RRb-Zs-8Gi"/>
+                                            <action selector="clickedBackButton:" destination="AXi-XS-cxW" eventType="touchUpInside" id="gTC-jn-QKF"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9L-C8-C0t" userLabel="Share">
