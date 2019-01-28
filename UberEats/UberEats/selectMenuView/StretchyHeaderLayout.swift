@@ -9,8 +9,8 @@
 import UIKit
 
 class StretchyHeaderLayout: UICollectionViewFlowLayout {
-
-    var itemSizeDelegate: HeaderItemSizeDelegate?
+    
+    var itemSizeDelegate: ItemSizeDelegate?
     var lastContentOffsetY: CGFloat = 0
 
     // 헤더 구성요소의 속성을 수정하려고 한다.
@@ -25,15 +25,15 @@ class StretchyHeaderLayout: UICollectionViewFlowLayout {
                 guard let collectionView = collectionView else { return }
 
                 let contentOffsetY = collectionView.contentOffset.y
-
+                
+                itemSizeDelegate?.changedContentOffset(curOffsetY: contentOffsetY, lastOffsetY: lastContentOffsetY)
                 if contentOffsetY > 0 {
-                    itemSizeDelegate?.changedContentOffset(value: contentOffsetY, lastValue: lastContentOffsetY)
-                    // 230보다 크면 고정
+                    // 200보다 크면 고정
                     if contentOffsetY > 200 {
                         attributes.frame.origin.y = collectionView.contentOffset.y - 200
                     }
                     lastContentOffsetY = contentOffsetY
-                    return
+//                    return
                 }
 
                 let width = collectionView.frame.width

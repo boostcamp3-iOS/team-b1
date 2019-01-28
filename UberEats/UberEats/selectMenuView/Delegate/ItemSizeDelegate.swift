@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol HeaderItemSizeDelegate {
-    func changedContentOffset(value: CGFloat, lastValue: CGFloat)
+protocol ItemSizeDelegate {
+    func changedContentOffset(curOffsetY: CGFloat, lastOffsetY: CGFloat)
 }

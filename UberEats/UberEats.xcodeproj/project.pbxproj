@@ -54,7 +54,7 @@
 		D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1EAF21F9A654004CA3A5 /* StretchyHeaderLayout.swift */; };
 		D1EA630221FA9B1D0024CD68 /* SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */; };
 		D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */; };
-		D1F96F0221FE8D9400D79396 /* HeaderItemSizeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F96F0121FE8D9400D79396 /* HeaderItemSizeDelegate.swift */; };
+		D1F96F0221FE8D9400D79396 /* ItemSizeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F96F0121FE8D9400D79396 /* ItemSizeDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,7 +123,7 @@
 		D1AF1EAF21F9A654004CA3A5 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
 		D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarDelegate.swift; sourceTree = "<group>"; };
 		D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		D1F96F0121FE8D9400D79396 /* HeaderItemSizeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderItemSizeDelegate.swift; sourceTree = "<group>"; };
+		D1F96F0121FE8D9400D79396 /* ItemSizeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSizeDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,7 +314,7 @@
 		D1F96F0021FE8D0C00D79396 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				D1F96F0121FE8D9400D79396 /* HeaderItemSizeDelegate.swift */,
+				D1F96F0121FE8D9400D79396 /* ItemSizeDelegate.swift */,
 				D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */,
 			);
 			path = Delegate;
@@ -516,7 +516,7 @@
 				84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */,
 				84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */,
 				84DC184A21F9ACE0008EE6D3 /* ItemViewController.swift in Sources */,
-				D1F96F0221FE8D9400D79396 /* HeaderItemSizeDelegate.swift in Sources */,
+				D1F96F0221FE8D9400D79396 /* ItemSizeDelegate.swift in Sources */,
 				D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */,
 				D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */,
 				D115BBB721F9D66100C57809 /* StoreInfoCollectionViewCell.swift in Sources */,

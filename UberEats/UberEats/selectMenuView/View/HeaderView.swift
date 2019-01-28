@@ -9,6 +9,7 @@
 import UIKit
 
 class HeaderView: UICollectionReusableView {
+<<<<<<< Updated upstream
     var titleViewWidthConstraint = NSLayoutConstraint()
     var titleViewHeightConstraint = NSLayoutConstraint()
 
@@ -30,6 +31,11 @@ class HeaderView: UICollectionReusableView {
         return view
     }()
 
+=======
+//    var titleViewWidthConstraint = NSLayoutConstraint()
+//    var titleViewHeightConstraint = NSLayoutConstraint()
+    
+>>>>>>> Stashed changes
     lazy var gradientView: CAGradientLayer = {
         let gradient = CAGradientLayer()
         gradient.frame = self.bounds
@@ -58,8 +64,9 @@ class HeaderView: UICollectionReusableView {
 
     func setupLayout() {
         addSubview(imageView)
-        addSubview(titleView)
+//        addSubview(titleView)
         imageView.layer.addSublayer(gradientView)
+<<<<<<< Updated upstream
 
         titleViewWidthConstraint = NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1, constant: -50)
         titleViewWidthConstraint.isActive = true
@@ -71,6 +78,19 @@ class HeaderView: UICollectionReusableView {
             titleView.centerYAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -10),
             titleView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
 
+=======
+//
+//        titleViewWidthConstraint = NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1, constant: -50)
+//        titleViewWidthConstraint.isActive = true
+//
+//        titleViewHeightConstraint = NSLayoutConstraint(item: titleView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.6, constant: 0)
+//        titleViewHeightConstraint.isActive = true
+        
+        NSLayoutConstraint.activate([
+//            titleView.centerYAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -10),
+//            titleView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+//            
+>>>>>>> Stashed changes
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
