@@ -83,6 +83,9 @@
                                             <constraint firstAttribute="height" constant="20" id="UyI-wS-fxZ"/>
                                         </constraints>
                                         <state key="normal" image="back3x"/>
+                                        <connections>
+                                            <action selector="uncoveredBackButton:" destination="AXi-XS-cxW" eventType="touchUpInside" id="ry3-pc-kue"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNJ-Dv-zUZ">
                                         <rect key="frame" x="335" y="51.333333333333336" width="20" height="20.000000000000007"/>
@@ -116,6 +119,9 @@
                                             <constraint firstAttribute="height" constant="20" id="zaT-oA-ViL"/>
                                         </constraints>
                                         <state key="normal" image="back_black3x"/>
+                                        <connections>
+                                            <action selector="coveredBackButton:" destination="AXi-XS-cxW" eventType="touchUpInside" id="RRb-Zs-8Gi"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9L-C8-C0t" userLabel="Share">
                                         <rect key="frame" x="335" y="51.333333333333336" width="20" height="20.000000000000007"/>

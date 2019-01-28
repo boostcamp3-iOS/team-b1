@@ -9,7 +9,6 @@
 import UIKit
 
 class FoodItemDetailsViewController: UIViewController {
-    
     @IBOutlet weak var toolbar: UIView!
     
     @IBOutlet weak var coverToolBar: UIView!
@@ -50,6 +49,14 @@ class FoodItemDetailsViewController: UIViewController {
         initView()
     }
     
+    @IBAction func coveredBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func uncoveredBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     private func initView() {
         
         self.coveredToolBarBottom.constant = -toolbar.frame.height
@@ -60,13 +67,11 @@ class FoodItemDetailsViewController: UIViewController {
         orderButton.layer.cornerRadius = FoodItemDetailsViewController.orderButtonCornerRadius
     }
     
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let stretchableHeaderY = FoodItemDetailsViewController.stretchableHeaderImageHeight -
-            (scrollView.contentOffset.y + FoodItemDetailsViewController.stretchableHeaderImageHeight)
+        let stretchableHeaderY = -scrollView.contentOffset.y
         
         let height = min(max(stretchableHeaderY, stretchableHeaderMinumumHeight()), stretchableHeaderMaximumHeight())
-        stretchableHeaderHeight.constant = height;
+        stretchableHeaderHeight.constant = height
         changeStatusWithCoveredToolbar(height)
     }
     
@@ -85,21 +90,25 @@ class FoodItemDetailsViewController: UIViewController {
         
         
         coveredToolbarThrottler?.run {
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
-                        
-                        self.coveredToolBarBottom.constant = coveredToolBarHeight(status: coveredToolBarStatus())
-                        self.setNeedsStatusBarAppearanceUpdate()
-                        self.view.layoutIfNeeded()
-                        
-                    }, completion: nil)
-                }
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
+                    
+                    self.coveredToolBarBottom.constant = coveredToolBarHeight(status: coveredToolBarStatus())
+                    self.setNeedsStatusBarAppearanceUpdate()
+                    self.view.layoutIfNeeded()
+                    
+                }, completion: nil)
+            }
         }
-      
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return self.style
+    }
+    
+    @objc func touchUpBackButton(_: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

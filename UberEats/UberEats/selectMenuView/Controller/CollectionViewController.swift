@@ -76,15 +76,6 @@ class CollectionViewController: UICollectionViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isHidden = true
-        
-        //shadow
-        collectionView.layer.masksToBounds = false
-        collectionView.layer.shadowColor = UIColor.gray.cgColor
-        collectionView.layer.shadowOpacity = 0.3
-        collectionView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        collectionView.layer.shadowRadius = 10
-        //        view.layer.shouldRasterize = true
-        collectionView.layer.rasterizationScale = UIScreen.main.scale
         return collectionView
     }()
     
@@ -114,17 +105,17 @@ class CollectionViewController: UICollectionViewController {
             menuSectionIndexCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 85),
             menuSectionIndexCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             menuSectionIndexCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            menuSectionIndexCollectionView.heightAnchor.constraint(equalToConstant: 80),
+            menuSectionIndexCollectionView.heightAnchor.constraint(equalToConstant: 60),
             
             backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
-            backButton.widthAnchor.constraint(equalToConstant: 30),
-            backButton.heightAnchor.constraint(equalToConstant: 30),
+            backButton.widthAnchor.constraint(equalToConstant: 25),
+            backButton.heightAnchor.constraint(equalToConstant: 25),
             
             likeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             likeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
-            likeButton.widthAnchor.constraint(equalToConstant: 30),
-            likeButton.heightAnchor.constraint(equalToConstant: 30)
+            likeButton.widthAnchor.constraint(equalToConstant: 25),
+            likeButton.heightAnchor.constraint(equalToConstant: 25)
             ])
     }
     
@@ -168,7 +159,7 @@ class CollectionViewController: UICollectionViewController {
     // Object-C Method
     
     @objc func touchUpBackButton(_: UIButton) {
-        
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func touchUpLikeButton(_ sender: UIButton) {
@@ -306,28 +297,21 @@ class CollectionViewController: UICollectionViewController {
             let indx = IndexPath(item: 0, section: indexPath.row + 3)
             self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
         } else {
-            switch indexPath.section {
-            case 1:
-                print("touchUp store location and time infomation")
-            default:
-                print("")
-            }
+            let storyboard = UIStoryboard.init(name: "FoodItemDetails", bundle: nil)
+            let FoodItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
+            
+            //self.present(FoodItemVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(FoodItemVC, animated: true)
         }
-        
-        let storyboard = UIStoryboard.init(name: "FoodItemDetails", bundle: nil)
-        let FoodItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
-        
-        //self.present(FoodItemVC, animated: true, completion: nil)
-        self.navigationController?.pushViewController(FoodItemVC, animated: true)
     }
     
     //MARK:- ScrollView
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView != self.menuSectionIndexCollectionView {
-            if scrollView.contentOffset.y > 350 {
+            if scrollView.contentOffset.y > 320 {
                 self.likeButton.setImage(#imageLiteral(resourceName: "search"), for: .normal)
-                self.collectionView.contentInset = UIEdgeInsets(top: 238, left: 0, bottom: 0, right: 0)
+                self.collectionView.contentInset = UIEdgeInsets(top: 235, left: 0, bottom: 0, right: 0)
             } else {
                 if likeStatus == true {
                     self.likeButton.setImage(#imageLiteral(resourceName: "selectLike"), for: .normal)
@@ -338,11 +322,11 @@ class CollectionViewController: UICollectionViewController {
                 self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             }
             
-            if scrollView.contentOffset.y > 220 && backButton.currentImage == #imageLiteral(resourceName: "arrow") {
+            if scrollView.contentOffset.y > 200 && backButton.currentImage == #imageLiteral(resourceName: "arrow") {
                 self.backButton.setImage(#imageLiteral(resourceName: "blackArrow"), for: .normal)
                 menuSectionIndexCollectionView.isHidden = false
                 statusBarStyle = .default
-            } else if scrollView.contentOffset.y < 220 && backButton.currentImage == #imageLiteral(resourceName: "blackArrow") {
+            } else if scrollView.contentOffset.y < 200 && backButton.currentImage == #imageLiteral(resourceName: "blackArrow") {
                 self.backButton.setImage(#imageLiteral(resourceName: "arrow"), for: .normal)
                 menuSectionIndexCollectionView.isHidden = true
                 statusBarStyle = .lightContent
@@ -356,7 +340,7 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     // item의 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.menuSectionIndexCollectionView {
-            return .init(width: 150, height: 80)
+            return .init(width: 150, height: 60)
         }
         
         switch indexPath.section {
@@ -367,7 +351,6 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
         case 3, 4, 5, 6:
             let commentString: String = self.foods[indexPath.item].foodContents + "\n" + self.foods[indexPath.item].foodName + "\n" + self.foods[indexPath.item].price + "\n"
             
-            // ㅠ.ㅠ 질문할 것
             let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
             let estimatedForm = NSString(string: commentString).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
             
@@ -394,23 +377,47 @@ extension CollectionViewController: SearchBarDelegate {
 }
 
 extension CollectionViewController: HeaderItemSizeDelegate {
-    func changedContentOffset(value: CGFloat) {
+    func changedContentOffset(value: CGFloat, lastValue: CGFloat) {
         guard let firstHeaderView = self.firstHeaderView else {
             return
         }
         let width = self.collectionView.frame.width
         
-        print(width)
-        print("value: \(value)")
-        print("width: \(value + (width * 0.9))")
-        
-        if value < width {
-            firstHeaderView.titleViewWidthConstraint.isActive = false
-            firstHeaderView.titleViewWidthConstraint.constant = value + (width * 0.9)
-            firstHeaderView.titleViewWidthConstraint.isActive = true
+//        if value < 100 {
+//            firstHeaderView.titleView.titleLabel.numberOfLines = 1
+//        } else {
+        if value > 100 {
+            firstHeaderView.titleView.titleLabel.numberOfLines = 1
+        } else {
+            firstHeaderView.titleView.titleLabel.numberOfLines = 0
         }
         
+        if value < 190 {
+            
+            firstHeaderView.titleViewWidthConstraint.constant = value/3 - 50
+            firstHeaderView.titleViewHeightConstraint.constant = -value/7
+            if value > lastValue {
+                firstHeaderView.titleView.detailLabel.alpha = firstHeaderView.titleView.detailLabel.alpha - 0.006
+                firstHeaderView.titleView.timeAndGradeLabel.alpha = firstHeaderView.titleView.timeAndGradeLabel.alpha - 0.006
+                firstHeaderView.titleView.titleLabelLeadingConstraint.constant =
+                    firstHeaderView.titleView.titleLabelLeadingConstraint.constant + value * 0.002
+                firstHeaderView.titleView.titleLabelTrailingConstraint.constant =
+                    firstHeaderView.titleView.titleLabelTrailingConstraint.constant - value * 0.002
+                firstHeaderView.titleView.titleLabelTopConstraint.constant = firstHeaderView.titleView.titleLabelTopConstraint.constant + value * 0.002
+            } else if value < lastValue {
+                firstHeaderView.titleView.detailLabel.alpha = firstHeaderView.titleView.detailLabel.alpha + 0.006
+                firstHeaderView.titleView.timeAndGradeLabel.alpha = firstHeaderView.titleView.timeAndGradeLabel.alpha + 0.006
+                firstHeaderView.titleView.titleLabelLeadingConstraint.constant =
+                    firstHeaderView.titleView.titleLabelLeadingConstraint.constant - value * 0.002
+                
+                firstHeaderView.titleView.titleLabelTrailingConstraint.constant =
+                    firstHeaderView.titleView.titleLabelTrailingConstraint.constant + value * 0.002
+                
+                
+                firstHeaderView.titleView.titleLabelTopConstraint.constant = firstHeaderView.titleView.titleLabelTopConstraint.constant - value * 0.002
+            }
+            
+        }
         self.collectionView.layoutIfNeeded()
-        
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class HeaderView: UICollectionReusableView {
     var titleViewWidthConstraint = NSLayoutConstraint()
+    var titleViewHeightConstraint = NSLayoutConstraint()
     
     let titleView: TitleCustomView = {
         let view = TitleCustomView()
@@ -60,8 +61,11 @@ class HeaderView: UICollectionReusableView {
         addSubview(titleView)
         imageView.layer.addSublayer(gradientView)
         
-        titleViewWidthConstraint = NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.9, constant: 0)
+        titleViewWidthConstraint = NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1, constant: -50)
         titleViewWidthConstraint.isActive = true
+        
+        titleViewHeightConstraint = NSLayoutConstraint(item: titleView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.6, constant: 0)
+        titleViewHeightConstraint.isActive = true
         
         NSLayoutConstraint.activate([
             titleView.centerYAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -10),

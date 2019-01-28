@@ -9,6 +9,10 @@
 import UIKit
 
 class TitleCustomView: UIView {
+    var titleLabelLeadingConstraint = NSLayoutConstraint()
+    var titleLabelTrailingConstraint = NSLayoutConstraint()
+    var titleLabelTopConstraint = NSLayoutConstraint()
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -52,11 +56,16 @@ class TitleCustomView: UIView {
         addSubview(detailLabel)
         addSubview(timeAndGradeLabel)
         
+        titleLabelLeadingConstraint = titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25)
+        titleLabelLeadingConstraint.isActive = true
+        
+        titleLabelTrailingConstraint = titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25)
+        titleLabelTrailingConstraint.isActive = true
+        
+        titleLabelTopConstraint = titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 25)
+        titleLabelTopConstraint.isActive = true
+        
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 25),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
-            
             detailLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
             detailLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
             detailLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
