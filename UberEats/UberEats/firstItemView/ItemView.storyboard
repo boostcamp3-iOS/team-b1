@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -30,18 +30,15 @@
             <objects>
                 <viewController storyboardIdentifier="itemView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oTS-wt-uxH" customClass="ItemViewController" customModule="UberEats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fqe-3w-TU2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="vIN-KP-eu6">
-                                <rect key="frame" x="0.0" y="57" width="375" height="610"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="vIN-KP-eu6">
+                                <rect key="frame" x="0.0" y="81" width="375" height="697"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <scrollView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" pagingEnabled="YES" id="UHB-oF-TxY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="137"/>
+                                <scrollView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" id="d0Y-DZ-XF7">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="oTS-wt-uxH" id="2Xv-m9-eSl"/>
-                                    </connections>
                                 </scrollView>
                                 <connections>
                                     <outlet property="dataSource" destination="oTS-wt-uxH" id="zRW-WU-OiV"/>
@@ -49,7 +46,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nq-Oh-28s">
-                                <rect key="frame" x="0.0" y="20" width="375" height="37"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="37"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="Jm1-0d-ZnI"/>
@@ -70,13 +67,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="kOl-ey-Hdq"/>
                     <connections>
-                        <outlet property="scrollView" destination="UHB-oF-TxY" id="7J2-ay-zrh"/>
+                        <outlet property="scrollView" destination="d0Y-DZ-XF7" id="fM4-aP-gJ3"/>
                         <outlet property="tableView" destination="vIN-KP-eu6" id="TAQ-qK-bbF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IM7-uB-7Bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1158" y="-189"/>
+            <point key="canvasLocation" x="-1135.2" y="-189.16256157635468"/>
         </scene>
     </scenes>
 </document>

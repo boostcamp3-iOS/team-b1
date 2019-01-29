@@ -99,7 +99,7 @@ private class GradientView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let gradientLayer = layer as! CAGradientLayer
+        guard let gradientLayer = layer as? CAGradientLayer else {return}
 
         gradientLayer.colors = [
             UIColor(red: 0, green: 0, blue: 0, alpha: 0.55).cgColor,
@@ -116,10 +116,10 @@ extension FoodItemDetailsViewController: UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(
+        guard let cell = tableView.dequeueReusableCell(
             withIdentifier: FoodItemDetailsViewController.cellIdebtifier,
             for: indexPath
-            ) as! FoodItemDetailsCell
+            ) as? FoodItemDetailsCell else {return .init()}
 
         return cell
     }

@@ -298,10 +298,10 @@ class CollectionViewController: UICollectionViewController {
             self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
         } else {
             let storyboard = UIStoryboard.init(name: "FoodItemDetails", bundle: nil)
-            let FoodItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
+            let footItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
 
             //self.present(FoodItemVC, animated: true, completion: nil)
-            self.navigationController?.pushViewController(FoodItemVC, animated: true)
+            self.navigationController?.pushViewController(footItemVC, animated: true)
         }
     }
 
@@ -352,7 +352,9 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
             let commentString: String = self.foods[indexPath.item].foodContents + "\n" + self.foods[indexPath.item].foodName + "\n" + self.foods[indexPath.item].price + "\n"
 
             let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
-            let estimatedForm = NSString(string: commentString).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+            let estimatedForm = NSString(string: commentString).boundingRect(with: size,
+                                                                             options: .usesLineFragmentOrigin,
+                                                                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
 
             return .init(width: view.frame.width - 2 * padding, height: estimatedForm.height + 45)
         default:
@@ -397,23 +399,19 @@ extension CollectionViewController: HeaderItemSizeDelegate {
             firstHeaderView.titleViewWidthConstraint.constant = value/3 - 50
             firstHeaderView.titleViewHeightConstraint.constant = -value/7
             if value > lastValue {
-                firstHeaderView.titleView.detailLabel.alpha = firstHeaderView.titleView.detailLabel.alpha - 0.006
-                firstHeaderView.titleView.timeAndGradeLabel.alpha = firstHeaderView.titleView.timeAndGradeLabel.alpha - 0.006
-                firstHeaderView.titleView.titleLabelLeadingConstraint.constant =
-                    firstHeaderView.titleView.titleLabelLeadingConstraint.constant + value * 0.002
-                firstHeaderView.titleView.titleLabelTrailingConstraint.constant =
-                    firstHeaderView.titleView.titleLabelTrailingConstraint.constant - value * 0.002
-                firstHeaderView.titleView.titleLabelTopConstraint.constant = firstHeaderView.titleView.titleLabelTopConstraint.constant + value * 0.002
+                firstHeaderView.titleView.detailLabel.alpha -=  0.006
+                firstHeaderView.titleView.timeAndGradeLabel.alpha -= 0.006
+                firstHeaderView.titleView.titleLabelLeadingConstraint.constant + value * 0.002
+                firstHeaderView.titleView.titleLabelTrailingConstraint.constant -= value * 0.002
+                firstHeaderView.titleView.titleLabelTopConstraint.constant += value * 0.002
             } else if value < lastValue {
-                firstHeaderView.titleView.detailLabel.alpha = firstHeaderView.titleView.detailLabel.alpha + 0.006
-                firstHeaderView.titleView.timeAndGradeLabel.alpha = firstHeaderView.titleView.timeAndGradeLabel.alpha + 0.006
-                firstHeaderView.titleView.titleLabelLeadingConstraint.constant =
-                    firstHeaderView.titleView.titleLabelLeadingConstraint.constant - value * 0.002
+                firstHeaderView.titleView.detailLabel.alpha += 0.006
+                firstHeaderView.titleView.timeAndGradeLabel.alpha += 0.006
+                firstHeaderView.titleView.titleLabelLeadingConstraint.constant -= value * 0.002
 
-                firstHeaderView.titleView.titleLabelTrailingConstraint.constant =
-                    firstHeaderView.titleView.titleLabelTrailingConstraint.constant + value * 0.002
+                firstHeaderView.titleView.titleLabelTrailingConstraint.constant += value * 0.002
 
-                firstHeaderView.titleView.titleLabelTopConstraint.constant = firstHeaderView.titleView.titleLabelTopConstraint.constant - value * 0.002
+                firstHeaderView.titleView.titleLabelTopConstraint.constant -= value * 0.002
             }
 
         }
