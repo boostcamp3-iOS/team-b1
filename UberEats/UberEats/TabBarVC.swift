@@ -13,8 +13,8 @@ class TabBarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let ItemViewStoryBoard = UIStoryboard(name: "ItemView", bundle: nil)
-        let firstViewController = ItemViewStoryBoard.instantiateViewController(withIdentifier: "NavigationVC")
+        let itemStroyBoard = UIStoryboard(name: "ItemView", bundle: nil)
+        let firstViewController = itemStroyBoard.instantiateViewController(withIdentifier: "NavigationVC")
         firstViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"), selectedImage: UIImage(named: "icons8-home-50"))
 
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)

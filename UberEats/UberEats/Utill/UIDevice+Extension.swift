@@ -8,6 +8,7 @@
 
 import UIKit
 
+/*
 extension UIDevice {
     
     var iPhoneX: Bool {
@@ -51,3 +52,4 @@ extension UIDevice {
     }
     
 }
+*/

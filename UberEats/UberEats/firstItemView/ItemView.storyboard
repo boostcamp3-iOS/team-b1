@@ -36,12 +36,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="vIN-KP-eu6">
                                 <rect key="frame" x="0.0" y="81" width="375" height="697"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <scrollView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" pagingEnabled="YES" id="UHB-oF-TxY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="137"/>
+                                <scrollView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="d0Y-DZ-XF7">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="189"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="oTS-wt-uxH" id="2Xv-m9-eSl"/>
-                                    </connections>
                                 </scrollView>
                                 <connections>
                                     <outlet property="dataSource" destination="oTS-wt-uxH" id="zRW-WU-OiV"/>
@@ -70,13 +67,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="kOl-ey-Hdq"/>
                     <connections>
-                        <outlet property="scrollView" destination="UHB-oF-TxY" id="7J2-ay-zrh"/>
+                        <outlet property="scrollView" destination="d0Y-DZ-XF7" id="fM4-aP-gJ3"/>
                         <outlet property="tableView" destination="vIN-KP-eu6" id="TAQ-qK-bbF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IM7-uB-7Bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1135" y="-189"/>
+            <point key="canvasLocation" x="-1135.2" y="-189.16256157635468"/>
         </scene>
     </scenes>
 </document>
