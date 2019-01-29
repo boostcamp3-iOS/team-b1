@@ -82,7 +82,6 @@ class CollectionViewController: UICollectionViewController {
         let view = TitleCustomView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
-//        view.layer.zPosition = .greatestFiniteMagnitude
         view.layer.cornerRadius = 5
         
         //shadow
@@ -91,8 +90,6 @@ class CollectionViewController: UICollectionViewController {
         view.layer.shadowOpacity = 0.3
         view.layer.shadowOffset = CGSize(width: 0, height: 5)
         view.layer.shadowRadius = 10
-        //        view.layer.shouldRasterize = true
-        view.layer.rasterizationScale = UIScreen.main.scale
         return view
     }()
     
@@ -106,7 +103,7 @@ class CollectionViewController: UICollectionViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.alpha = 0
-//        collectionView.isHidden = true
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         return collectionView
     }()
 
@@ -121,9 +118,6 @@ class CollectionViewController: UICollectionViewController {
 
     func setupLayout() {
         tabBarController?.tabBar.isHidden = true
-        collectionView.backgroundColor = .white
-        // scrollBar 없애기 위함
-        collectionView.showsVerticalScrollIndicator = false
 
         view.addSubview(titleView)
         view.addSubview(backButton)
@@ -148,14 +142,6 @@ class CollectionViewController: UICollectionViewController {
                                                        multiplier: 0.5, constant: 0)
         titleViewHeightConstraint.isActive = true
         
-//        titleViewLeadingConstraint = NSLayoutConstraint(item: titleView, attribute: .leading, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: 25)
-//        titleViewLeadingConstraint.isActive = true
-//
-//        titleViewTrailingConstraint = NSLayoutConstraint(item: titleView, attribute: .trailing, relatedBy: .equal,
-//          toItem: view.safeAreaLayoutGuide, attribute: .trailing,
-//        multiplier: 1, constant: -25)
-//        titleViewTrailingConstraint.isActive = true
-        
         NSLayoutConstraint.activate([
             titleView.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
             
@@ -177,6 +163,10 @@ class CollectionViewController: UICollectionViewController {
     }
 
     func setupCollectionView() {
+        collectionView.backgroundColor = .white
+        // scrollBar 없애기 위함
+        collectionView.showsVerticalScrollIndicator = false
+        
         // collectionView가 위에 safeArea까지 사용하게 한다.
         // contentInsetAdjustmentBehavior를 never로 하면 scroll view content insets는 절대 조정되지 않는다.
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -207,7 +197,6 @@ class CollectionViewController: UICollectionViewController {
         if let layout = collectionViewLayout as? StretchyHeaderLayout {
             // header와 collectionview와의 거리
             layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
-            //            layout.sectionHeadersPinToVisibleBounds = true
         }
     }
 
@@ -245,7 +234,7 @@ class CollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
         if collectionView == self.menuSectionIndexCollectionView {
-            return 6
+            return 4
         }
 
         switch section {
@@ -329,7 +318,7 @@ class CollectionViewController: UICollectionViewController {
     // header size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if collectionView == self.menuSectionIndexCollectionView {
-            return CGSize(width: 20, height: 80)
+            return CGSize(width: 0, height: 0)
         }
 
         switch section {
@@ -346,6 +335,8 @@ class CollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.menuSectionIndexCollectionView {
+            let sectionIndx = IndexPath(item: indexPath.item, section: 0)
+            collectionView.selectItem(at: sectionIndx, animated: true, scrollPosition: .left)
             // 선택한 section목록으로 이동시키는 부분
             let indx = IndexPath(item: 0, section: indexPath.row + 3)
             self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
@@ -353,7 +344,6 @@ class CollectionViewController: UICollectionViewController {
             let storyboard = UIStoryboard.init(name: "FoodItemDetails", bundle: nil)
             let footItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
 
-            //self.present(FoodItemVC, animated: true, completion: nil)
             self.navigationController?.pushViewController(footItemVC, animated: true)
         }
     }
@@ -396,6 +386,8 @@ class CollectionViewController: UICollectionViewController {
             self.setNeedsStatusBarAppearanceUpdate()
             self.view.layoutIfNeeded()
             handleTitleView(by: scrollView)
+        } else {
+            
         }
     }
 }

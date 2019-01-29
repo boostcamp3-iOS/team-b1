@@ -98,7 +98,7 @@ private class GradientView: UIView {
         super.init(coder: aDecoder)
         guard let gradientLayer = layer as? CAGradientLayer else { return }
 
-        gradientLayer?.colors = [
+        gradientLayer.colors = [
             UIColor(red: 0, green: 0, blue: 0, alpha: 0.55).cgColor,
             UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).cgColor
         ]
