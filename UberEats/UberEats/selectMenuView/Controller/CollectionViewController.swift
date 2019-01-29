@@ -7,6 +7,7 @@
 //
 import UIKit
 
+// swiftlint:disable all
 class CollectionViewController: UICollectionViewController {
     struct Metric {
         static let headerHeight: CGFloat = 280
@@ -117,7 +118,7 @@ class CollectionViewController: UICollectionViewController {
         collectionView.backgroundColor = .white
         // scrollBar 없애기 위함
         collectionView.showsVerticalScrollIndicator = false
-        
+
         view.addSubview(titleView)
         view.addSubview(backButton)
         view.addSubview(likeButton)
@@ -126,19 +127,27 @@ class CollectionViewController: UICollectionViewController {
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
         likeButton.addTarget(self, action: #selector(touchUpLikeButton(_:)), for: .touchUpInside)
         
-        titleViewTopConstraint = NSLayoutConstraint(item: titleView, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: Metric.titleTopMargin)
+        titleViewTopConstraint = NSLayoutConstraint(item: titleView, attribute: .top, relatedBy: .equal,
+                                                    toItem: view.safeAreaLayoutGuide, attribute: .top,
+                                                    multiplier: 1, constant: Metric.titleTopMargin)
         titleViewTopConstraint.isActive = true
         
-        titleViewWidthConstraint = NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 0.9, constant: 0)
+        titleViewWidthConstraint = NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal,
+                                                      toItem: view, attribute: .width,
+                                                      multiplier: 0.9, constant: 0)
         titleViewWidthConstraint.isActive = true
         
-        titleViewHeightConstraint = NSLayoutConstraint(item: titleView, attribute: .height, relatedBy: .equal, toItem: titleView, attribute: .width, multiplier: 0.5, constant: 0)
+        titleViewHeightConstraint = NSLayoutConstraint(item: titleView, attribute: .height, relatedBy: .equal,
+                                                       toItem: titleView, attribute: .width,
+                                                       multiplier: 0.5, constant: 0)
         titleViewHeightConstraint.isActive = true
         
 //        titleViewLeadingConstraint = NSLayoutConstraint(item: titleView, attribute: .leading, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: 25)
 //        titleViewLeadingConstraint.isActive = true
 //
-//        titleViewTrailingConstraint = NSLayoutConstraint(item: titleView, attribute: .trailing, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1, constant: -25)
+//        titleViewTrailingConstraint = NSLayoutConstraint(item: titleView, attribute: .trailing, relatedBy: .equal,
+//          toItem: view.safeAreaLayoutGuide, attribute: .trailing,
+//        multiplier: 1, constant: -25)
 //        titleViewTrailingConstraint.isActive = true
         
         NSLayoutConstraint.activate([
@@ -336,10 +345,10 @@ class CollectionViewController: UICollectionViewController {
             self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
         } else {
             let storyboard = UIStoryboard.init(name: "FoodItemDetails", bundle: nil)
-            let FoodItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
+            let foodItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
 
             //self.present(FoodItemVC, animated: true, completion: nil)
-            self.navigationController?.pushViewController(FoodItemVC, animated: true)
+            self.navigationController?.pushViewController(foodItemVC, animated: true)
         }
     }
 
@@ -393,7 +402,8 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
             let commentString: String = self.foods[indexPath.item].foodContents + "\n" + self.foods[indexPath.item].foodName + "\n" + self.foods[indexPath.item].price + "\n"
 
             let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
-            let estimatedForm = NSString(string: commentString).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+            let estimatedForm = NSString(string: commentString).boundingRect(with: size, options: .usesLineFragmentOrigin,
+                                                                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
 
             return .init(width: view.frame.width - 2 * padding, height: estimatedForm.height + 45)
         default:

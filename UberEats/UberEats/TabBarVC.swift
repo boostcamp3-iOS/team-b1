@@ -13,20 +13,24 @@ class TabBarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let ItemViewStoryBoard = UIStoryboard(name: "ItemView", bundle: nil)
-        let firstViewController = ItemViewStoryBoard.instantiateViewController(withIdentifier: "NavigationVC")
-        firstViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"), selectedImage: UIImage(named: "icons8-home-50"))
+        let itemViewStoryBoard = UIStoryboard(name: "ItemView", bundle: nil)
+        let firstViewController = itemViewStoryBoard.instantiateViewController(withIdentifier: "NavigationVC")
+        firstViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"),
+                                                      selectedImage: UIImage(named: "icons8-home-50"))
 
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
 
         let secondViewController = mainStoryBoard.instantiateViewController(withIdentifier: "searchView")
-        secondViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"), selectedImage: UIImage(named: "icons8-home-50"))
+        secondViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"),
+                                                       selectedImage: UIImage(named: "icons8-home-50"))
 
         let thirdViewController = mainStoryBoard.instantiateViewController(withIdentifier: "orderHistory")
-        thirdViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"), selectedImage: UIImage(named: "icons8-home-50"))
+        thirdViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"),
+                                                      selectedImage: UIImage(named: "icons8-home-50"))
 
         let fourthViewController = mainStoryBoard.instantiateViewController(withIdentifier: "myPage")
-        fourthViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"), selectedImage: UIImage(named: "icons8-home-50"))
+        fourthViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"),
+                                                       selectedImage: UIImage(named: "icons8-home-50"))
 
         let tabBarList = [firstViewController, secondViewController, thirdViewController, fourthViewController]
 

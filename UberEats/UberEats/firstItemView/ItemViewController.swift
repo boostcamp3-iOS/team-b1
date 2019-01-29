@@ -206,10 +206,12 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     // 셀 만드는 부분
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let RecommendTableViewCellNIB = UINib(nibName: "RecommendTableViewCell", bundle: nil)
-        tableView.register(RecommendTableViewCellNIB, forCellReuseIdentifier: "RecommendTableViewCellId")
+        let recommendTableViewCellNIB = UINib(nibName: "RecommendTableViewCell", bundle: nil)
+        tableView.register(recommendTableViewCellNIB, forCellReuseIdentifier: "RecommendTableViewCellId")
 
-        let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as! RecommendTableViewCell
+        guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
+            return UITableViewCell()
+        }
 
         tablecell.selectionStyle = .none
         tablecell.collectionView.tag = indexPath.section
@@ -225,8 +227,8 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.backgroundColor = .green
 
         case 1:
-            let RecommendCollectionViewCellNIB = UINib(nibName: "RecommendCollectionViewCell", bundle: nil)
-            tablecell.collectionView.register(RecommendCollectionViewCellNIB, forCellWithReuseIdentifier: "RecommendCollectionViewCellId")
+            let recommendCollectionViewCellNIB = UINib(nibName: "RecommendCollectionViewCell", bundle: nil)
+            tablecell.collectionView.register(recommendCollectionViewCellNIB, forCellWithReuseIdentifier: "RecommendCollectionViewCellId")
 
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
@@ -238,8 +240,8 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             //tableView.backgroundColor = .green
             return tablecell
         case 2:
-            let NearestCollectionViewCellNIB = UINib(nibName: "NearestCollectionViewCell", bundle: nil)
-            tablecell.collectionView.register(NearestCollectionViewCellNIB, forCellWithReuseIdentifier: "NearestCollectionViewCellId")
+            let nearestCollectionViewCellNIB = UINib(nibName: "NearestCollectionViewCell", bundle: nil)
+            tablecell.collectionView.register(nearestCollectionViewCellNIB, forCellWithReuseIdentifier: "NearestCollectionViewCellId")
 
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
@@ -249,8 +251,8 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             tablecell.collectionView.reloadData()
             return tablecell
         case 3:
-            let NearestCollectionViewCellNIB = UINib(nibName: "ExpectTimeCollectionViewCell", bundle: nil)
-            tablecell.collectionView.register(NearestCollectionViewCellNIB, forCellWithReuseIdentifier: "ExpectTimeCollectionViewCellId")
+            let nearestCollectionViewCellNIB = UINib(nibName: "ExpectTimeCollectionViewCell", bundle: nil)
+            tablecell.collectionView.register(nearestCollectionViewCellNIB, forCellWithReuseIdentifier: "ExpectTimeCollectionViewCellId")
 
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
@@ -260,8 +262,8 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             tablecell.collectionView.reloadData()
             return tablecell
         case 4:
-            let NewRestCollectionViewCellNIB = UINib(nibName: "NewRestCollectionViewCell", bundle: nil)
-            tablecell.collectionView.register(NewRestCollectionViewCellNIB, forCellWithReuseIdentifier: "NewRestCollectionViewCellId")
+            let newRestCollectionViewCellNIB = UINib(nibName: "NewRestCollectionViewCell", bundle: nil)
+            tablecell.collectionView.register(newRestCollectionViewCellNIB, forCellWithReuseIdentifier: "NewRestCollectionViewCellId")
 
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
@@ -344,24 +346,33 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 0:
             collectionView.backgroundColor = .lightGray
         case 1://추천요리
-            let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendCollectionViewCellId", for: indexPath) as! RecommendCollectionViewCell
+            guard let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendCollectionViewCellId", for: indexPath) as? RecommendCollectionViewCell else {
+                return UICollectionViewCell()
+            }
             cell2.layer.cornerRadius = 5
             return cell2
         case 2://가까운 인기 레스토랑
-            let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "NearestCollectionViewCellId", for: indexPath) as! NearestCollectionViewCell
+            guard let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "NearestCollectionViewCellId", for: indexPath) as? NearestCollectionViewCell else {
+                return UICollectionViewCell()
+            }
             cell2.layer.cornerRadius = 5
             return cell2
         case 3://예상 시간
-            let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "ExpectTimeCollectionViewCellId", for: indexPath) as! ExpectTimeCollectionViewCell
+            guard let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "ExpectTimeCollectionViewCellId", for: indexPath) as? ExpectTimeCollectionViewCell else {
+                return UICollectionViewCell()
+            }
             cell2.backgroundColor = .lightGray
             return cell2
         case 4://신규 레스토랑
-            let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "NewRestCollectionViewCellId", for: indexPath) as! NewRestCollectionViewCell
+            guard let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "NewRestCollectionViewCellId", for: indexPath) as? NewRestCollectionViewCell else {
+                return UICollectionViewCell()
+            }
             cell2.backgroundColor = .lightGray
             return cell2
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendCollectionViewCellId", for: indexPath)
-                as! RecommendCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendCollectionViewCellId", for: indexPath) as? RecommendCollectionViewCell else {
+                return UICollectionViewCell()
+            }
             cell.backgroundColor = .lightGray
             return cell
         }

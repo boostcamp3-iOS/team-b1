@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol ItemSizeDelegate {
+protocol ItemSizeDelegate: class {
     func changedContentOffset(curOffsetY: CGFloat, lastOffsetY: CGFloat)
 }
