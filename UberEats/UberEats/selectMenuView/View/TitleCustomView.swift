@@ -26,7 +26,7 @@ class TitleCustomView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 15)
-        label.textColor = .lightGray
+        label.textColor = .darkGray
         label.text = "버거﹒패스트푸드﹒₩₩₩"
         return label
     }()
@@ -35,7 +35,7 @@ class TitleCustomView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 15)
-        label.textColor = .lightGray
+        label.textColor = .darkGray
         label.text = "15-25분 4.5"
         return label
     }()
@@ -56,10 +56,10 @@ class TitleCustomView: UIView {
         addSubview(detailLabel)
         addSubview(timeAndGradeLabel)
 
-        titleLabelLeadingConstraint = titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25)
+        titleLabelLeadingConstraint = titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 27)
         titleLabelLeadingConstraint.isActive = true
 
-        titleLabelTrailingConstraint = titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25)
+        titleLabelTrailingConstraint = titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -27)
         titleLabelTrailingConstraint.isActive = true
 
         titleLabelTopConstraint = titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 25)
@@ -72,8 +72,8 @@ class TitleCustomView: UIView {
 
             timeAndGradeLabel.topAnchor.constraint(equalTo: detailLabel.bottomAnchor, constant: 15),
             timeAndGradeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            timeAndGradeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
-            timeAndGradeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25)
+            timeAndGradeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25)
+//            timeAndGradeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25)
             ])
     }
 }

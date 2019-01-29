@@ -9,9 +9,6 @@
 import UIKit
 
 class HeaderView: UICollectionReusableView {
-//    var titleViewWidthConstraint = NSLayoutConstraint()
-//    var titleViewHeightConstraint = NSLayoutConstraint()
-    
     lazy var gradientView: CAGradientLayer = {
         let gradient = CAGradientLayer()
         gradient.frame = self.bounds
@@ -25,12 +22,12 @@ class HeaderView: UICollectionReusableView {
         return gradient
     }()
 
-    let imageView: UIImageView = {
-        let iv = UIImageView(image: #imageLiteral(resourceName: "image"))
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        return iv
+    let headerImageView: UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "image"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
     }()
 
     override init(frame: CGRect) {
@@ -39,25 +36,14 @@ class HeaderView: UICollectionReusableView {
     }
 
     func setupLayout() {
-        addSubview(imageView)
-//        addSubview(titleView)
-        imageView.layer.addSublayer(gradientView)
+        addSubview(headerImageView)
+        headerImageView.layer.addSublayer(gradientView)
 
-//
-//        titleViewWidthConstraint = NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1, constant: -50)
-//        titleViewWidthConstraint.isActive = true
-//
-//        titleViewHeightConstraint = NSLayoutConstraint(item: titleView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.6, constant: 0)
-//        titleViewHeightConstraint.isActive = true
-        
         NSLayoutConstraint.activate([
-//            titleView.centerYAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -10),
-//            titleView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
-//            
-            imageView.topAnchor.constraint(equalTo: topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            headerImageView.topAnchor.constraint(equalTo: topAnchor),
+            headerImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            headerImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            headerImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
             ])
     }
 
