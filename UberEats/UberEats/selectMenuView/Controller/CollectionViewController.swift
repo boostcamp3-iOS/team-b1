@@ -9,11 +9,14 @@ import UIKit
 
 // swiftlint:disable all
 class CollectionViewController: UICollectionViewController {
+    
     struct Metric {
         static let headerHeight: CGFloat = 283
         static let titleTopMargin: CGFloat = 171
         static let scrollLimit: CGFloat = titleTopMargin
         static let titleLabelTopMargin: CGFloat = 25
+        static let buttonSize: CGFloat = 25
+        static let titleLabelLeadingMargin: CGFloat = 27
     }
 
     let foods: [Food] = [Food.init(foodName: "제육정식 Korean Set with Grilled Pork",
@@ -163,13 +166,13 @@ class CollectionViewController: UICollectionViewController {
             
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
-            backButton.widthAnchor.constraint(equalToConstant: 25),
-            backButton.heightAnchor.constraint(equalToConstant: 25),
+            backButton.widthAnchor.constraint(equalToConstant: Metric.buttonSize),
+            backButton.heightAnchor.constraint(equalToConstant: Metric.buttonSize),
             
             likeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             likeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
-            likeButton.widthAnchor.constraint(equalToConstant: 25),
-            likeButton.heightAnchor.constraint(equalToConstant: 25)
+            likeButton.widthAnchor.constraint(equalToConstant: Metric.buttonSize),
+            likeButton.heightAnchor.constraint(equalToConstant: Metric.buttonSize)
             ])
     }
 
@@ -449,19 +452,21 @@ extension CollectionViewController {
     
     func changedContentOffset(currentScroll: CGFloat, headerHeight: CGFloat) {
         
-        let diff: CGFloat = headerHeight - currentScroll
+//        let diff: CGFloat = headerHeight - currentScroll
         
         titleView.titleLabel.numberOfLines = currentScroll > (Metric.scrollLimit - 10) ? 1 : 2
         
-        if currentScroll < Metric.scrollLimit {
-            titleViewTopConstraint.constant = Metric.titleTopMargin - currentScroll
+        titleViewTopConstraint.constant = Metric.titleTopMargin - currentScroll
+        
+        if currentScroll < Metric.scrollLimit && currentScroll > 0 {
             titleViewWidthConstraint.constant = currentScroll * 0.2
             titleViewHeightConstraint.constant = -(currentScroll * 0.2)
             titleView.titleLabelTopConstraint.constant = (currentScroll * 0.2) + Metric.titleLabelTopMargin
             titleView.detailLabel.alpha = 1 - currentScroll/Metric.scrollLimit
             titleView.timeAndGradeLabel.alpha = 0.8 - currentScroll/Metric.scrollLimit
             
-//            titleView.titleLabelLeadingConstraint.constant = currentScroll + 27
+            titleView.titleLabelLeadingConstraint.constant = currentScroll * 0.1 + Metric.titleLabelLeadingMargin
+            titleView.titleLabelTrailingConstraint.constant = -(currentScroll * 0.1 + Metric.titleLabelLeadingMargin)
             
         } else if currentScroll > Metric.scrollLimit {
             titleViewTopConstraint.constant = 0
@@ -469,13 +474,9 @@ extension CollectionViewController {
             titleViewHeightConstraint.constant = -38
             titleView.titleLabelTopConstraint.constant = Metric.titleLabelTopMargin * 2.3
             
-//            titleView.titleLabelLeadingConstraint.isActive = false
-//            titleView.titleLabelLeadingConstraint = NSLayoutConstraint(item: titleView.titleLabel, attribute: .leading, relatedBy: .equal, toItem: backButton, attribute: .trailing, multiplier: 1, constant: 8)
-//            titleView.titleLabelLeadingConstraint.isActive = true
-//
-//            titleView.titleLabelTrailingConstraint.isActive = false
-//            titleView.titleLabelTrailingConstraint = NSLayoutConstraint(item: titleView.titleLabel, attribute: .trailing, relatedBy: .equal, toItem: likeButton, attribute: .leading, multiplier: 1, constant: -8)
-//            titleView.titleLabelTrailingConstraint.isActive = true
+            titleView.titleLabelLeadingConstraint.constant = Metric.buttonSize + 20
+            titleView.titleLabelTrailingConstraint.constant = -(Metric.buttonSize + 20)
+            
         }
         self.view.layoutIfNeeded()
     }
