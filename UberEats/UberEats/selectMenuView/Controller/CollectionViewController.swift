@@ -10,9 +10,10 @@ import UIKit
 // swiftlint:disable all
 class CollectionViewController: UICollectionViewController {
     struct Metric {
-        static let headerHeight: CGFloat = 280
-        static let titleTopMargin: CGFloat = 150
-        static let scrollLimit: CGFloat = 200
+        static let headerHeight: CGFloat = 283
+        static let titleTopMargin: CGFloat = 171
+        static let scrollLimit: CGFloat = titleTopMargin
+        static let titleLabelTopMargin: CGFloat = 25
     }
 
     let foods: [Food] = [Food.init(foodName: "제육정식 Korean Set with Grilled Pork",
@@ -101,7 +102,8 @@ class CollectionViewController: UICollectionViewController {
         collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.isHidden = true
+        collectionView.alpha = 0
+//        collectionView.isHidden = true
         return collectionView
     }()
 
@@ -115,6 +117,7 @@ class CollectionViewController: UICollectionViewController {
     // MARK: - Method
 
     func setupLayout() {
+        tabBarController?.tabBar.isHidden = true
         collectionView.backgroundColor = .white
         // scrollBar 없애기 위함
         collectionView.showsVerticalScrollIndicator = false
@@ -128,7 +131,7 @@ class CollectionViewController: UICollectionViewController {
         likeButton.addTarget(self, action: #selector(touchUpLikeButton(_:)), for: .touchUpInside)
         
         titleViewTopConstraint = NSLayoutConstraint(item: titleView, attribute: .top, relatedBy: .equal,
-                                                    toItem: view.safeAreaLayoutGuide, attribute: .top,
+                                                    toItem: view, attribute: .top,
                                                     multiplier: 1, constant: Metric.titleTopMargin)
         titleViewTopConstraint.isActive = true
         
@@ -153,7 +156,7 @@ class CollectionViewController: UICollectionViewController {
         NSLayoutConstraint.activate([
             titleView.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
             
-            menuSectionIndexCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 85),
+            menuSectionIndexCollectionView.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
             menuSectionIndexCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             menuSectionIndexCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             menuSectionIndexCollectionView.heightAnchor.constraint(equalToConstant: 60),
@@ -257,10 +260,10 @@ class CollectionViewController: UICollectionViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuSectionId, for: indexPath) as? MenuSectionCollectionViewCell else {
                 return UICollectionViewCell()
             }
-
+            
             cell.sectionName = "나를 위한 메뉴"
             cell.isSelected = collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false
-
+            
             return cell
         }
 
@@ -358,31 +361,39 @@ class CollectionViewController: UICollectionViewController {
         if scrollView != self.menuSectionIndexCollectionView {
             if scrollView.contentOffset.y > 320 {
                 self.likeButton.setImage(#imageLiteral(resourceName: "search"), for: .normal)
-                self.collectionView.contentInset = UIEdgeInsets(top: 235, left: 0, bottom: 0, right: 0)
             } else {
                 if likeStatus == true {
                     self.likeButton.setImage(#imageLiteral(resourceName: "selectLike"), for: .normal)
                 } else {
                     self.likeButton.setImage(#imageLiteral(resourceName: "like"), for: .normal)
                 }
-
-                self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             }
 
             if scrollView.contentOffset.y > Metric.scrollLimit && backButton.currentImage == #imageLiteral(resourceName: "arrow") {
-                self.backButton.setImage(#imageLiteral(resourceName: "blackArrow"), for: .normal)
-                menuSectionIndexCollectionView.isHidden = false
-                statusBarStyle = .default
+                
+                self.collectionView.contentInset = UIEdgeInsets(top: titleView.frame.height + 80, left: 0, bottom: 0, right: 0)
+                
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+                    self.backButton.setImage(#imageLiteral(resourceName: "blackArrow"), for: .normal)
+                    self.menuSectionIndexCollectionView.alpha = 1
+                }, completion: { sccess in
+                    self.statusBarStyle = .default
+                })
             } else if scrollView.contentOffset.y < Metric.scrollLimit && backButton.currentImage == #imageLiteral(resourceName: "blackArrow") {
-                self.backButton.setImage(#imageLiteral(resourceName: "arrow"), for: .normal)
-                menuSectionIndexCollectionView.isHidden = true
-                statusBarStyle = .lightContent
+                
+                self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+                    self.backButton.setImage(#imageLiteral(resourceName: "arrow"), for: .normal)
+                    self.menuSectionIndexCollectionView.alpha = 0
+                }, completion: { sccess in
+                    self.statusBarStyle = .lightContent
+                })
             }
             self.setNeedsStatusBarAppearanceUpdate()
             self.view.layoutIfNeeded()
+            handleTitleView(by: scrollView)
         }
-        
-        handleTitleView(by: scrollView)
     }
 }
 
@@ -395,7 +406,7 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 
         switch indexPath.section {
         case 1:
-            return .init(width: view.frame.width, height: 135)
+            return .init(width: view.frame.width, height: view.frame.height * 0.15)
         case 2:
             return .init(width: view.frame.width, height: 50)
         case 3, 4, 5, 6:
@@ -424,7 +435,6 @@ extension CollectionViewController: SearchBarDelegate {
 
         self.view.addSubview(searchController.view)
         searchController.didMove(toParent: self)
-
     }
 }
 
@@ -433,7 +443,7 @@ extension CollectionViewController {
         let currentScroll: CGFloat = scrollView.contentOffset.y
         let headerHeight: CGFloat = Metric.headerHeight
         
-        print("currentScroll: \(currentScroll), topMargin: \(headerHeight)")
+        print("currentScroll: \(currentScroll), headerHeight: \(headerHeight)")
         changedContentOffset(currentScroll: currentScroll, headerHeight: headerHeight)
     }
     
@@ -441,20 +451,32 @@ extension CollectionViewController {
         
         let diff: CGFloat = headerHeight - currentScroll
         
-        titleView.titleLabel.numberOfLines = currentScroll > Metric.titleTopMargin ? 1 : 2
+        titleView.titleLabel.numberOfLines = currentScroll > (Metric.scrollLimit - 10) ? 1 : 2
         
-        if currentScroll < headerHeight {
+        if currentScroll < Metric.scrollLimit {
             titleViewTopConstraint.constant = Metric.titleTopMargin - currentScroll
             titleViewWidthConstraint.constant = currentScroll * 0.2
             titleViewHeightConstraint.constant = -(currentScroll * 0.2)
-        }
-//        titleViewWidthConstraint.constant = curOffsetY/3 - 50
-//        titleViewHeightConstraint.constant = -(curOffsetY/3)
+            titleView.titleLabelTopConstraint.constant = (currentScroll * 0.2) + Metric.titleLabelTopMargin
+            titleView.detailLabel.alpha = 1 - currentScroll/Metric.scrollLimit
+            titleView.timeAndGradeLabel.alpha = 0.8 - currentScroll/Metric.scrollLimit
+            
+//            titleView.titleLabelLeadingConstraint.constant = currentScroll + 27
+            
+        } else if currentScroll > Metric.scrollLimit {
+            titleViewTopConstraint.constant = 0
+            titleViewWidthConstraint.constant = self.collectionView.frame.width * 0.1
+            titleViewHeightConstraint.constant = -38
+            titleView.titleLabelTopConstraint.constant = Metric.titleLabelTopMargin * 2.3
+            
+//            titleView.titleLabelLeadingConstraint.isActive = false
+//            titleView.titleLabelLeadingConstraint = NSLayoutConstraint(item: titleView.titleLabel, attribute: .leading, relatedBy: .equal, toItem: backButton, attribute: .trailing, multiplier: 1, constant: 8)
+//            titleView.titleLabelLeadingConstraint.isActive = true
 //
-//        titleView.detailLabel.alpha = titleView.detailLabel.alpha - 0.007
-//        titleView.timeAndGradeLabel.alpha = titleView.timeAndGradeLabel.alpha - 0.007
-//        titleView.titleLabelTopConstraint.constant = curOffsetY/5 + 25
-        
+//            titleView.titleLabelTrailingConstraint.isActive = false
+//            titleView.titleLabelTrailingConstraint = NSLayoutConstraint(item: titleView.titleLabel, attribute: .trailing, relatedBy: .equal, toItem: likeButton, attribute: .leading, multiplier: 1, constant: -8)
+//            titleView.titleLabelTrailingConstraint.isActive = true
+        }
         self.view.layoutIfNeeded()
     }
 }
