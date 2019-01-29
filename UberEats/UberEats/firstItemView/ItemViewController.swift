@@ -13,6 +13,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var scrollView: UIScrollView!
+    
     private var images: [String] = ["1_1", "2_1", "3_1","4_1","5_1","6_1"]
     private var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
     private var labelString: [String] = ["추천요리","가까운 인기 레스토랑","예상 시간 30분 이하","Uber Eats 신규 레스토랑","주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
@@ -65,7 +66,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
             CGPoint(x: view.frame.width * CGFloat(nextPage), y: 0)
 
         scrollView.setContentOffset(point, animated: true)
-
     }
 
     func setupScrollView() {
@@ -131,16 +131,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     }
 }
 
-enum Section: Int {
-    case bannerScroll = 0
-    case recommendFood = 1
-    case nearestRest = 2
-    case expectedTime = 3
-    case newRest = 4
-    case discount = 5
-    case moreRest = 6
-    case searchAndSee = 7
-}
 
 // MARK: - tableview
 extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
@@ -164,12 +154,14 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == Section.bannerScroll.rawValue {
+        
+        if section == 0 {
             return 0
-        } else {
-            return 30
         }
- 
+        return 30
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -282,7 +274,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 //    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300
+        return 200
 //        return UIDevice.current.screenType.tableCellSize(for: Section.init(rawValue: indexPath.row) ?? Section.recommendFood.rawValue)
 //        switch indexPath.section {
 //        case 0:
@@ -361,7 +353,6 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         default:
             return .init()
         }
-
         let cell = UICollectionViewCell()
         return cell
     }
@@ -369,14 +360,9 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storboard = UIStoryboard.init(name: "Main", bundle: nil)
         let collectionViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController")
-
-      //  self.present(collectionViewController, animated: true, completion: nil)
-
         self.navigationController?.pushViewController(collectionViewController, animated: true)
     }
-    
 }
-
 // MARK: - UICollectionViewFlowLayout
 extension ItemViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -385,7 +371,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: 200, height: 200)
         //return UIDevice.current.screenType.collectionCellSize(for: section)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch collectionView.tag {
         case 0:
@@ -404,6 +390,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
+
 
 /*
 extension UIDevice.ScreenType {
@@ -557,3 +544,14 @@ extension UIDevice.ScreenType {
     }
 }
 */
+
+enum Section: Int {
+    case bannerScroll = 0
+    case recommendFood = 1
+    case nearestRest = 2
+    case expectedTime = 3
+    case newRest = 4
+    case discount = 5
+    case moreRest = 6
+    case searchAndSee = 7
+}
