@@ -8,6 +8,11 @@
 import UIKit
 
 class CollectionViewController: UICollectionViewController {
+    struct Metric {
+        static let headerHeight: CGFloat = 280
+        static let titleTopMargin: CGFloat = 150
+        static let scrollLimit: CGFloat = 200
+    }
 
     let foods: [Food] = [Food.init(foodName: "제육정식 Korean Set with Grilled Pork",
                                    foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
@@ -121,10 +126,10 @@ class CollectionViewController: UICollectionViewController {
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
         likeButton.addTarget(self, action: #selector(touchUpLikeButton(_:)), for: .touchUpInside)
         
-        titleViewTopConstraint = NSLayoutConstraint(item: titleView, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: 155)
+        titleViewTopConstraint = NSLayoutConstraint(item: titleView, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: Metric.titleTopMargin)
         titleViewTopConstraint.isActive = true
         
-        titleViewWidthConstraint = NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: -50)
+        titleViewWidthConstraint = NSLayoutConstraint(item: titleView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 0.9, constant: 0)
         titleViewWidthConstraint.isActive = true
         
         titleViewHeightConstraint = NSLayoutConstraint(item: titleView, attribute: .height, relatedBy: .equal, toItem: titleView, attribute: .width, multiplier: 0.5, constant: 0)
@@ -185,8 +190,6 @@ class CollectionViewController: UICollectionViewController {
 
     func setupCollectionViewLayout() {
         if let layout = collectionViewLayout as? StretchyHeaderLayout {
-            layout.itemSizeDelegate = self
-
             // header와 collectionview와의 거리
             layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
             //            layout.sectionHeadersPinToVisibleBounds = true
@@ -316,7 +319,7 @@ class CollectionViewController: UICollectionViewController {
 
         switch section {
         case 0:
-            return CGSize(width: self.view.frame.width, height: 280)
+            return CGSize(width: self.view.frame.width, height: Metric.headerHeight)
         case 1:
             return CGSize(width: self.view.frame.width, height: 1)
         case 3, 4, 5, 6:
@@ -357,11 +360,11 @@ class CollectionViewController: UICollectionViewController {
                 self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             }
 
-            if scrollView.contentOffset.y > 200 && backButton.currentImage == #imageLiteral(resourceName: "arrow") {
+            if scrollView.contentOffset.y > Metric.scrollLimit && backButton.currentImage == #imageLiteral(resourceName: "arrow") {
                 self.backButton.setImage(#imageLiteral(resourceName: "blackArrow"), for: .normal)
                 menuSectionIndexCollectionView.isHidden = false
                 statusBarStyle = .default
-            } else if scrollView.contentOffset.y < 200 && backButton.currentImage == #imageLiteral(resourceName: "blackArrow") {
+            } else if scrollView.contentOffset.y < Metric.scrollLimit && backButton.currentImage == #imageLiteral(resourceName: "blackArrow") {
                 self.backButton.setImage(#imageLiteral(resourceName: "arrow"), for: .normal)
                 menuSectionIndexCollectionView.isHidden = true
                 statusBarStyle = .lightContent
@@ -369,6 +372,8 @@ class CollectionViewController: UICollectionViewController {
             self.setNeedsStatusBarAppearanceUpdate()
             self.view.layoutIfNeeded()
         }
+        
+        handleTitleView(by: scrollView)
     }
 }
 
@@ -412,44 +417,33 @@ extension CollectionViewController: SearchBarDelegate {
     }
 }
 
-extension CollectionViewController: ItemSizeDelegate {
-    func changedContentOffset(curOffsetY: CGFloat, lastOffsetY: CGFloat) {
-        print(curOffsetY)
-        if curOffsetY < 210 {
-            self.titleViewTopConstraint.constant = 155 - curOffsetY
-        }
+extension CollectionViewController {
+    func handleTitleView(by scrollView: UIScrollView) {
+        let currentScroll: CGFloat = scrollView.contentOffset.y
+        let headerHeight: CGFloat = Metric.headerHeight
         
-        if curOffsetY > 100 {
-            titleView.titleLabel.numberOfLines = 1
-        } else {
-            titleView.titleLabel.numberOfLines = 0
+        print("currentScroll: \(currentScroll), topMargin: \(headerHeight)")
+        changedContentOffset(currentScroll: currentScroll, headerHeight: headerHeight)
+    }
+    
+    func changedContentOffset(currentScroll: CGFloat, headerHeight: CGFloat) {
+        
+        let diff: CGFloat = headerHeight - currentScroll
+        
+        titleView.titleLabel.numberOfLines = currentScroll > Metric.titleTopMargin ? 1 : 2
+        
+        if currentScroll < headerHeight {
+            titleViewTopConstraint.constant = Metric.titleTopMargin - currentScroll
+            titleViewWidthConstraint.constant = currentScroll * 0.2
+            titleViewHeightConstraint.constant = -(currentScroll * 0.2)
         }
-
-        if curOffsetY < 190 && curOffsetY > 0 {
-            titleViewWidthConstraint.constant = curOffsetY/3 - 50
-            titleViewHeightConstraint.constant = -(curOffsetY/3)
-            
-            if curOffsetY > lastOffsetY {
-                titleView.detailLabel.alpha = titleView.detailLabel.alpha - 0.007
-                titleView.timeAndGradeLabel.alpha = titleView.timeAndGradeLabel.alpha - 0.007
-//                titleView.titleLabelLeadingConstraint.constant = titleView.titleLabelLeadingConstraint.constant + value * 0.002
-//                firstHeaderView.titleView.titleLabelTrailingConstraint.constant =
-//                    firstHeaderView.titleView.titleLabelTrailingConstraint.constant - value * 0.002
-                titleView.titleLabelTopConstraint.constant = curOffsetY/5 + 25
-            } else if curOffsetY < lastOffsetY {
-                titleView.detailLabel.alpha = titleView.detailLabel.alpha + 0.007
-                titleView.timeAndGradeLabel.alpha = titleView.timeAndGradeLabel.alpha + 0.007
-//                firstHeaderView.titleView.titleLabelLeadingConstraint.constant =
-//                    firstHeaderView.titleView.titleLabelLeadingConstraint.constant - value * 0.002
+//        titleViewWidthConstraint.constant = curOffsetY/3 - 50
+//        titleViewHeightConstraint.constant = -(curOffsetY/3)
 //
-//                firstHeaderView.titleView.titleLabelTrailingConstraint.constant =
-//                    firstHeaderView.titleView.titleLabelTrailingConstraint.constant + value * 0.002
-//
-//
-                titleView.titleLabelTopConstraint.constant = curOffsetY*5 - 25
-            }
-
-        }
+//        titleView.detailLabel.alpha = titleView.detailLabel.alpha - 0.007
+//        titleView.timeAndGradeLabel.alpha = titleView.timeAndGradeLabel.alpha - 0.007
+//        titleView.titleLabelTopConstraint.constant = curOffsetY/5 + 25
+        
         self.view.layoutIfNeeded()
     }
 }
