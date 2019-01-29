@@ -67,7 +67,7 @@ class FoodItemDetailsViewController: UIViewController {
     private func changeStatusWithCoveredToolbar(_ stretchableHeaderHeight: CGFloat) {
 
         func coveredToolBarStatus() -> CoveredToolBarStatus {
-            if (stretchableHeaderHeight <= stretchableHeaderMinumumHeight()) {
+            if stretchableHeaderHeight <= stretchableHeaderMinumumHeight() {
                 return .covered
             }
             return .uncovered
@@ -78,13 +78,10 @@ class FoodItemDetailsViewController: UIViewController {
         }
         
         UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
-            
             self.coveredToolBarBottom.constant = coveredToolBarHeight(status: coveredToolBarStatus())
             self.setNeedsStatusBarAppearanceUpdate()
             self.view.layoutIfNeeded()
-            
         }, completion: nil)
-        
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -101,7 +98,7 @@ private class GradientView: UIView {
         super.init(coder: aDecoder)
         guard let gradientLayer = layer as? CAGradientLayer else {return}
 
-        gradientLayer.colors = [
+        gradientLayer?.colors = [
             UIColor(red: 0, green: 0, blue: 0, alpha: 0.55).cgColor,
             UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).cgColor
         ]
@@ -115,6 +112,9 @@ extension FoodItemDetailsViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FoodItemDetailsViewController.cellIdebtifier, for: indexPath) as? FoodItemDetailsCell else {
+            return UITableViewCell()
+        }
 
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: FoodItemDetailsViewController.cellIdebtifier,
