@@ -145,21 +145,26 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         case .bannerScroll:
             return 0
         case .recommendFood, .nearestRest, .expectedTime, .newRest, .discount, .searchAndSee:
+            tableView.rowHeight = view.frame.height * 0.5
             return 1
         case .moreRest:
             return 10
         default:
             return 0
         }
+        
     }
 
+
+    /*
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         if section == 0 {
             return 0
         }
-        return 30
+        return view.frame.height * 0.1
     }
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
@@ -190,10 +195,12 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             return headerView
         }
     }
+     */
 
     // 셀 만드는 부분
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        //MARK: - tableview cell init
         let recommendTable = UINib(nibName: "RecommendTableViewCell", bundle: nil)
         tableView.register(recommendTable, forCellReuseIdentifier: "RecommendTableViewCellId")
 
@@ -219,12 +226,28 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-
+            
+            let recommendLabel = UILabel()
+            recommendLabel.translatesAutoresizingMaskIntoConstraints = false
+            recommendLabel.text = "추천 요리"
+            recommendLabel.adjustsFontSizeToFitWidth = true
+            tablecell.addSubview(recommendLabel)
+            
+            recommendLabel.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor, constant: 24).isActive = true
+            recommendLabel.topAnchor.constraint(equalTo: tablecell.topAnchor, constant: 27).isActive = true
+        
+            tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
+            tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
+            tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
+            tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
+            tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833).isActive = true
+            tablecell.collectionView.backgroundColor = .blue
+        
+            
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
-
-            //tableView.backgroundColor = .green
+            
             return tablecell
         case 2:
             let nearestNIB = UINib(nibName: "NearestCollectionViewCell", bundle: nil)
@@ -232,6 +255,12 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            
+            tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
+            tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
+            tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
+            tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
+            tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833).isActive = true
 
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
@@ -269,12 +298,18 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         return tablecell
     }
 
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 50
-//    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return view.frame.height * (10/812)
+    }
+    
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1 {
+            return view.frame.height * 0.44
+        }
+    
         return 200
+        
 //        return UIDevice.current.screenType.tableCellSize(for: Section.init(rawValue: indexPath.row) ?? Section.recommendFood.rawValue)
 //        switch indexPath.section {
 //        case 0:
@@ -298,6 +333,8 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 //        }
     }
 }
+
+
 
 // MARK: - Collectionview
 extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -362,13 +399,19 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let collectionViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController")
         self.navigationController?.pushViewController(collectionViewController, animated: true)
     }
+    
 }
 // MARK: - UICollectionViewFlowLayout
 extension ItemViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let section = Section(rawValue: collectionView.tag)
             else { preconditionFailure("") }
-        return CGSize(width: 200, height: 200)
+        
+        if collectionView.tag == 1 {
+            return CGSize(width: tableView.frame.width * 0.6, height: tableView.frame.width * 0.61 * 0.92)
+        }
+        
+        return CGSize(width: 400   , height: 400)
         //return UIDevice.current.screenType.collectionCellSize(for: section)
     }
     
@@ -377,7 +420,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         case 0:
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         case 1://추천요리
-            return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+            return UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24)
         case 2://가까운 인기 레스토랑
             return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         case 3://예상 시간

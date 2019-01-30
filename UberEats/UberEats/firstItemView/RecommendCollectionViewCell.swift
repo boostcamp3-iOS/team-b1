@@ -13,6 +13,12 @@ class RecommendCollectionViewCell: UICollectionViewCell {
     @IBOutlet var label: UILabel!
     @IBOutlet var image: UIImageView!
     @IBOutlet var view: UIView!
+    
+    @IBOutlet var bugerLabel: UILabel!
+    @IBOutlet var minuteLabel: UILabel!
+    @IBOutlet var gradeLabel: UILabel!
+    @IBOutlet var commentLabel: UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
