@@ -11,7 +11,6 @@ import UIKit
 // swiftlint:disable all
 class ItemViewController: UIViewController, UIScrollViewDelegate {
     private static let headerId = "headerId"
-
     @IBOutlet var tableView: UITableView!
     @IBOutlet var scrollView: UIScrollView!
     
