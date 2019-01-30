@@ -8,6 +8,7 @@
 
 import UIKit
 
+// swiftlint:disable all
 class ItemViewController: UIViewController, UIScrollViewDelegate {
     private static let headerId = "headerId"
 
@@ -139,7 +140,6 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         let section = Section(rawValue: section)!
         switch section {
         case .bannerScroll:
@@ -149,57 +149,10 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             return 1
         case .moreRest:
             return 10
-        default:
-            return 0
         }
-        
-    }
-
-
-    /*
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        if section == 0 {
-            return 0
-        }
-        return view.frame.height * 0.1
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch section {
-        case 0:
-            return nil
-        default:
-            let headerView = UIView()
-            headerView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-
-            let headerLabel: UILabel = {
-                let label = UILabel()
-                label.translatesAutoresizingMaskIntoConstraints = false
-                return label
-            }()
-
-            headerView.addSubview(headerLabel)
-
-            NSLayoutConstraint.activate([
-                headerLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-                headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20)
-                ])
-
-            headerLabel.text = labelString[section - 1]
-
-            return headerView
-        }
-    }
-     */
-
-    // 셀 만드는 부분
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         //MARK: - tableview cell init
         let recommendTable = UINib(nibName: "RecommendTableViewCell", bundle: nil)
         tableView.register(recommendTable, forCellReuseIdentifier: "RecommendTableViewCellId")
@@ -208,9 +161,10 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
         tablecell.selectionStyle = .none
         tablecell.collectionView.tag = indexPath.section
+        let recommendLabel = UILabel()
 
         //tableview의 섹션별로 collectionview를 관리한다.
-        switch tablecell.collectionView.tag {
+        switch indexPath.section {
         case 0 :
             scrollView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
             scrollView.topAnchor.constraint(equalTo: tablecell.topAnchor).isActive = true
@@ -227,7 +181,6 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             
-            let recommendLabel = UILabel()
             recommendLabel.translatesAutoresizingMaskIntoConstraints = false
             recommendLabel.text = "추천 요리"
             recommendLabel.adjustsFontSizeToFitWidth = true
@@ -241,9 +194,8 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
             tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
             tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833).isActive = true
-            tablecell.collectionView.backgroundColor = .blue
+            //tablecell.collectionView.backgroundColor = .blue
         
-            
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
@@ -255,6 +207,15 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            
+            let recommendLabel = UILabel()
+            recommendLabel.translatesAutoresizingMaskIntoConstraints = false
+            recommendLabel.text = "가까운 인기 레스토랑"
+            recommendLabel.adjustsFontSizeToFitWidth = true
+            tablecell.addSubview(recommendLabel)
+            
+            recommendLabel.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor, constant: 24).isActive = true
+            recommendLabel.topAnchor.constraint(equalTo: tablecell.topAnchor, constant: 27).isActive = true
             
             tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
             tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
@@ -272,6 +233,21 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            
+            let recommendLabel = UILabel()
+            recommendLabel.translatesAutoresizingMaskIntoConstraints = false
+            recommendLabel.text = "예상 시간 30분 이하"
+            recommendLabel.adjustsFontSizeToFitWidth = true
+            tablecell.addSubview(recommendLabel)
+            
+            recommendLabel.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor, constant: 24).isActive = true
+            recommendLabel.topAnchor.constraint(equalTo: tablecell.topAnchor, constant: 27).isActive = true
+            
+            tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
+            tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
+            tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
+            tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
+            tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833).isActive = true
 
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
@@ -283,15 +259,28 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            
+            let recommendLabel = UILabel()
+            recommendLabel.translatesAutoresizingMaskIntoConstraints = false
+            recommendLabel.text = "새로운 레스토랑"
+            recommendLabel.adjustsFontSizeToFitWidth = true
+            tablecell.addSubview(recommendLabel)
+            
+            recommendLabel.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor, constant: 24).isActive = true
+            recommendLabel.topAnchor.constraint(equalTo: tablecell.topAnchor, constant: 27).isActive = true
+            
+            tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
+            tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
+            tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
+            tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
+            tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833).isActive = true
 
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
             return tablecell
         case 5://주문시 5천원 할인
-            if indexPath.row == 0 {
-                tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-            }
+                tablecell.backgroundColor = .red
         default:
             print("default")
         }
@@ -302,39 +291,24 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         return view.frame.height * (10/812)
     }
     
-
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1 {
             return view.frame.height * 0.44
+        }else if indexPath.section == 2 {
+            return view.frame.height * 0.5
+        }else if indexPath.section == 3 {
+            return view.frame.height * 0.5
+        }else if indexPath.section == 4 {
+            return view.frame.height * 0.5
+        }else if indexPath.section == 5 {
+            return view.frame.height * 0.14
         }
     
         return 200
         
 //        return UIDevice.current.screenType.tableCellSize(for: Section.init(rawValue: indexPath.row) ?? Section.recommendFood.rawValue)
-//        switch indexPath.section {
-//        case 0:
-//            return
-//        case 1://추천요리
-//            return 231
-//        case 2://가까운 인기 레스토랑
-//            return 240
-//        case 3://예상 시간 30분 이하 레스토랑
-//            return 260
-//        case 4://Uber Eats 신규 레스토랑
-//            return 260
-//        case 5://주문시 5천원 할인
-//            return 70
-//        case 6:
-//            return 130
-//        case 7:
-//            return 70
-//        default:
-//            return 70
-//        }
     }
 }
-
-
 
 // MARK: - Collectionview
 extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -364,7 +338,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return 10
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         collectionView.showsHorizontalScrollIndicator = false
 
@@ -406,13 +380,15 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let section = Section(rawValue: collectionView.tag)
             else { preconditionFailure("") }
-        
         if collectionView.tag == 1 {
             return CGSize(width: tableView.frame.width * 0.6, height: tableView.frame.width * 0.61 * 0.92)
+        }else if collectionView.tag == 2 {
+            return CGSize(width: tableView.frame.width * 0.76, height: tableView.frame.width * 0.76 * 0.868)
+        }else if collectionView.tag == 3 {
+            return CGSize(width: tableView.frame.width * 0.76, height: tableView.frame.width * 0.76 * 0.868)
         }
         
         return CGSize(width: 400   , height: 400)
-        //return UIDevice.current.screenType.collectionCellSize(for: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -422,7 +398,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         case 1://추천요리
             return UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24)
         case 2://가까운 인기 레스토랑
-            return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+            return UIEdgeInsets(top: 30, left: 24, bottom: 24, right: 30)
         case 3://예상 시간
             return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         case 4://신규 레스토랑
