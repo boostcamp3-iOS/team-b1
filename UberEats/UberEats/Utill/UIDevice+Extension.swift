@@ -52,8 +52,6 @@ extension UIDevice {
     }
     
 }
-*/
-
 
 /*
  extension UIDevice.ScreenType {

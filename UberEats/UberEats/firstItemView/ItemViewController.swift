@@ -147,7 +147,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             return 10
         }
     }
-    
+ 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //MARK: - tableview cell init
         let recommendTable = UINib(nibName: "RecommendTableViewCell", bundle: nil)
@@ -230,7 +230,6 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
             return tablecell
         case 3:
-            
             guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
                 return .init()
             }
@@ -240,7 +239,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             let expaecteNIB = UINib(nibName: "ExpectTimeCollectionViewCell", bundle: nil)
             tablecell.addSubview(tablecell.collectionView)
             tablecell.collectionView.register(expaecteNIB, forCellWithReuseIdentifier: "ExpectTimeCollectionViewCellId")
-            
+          
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             
@@ -257,7 +256,6 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             tablecell.collectionView.reloadData()
             return tablecell
         case 4:
-            
             guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
                 return .init()
             }
@@ -266,6 +264,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             
             let newRestNIB = UINib(nibName: "NewRestCollectionViewCell", bundle: nil)
             tablecell.addSubview(tablecell.collectionView)
+          
             tablecell.collectionView.register(newRestNIB, forCellWithReuseIdentifier: "NewRestCollectionViewCellId")
 
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
@@ -449,7 +448,6 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         }
     }
-    
 }
 
 enum Section: Int {
