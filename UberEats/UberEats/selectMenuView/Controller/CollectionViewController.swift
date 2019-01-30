@@ -59,6 +59,7 @@ class CollectionViewController: UICollectionViewController {
     private var titleViewWidthConstraint = NSLayoutConstraint()
     private var titleViewHeightConstraint = NSLayoutConstraint()
     private var horizontalViewLeadingConstraint = NSLayoutConstraint()
+    private var horizontalViewWidthConstraint = NSLayoutConstraint()
     
     let searchBarView: UIView = {
         let view = UIView()
@@ -213,12 +214,14 @@ class CollectionViewController: UICollectionViewController {
     }
 
     func setupHorizontalView() {
+        horizontalViewWidthConstraint = NSLayoutConstraint(item: horizontalView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 100)
+        horizontalViewWidthConstraint.isActive = true
+        
         horizontalViewLeadingConstraint = NSLayoutConstraint(item: horizontalView, attribute: .leading, relatedBy: .equal, toItem: menuSectionIndexCollectionView, attribute: .leading, multiplier: 1, constant: 10)
         horizontalViewLeadingConstraint.isActive = true
         
         NSLayoutConstraint.activate([
             horizontalView.topAnchor.constraint(equalTo: menuSectionIndexCollectionView.topAnchor),
-            horizontalView.widthAnchor.constraint(equalToConstant: 100),
             horizontalView.heightAnchor.constraint(equalToConstant: 10)
             ])
     }
@@ -278,6 +281,15 @@ class CollectionViewController: UICollectionViewController {
             
             cell.sectionName = sectionNames[indexPath.item]
             cell.isSelected = collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false
+            
+            if indexPath.item == 0 {
+                let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
+                let estimatedForm = NSString(string: sectionNames[indexPath.item]).boundingRect(with: size,
+                                                                                 options: .usesLineFragmentOrigin,
+                                                                                 attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+                
+                horizontalViewWidthConstraint.constant = estimatedForm.width + 20
+            }
             
             return cell
         }
@@ -362,12 +374,20 @@ class CollectionViewController: UICollectionViewController {
                 return
             }
             
+            //이 부분 합치는 바깥으로 빼는거 물어봐야징
+            let commentString: String = self.sectionNames[indexPath.item]
+            
+            let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
+            let estimatedForm = NSString(string: commentString).boundingRect(with: size,
+                                                                             options: .usesLineFragmentOrigin,
+                                                                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+            
             let sectionIndx = IndexPath(item: indexPath.item, section: 0)
             collectionView.selectItem(at: sectionIndx, animated: true, scrollPosition: .left)
             
-            let x = CGFloat(indexPath.item) * cell.frame.width
+            horizontalViewWidthConstraint.constant = estimatedForm.width + 20
             
-            horizontalViewLeadingConstraint.constant = x + 20
+            horizontalViewLeadingConstraint.constant = cell.frame.minX
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.menuSectionIndexCollectionView.layoutIfNeeded()
