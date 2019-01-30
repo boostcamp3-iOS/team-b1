@@ -53,3 +53,158 @@ extension UIDevice {
     
 }
 */
+
+
+/*
+ extension UIDevice.ScreenType {
+ func collectionCellSize(for section: Section) -> CGSize {
+ switch (self, section) {
+ case (.iPhones_4_4S, .bannerScroll):
+ return CGSize(width: 100, height: 200)
+ case (.iPhones_4_4S, .recommendFood):
+ return CGSize(width: 100, height: 200)
+ case (.iPhones_4_4S, .nearestRest):
+ return CGSize(width: 100, height: 200)
+ case (.iPhones_4_4S, .expectedTime):
+ return CGSize(width: 100, height: 200)
+ 
+ case (.iPhones_5_5s_5c_SE, .bannerScroll):
+ return CGSize(width: 100, height: 250)
+ case (.iPhones_5_5s_5c_SE, .recommendFood):
+ return CGSize(width: 221, height: 200)
+ case (.iPhones_5_5s_5c_SE, .nearestRest):
+ return CGSize(width: 221, height: 250)
+ case (.iPhones_5_5s_5c_SE, .expectedTime):
+ return CGSize(width: 100, height: 250)
+ 
+ case (.iPhones_6_6s_7_8, .bannerScroll):
+ return CGSize(width: 100, height: 270)
+ case (.iPhones_6_6s_7_8, .recommendFood):
+ return CGSize(width: 100, height: 270)
+ case (.iPhones_6_6s_7_8, .nearestRest):
+ return CGSize(width: 100, height: 270)
+ case (.iPhones_6_6s_7_8, .expectedTime):
+ return CGSize(width: 100, height: 270)
+ 
+ case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .bannerScroll):
+ return CGSize(width: 100, height: 280)
+ case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .recommendFood):
+ return CGSize(width: 100, height: 280)
+ case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .nearestRest):
+ return CGSize(width: 100, height: 280)
+ case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .expectedTime):
+ return CGSize(width: 100, height: 280)
+ 
+ case (.iPhones_X_XS, .bannerScroll):
+ return CGSize(width: 100, height: 300)
+ case (.iPhones_X_XS, .recommendFood):
+ return CGSize(width: 100, height: 300)
+ case (.iPhones_X_XS, .nearestRest):
+ return CGSize(width: 100, height: 300)
+ case (.iPhones_X_XS, .expectedTime):
+ return CGSize(width: 100, height: 300)
+ 
+ case (.iPhone_XR, .bannerScroll):
+ return CGSize(width: 100, height: 310)
+ case (.iPhone_XR, .recommendFood):
+ return CGSize(width: 100, height: 310)
+ case (.iPhone_XR, .nearestRest):
+ return CGSize(width: 100, height: 310)
+ case (.iPhone_XR, .expectedTime):
+ return CGSize(width: 100, height: 310)
+ 
+ case (.iPhone_XSMax, .bannerScroll):
+ return CGSize(width: 100, height: 310)
+ case (.iPhone_XSMax, .recommendFood):
+ return CGSize(width: 100, height: 310)
+ case (.iPhone_XSMax, .nearestRest):
+ return CGSize(width: 100, height: 310)
+ case (.iPhone_XSMax, .expectedTime):
+ return CGSize(width: 100, height: 310)
+ 
+ default: return CGSize(width: 100, height: 200)
+ }
+ }
+ 
+ func tableCellSize(for section: Section) -> CGFloat {
+ switch (self, section) {
+ case (.iPhones_4_4S, .bannerScroll):
+ return 200
+ case (.iPhones_4_4S, .recommendFood):
+ return 300
+ case (.iPhones_4_4S, .nearestRest):
+ return 400
+ case (.iPhones_4_4S, .expectedTime):
+ return 500
+ 
+ case (.iPhones_5_5s_5c_SE, .bannerScroll):
+ return 200
+ case (.iPhones_5_5s_5c_SE, .recommendFood):
+ return 300
+ case (.iPhones_5_5s_5c_SE, .nearestRest):
+ return 400
+ case (.iPhones_5_5s_5c_SE, .expectedTime):
+ return 500
+ 
+ case (.iPhones_6_6s_7_8, .bannerScroll):
+ return 200
+ case (.iPhones_6_6s_7_8, .recommendFood):
+ return 300
+ case (.iPhones_6_6s_7_8, .nearestRest):
+ return 400
+ case (.iPhones_6_6s_7_8, .expectedTime):
+ return 500
+ 
+ case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .bannerScroll):
+ return 200
+ case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .recommendFood):
+ return 300
+ case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .nearestRest):
+ return 400
+ case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .expectedTime):
+ return 500
+ 
+ case (.iPhones_X_XS, .bannerScroll):
+ return 200
+ case (.iPhones_X_XS, .recommendFood):
+ return 300
+ case (.iPhones_X_XS, .nearestRest):
+ return 400
+ case (.iPhones_X_XS, .expectedTime):
+ return 500
+ 
+ case (.iPhone_XR, .bannerScroll):
+ return 200
+ case (.iPhone_XR, .recommendFood):
+ return 300
+ case (.iPhone_XR, .nearestRest):
+ return 400
+ case (.iPhone_XR, .expectedTime):
+ return 500
+ 
+ case (.iPhone_XSMax, .bannerScroll):
+ return 200
+ case (.iPhone_XSMax, .recommendFood):
+ return 300
+ case (.iPhone_XSMax, .nearestRest):
+ return 400
+ case (.iPhone_XSMax, .expectedTime):
+ return 500
+ 
+ case (.unknown, _):
+ return 200
+ case (_, .newRest):
+ return 300
+ case (_, .discount):
+ return 400
+ case (_, .moreRest):
+ return 400
+ case (_, .searchAndSee):
+ return 400
+ default:
+ return 300
+ }
+ }
+ }
+ */
+

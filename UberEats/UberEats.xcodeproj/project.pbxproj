@@ -23,6 +23,8 @@
 		84DC184E21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC184C21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib */; };
 		84DC185021F9AD7C008EE6D3 /* ItemView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84DC184F21F9AD7C008EE6D3 /* ItemView.storyboard */; };
 		84DC185421F9C426008EE6D3 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC185321F9C426008EE6D3 /* TabBarVC.swift */; };
+		84FB11AA22017A90002C5F46 /* SeeMoreRestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FB11A822017A90002C5F46 /* SeeMoreRestTableViewCell.swift */; };
+		84FB11AB22017A90002C5F46 /* SeeMoreRestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FB11A922017A90002C5F46 /* SeeMoreRestTableViewCell.xib */; };
 		992EDCEB21FDB0A7006CC894 /* FoodItemDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 992EDCEA21FDB0A7006CC894 /* FoodItemDetails.storyboard */; };
 		992EDCED21FDB0C6006CC894 /* FoodItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992EDCEC21FDB0C6006CC894 /* FoodItemDetailsViewController.swift */; };
 		992EDCEF21FDB11B006CC894 /* FoodItemDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992EDCEE21FDB11B006CC894 /* FoodItemDetailsCell.swift */; };
@@ -88,6 +90,8 @@
 		84DC184C21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewRestCollectionViewCell.xib; sourceTree = "<group>"; };
 		84DC184F21F9AD7C008EE6D3 /* ItemView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ItemView.storyboard; sourceTree = "<group>"; };
 		84DC185321F9C426008EE6D3 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
+		84FB11A822017A90002C5F46 /* SeeMoreRestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreRestTableViewCell.swift; sourceTree = "<group>"; };
+		84FB11A922017A90002C5F46 /* SeeMoreRestTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeeMoreRestTableViewCell.xib; sourceTree = "<group>"; };
 		992EDCEA21FDB0A7006CC894 /* FoodItemDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FoodItemDetails.storyboard; sourceTree = "<group>"; };
 		992EDCEC21FDB0C6006CC894 /* FoodItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemDetailsViewController.swift; sourceTree = "<group>"; };
 		992EDCEE21FDB11B006CC894 /* FoodItemDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemDetailsCell.swift; sourceTree = "<group>"; };
@@ -172,6 +176,8 @@
 				84DC183F21F9A51D008EE6D3 /* NearestCollectionViewCell.xib */,
 				84DC184F21F9AD7C008EE6D3 /* ItemView.storyboard */,
 				84DC184921F9ACE0008EE6D3 /* ItemViewController.swift */,
+				84FB11A822017A90002C5F46 /* SeeMoreRestTableViewCell.swift */,
+				84FB11A922017A90002C5F46 /* SeeMoreRestTableViewCell.xib */,
 			);
 			path = firstItemView;
 			sourceTree = "<group>";
@@ -425,6 +431,7 @@
 				9956F7F821F98468004E9854 /* Main.storyboard in Resources */,
 				84DC185021F9AD7C008EE6D3 /* ItemView.storyboard in Resources */,
 				84DC184E21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib in Resources */,
+				84FB11AB22017A90002C5F46 /* SeeMoreRestTableViewCell.xib in Resources */,
 				D1AF1EA721F9A5A6004CA3A5 /* MenuSectionCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,6 +536,7 @@
 				D1AF1E9F21F9A5A6004CA3A5 /* TitleCustomView.swift in Sources */,
 				84DC184D21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift in Sources */,
 				9956F7F121F98468004E9854 /* AppDelegate.swift in Sources */,
+				84FB11AA22017A90002C5F46 /* SeeMoreRestTableViewCell.swift in Sources */,
 				D1AF1EA621F9A5A6004CA3A5 /* HeaderView.swift in Sources */,
 				D1AF1EAB21F9A631004CA3A5 /* Food.swift in Sources */,
 				D1AF1E9E21F9A5A6004CA3A5 /* TempCollectionReusableView.swift in Sources */,
