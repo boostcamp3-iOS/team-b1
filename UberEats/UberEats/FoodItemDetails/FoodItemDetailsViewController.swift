@@ -112,10 +112,10 @@ extension FoodItemDetailsViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: FoodItemDetailsViewController.cellIdebtifier,
-            for: indexPath) as? FoodItemDetailsCell else {
-                return .init()
-        }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: FoodItemDetailsViewController.cellIdebtifier,
+            for: indexPath
+            ) as? FoodItemDetailsCell else { return .init() }
 
         return cell
     }

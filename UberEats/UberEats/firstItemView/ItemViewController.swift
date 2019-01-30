@@ -8,9 +8,9 @@
 
 import UIKit
 
+// swiftlint:disable all
 class ItemViewController: UIViewController, UIScrollViewDelegate {
     private static let headerId = "headerId"
-
     @IBOutlet var tableView: UITableView!
     @IBOutlet var scrollView: UIScrollView!
     
@@ -23,14 +23,14 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     private var bannerImages: [String] = ["1_1", "2_1", "3_1","4_1","5_1","6_1"]
     private var bannerTimer: Timer!
     private var isScrolledByUser: Bool!
-
+    
     private lazy var pageControl: UIPageControl = {
         let pc = UIPageControl(frame: CGRect(x: 50, y: scrollView.frame.height - 40, width: scrollView.frame.width - 280, height: 37))
         pc.currentPage = 0
         return pc
     }()
 
-    private let numberOfSection = 7
+    private let numberOfSection = 8
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,7 +117,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
         if scrollView == self.scrollView {
             //수정하기
             if scrollView.contentOffset.x >= view.frame.width * CGFloat(bannerImages.count - 1) {
@@ -131,7 +130,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     }
 }
 
-
 // MARK: - tableview
 extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -139,7 +137,6 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         let section = Section(rawValue: section)!
         switch section {
         case .bannerScroll:
@@ -148,63 +145,27 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             return 1
         case .moreRest:
             return 10
-        default:
-            return 0
         }
     }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        if section == 0 {
-            return 0
-        }
-        return 30
-    }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch section {
-        case 0:
-            return nil
-        default:
-            let headerView = UIView()
-            headerView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-
-            let headerLabel: UILabel = {
-                let label = UILabel()
-                label.translatesAutoresizingMaskIntoConstraints = false
-                return label
-            }()
-
-            headerView.addSubview(headerLabel)
-
-            NSLayoutConstraint.activate([
-                headerLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-                headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20)
-                ])
-
-            headerLabel.text = labelString[section - 1]
-
-            return headerView
-        }
-    }
-
-    // 셀 만드는 부분
+ 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        //MARK: - tableview cell init
         let recommendTable = UINib(nibName: "RecommendTableViewCell", bundle: nil)
         tableView.register(recommendTable, forCellReuseIdentifier: "RecommendTableViewCellId")
 
-        guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {return .init()}
-
-        tablecell.selectionStyle = .none
-        tablecell.collectionView.tag = indexPath.section
-
+        let SeeMoreRestTableViewCellNIB = UINib(nibName: "SeeMoreRestTableViewCell", bundle: nil)
+        tableView.register(SeeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
+        
         //tableview의 섹션별로 collectionview를 관리한다.
-        switch tablecell.collectionView.tag {
+        switch indexPath.section {
         case 0 :
+            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
+                return .init()
+            }
+            
+            tablecell.selectionStyle = .none
+            tablecell.collectionView.tag = indexPath.section
+            
             scrollView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
             scrollView.topAnchor.constraint(equalTo: tablecell.topAnchor).isActive = true
             scrollView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
@@ -212,90 +173,179 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             
             tablecell.backgroundColor = .green
             tableView.backgroundColor = .green
-
         case 1:
+            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
+                return .init()
+            }
+            
+            tablecell.selectionStyle = .none
+            tablecell.collectionView.tag = indexPath.section
+            
             let recommendNIB = UINib(nibName: "RecommendCollectionViewCell", bundle: nil)
+            tablecell.addSubview(tablecell.collectionView)
             tablecell.collectionView.register(recommendNIB, forCellWithReuseIdentifier: "RecommendCollectionViewCellId")
 
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-
+            
+            tablecell.recommendLabel.text = "추천 요리"
+        
+            tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
+            tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
+            tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
+            tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
+            tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833).isActive = true
+            //tablecell.collectionView.backgroundColor = .blue
+        
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
-
-            //tableView.backgroundColor = .green
+            
             return tablecell
         case 2:
+            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
+                return .init()
+            }
+            
+            tablecell.selectionStyle = .none
+            tablecell.collectionView.tag = indexPath.section
+            
             let nearestNIB = UINib(nibName: "NearestCollectionViewCell", bundle: nil)
+            tablecell.addSubview(tablecell.collectionView)
             tablecell.collectionView.register(nearestNIB, forCellWithReuseIdentifier: "NearestCollectionViewCellId")
 
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            tablecell.recommendLabel.text = "가까운 인기 레스토랑"
+            
+            tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
+            tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
+            tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
+            tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
+            tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833).isActive = true
 
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
+
             return tablecell
         case 3:
+            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
+                return .init()
+            }
+            tablecell.selectionStyle = .none
+            tablecell.collectionView.tag = indexPath.section
+            
             let expaecteNIB = UINib(nibName: "ExpectTimeCollectionViewCell", bundle: nil)
+            tablecell.addSubview(tablecell.collectionView)
             tablecell.collectionView.register(expaecteNIB, forCellWithReuseIdentifier: "ExpectTimeCollectionViewCellId")
-
+          
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            
+            tablecell.recommendLabel.text = "예상 시간 30분 이하"
+            
+            tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
+            tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
+            tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
+            tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
+            tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833).isActive = true
 
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
             return tablecell
         case 4:
+            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
+                return .init()
+            }
+            tablecell.selectionStyle = .none
+            tablecell.collectionView.tag = indexPath.section
+            
             let newRestNIB = UINib(nibName: "NewRestCollectionViewCell", bundle: nil)
+            tablecell.addSubview(tablecell.collectionView)
+          
             tablecell.collectionView.register(newRestNIB, forCellWithReuseIdentifier: "NewRestCollectionViewCellId")
 
             tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
             tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            
+            tablecell.recommendLabel.text = "새로운 레스토랑"
+            
+            tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
+            tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
+            tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
+            tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
+            tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833).isActive = true
 
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
             tablecell.collectionView.reloadData()
             return tablecell
         case 5://주문시 5천원 할인
-            if indexPath.row == 0 {
-                tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
+                return .init()
             }
+            tablecell.selectionStyle = .none
+            tablecell.collectionView.tag = indexPath.section
+            
+            tablecell.recommendLabel.text = "주문시 5천원 할인 받기"
+            tablecell.collectionView.removeFromSuperview()
+        case 6://tableCell인데 레스토랑 더보기 tableCell을 만든다.
+            if indexPath.row != 0 {
+                guard let tablecellOfsixCell = tableView.dequeueReusableCell(withIdentifier: "SeeMoreRestTableViewCellId", for: indexPath) as? SeeMoreRestTableViewCell else {
+                    return .init()
+                }
+                tablecellOfsixCell.selectionStyle = .none
+                return tablecellOfsixCell
+            }else {
+                return .init()
+            }
+        case 7:
+            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
+                return .init()
+            }
+            tablecell.selectionStyle = .none
+            tablecell.collectionView.tag = indexPath.section
+            
+            tablecell.recommendLabel.text = "주문시 5천원 할인 받기"
+            tablecell.collectionView.removeFromSuperview()
+            return tablecell
         default:
             print("default")
         }
-        return tablecell
+        return .init()
     }
+    
 
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 50
-//    }
-
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return view.frame.height * (10/812)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 1 {
+            return view.frame.height * 0.44
+        }else if indexPath.section == 2 {
+            return view.frame.height * 0.5
+        }else if indexPath.section == 3 {
+            return view.frame.height * 0.5
+        }else if indexPath.section == 4 {
+            return view.frame.height * 0.5
+        }else if indexPath.section == 5 {
+            return view.frame.height * 0.14
+        }else if indexPath.section == 6 {
+            if indexPath.row == 0 {
+                return 80
+            }else {
+                return view.frame.height * 0.5
+            }
+        }else if indexPath.section == 7 {
+            return view.frame.height * 0.2
+        }
+    
         return 200
+        
 //        return UIDevice.current.screenType.tableCellSize(for: Section.init(rawValue: indexPath.row) ?? Section.recommendFood.rawValue)
-//        switch indexPath.section {
-//        case 0:
-//            return
-//        case 1://추천요리
-//            return 231
-//        case 2://가까운 인기 레스토랑
-//            return 240
-//        case 3://예상 시간 30분 이하 레스토랑
-//            return 260
-//        case 4://Uber Eats 신규 레스토랑
-//            return 260
-//        case 5://주문시 5천원 할인
-//            return 70
-//        case 6:
-//            return 130
-//        case 7:
-//            return 70
-//        default:
-//            return 70
-//        }
     }
 }
 
@@ -315,10 +365,8 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 4://신규 레스토랑 , 추천요리
             return 4
         case 5://주문시 5천원 할인
-            collectionView.backgroundColor = .green
             return 0
         case 6://레스토랑 더보기
-            collectionView.backgroundColor = .black
             return 0
         case 7://찾아보기나 검색하기
             collectionView.backgroundColor = .yellow
@@ -327,7 +375,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return 10
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         collectionView.showsHorizontalScrollIndicator = false
 
@@ -362,14 +410,25 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let collectionViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController")
         self.navigationController?.pushViewController(collectionViewController, animated: true)
     }
+    
 }
 // MARK: - UICollectionViewFlowLayout
 extension ItemViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let section = Section(rawValue: collectionView.tag)
             else { preconditionFailure("") }
-        return CGSize(width: 200, height: 200)
-        //return UIDevice.current.screenType.collectionCellSize(for: section)
+        if collectionView.tag == 1 {
+            return CGSize(width: tableView.frame.width * 0.6, height: tableView.frame.width * 0.61 * 0.92)
+        }else if collectionView.tag == 2 {
+            return CGSize(width: tableView.frame.width * 0.76, height: tableView.frame.width * 0.76 * 0.868)
+        }else if collectionView.tag == 3 {
+            return CGSize(width: tableView.frame.width * 0.76, height: tableView.frame.width * 0.76 * 0.868)
+        }else if collectionView.tag == 4 {
+            return CGSize(width: tableView.frame.width * 0.76, height: tableView.frame.width * 0.76 * 0.868)
+        }else if collectionView.tag == 5 {
+            return CGSize(width: 0, height: 0)
+        }
+        return CGSize(width: 400 , height: 400)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -377,9 +436,9 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         case 0:
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         case 1://추천요리
-            return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+            return UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24)
         case 2://가까운 인기 레스토랑
-            return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+            return UIEdgeInsets(top: 30, left: 24, bottom: 24, right: 30)
         case 3://예상 시간
             return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         case 4://신규 레스토랑
@@ -390,160 +449,6 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
-
-
-/*
-extension UIDevice.ScreenType {
-    func collectionCellSize(for section: Section) -> CGSize {
-        switch (self, section) {
-        case (.iPhones_4_4S, .bannerScroll):
-            return CGSize(width: 100, height: 200)
-        case (.iPhones_4_4S, .recommendFood):
-            return CGSize(width: 100, height: 200)
-        case (.iPhones_4_4S, .nearestRest):
-            return CGSize(width: 100, height: 200)
-        case (.iPhones_4_4S, .expectedTime):
-            return CGSize(width: 100, height: 200)
-        
-        case (.iPhones_5_5s_5c_SE, .bannerScroll):
-            return CGSize(width: 100, height: 250)
-        case (.iPhones_5_5s_5c_SE, .recommendFood):
-            return CGSize(width: 221, height: 200)
-        case (.iPhones_5_5s_5c_SE, .nearestRest):
-            return CGSize(width: 221, height: 250)
-        case (.iPhones_5_5s_5c_SE, .expectedTime):
-            return CGSize(width: 100, height: 250)
-            
-        case (.iPhones_6_6s_7_8, .bannerScroll):
-            return CGSize(width: 100, height: 270)
-        case (.iPhones_6_6s_7_8, .recommendFood):
-            return CGSize(width: 100, height: 270)
-        case (.iPhones_6_6s_7_8, .nearestRest):
-            return CGSize(width: 100, height: 270)
-        case (.iPhones_6_6s_7_8, .expectedTime):
-            return CGSize(width: 100, height: 270)
-            
-        case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .bannerScroll):
-            return CGSize(width: 100, height: 280)
-        case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .recommendFood):
-            return CGSize(width: 100, height: 280)
-        case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .nearestRest):
-            return CGSize(width: 100, height: 280)
-        case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .expectedTime):
-            return CGSize(width: 100, height: 280)
-            
-        case (.iPhones_X_XS, .bannerScroll):
-            return CGSize(width: 100, height: 300)
-        case (.iPhones_X_XS, .recommendFood):
-            return CGSize(width: 100, height: 300)
-        case (.iPhones_X_XS, .nearestRest):
-            return CGSize(width: 100, height: 300)
-        case (.iPhones_X_XS, .expectedTime):
-            return CGSize(width: 100, height: 300)
-            
-        case (.iPhone_XR, .bannerScroll):
-            return CGSize(width: 100, height: 310)
-        case (.iPhone_XR, .recommendFood):
-            return CGSize(width: 100, height: 310)
-        case (.iPhone_XR, .nearestRest):
-            return CGSize(width: 100, height: 310)
-        case (.iPhone_XR, .expectedTime):
-            return CGSize(width: 100, height: 310)
-            
-        case (.iPhone_XSMax, .bannerScroll):
-            return CGSize(width: 100, height: 310)
-        case (.iPhone_XSMax, .recommendFood):
-            return CGSize(width: 100, height: 310)
-        case (.iPhone_XSMax, .nearestRest):
-            return CGSize(width: 100, height: 310)
-        case (.iPhone_XSMax, .expectedTime):
-            return CGSize(width: 100, height: 310)
-            
-        default: return CGSize(width: 100, height: 200)
-        }
-    }
-    
-    func tableCellSize(for section: Section) -> CGFloat {
-        switch (self, section) {
-        case (.iPhones_4_4S, .bannerScroll):
-            return 200
-        case (.iPhones_4_4S, .recommendFood):
-            return 300
-        case (.iPhones_4_4S, .nearestRest):
-            return 400
-        case (.iPhones_4_4S, .expectedTime):
-            return 500
-            
-        case (.iPhones_5_5s_5c_SE, .bannerScroll):
-            return 200
-        case (.iPhones_5_5s_5c_SE, .recommendFood):
-            return 300
-        case (.iPhones_5_5s_5c_SE, .nearestRest):
-            return 400
-        case (.iPhones_5_5s_5c_SE, .expectedTime):
-            return 500
-            
-        case (.iPhones_6_6s_7_8, .bannerScroll):
-            return 200
-        case (.iPhones_6_6s_7_8, .recommendFood):
-            return 300
-        case (.iPhones_6_6s_7_8, .nearestRest):
-            return 400
-        case (.iPhones_6_6s_7_8, .expectedTime):
-            return 500
-            
-        case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .bannerScroll):
-            return 200
-        case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .recommendFood):
-            return 300
-        case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .nearestRest):
-            return 400
-        case (.iPhones_6Plus_6sPlus_7Plus_8Plus, .expectedTime):
-            return 500
-            
-        case (.iPhones_X_XS, .bannerScroll):
-            return 200
-        case (.iPhones_X_XS, .recommendFood):
-            return 300
-        case (.iPhones_X_XS, .nearestRest):
-            return 400
-        case (.iPhones_X_XS, .expectedTime):
-            return 500
-            
-        case (.iPhone_XR, .bannerScroll):
-            return 200
-        case (.iPhone_XR, .recommendFood):
-            return 300
-        case (.iPhone_XR, .nearestRest):
-            return 400
-        case (.iPhone_XR, .expectedTime):
-            return 500
-            
-        case (.iPhone_XSMax, .bannerScroll):
-            return 200
-        case (.iPhone_XSMax, .recommendFood):
-            return 300
-        case (.iPhone_XSMax, .nearestRest):
-            return 400
-        case (.iPhone_XSMax, .expectedTime):
-            return 500
-            
-        case (.unknown, _):
-            return 200
-        case (_, .newRest):
-            return 300
-        case (_, .discount):
-            return 400
-        case (_, .moreRest):
-            return 400
-        case (_, .searchAndSee):
-            return 400
-        default:
-            return 300
-        }
-    }
-}
-*/
 
 enum Section: Int {
     case bannerScroll = 0
