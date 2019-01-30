@@ -19,6 +19,8 @@ class CollectionViewController: UICollectionViewController {
         static let titleLabelLeadingMargin: CGFloat = 27
     }
 
+    let sectionNames: [String] = ["나를 위한 추천 메뉴", "햄버거 단품 Single Burger", "햄버거 세트", "디저트 Dessert"]
+    
     let foods: [Food] = [Food.init(foodName: "제육정식 Korean Set with Grilled Pork",
                                    foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
                                    price: "₩8,900",
@@ -56,6 +58,7 @@ class CollectionViewController: UICollectionViewController {
     private var titleViewTopConstraint = NSLayoutConstraint()
     private var titleViewWidthConstraint = NSLayoutConstraint()
     private var titleViewHeightConstraint = NSLayoutConstraint()
+    private var horizontalViewLeadingConstraint = NSLayoutConstraint()
     
     let searchBarView: UIView = {
         let view = UIView()
@@ -93,17 +96,24 @@ class CollectionViewController: UICollectionViewController {
         return view
     }()
     
+    let horizontalView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .green
+        return view
+    }()
+    
     lazy var menuSectionIndexCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.alpha = 0
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         return collectionView
     }()
 
@@ -111,6 +121,7 @@ class CollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         setupLayout()
         setupCollectionView()
+        setupHorizontalView()
         setupCollectionViewLayout()
     }
 
@@ -122,6 +133,7 @@ class CollectionViewController: UICollectionViewController {
         view.addSubview(titleView)
         view.addSubview(backButton)
         view.addSubview(likeButton)
+        menuSectionIndexCollectionView.addSubview(horizontalView)
         view.addSubview(menuSectionIndexCollectionView)
 
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
@@ -200,6 +212,17 @@ class CollectionViewController: UICollectionViewController {
         }
     }
 
+    func setupHorizontalView() {
+        horizontalViewLeadingConstraint = NSLayoutConstraint(item: horizontalView, attribute: .leading, relatedBy: .equal, toItem: menuSectionIndexCollectionView, attribute: .leading, multiplier: 1, constant: 10)
+        horizontalViewLeadingConstraint.isActive = true
+        
+        NSLayoutConstraint.activate([
+            horizontalView.topAnchor.constraint(equalTo: menuSectionIndexCollectionView.topAnchor),
+            horizontalView.widthAnchor.constraint(equalToConstant: 100),
+            horizontalView.heightAnchor.constraint(equalToConstant: 10)
+            ])
+    }
+    
     // Object-C Method
 
     @objc func touchUpBackButton(_: UIButton) {
@@ -253,7 +276,7 @@ class CollectionViewController: UICollectionViewController {
                 return UICollectionViewCell()
             }
             
-            cell.sectionName = "나를 위한 메뉴"
+            cell.sectionName = sectionNames[indexPath.item]
             cell.isSelected = collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false
             
             return cell
@@ -303,7 +326,7 @@ class CollectionViewController: UICollectionViewController {
                     return UICollectionReusableView()
                 }
 
-                header.menuLabel.text = "나를 위한 추천 메뉴"
+                header.menuLabel.text = sectionNames[indexPath.item]
 
                 return header
             default:
@@ -335,8 +358,21 @@ class CollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.menuSectionIndexCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuSectionId, for: indexPath) as? MenuSectionCollectionViewCell else {
+                return
+            }
+            
             let sectionIndx = IndexPath(item: indexPath.item, section: 0)
             collectionView.selectItem(at: sectionIndx, animated: true, scrollPosition: .left)
+            
+            let x = CGFloat(indexPath.item) * cell.frame.width
+            
+            horizontalViewLeadingConstraint.constant = x + 20
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.menuSectionIndexCollectionView.layoutIfNeeded()
+                }, completion: nil)
+            
             // 선택한 section목록으로 이동시키는 부분
             let indx = IndexPath(item: 0, section: indexPath.row + 3)
             self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
@@ -396,7 +432,14 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     // item의 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.menuSectionIndexCollectionView {
-            return .init(width: 150, height: 60)
+            let commentString: String = self.sectionNames[indexPath.item]
+            
+            let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
+            let estimatedForm = NSString(string: commentString).boundingRect(with: size,
+                                                                             options: .usesLineFragmentOrigin,
+                                                                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+            
+            return .init(width: estimatedForm.width + 30, height: 50)
         }
 
         switch indexPath.section {
