@@ -100,7 +100,8 @@ class CollectionViewController: UICollectionViewController {
     let horizontalView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .green
+        view.backgroundColor = .black
+        view.layer.cornerRadius = 18
         return view
     }()
     
@@ -110,7 +111,7 @@ class CollectionViewController: UICollectionViewController {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.alpha = 0
@@ -221,8 +222,8 @@ class CollectionViewController: UICollectionViewController {
         horizontalViewLeadingConstraint.isActive = true
         
         NSLayoutConstraint.activate([
-            horizontalView.topAnchor.constraint(equalTo: menuSectionIndexCollectionView.topAnchor),
-            horizontalView.heightAnchor.constraint(equalToConstant: 10)
+            horizontalView.centerYAnchor.constraint(equalTo: self.menuSectionIndexCollectionView.centerYAnchor),
+            horizontalView.heightAnchor.constraint(equalToConstant: 35)
             ])
     }
     
@@ -279,16 +280,25 @@ class CollectionViewController: UICollectionViewController {
                 return UICollectionViewCell()
             }
             
+            collectionView.sendSubviewToBack(horizontalView)
+            
             cell.sectionName = sectionNames[indexPath.item]
             cell.isSelected = collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false
             
-            if indexPath.item == 0 {
+            guard let selectedItemCount = collectionView.indexPathsForSelectedItems?.count else {
+                return .init()
+            }
+            
+            if indexPath.item == 0 && selectedItemCount == 0 {
+                cell.isSelected = true
+                
                 let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
                 let estimatedForm = NSString(string: sectionNames[indexPath.item]).boundingRect(with: size,
-                                                                                 options: .usesLineFragmentOrigin,
-                                                                                 attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+                                                                                                options: .usesLineFragmentOrigin,
+                                                                                                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
                 
                 horizontalViewWidthConstraint.constant = estimatedForm.width + 20
+            } else {
             }
             
             return cell
@@ -303,7 +313,9 @@ class CollectionViewController: UICollectionViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuId, for: indexPath) as? SearchCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            
             cell.searchBarDelegate = self
+            
             return cell
         case 3, 4, 5, 6:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuDetailId, for: indexPath) as? FoodCollectionViewCell else {
@@ -370,10 +382,12 @@ class CollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.menuSectionIndexCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuSectionId, for: indexPath) as? MenuSectionCollectionViewCell else {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? MenuSectionCollectionViewCell else {
                 return
             }
             
+            collectionView.bringSubviewToFront(cell)
+        
             //이 부분 합치는 바깥으로 빼는거 물어봐야징
             let commentString: String = self.sectionNames[indexPath.item]
             
@@ -382,19 +396,19 @@ class CollectionViewController: UICollectionViewController {
                                                                              options: .usesLineFragmentOrigin,
                                                                              attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
             
-            let sectionIndx = IndexPath(item: indexPath.item, section: 0)
-            collectionView.selectItem(at: sectionIndx, animated: true, scrollPosition: .left)
-            
             horizontalViewWidthConstraint.constant = estimatedForm.width + 20
             
-            horizontalViewLeadingConstraint.constant = cell.frame.minX
+            horizontalViewLeadingConstraint.constant = cell.frame.minX + 5
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.menuSectionIndexCollectionView.layoutIfNeeded()
                 }, completion: nil)
             
+            let sectionIndx = IndexPath(item: indexPath.item, section: 0)
+            collectionView.selectItem(at: sectionIndx, animated: true, scrollPosition: .left)
+            
             // 선택한 section목록으로 이동시키는 부분
-            let indx = IndexPath(item: 0, section: indexPath.row + 3)
+            let indx = IndexPath(item: 0, section: indexPath.item + 3)
             self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
         } else {
             let storyboard = UIStoryboard.init(name: "FoodItemDetails", bundle: nil)
