@@ -15,7 +15,8 @@ class TabBarVC: UITabBarController {
 
         let itemStroyBoard = UIStoryboard(name: "ItemView", bundle: nil)
         let firstViewController = itemStroyBoard.instantiateViewController(withIdentifier: "NavigationVC")
-        firstViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"), selectedImage: UIImage(named: "icons8-home-50"))
+        firstViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"),
+                                                      selectedImage: UIImage(named: "icons8-home-50"))
 
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
 
