@@ -51,6 +51,8 @@ class CollectionViewController: UICollectionViewController {
     fileprivate let menuDetailId = "menuDetailId"
     fileprivate let menuSectionId = "menuSectionId"
 
+    private var lastContentOffsetY: CGFloat = 0
+    private var lastSection: Int = 0
     private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     private var likeStatus: Bool = false
@@ -108,6 +110,7 @@ class CollectionViewController: UICollectionViewController {
     lazy var menuSectionIndexCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 0
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -115,7 +118,7 @@ class CollectionViewController: UICollectionViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.alpha = 0
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 10)
         return collectionView
     }()
 
@@ -218,7 +221,8 @@ class CollectionViewController: UICollectionViewController {
         horizontalViewWidthConstraint = NSLayoutConstraint(item: horizontalView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 100)
         horizontalViewWidthConstraint.isActive = true
         
-        horizontalViewLeadingConstraint = NSLayoutConstraint(item: horizontalView, attribute: .leading, relatedBy: .equal, toItem: menuSectionIndexCollectionView, attribute: .leading, multiplier: 1, constant: 10)
+        horizontalViewLeadingConstraint = NSLayoutConstraint(item: horizontalView, attribute: .leading, relatedBy: .equal,
+                                                             toItem: menuSectionIndexCollectionView, attribute: .leading, multiplier: 1, constant: 0)
         horizontalViewLeadingConstraint.isActive = true
         
         NSLayoutConstraint.activate([
@@ -292,13 +296,14 @@ class CollectionViewController: UICollectionViewController {
             if indexPath.item == 0 && selectedItemCount == 0 {
                 cell.isSelected = true
                 
+//                self.collectionView(menuSectionIndexCollectionView, didSelectItemAt: indexPath)
+                
                 let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
                 let estimatedForm = NSString(string: sectionNames[indexPath.item]).boundingRect(with: size,
                                                                                                 options: .usesLineFragmentOrigin,
                                                                                                 attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
-                
-                horizontalViewWidthConstraint.constant = estimatedForm.width + 20
-            } else {
+
+                horizontalViewWidthConstraint.constant = estimatedForm.width + 10
             }
             
             return cell
@@ -323,7 +328,7 @@ class CollectionViewController: UICollectionViewController {
             }
 
             cell.food = foods[indexPath.item]
-
+            
             return cell
         default:
             return collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
@@ -387,7 +392,7 @@ class CollectionViewController: UICollectionViewController {
             }
             
             collectionView.bringSubviewToFront(cell)
-        
+            
             //이 부분 합치는 바깥으로 빼는거 물어봐야징
             let commentString: String = self.sectionNames[indexPath.item]
             
@@ -396,20 +401,24 @@ class CollectionViewController: UICollectionViewController {
                                                                              options: .usesLineFragmentOrigin,
                                                                              attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
             
-            horizontalViewWidthConstraint.constant = estimatedForm.width + 20
+            horizontalViewWidthConstraint.constant = estimatedForm.width + 10
             
-            horizontalViewLeadingConstraint.constant = cell.frame.minX + 5
+            horizontalViewLeadingConstraint.constant = cell.frame.minX
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.menuSectionIndexCollectionView.layoutIfNeeded()
                 }, completion: nil)
             
+            // 메뉴바의 카테고리를 선택했을 때 왼쪽으로 붙이는 부분
             let sectionIndx = IndexPath(item: indexPath.item, section: 0)
             collectionView.selectItem(at: sectionIndx, animated: true, scrollPosition: .left)
             
-            // 선택한 section목록으로 이동시키는 부분
+            // 선택한 메뉴바의 카테고리에 대한 section목록으로 이동하는 부분
             let indx = IndexPath(item: 0, section: indexPath.item + 3)
             self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
+            
+            lastContentOffsetY = collectionView.contentOffset.y
+            
         } else {
             let storyboard = UIStoryboard.init(name: "FoodItemDetails", bundle: nil)
             let footItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
@@ -456,6 +465,20 @@ class CollectionViewController: UICollectionViewController {
             self.setNeedsStatusBarAppearanceUpdate()
             self.view.layoutIfNeeded()
             handleTitleView(by: scrollView)
+            
+            guard let currentSection = collectionView.indexPathForItem(at: CGPoint(x: 100, y: (view.frame.width * 0.9 * 0.5 + 40) + collectionView.contentOffset.y))?.section else {
+                return
+            }
+            
+            print("currentSection: \(currentSection), lastSection: \(lastSection)")
+            
+//            if currentSection > 2 && currentSection != lastSection {
+//                let indx = IndexPath(item: currentSection - 3, section: 0)
+//                self.collectionView(menuSectionIndexCollectionView, didSelectItemAt: indx)
+//                lastSection = currentSection
+//            }
+            
+            
         } else {
             
         }
@@ -473,7 +496,7 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
                                                                              options: .usesLineFragmentOrigin,
                                                                              attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
             
-            return .init(width: estimatedForm.width + 30, height: 50)
+            return .init(width: estimatedForm.width + 10, height: 50)
         }
 
         switch indexPath.section {
