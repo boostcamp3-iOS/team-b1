@@ -11,16 +11,13 @@ import UIKit
 class MenuSectionCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var sectionNameLabel: UILabel!
-    @IBOutlet weak var colorView: UIView!
 
     override var isSelected: Bool {
         didSet {
             if self.isSelected {
                 self.sectionNameLabel.textColor = .white
-                self.colorView.backgroundColor = .black
             } else {
                 self.sectionNameLabel.textColor = .black
-                self.colorView.backgroundColor = .white
             }
         }
     }
@@ -32,13 +29,11 @@ class MenuSectionCollectionViewCell: UICollectionViewCell {
             }
 
             sectionNameLabel.text = sectionName
-            colorView.layer.cornerRadius = 20
         }
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        colorView.backgroundColor = .white
         sectionNameLabel.textColor = .black
         sectionName = nil
     }
