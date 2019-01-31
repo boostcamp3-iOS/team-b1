@@ -12,7 +12,7 @@ class SeeMoreRestTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("aaaaaaaaa")
+    
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

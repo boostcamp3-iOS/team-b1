@@ -8,28 +8,28 @@
 
 import UIKit
 
-// swiftlint:disable all
 class ItemViewController: UIViewController, UIScrollViewDelegate {
-    private static let headerId = "headerId"
     @IBOutlet var tableView: UITableView!
     @IBOutlet var scrollView: UIScrollView!
     
-    private var images: [String] = ["1_1", "2_1", "3_1","4_1","5_1","6_1"]
+    private var images: [String] = ["1_1", "2_1", "3_1", "4_1", "5_1", "6_1"]
     private var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-    private var labelString: [String] = ["추천요리","가까운 인기 레스토랑","예상 시간 30분 이하","Uber Eats 신규 레스토랑","주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
+    private var labelString: [String] = ["추천요리", "가까운 인기 레스토랑", "예상 시간 30분 이하", "Uber Eats 신규 레스토랑",
+                                         "주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
     private var gameTimer: Timer!
-    private var collectionViewItems:[Int] = []
+    private var collectionViewItems: [Int] = []
     
-    private var bannerImages: [String] = ["1_1", "2_1", "3_1","4_1","5_1","6_1"]
+    private var bannerImages: [String] = ["1_1", "2_1", "3_1", "4_1", "5_1", "6_1"]
     private var bannerTimer: Timer!
     private var isScrolledByUser: Bool!
     
     private lazy var pageControl: UIPageControl = {
-        let pc = UIPageControl(frame: CGRect(x: 50, y: scrollView.frame.height - 40, width: scrollView.frame.width - 280, height: 37))
-        pc.currentPage = 0
-        return pc
+        let pageControl = UIPageControl(frame: CGRect(x: 50, y: scrollView.frame.height - 40,
+                                                      width: scrollView.frame.width - 280, height: 37))
+        pageControl.currentPage = 0
+        return pageControl
     }()
-
+    
     private let numberOfSection = 8
 
     override func viewDidLoad() {
@@ -41,7 +41,8 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         pageControl.currentPage = 0
         isScrolledByUser = false
 
-        bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
+        bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self,
+                                           selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
     }
 
     private func setupTableView() {
@@ -52,8 +53,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @objc func scrolledBanner() {
-        //print("4초마다 실행 되길 ...")
-
         /* guard로 false 처리
          guard isAutoScrollMode else {
          return
@@ -83,7 +82,8 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
             scrollView.addSubview(bannerImage)
         }
 
-        scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(bannerImages.count), height: scrollView.frame.height)
+        scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(bannerImages.count),
+                                        height: scrollView.frame.height)
         scrollView.delegate = self
 
         pageControl.numberOfPages = bannerImages.count
@@ -97,28 +97,21 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         frame.origin.x = frame.size.width * CGFloat(pageNumber)
         frame.origin.y = 0
 
-        scrollView.scrollRectToVisible(frame, animated: true) //?
+        scrollView.scrollRectToVisible(frame, animated: true)
     }
-
-    //스크롤 시작
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        //remove timer from Roop
         bannerTimer.invalidate()
-
-        // isScrolledByUser = true
-        //ㅇ
     }
-    //스크롤 끝
+    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-
-        bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
-
-        //isScrolledByUser = false
+        bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self,
+                                           selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.scrollView {
-            //수정하기
+            // FIXME: 수정해야함
             if scrollView.contentOffset.x >= view.frame.width * CGFloat(bannerImages.count - 1) {
                 scrollView.isScrollEnabled = false
                 scrollView.isScrollEnabled = true
@@ -130,7 +123,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     }
 }
 
-// MARK: - tableview
 extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return numberOfSection
@@ -147,262 +139,199 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             return 10
         }
     }
- 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //MARK: - tableview cell init
-        let recommendTable = UINib(nibName: "RecommendTableViewCell", bundle: nil)
-        tableView.register(recommendTable, forCellReuseIdentifier: "RecommendTableViewCellId")
-
-        let SeeMoreRestTableViewCellNIB = UINib(nibName: "SeeMoreRestTableViewCell", bundle: nil)
-        tableView.register(SeeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
+    
+    func setupTableViewCell(indexPath: IndexPath) -> TableViewCell {
+        let tableNIB = UINib(nibName: "TableViewCell", bundle: nil)
+        tableView.register(tableNIB, forCellReuseIdentifier: "TableViewCellId")
+        guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
+                                                            for: indexPath) as? TableViewCell else {
+            return .init()
+        }
+        tablecell.selectionStyle = .none
+        tablecell.collectionView.tag = indexPath.section
         
-        //tableview의 섹션별로 collectionview를 관리한다.
-        switch indexPath.section {
-        case 0 :
-            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
-                return .init()
-            }
-            
-            tablecell.selectionStyle = .none
-            tablecell.collectionView.tag = indexPath.section
-            
-            scrollView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
-            scrollView.topAnchor.constraint(equalTo: tablecell.topAnchor).isActive = true
-            scrollView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
-            scrollView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
-            
-            tablecell.backgroundColor = .green
-            tableView.backgroundColor = .green
-        case 1:
-            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
-                return .init()
-            }
-            
-            tablecell.selectionStyle = .none
-            tablecell.collectionView.tag = indexPath.section
-            
-            let recommendNIB = UINib(nibName: "RecommendCollectionViewCell", bundle: nil)
-            tablecell.addSubview(tablecell.collectionView)
-            tablecell.collectionView.register(recommendNIB, forCellWithReuseIdentifier: "RecommendCollectionViewCellId")
-
-            tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-            tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-            
+        return tablecell
+    }
+    
+    func setupCollectionViewCell(indexPath: IndexPath, nibName: String, tablecell: TableViewCell) {
+        let NIB = UINib(nibName: nibName, bundle: nil)
+        tablecell.addSubview(tablecell.collectionView)
+        tablecell.collectionView.register(NIB, forCellWithReuseIdentifier: nibName + "Id")
+        
+        tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+        tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255,
+                                                           blue: 247 / 255, alpha: 1.0)
+        
+        let section = Section(rawValue: indexPath.section)!
+        switch section {
+        case .recommendFood:
             tablecell.recommendLabel.text = "추천 요리"
-        
-            tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
-            tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
-            tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
-            tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
-            tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833).isActive = true
-            //tablecell.collectionView.backgroundColor = .blue
-        
-            tablecell.collectionView.delegate = self
-            tablecell.collectionView.dataSource = self
-            tablecell.collectionView.reloadData()
-            
-            return tablecell
-        case 2:
-            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
-                return .init()
-            }
-            
-            tablecell.selectionStyle = .none
-            tablecell.collectionView.tag = indexPath.section
-            
-            let nearestNIB = UINib(nibName: "NearestCollectionViewCell", bundle: nil)
-            tablecell.addSubview(tablecell.collectionView)
-            tablecell.collectionView.register(nearestNIB, forCellWithReuseIdentifier: "NearestCollectionViewCellId")
-
-            tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-            tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+        case .nearestRest:
             tablecell.recommendLabel.text = "가까운 인기 레스토랑"
-            
-            tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
-            tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
-            tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
-            tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
-            tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833).isActive = true
-
-            tablecell.collectionView.delegate = self
-            tablecell.collectionView.dataSource = self
-            tablecell.collectionView.reloadData()
-
-            return tablecell
-        case 3:
-            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
-                return .init()
-            }
-            tablecell.selectionStyle = .none
-            tablecell.collectionView.tag = indexPath.section
-            
-            let expaecteNIB = UINib(nibName: "ExpectTimeCollectionViewCell", bundle: nil)
-            tablecell.addSubview(tablecell.collectionView)
-            tablecell.collectionView.register(expaecteNIB, forCellWithReuseIdentifier: "ExpectTimeCollectionViewCellId")
-          
-            tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-            tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-            
+        case .expectedTime:
             tablecell.recommendLabel.text = "예상 시간 30분 이하"
-            
-            tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
-            tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
-            tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
-            tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
-            tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833).isActive = true
-
-            tablecell.collectionView.delegate = self
-            tablecell.collectionView.dataSource = self
-            tablecell.collectionView.reloadData()
-            return tablecell
-        case 4:
-            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
-                return .init()
-            }
-            tablecell.selectionStyle = .none
-            tablecell.collectionView.tag = indexPath.section
-            
-            let newRestNIB = UINib(nibName: "NewRestCollectionViewCell", bundle: nil)
-            tablecell.addSubview(tablecell.collectionView)
-          
-            tablecell.collectionView.register(newRestNIB, forCellWithReuseIdentifier: "NewRestCollectionViewCellId")
-
-            tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-            tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-            
+        case .newRest:
             tablecell.recommendLabel.text = "새로운 레스토랑"
-            
-            tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
-            tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor).isActive = true
-            tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor).isActive = true
-            tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor).isActive = true
-            tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833).isActive = true
+        default:
+            tablecell.recommendLabel.text = ""
+        }
+        
+        tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [
+                tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor),
+                tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor),
+                tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor),
+                tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833)
+            ]
+        )
 
-            tablecell.collectionView.delegate = self
-            tablecell.collectionView.dataSource = self
-            tablecell.collectionView.reloadData()
+        tablecell.collectionView.delegate = self
+        tablecell.collectionView.dataSource = self
+        tablecell.collectionView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = Section(rawValue: indexPath.section)!
+        switch section {
+        case .bannerScroll:
+            let tablecell = setupTableViewCell(indexPath: indexPath)
+            NSLayoutConstraint.activate(
+                [
+                    scrollView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor),
+                    scrollView.topAnchor.constraint(equalTo: tablecell.topAnchor),
+                    scrollView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor),
+                    scrollView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor)
+                ]
+            )
+        case .recommendFood:
+            let tablecell = setupTableViewCell(indexPath: indexPath)
+            setupCollectionViewCell(indexPath: indexPath, nibName: "RecommendCollectionViewCell", tablecell: tablecell)
             return tablecell
-        case 5://주문시 5천원 할인
-            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
-                return .init()
-            }
-            tablecell.selectionStyle = .none
-            tablecell.collectionView.tag = indexPath.section
-            
+        case .nearestRest:
+            let tablecell = setupTableViewCell(indexPath: indexPath)
+            setupCollectionViewCell(indexPath: indexPath, nibName: "NearestCollectionViewCell", tablecell: tablecell)
+            return tablecell
+        case .expectedTime:
+            let tablecell = setupTableViewCell(indexPath: indexPath)
+            setupCollectionViewCell(indexPath: indexPath, nibName: "ExpectTimeCollectionViewCell", tablecell: tablecell)
+            return tablecell
+        case .newRest:
+            let tablecell = setupTableViewCell(indexPath: indexPath)
+            setupCollectionViewCell(indexPath: indexPath, nibName: "NewRestCollectionViewCell", tablecell: tablecell)
+            return tablecell
+        case .discount:
+            let tablecell = setupTableViewCell(indexPath: indexPath)
             tablecell.recommendLabel.text = "주문시 5천원 할인 받기"
             tablecell.collectionView.removeFromSuperview()
-        case 6://tableCell인데 레스토랑 더보기 tableCell을 만든다.
+        case .moreRest:
             if indexPath.row != 0 {
-                guard let tablecellOfsixCell = tableView.dequeueReusableCell(withIdentifier: "SeeMoreRestTableViewCellId", for: indexPath) as? SeeMoreRestTableViewCell else {
+                let seeMoreRestTableViewCellNIB = UINib(nibName: "SeeMoreRestTableViewCell", bundle: nil)
+                tableView.register(seeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
+                guard let tablecellOfsixCell = tableView.dequeueReusableCell(
+                    withIdentifier: "SeeMoreRestTableViewCellId",
+                    for: indexPath) as? SeeMoreRestTableViewCell else {
                     return .init()
                 }
                 tablecellOfsixCell.selectionStyle = .none
                 return tablecellOfsixCell
-            }else {
+            } else {
                 return .init()
             }
-        case 7:
-            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "RecommendTableViewCellId", for: indexPath) as? RecommendTableViewCell else {
-                return .init()
-            }
-            tablecell.selectionStyle = .none
-            tablecell.collectionView.tag = indexPath.section
+        case .searchAndSee:
+            let tablecell = setupTableViewCell(indexPath: indexPath)
             
             tablecell.recommendLabel.text = "주문시 5천원 할인 받기"
             tablecell.collectionView.removeFromSuperview()
             return tablecell
-        default:
-            print("default")
         }
         return .init()
     }
-    
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = Section(rawValue: indexPath.section)!
+        switch section {
+        case .recommendFood:
+            return view.frame.height * 0.44
+        case .nearestRest, .expectedTime, .newRest:
+            return view.frame.height * 0.5
+        case .discount:
+            return view.frame.height * 0.14
+        case .moreRest:
+            if indexPath.row == 0 {
+                return 80
+            } else {
+                return view.frame.height * 0.5
+            }
+        case .searchAndSee:
+            return view.frame.height * 0.2
+        case .bannerScroll:
+            return 0
+        }
+        
+        // MARK: - 디바이스별 분기 나눠서 오토레이아웃 적용 방법 예시
+    //return UIDevice.current.screenType.tableCellSize(for: Section.init(rawValue: indexPath.row)
+
+    }
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return view.frame.height * (10/812)
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 1 {
-            return view.frame.height * 0.44
-        }else if indexPath.section == 2 {
-            return view.frame.height * 0.5
-        }else if indexPath.section == 3 {
-            return view.frame.height * 0.5
-        }else if indexPath.section == 4 {
-            return view.frame.height * 0.5
-        }else if indexPath.section == 5 {
-            return view.frame.height * 0.14
-        }else if indexPath.section == 6 {
-            if indexPath.row == 0 {
-                return 80
-            }else {
-                return view.frame.height * 0.5
-            }
-        }else if indexPath.section == 7 {
-            return view.frame.height * 0.2
-        }
-    
-        return 200
-        
-//        return UIDevice.current.screenType.tableCellSize(for: Section.init(rawValue: indexPath.row) ?? Section.recommendFood.rawValue)
-    }
 }
 
-// MARK: - Collectionview
 extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-        switch collectionView.tag {
-        case 0:
+        
+        let section = Section(rawValue: collectionView.tag)!
+        switch section {
+        case .bannerScroll:
             return 0
-        case 1://UberEatas 신규 레스토랑
+        case .recommendFood:
             return 7
-        case 2://가까운 인기 레스토랑
+        case .nearestRest:
             return 6
-        case 3://예상 시간,추천요리
+        case .expectedTime:
             return 6
-        case 4://신규 레스토랑 , 추천요리
+        case .newRest:
             return 4
-        case 5://주문시 5천원 할인
+        case .discount, .moreRest, .searchAndSee:
             return 0
-        case 6://레스토랑 더보기
-            return 0
-        case 7://찾아보기나 검색하기
-            collectionView.backgroundColor = .yellow
-            return 0
-        default:
-            return 10
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         collectionView.showsHorizontalScrollIndicator = false
-
-        switch collectionView.tag {
-        case 0:
+        
+        let section = Section(rawValue: collectionView.tag)!
+        switch section {
+        case .bannerScroll:
             collectionView.backgroundColor = .lightGray
-        case 1://추천요리
-            guard let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendCollectionViewCellId", for: indexPath) as? RecommendCollectionViewCell else {return .init()}
-            cell2.layer.cornerRadius = 5
-            return cell2
-        case 2://가까운 인기 레스토랑
-            guard let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "NearestCollectionViewCellId", for: indexPath) as? NearestCollectionViewCell else {return .init()}
-            cell2.layer.cornerRadius = 5
-            return cell2
-        case 3://예상 시간
-            guard let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "ExpectTimeCollectionViewCellId", for: indexPath) as? ExpectTimeCollectionViewCell else {return .init()}
-            cell2.backgroundColor = .lightGray
-            return cell2
-        case 4://신규 레스토랑
-            guard let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "NewRestCollectionViewCellId", for: indexPath) as? NewRestCollectionViewCell else {return .init()}
-            cell2.backgroundColor = .lightGray
-            return cell2
+        case .recommendFood://추천요리
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendCollectionViewCellId",
+                                            for: indexPath) as? RecommendCollectionViewCell else { return .init()}
+            cell.layer.cornerRadius = 5
+            return cell
+        case .nearestRest://가까운 인기 레스토랑
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NearestCollectionViewCellId",
+                                            for: indexPath) as? NearestCollectionViewCell else {return .init()}
+            cell.layer.cornerRadius = 5
+            return cell
+        case .expectedTime://예상 시간
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExpectTimeCollectionViewCellId",
+                                            for: indexPath) as? ExpectTimeCollectionViewCell else {return .init()}
+            cell.backgroundColor = .lightGray
+            return cell
+        case .newRest://신규 레스토랑
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewRestCollectionViewCellId",
+                                            for: indexPath) as? NewRestCollectionViewCell else {return .init()}
+            cell.backgroundColor = .lightGray
+            return cell
         default:
             return .init()
         }
-        let cell = UICollectionViewCell()
-        return cell
+        return .init()
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -410,40 +339,44 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let collectionViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController")
         self.navigationController?.pushViewController(collectionViewController, animated: true)
     }
-    
 }
-// MARK: - UICollectionViewFlowLayout
+
 extension ItemViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let section = Section(rawValue: collectionView.tag)
-            else { preconditionFailure("") }
-        if collectionView.tag == 1 {
-            return CGSize(width: tableView.frame.width * 0.6, height: tableView.frame.width * 0.61 * 0.92)
-        }else if collectionView.tag == 2 {
-            return CGSize(width: tableView.frame.width * 0.76, height: tableView.frame.width * 0.76 * 0.868)
-        }else if collectionView.tag == 3 {
-            return CGSize(width: tableView.frame.width * 0.76, height: tableView.frame.width * 0.76 * 0.868)
-        }else if collectionView.tag == 4 {
-            return CGSize(width: tableView.frame.width * 0.76, height: tableView.frame.width * 0.76 * 0.868)
-        }else if collectionView.tag == 5 {
-            return CGSize(width: 0, height: 0)
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        guard let section = Section(rawValue: collectionView.tag) else {
+            preconditionFailure("")
         }
-        return CGSize(width: 400 , height: 400)
+        
+        switch section {
+        case .recommendFood:
+            return CGSize(width: tableView.frame.width * 0.6, height: tableView.frame.width * 0.61 * 0.92)
+        case .nearestRest, .expectedTime, .newRest :
+            return CGSize(width: tableView.frame.width * 0.76, height: tableView.frame.width * 0.76 * 0.868)
+        case .discount:
+            return CGSize(width: 0, height: 0)
+        default:
+            return CGSize(width: 400, height: 400)
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        switch collectionView.tag {
-        case 0:
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        let section = Section(rawValue: collectionView.tag)!
+        switch section {
+        case .bannerScroll:
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        case 1://추천요리
+        case .recommendFood:
             return UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24)
-        case 2://가까운 인기 레스토랑
+        case .nearestRest:
             return UIEdgeInsets(top: 30, left: 24, bottom: 24, right: 30)
-        case 3://예상 시간
+        case .expectedTime:
             return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
-        case 4://신규 레스토랑
+        case .newRest:
             return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
-        //case 5: 주문시 5천원 할인받기
         default:
             return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         }

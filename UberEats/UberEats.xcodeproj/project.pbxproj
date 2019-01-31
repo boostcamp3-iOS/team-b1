@@ -14,10 +14,10 @@
 		84DC184221F9A51D008EE6D3 /* RecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */; };
 		84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183B21F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift */; };
 		84DC184421F9A51D008EE6D3 /* NearestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183C21F9A51D008EE6D3 /* NearestCollectionViewCell.swift */; };
-		84DC184521F9A51D008EE6D3 /* RecommendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183D21F9A51D008EE6D3 /* RecommendTableViewCell.swift */; };
+		84DC184521F9A51D008EE6D3 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183D21F9A51D008EE6D3 /* TableViewCell.swift */; };
 		84DC184621F9A51D008EE6D3 /* RecommendCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC183E21F9A51D008EE6D3 /* RecommendCollectionViewCell.xib */; };
 		84DC184721F9A51D008EE6D3 /* NearestCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC183F21F9A51D008EE6D3 /* NearestCollectionViewCell.xib */; };
-		84DC184821F9A51D008EE6D3 /* RecommendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC184021F9A51D008EE6D3 /* RecommendTableViewCell.xib */; };
+		84DC184821F9A51D008EE6D3 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC184021F9A51D008EE6D3 /* TableViewCell.xib */; };
 		84DC184A21F9ACE0008EE6D3 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC184921F9ACE0008EE6D3 /* ItemViewController.swift */; };
 		84DC184D21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC184B21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift */; };
 		84DC184E21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC184C21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib */; };
@@ -84,10 +84,10 @@
 		84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCollectionViewCell.swift; sourceTree = "<group>"; };
 		84DC183B21F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpectTimeCollectionViewCell.swift; sourceTree = "<group>"; };
 		84DC183C21F9A51D008EE6D3 /* NearestCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearestCollectionViewCell.swift; sourceTree = "<group>"; };
-		84DC183D21F9A51D008EE6D3 /* RecommendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendTableViewCell.swift; sourceTree = "<group>"; };
+		84DC183D21F9A51D008EE6D3 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		84DC183E21F9A51D008EE6D3 /* RecommendCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendCollectionViewCell.xib; sourceTree = "<group>"; };
 		84DC183F21F9A51D008EE6D3 /* NearestCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearestCollectionViewCell.xib; sourceTree = "<group>"; };
-		84DC184021F9A51D008EE6D3 /* RecommendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendTableViewCell.xib; sourceTree = "<group>"; };
+		84DC184021F9A51D008EE6D3 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		84DC184921F9ACE0008EE6D3 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		84DC184B21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRestCollectionViewCell.swift; sourceTree = "<group>"; };
 		84DC184C21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewRestCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -176,8 +176,8 @@
 				84DC183E21F9A51D008EE6D3 /* RecommendCollectionViewCell.xib */,
 				84DC183B21F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift */,
 				84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */,
-				84DC183D21F9A51D008EE6D3 /* RecommendTableViewCell.swift */,
-				84DC184021F9A51D008EE6D3 /* RecommendTableViewCell.xib */,
+				84DC183D21F9A51D008EE6D3 /* TableViewCell.swift */,
+				84DC184021F9A51D008EE6D3 /* TableViewCell.xib */,
 				84DC184B21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift */,
 				84DC184C21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib */,
 				84DC183C21F9A51D008EE6D3 /* NearestCollectionViewCell.swift */,
@@ -434,7 +434,7 @@
 				992EDCEB21FDB0A7006CC894 /* FoodItemDetails.storyboard in Resources */,
 				D1AF1E9D21F9A5A6004CA3A5 /* SmallMenuHeaderView.xib in Resources */,
 				84DC184721F9A51D008EE6D3 /* NearestCollectionViewCell.xib in Resources */,
-				84DC184821F9A51D008EE6D3 /* RecommendTableViewCell.xib in Resources */,
+				84DC184821F9A51D008EE6D3 /* TableViewCell.xib in Resources */,
 				84DC184621F9A51D008EE6D3 /* RecommendCollectionViewCell.xib in Resources */,
 				9956F7F821F98468004E9854 /* Main.storyboard in Resources */,
 				84DC185021F9AD7C008EE6D3 /* ItemView.storyboard in Resources */,
@@ -527,7 +527,7 @@
 				D1AF1EA521F9A5A6004CA3A5 /* FoodCollectionViewCell.swift in Sources */,
 				992EDCEF21FDB11B006CC894 /* FoodItemDetailsCell.swift in Sources */,
 				9956F7F521F98468004E9854 /* SecondViewController.swift in Sources */,
-				84DC184521F9A51D008EE6D3 /* RecommendTableViewCell.swift in Sources */,
+				84DC184521F9A51D008EE6D3 /* TableViewCell.swift in Sources */,
 				84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */,
 				84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */,
 				84DC184A21F9ACE0008EE6D3 /* ItemViewController.swift in Sources */,

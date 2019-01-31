@@ -1,5 +1,5 @@
 //
-//  RecommendTableViewCell.swift
+//  TableViewCell.swift
 //  uberEats
 //
 //  Created by admin on 24/01/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecommendTableViewCell: UITableViewCell, UICollectionViewDelegate {
+class TableViewCell: UITableViewCell, UICollectionViewDelegate {
     @IBOutlet var collectionView: UICollectionView!
     public let recommendLabel: UILabel = {
         let label = UILabel()
