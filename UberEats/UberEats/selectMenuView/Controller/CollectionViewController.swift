@@ -51,8 +51,6 @@ class CollectionViewController: UICollectionViewController {
     fileprivate let menuDetailId = "menuDetailId"
     fileprivate let menuSectionId = "menuSectionId"
 
-    private var lastContentOffsetY: CGFloat = 0
-    private var lastSection: Int = 0
     private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     private var likeStatus: Bool = false
@@ -181,6 +179,7 @@ class CollectionViewController: UICollectionViewController {
 
     func setupCollectionView() {
         let selectedIndexPath = IndexPath(item: 0, section: 0)
+        // scrollPostion에 none이 없어졌길래 .centeredVertically 사용했습니다.
         menuSectionIndexCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredVertically)
         
         collectionView.backgroundColor = .white
@@ -242,6 +241,7 @@ class CollectionViewController: UICollectionViewController {
     // Object-C Method
 
     @objc func touchUpBackButton(_: UIButton) {
+        tabBarController?.tabBar.isHidden = false
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -408,8 +408,6 @@ class CollectionViewController: UICollectionViewController {
             let indx = IndexPath(item: 0, section: indexPath.item + 3)
             self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
             
-            lastContentOffsetY = collectionView.contentOffset.y
-            
         } else {
             let storyboard = UIStoryboard.init(name: "FoodItemDetails", bundle: nil)
             let footItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
@@ -417,7 +415,7 @@ class CollectionViewController: UICollectionViewController {
             self.navigationController?.pushViewController(footItemVC, animated: true)
         }
     }
-
+    
     // MARK: - ScrollView
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -456,20 +454,6 @@ class CollectionViewController: UICollectionViewController {
             self.setNeedsStatusBarAppearanceUpdate()
             self.view.layoutIfNeeded()
             handleTitleView(by: scrollView)
-            
-            guard let currentSection = collectionView.indexPathForItem(at: CGPoint(x: 100, y: (view.frame.width * 0.9 * 0.5 + 40) + collectionView.contentOffset.y))?.section else {
-                return
-            }
-            
-            print("currentSection: \(currentSection), lastSection: \(lastSection)")
-            
-//            if currentSection > 2 && currentSection != lastSection {
-//                let indx = IndexPath(item: currentSection - 3, section: 0)
-//                self.collectionView(menuSectionIndexCollectionView, didSelectItemAt: indx)
-//                lastSection = currentSection
-//            }
-            
-            
         } else {
             
         }
