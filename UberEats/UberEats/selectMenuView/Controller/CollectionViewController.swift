@@ -273,7 +273,7 @@ class CollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
         if collectionView == self.menuSectionIndexCollectionView {
-            return 4
+            return sectionNames.count
         }
 
         switch section {
@@ -454,8 +454,6 @@ class CollectionViewController: UICollectionViewController {
             self.setNeedsStatusBarAppearanceUpdate()
             self.view.layoutIfNeeded()
             handleTitleView(by: scrollView)
-        } else {
-            
         }
     }
 }
