@@ -19,7 +19,6 @@ class RecommendCollectionViewCell: UICollectionViewCell {
     @IBOutlet var gradeLabel: UILabel!
     @IBOutlet var commentLabel: UILabel!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
     }
