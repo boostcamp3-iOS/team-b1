@@ -10,17 +10,23 @@ import UIKit
 
 class ItemViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var tableView: UITableView!
+    
     @IBOutlet var scrollView: UIScrollView!
     
     private var images: [String] = ["1_1", "2_1", "3_1", "4_1", "5_1", "6_1"]
+    
     private var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+    
     private var labelString: [String] = ["추천요리", "가까운 인기 레스토랑", "예상 시간 30분 이하", "Uber Eats 신규 레스토랑",
                                          "주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
     private var gameTimer: Timer!
+    
     private var collectionViewItems: [Int] = []
     
     private var bannerImages: [String] = ["1_1", "2_1", "3_1", "4_1", "5_1", "6_1"]
+    
     private var bannerTimer: Timer!
+    
     private var isScrolledByUser: Bool!
     
     private lazy var pageControl: UIPageControl = {
@@ -30,8 +36,8 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         return pageControl
     }()
     
-    private let numberOfSection = 8
-
+    private static let numberOfSection = 8
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -111,7 +117,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.scrollView {
-            // FIXME: 수정해야함
+            //수정
             if scrollView.contentOffset.x >= view.frame.width * CGFloat(bannerImages.count - 1) {
                 scrollView.isScrollEnabled = false
                 scrollView.isScrollEnabled = true
@@ -125,7 +131,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
 extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return numberOfSection
+        return ItemViewController.numberOfSection
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -185,7 +191,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
                 tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833)
             ]
         )
-
+        
         tablecell.collectionView.delegate = self
         tablecell.collectionView.dataSource = self
         tablecell.collectionView.reloadData()
@@ -268,9 +274,8 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         case .bannerScroll:
             return 0
         }
-        
         // MARK: - 디바이스별 분기 나눠서 오토레이아웃 적용 방법 예시
-    //return UIDevice.current.screenType.tableCellSize(for: Section.init(rawValue: indexPath.row)
+        //return UIDevice.current.screenType.tableCellSize(for: Section.init(rawValue: indexPath.row)
 
     }
     
@@ -381,15 +386,4 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         }
     }
-}
-
-enum Section: Int {
-    case bannerScroll = 0
-    case recommendFood = 1
-    case nearestRest = 2
-    case expectedTime = 3
-    case newRest = 4
-    case discount = 5
-    case moreRest = 6
-    case searchAndSee = 7
 }
