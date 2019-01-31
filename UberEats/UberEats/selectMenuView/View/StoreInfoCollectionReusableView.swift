@@ -23,8 +23,6 @@ class StoreInfoCollectionReusableView: UICollectionReusableView {
         view.layer.shadowOpacity = 0.3
         view.layer.shadowOffset = CGSize(width: 0, height: 5)
         view.layer.shadowRadius = 10
-        //        view.layer.shouldRasterize = true
-        view.layer.rasterizationScale = UIScreen.main.scale
         return view
     }()
 
