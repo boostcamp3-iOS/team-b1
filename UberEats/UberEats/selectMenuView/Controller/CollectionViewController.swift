@@ -180,6 +180,9 @@ class CollectionViewController: UICollectionViewController {
     }
 
     func setupCollectionView() {
+        let selectedIndexPath = IndexPath(item: 0, section: 0)
+        menuSectionIndexCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredVertically)
+        
         collectionView.backgroundColor = .white
         // scrollBar 없애기 위함
         collectionView.showsVerticalScrollIndicator = false
@@ -218,7 +221,12 @@ class CollectionViewController: UICollectionViewController {
     }
 
     func setupHorizontalView() {
-        horizontalViewWidthConstraint = NSLayoutConstraint(item: horizontalView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 100)
+        let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
+        let estimatedForm = NSString(string: sectionNames[0]).boundingRect(with: size,
+                                                                           options: .usesLineFragmentOrigin,
+                                                                           attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+        
+        horizontalViewWidthConstraint = NSLayoutConstraint(item: horizontalView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: estimatedForm.width + 10)
         horizontalViewWidthConstraint.isActive = true
         
         horizontalViewLeadingConstraint = NSLayoutConstraint(item: horizontalView, attribute: .leading, relatedBy: .equal,
@@ -288,23 +296,6 @@ class CollectionViewController: UICollectionViewController {
             
             cell.sectionName = sectionNames[indexPath.item]
             cell.isSelected = collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false
-            
-            guard let selectedItemCount = collectionView.indexPathsForSelectedItems?.count else {
-                return .init()
-            }
-            
-            if indexPath.item == 0 && selectedItemCount == 0 {
-                cell.isSelected = true
-                
-//                self.collectionView(menuSectionIndexCollectionView, didSelectItemAt: indexPath)
-                
-                let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
-                let estimatedForm = NSString(string: sectionNames[indexPath.item]).boundingRect(with: size,
-                                                                                                options: .usesLineFragmentOrigin,
-                                                                                                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
-
-                horizontalViewWidthConstraint.constant = estimatedForm.width + 10
-            }
             
             return cell
         }
