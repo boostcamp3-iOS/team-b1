@@ -47,7 +47,8 @@ class FoodItemDetailsViewController: UIViewController {
  
     private func initView() {
         self.coveredToolBarBottom.constant = -toolbar.frame.height
-        tableView.contentInset = UIEdgeInsets(top: FoodItemDetailsViewController.stretchableHeaderImageHeight, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: FoodItemDetailsViewController.stretchableHeaderImageHeight, left: 0,
+                                              bottom: 0, right: 0)
         tableView.rowHeight = UITableView.automaticDimension
         orderButton.layer.cornerRadius = FoodItemDetailsViewController.orderButtonCornerRadius
     }

@@ -14,11 +14,7 @@ class MenuSectionCollectionViewCell: UICollectionViewCell {
 
     override var isSelected: Bool {
         didSet {
-            if self.isSelected {
-                self.sectionNameLabel.textColor = .white
-            } else {
-                self.sectionNameLabel.textColor = .black
-            }
+            self.sectionNameLabel.textColor = self.isSelected ? .white : .black
         }
     }
 

@@ -73,7 +73,6 @@ class TitleCustomView: UIView {
             timeAndGradeLabel.topAnchor.constraint(equalTo: detailLabel.bottomAnchor, constant: 15),
             timeAndGradeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
             timeAndGradeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25)
-//            timeAndGradeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25)
             ])
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 class HeaderView: UICollectionReusableView {
+    
     lazy var gradientView: CAGradientLayer = {
         let gradient = CAGradientLayer()
         gradient.frame = self.bounds
@@ -23,7 +24,7 @@ class HeaderView: UICollectionReusableView {
     }()
 
     let headerImageView: UIImageView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "image"))
+        let imageView = UIImageView(image: UIImage(named: "image"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true

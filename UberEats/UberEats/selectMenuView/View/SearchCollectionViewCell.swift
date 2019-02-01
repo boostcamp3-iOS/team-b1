@@ -9,10 +9,9 @@
 import UIKit
 
 class SearchCollectionViewCell: UICollectionViewCell {
-    var searchBarDelegate: SearchBarDelegate?
+    weak var searchBarDelegate: SearchBarDelegate?
 
     @IBAction func touchUpSearchButton(_ sender: Any) {
-        print("touchUpSearchButton")
         searchBarDelegate?.showSeachBar()
     }
 

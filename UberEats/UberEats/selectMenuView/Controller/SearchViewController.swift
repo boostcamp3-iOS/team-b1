@@ -17,8 +17,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         setupLayout()
     }
 
-    func setupLayout() {
-//        navigationController?.setNavigationBarHidden(false, animated: true)
+    private func setupLayout() {
         searchTextField.becomeFirstResponder()
     }
 

@@ -43,7 +43,9 @@ class FoodCollectionViewCell: UICollectionViewCell {
 
     var food: Food? {
         didSet {
-            guard let food = food else { return }
+            guard let food = food else {
+                return
+            }
 
             foodNameLabel.text = food.foodName
             foodContentsLabel.text = food.foodContents
