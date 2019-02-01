@@ -8,85 +8,45 @@
 import UIKit
 
 class CollectionViewController: UICollectionViewController {
-    struct Metric {
-        static let headerHeight: CGFloat = 283
-        static let titleTopMargin: CGFloat = 171
-        static let scrollLimit: CGFloat = titleTopMargin
-        static let titleLabelTopMargin: CGFloat = 25
-        static let buttonSize: CGFloat = 25
-        static let titleLabelLeadingMargin: CGFloat = 27
-    }
-  
     private let sectionNames: [String] = ["나를 위한 추천 메뉴", "햄버거 단품 Single Burger", "햄버거 세트", "디저트 Dessert"]
     
-    private let foods: [Food] = [Food.init(foodName: "제육정식 Korean Set with Grilled Pork",
-                                   foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
-                                   price: "₩8,900", foodImage: nil),
-                         Food.init(foodName: "부대찌개개개개개ㅐ애애애애애애애 Korean Set with Grilled Pork",
-                                   foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
-                                   price: "₩8,900", foodImage: nil),
-                         Food.init(foodName: "햄버거 Korean Set with Grilled Pork",
-                                   foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
-                                   price: "₩8,900", foodImage: nil),
-                         Food.init(foodName: "피자 Korean Set with Grilled Pork",
-                                   foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
-                                   price: "₩1,000,900", foodImage: nil),
-                         Food.init(foodName: "부대찌개개개개개ㅐ애애애애애애애 Korean Set with Grilled Pork",
-                                   foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
-                                   price: "₩8,900", foodImage: nil)]
-
+    private let foods: [Food] = [.init(foodName: "제육정식 Korean Set with Grilled Pork",
+                                       foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
+                                       price: "₩8,900", foodImage: nil),
+                                 .init(foodName: "부대찌개개개개개ㅐ애애애애애애애 Korean Set with Grilled Pork",
+                                       foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
+                                       price: "₩8,900", foodImage: nil),
+                                 .init(foodName: "햄버거 Korean Set with Grilled Pork",
+                                       foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
+                                       price: "₩8,900", foodImage: nil),
+                                 .init(foodName: "피자 Korean Set with Grilled Pork",
+                                       foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
+                                       price: "₩1,000,900", foodImage: nil),
+                                 .init(foodName: "부대찌개개개개개ㅐ애애애애애애애 Korean Set with Grilled Pork",
+                                       foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
+                                       price: "₩8,900", foodImage: nil)]
+    
+    private let headerHeight: CGFloat = 283
+    private let scrollLimit: CGFloat = 171
+    private let buttonSize: CGFloat = 25
+    
     private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     private var isLiked: Bool = false
-//    private var state: State = .nothing
-    private var isTouched: Bool = true
+    private var isScrolling: Bool = false
     private var lastSection: Int = 3
-  
-    private var titleViewTopConstraint = NSLayoutConstraint()
-    private var titleViewWidthConstraint = NSLayoutConstraint()
-    private var titleViewHeightConstraint = NSLayoutConstraint()
-    private var horizontalViewLeadingConstraint = NSLayoutConstraint()
-    private var horizontalViewWidthConstraint = NSLayoutConstraint()
     
-    private var storeViewTopConstraint = NSLayoutConstraint()
-    private var storeViewWidthConstraint = NSLayoutConstraint()
-    private var storeViewHeightConstraint = NSLayoutConstraint()
+    private var identifier = ""
 
-    private let backButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "arrow"), for: .normal)
-        return button
-    }()
-
-    private let likeButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "like"), for: .normal)
-        return button
-    }()
+    private var storeTitleView = StoreTitleView()
     
-    private let storeView: TitleCustomView = {
-        let view = TitleCustomView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 5
-        
-        view.layer.masksToBounds = false
-        view.layer.shadowColor = UIColor.gray.cgColor
-        view.layer.shadowOpacity = 0.3
-        view.layer.shadowOffset = CGSize(width: 0, height: 5)
-        view.layer.shadowRadius = 10
-        return view
-    }()
+    private var floatingViewLeadingConstraint = NSLayoutConstraint()
+    private var floatingViewWidthConstraint = NSLayoutConstraint()
     
-    private let horizontalView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
-        view.layer.cornerRadius = 18
-        return view
-    }()
+    private let backButton = UIButton().initButtonWithImage("arrow")
+    private let likeButton = UIButton().initButtonWithImage("like")
+    
+    private let floatingView = FloatingView()
     
     lazy var menuBarCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -102,133 +62,125 @@ class CollectionViewController: UICollectionViewController {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 10)
         return collectionView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         setupCollectionView()
-        setupHorizontalView()
+        setupFloatingView()
         setupCollectionViewLayout()
     }
-
+    
     // MARK: - Method
     private func setupLayout() {
         tabBarController?.tabBar.isHidden = true
-
-        view.addSubview(storeView)
+        
+        storeTitleView = StoreTitleView(parentView: view)
+        
+        view.addSubview(storeTitleView)
         view.addSubview(backButton)
         view.addSubview(likeButton)
-        menuBarCollectionView.addSubview(horizontalView)
+        menuBarCollectionView.addSubview(floatingView)
         view.addSubview(menuBarCollectionView)
-
+        
+        storeTitleView.setupConstraint()
+        
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
         likeButton.addTarget(self, action: #selector(touchUpLikeButton(_:)), for: .touchUpInside)
         
-        storeViewTopConstraint = NSLayoutConstraint(item: storeView, attribute: .top, relatedBy: .equal,
-                                                    toItem: view, attribute: .top,
-                                                    multiplier: 1, constant: Metric.titleTopMargin)
-        storeViewTopConstraint.isActive = true
-        
-        storeViewWidthConstraint = NSLayoutConstraint(item: storeView, attribute: .width, relatedBy: .equal,
-                                                      toItem: view, attribute: .width,
-                                                      multiplier: 0.9, constant: 0)
-        storeViewWidthConstraint.isActive = true
-        
-        storeViewHeightConstraint = NSLayoutConstraint(item: storeView, attribute: .height, relatedBy: .equal,
-                                                       toItem: storeView, attribute: .width,
-                                                       multiplier: 0.5, constant: 0)
-        storeViewHeightConstraint.isActive = true
-
         NSLayoutConstraint.activate([
-            storeView.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
+            storeTitleView.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
             
-            menuBarCollectionView.bottomAnchor.constraint(equalTo: storeView.bottomAnchor),
+            menuBarCollectionView.bottomAnchor.constraint(equalTo: storeTitleView.bottomAnchor),
             menuBarCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             menuBarCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             menuBarCollectionView.heightAnchor.constraint(equalToConstant: 60),
             
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
-            backButton.widthAnchor.constraint(equalToConstant: Metric.buttonSize),
-            backButton.heightAnchor.constraint(equalToConstant: Metric.buttonSize),
+            backButton.widthAnchor.constraint(equalToConstant: buttonSize),
+            backButton.heightAnchor.constraint(equalToConstant: buttonSize),
             
             likeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             likeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
-            likeButton.widthAnchor.constraint(equalToConstant: Metric.buttonSize),
-            likeButton.heightAnchor.constraint(equalToConstant: Metric.buttonSize)
+            likeButton.widthAnchor.constraint(equalToConstant: buttonSize),
+            likeButton.heightAnchor.constraint(equalToConstant: buttonSize)
             ])
     }
-
+    
     private func setupCollectionView() {
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         menuBarCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredVertically)
-//        collectionView(menuBarCollectionView, didSelectItemAt: selectedIndexPath)
+        //        collectionView(menuBarCollectionView, didSelectItemAt: selectedIndexPath)
         
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .white
-
+        
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: CellId.temp.rawValue)
         
-        collectionView.register(HeaderView.self,
+        collectionView.register(StretchyHeaderView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: CellId.header.rawValue)
+                                withReuseIdentifier: CellId.stretchyHeader.rawValue)
         
         collectionView.register(TempCollectionReusableView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: CellId.tempHeader.rawValue)
-
+        
         collectionView.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: CellId.menuDetail.rawValue)
-
-        let storeNib = UINib(nibName: XibName.storeInfo.rawValue, bundle: nil)
-        self.collectionView.register(storeNib, forCellWithReuseIdentifier: CellId.store.rawValue)
-
+        
+        let timeAndLocationNib = UINib(nibName: XibName.timeAndLocation.rawValue, bundle: nil)
+        self.collectionView.register(timeAndLocationNib, forCellWithReuseIdentifier: CellId.timeAndLocation.rawValue)
+        
         let menuNib = UINib(nibName: XibName.search.rawValue, bundle: nil)
         self.collectionView.register(menuNib, forCellWithReuseIdentifier: CellId.menu.rawValue)
-
-        let smallMenuNib = UINib(nibName: XibName.smallMenu.rawValue, bundle: nil)
-        self.collectionView.register(smallMenuNib,
-                                     forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                     withReuseIdentifier: CellId.smallMenu.rawValue)
-
-        menuBarCollectionView.register(TempCollectionReusableView.self,
-                                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                                withReuseIdentifier: CellId.tempHeader.rawValue)
-
+        
         let menuSectionNib = UINib(nibName: XibName.menuSection.rawValue, bundle: nil)
-        menuBarCollectionView.register(menuSectionNib, forCellWithReuseIdentifier: CellId.menuSection.rawValue)
-
+        self.collectionView.register(menuSectionNib,
+                                     forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                     withReuseIdentifier: CellId.menuSection.rawValue)
+        
+        menuBarCollectionView.register(TempCollectionReusableView.self,
+                                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                       withReuseIdentifier: CellId.tempHeader.rawValue)
+        
+        let menuCategoryNib = UINib(nibName: XibName.menuCategory.rawValue, bundle: nil)
+        menuBarCollectionView.register(menuCategoryNib, forCellWithReuseIdentifier: CellId.menuCategory.rawValue)
     }
-
+    
     private func setupCollectionViewLayout() {
         if let layout = collectionViewLayout as? StretchyHeaderLayout {
             layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
         }
     }
-
-    func setupHorizontalView() {
+    
+    func setupFloatingView() {
         let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
         let estimatedForm = NSString(string: sectionNames[0]).boundingRect(with: size,
                                                                            options: .usesLineFragmentOrigin,
                                                                            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)],
                                                                            context: nil)
         
-        horizontalViewWidthConstraint = NSLayoutConstraint(item: horizontalView, attribute: .width, relatedBy: .equal,
-                                                           toItem: nil, attribute: .width,
-                                                           multiplier: 1, constant: estimatedForm.width + 10)
-        horizontalViewWidthConstraint.isActive = true
+        floatingViewWidthConstraint = NSLayoutConstraint(item: floatingView,
+                                                            attribute: .width,
+                                                            relatedBy: .equal,
+                                                            toItem: nil,
+                                                            attribute: .width,
+                                                            multiplier: 1,
+                                                            constant: estimatedForm.width + 10)
+        floatingViewWidthConstraint.isActive = true
         
-        horizontalViewLeadingConstraint = NSLayoutConstraint(item: horizontalView,
+        floatingViewLeadingConstraint = NSLayoutConstraint(item: floatingView,
                                                              attribute: .leading,
                                                              relatedBy: .equal,
                                                              toItem: menuBarCollectionView,
                                                              attribute: .leading,
                                                              multiplier: 1, constant: 0)
-        horizontalViewLeadingConstraint.isActive = true
+        floatingViewLeadingConstraint.isActive = true
         
         NSLayoutConstraint.activate([
-            horizontalView.centerYAnchor.constraint(equalTo: self.menuBarCollectionView.centerYAnchor),
-            horizontalView.heightAnchor.constraint(equalToConstant: 35)
+            floatingView.centerYAnchor.constraint(equalTo: self.menuBarCollectionView.centerYAnchor),
+            floatingView.heightAnchor.constraint(equalToConstant: 35)
             ])
     }
     
@@ -237,21 +189,20 @@ class CollectionViewController: UICollectionViewController {
         tabBarController?.tabBar.isHidden = false
         self.navigationController?.popViewController(animated: true)
     }
-
+    
     @objc private func touchUpLikeButton(_ sender: UIButton) {
         if sender.currentImage == UIImage(named: "like") {
             sender.setImage(UIImage(named: "selectLike"), for: .normal)
-            isLiked = true
         } else {
             sender.setImage(UIImage(named: "like"), for: .normal)
-            isLiked = false
         }
+        isLiked = !isLiked
     }
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return statusBarStyle
     }
-
+    
     // MARK: - DataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         if collectionView == self.menuBarCollectionView {
@@ -260,12 +211,12 @@ class CollectionViewController: UICollectionViewController {
             return NumberOfSection.collectionView.rawValue
         }
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.menuBarCollectionView {
             return sectionNames.count
         }
-
+        
         guard let section = SectionInStoreView(rawValue: section) else {
             return 0
         }
@@ -277,38 +228,36 @@ class CollectionViewController: UICollectionViewController {
             return foods.count
         }
     }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.menuBarCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.menuSection.rawValue,
-                                                                for: indexPath) as? MenuSectionCollectionViewCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.menuCategory.rawValue,
+                                                                for: indexPath) as? MenuCategoryCollectionViewCell else {
                 return .init()
             }
             
-            collectionView.sendSubviewToBack(horizontalView)
+            collectionView.sendSubviewToBack(floatingView)
             
             cell.sectionName = sectionNames[indexPath.item]
             cell.setColor(by: collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false)
             
             return cell
         }
-    
+        
         guard let section = SectionInStoreView(rawValue: indexPath.section) else {
             return .init()
         }
         
         switch section {
         case .stretchyHeader:
-            // .init()하면 에러 떠서 .init() 사용하지 않았습니다
-            return collectionView.dequeueReusableCell(withReuseIdentifier: CellId.temp.rawValue, for: indexPath)
+            identifier = CellId.temp.rawValue
         case .timeAndLocation:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.store.rawValue, for: indexPath)
-
-            return cell
+            identifier = CellId.timeAndLocation.rawValue
         case .menu:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.menu.rawValue,
                                                                 for: indexPath) as? SearchCollectionViewCell else {
-                return .init()
+                                                                    return .init()
             }
             
             cell.searchBarDelegate = self
@@ -317,17 +266,20 @@ class CollectionViewController: UICollectionViewController {
         default:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.menuDetail.rawValue,
                                                                 for: indexPath) as? FoodCollectionViewCell else {
-                return .init()
+                                                                    return .init()
             }
-
+            
             cell.food = foods[indexPath.item]
             
             return cell
         }
+        return collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     }
-
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                                 viewForSupplementaryElementOfKind kind: String,
+                                 at indexPath: IndexPath) -> UICollectionReusableView {
+        
         if kind == UICollectionView.elementKindSectionHeader {
             if collectionView == self.menuBarCollectionView {
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
@@ -335,7 +287,7 @@ class CollectionViewController: UICollectionViewController {
                                                                              for: indexPath)
                 return header
             }
-
+            
             guard let section = SectionInStoreView(rawValue: indexPath.section) else {
                 return .init()
             }
@@ -343,41 +295,38 @@ class CollectionViewController: UICollectionViewController {
             switch section {
             case .stretchyHeader:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                   withReuseIdentifier: CellId.header.rawValue,
-                                                                                   for: indexPath) as? HeaderView else {
+                                                                                   withReuseIdentifier: CellId.stretchyHeader.rawValue,
+                                                                                   for: indexPath) as? StretchyHeaderView else {
                     return .init()
                 }
                 
                 return header
                 
             case .timeAndLocation, .menu:
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: CellId.tempHeader.rawValue,
-                                                                             for: indexPath)
-                
-                return header
+                identifier = CellId.tempHeader.rawValue
             default:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                   withReuseIdentifier: CellId.smallMenu.rawValue,
-                                                                                   for: indexPath)
-                    as? SmallMenuHeaderView else {
+                                                                                   withReuseIdentifier: CellId.menuSection.rawValue,
+                                                                                   for: indexPath) as? MenuSectionView else {
                     return .init()
                 }
-
+                
                 header.menuLabel.text = sectionNames[indexPath.item]
-
+                
                 return header
             }
         }
-
+        
         return collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                               withReuseIdentifier: CellId.tempHeader.rawValue,
+                                                               withReuseIdentifier: identifier,
                                                                for: indexPath)
     }
-
+    
     // MARK: - Delegate
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
         if collectionView == self.menuBarCollectionView {
             return CGSize(width: 0, height: 0)
         }
@@ -388,7 +337,7 @@ class CollectionViewController: UICollectionViewController {
         
         switch section {
         case .stretchyHeader:
-            return .init(width: self.view.frame.width, height: Metric.headerHeight)
+            return .init(width: self.view.frame.width, height: headerHeight)
         case .timeAndLocation:
             return .init(width: self.view.frame.width, height: 1)
         case .menu:
@@ -397,36 +346,36 @@ class CollectionViewController: UICollectionViewController {
             return .init(width: self.view.frame.width, height: 70)
         }
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.menuBarCollectionView {
-            print("indexPath: \(collectionView.indexPathsForSelectedItems), \(isTouched)")
+            print("indexPath: \(collectionView.indexPathsForSelectedItems), \(isScrolling)")
             
-            movingHorizontalView(collectionView, indexPath)
+            movingFloatingView(collectionView, indexPath)
             
-            if isTouched {
+            // 스크롤중인 경우
+            if isScrolling {
+                isScrolling = false
+            } else {
                 // 선택한 메뉴바의 카테고리에 대한 section목록으로 이동하는 부분
                 let indx = IndexPath(item: 0, section: indexPath.item + 3)
                 self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
-                isTouched = false
-            } else {
-                isTouched = true
             }
         } else {
             let storyboard = UIStoryboard.init(name: "FoodItemDetails", bundle: nil)
             let footItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
-
+            
             self.navigationController?.pushViewController(footItemVC, animated: true)
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? MenuSectionCollectionViewCell else {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MenuCategoryCollectionViewCell else {
             return
         }
         cell.setColor(by: false)
     }
-
+    
     // MARK: - ScrollView
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView != self.menuBarCollectionView {
@@ -435,79 +384,81 @@ class CollectionViewController: UICollectionViewController {
                 self.likeButton.setImage(UIImage(named: "search"), for: .normal)
             } else {
                 isLiked == true ? self.likeButton.setImage(UIImage(named: "selectLike"), for: .normal)
-                                : self.likeButton.setImage(UIImage(named: "like"), for: .normal)
+                    : self.likeButton.setImage(UIImage(named: "like"), for: .normal)
             }
-
-            if scrollView.contentOffset.y > Metric.scrollLimit
+            
+            if scrollView.contentOffset.y > scrollLimit
                 && backButton.currentImage == UIImage(named: "arrow") {
                 
-                self.collectionView.contentInset = UIEdgeInsets(top: storeView.frame.height + 80, left: 0,
+                self.collectionView.contentInset = UIEdgeInsets(top: storeTitleView.frame.height + 80, left: 0,
                                                                 bottom: 0, right: 0)
                 
                 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1,
                                options: .curveEaseIn, animations: {
                                 self.backButton.setImage(UIImage(named: "blackArrow"), for: .normal)
-                                    self.menuBarCollectionView.alpha = 1
-                                }, completion: { _ in
-                                    self.statusBarStyle = .default
-                                })
+                                self.menuBarCollectionView.alpha = 1
+                }, completion: { _ in
+                    self.statusBarStyle = .default
+                })
                 
-            } else if scrollView.contentOffset.y < Metric.scrollLimit
+            } else if scrollView.contentOffset.y < scrollLimit
                 && backButton.currentImage == UIImage(named: "blackArrow") {
                 
                 self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 
                 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1,
                                options: .curveEaseIn, animations: {
-                                    self.backButton.setImage(UIImage(named: "arrow"), for: .normal)
-                                    self.menuBarCollectionView.alpha = 0
-                                }, completion: { _ in
-                                    self.statusBarStyle = .lightContent
-                                })
+                                self.backButton.setImage(UIImage(named: "arrow"), for: .normal)
+                                self.menuBarCollectionView.alpha = 0
+                }, completion: { _ in
+                    self.statusBarStyle = .lightContent
+                })
             }
             
             self.setNeedsStatusBarAppearanceUpdate()
             self.view.layoutIfNeeded()
             handleStoreView(by: scrollView)
+
+            let yPoint = collectionView.contentOffset.y + collectionView.frame.width * 0.9 * 0.5 + 40
             
             guard let currentSection = collectionView.indexPathForItem(at: CGPoint(x: 100,
-                                                                                   y: collectionView.contentOffset.y +
-                                                                                    collectionView.frame.width * 0.9 * 0.5 + 40))?.section else {
+                                                                                   y: yPoint))?.section else {
                 return
             }
             
+            print("lastSection: \(lastSection), current: \(currentSection)")
+            
             if currentSection > 2 && lastSection != currentSection {
-                isTouched = false
-
+                isScrolling = !isScrolling
+                
                 let lastIndexPath = IndexPath(item: lastSection - 3, section: 0)
                 collectionView(menuBarCollectionView, didDeselectItemAt: lastIndexPath)
-
+                
                 let indexPathToMove = IndexPath(item: currentSection - 3, section: 0)
-                print("lastSection: \(lastSection), current: \(currentSection)")
                 collectionView(menuBarCollectionView, didSelectItemAt: indexPathToMove)
                 lastSection = currentSection
             }
         }
     }
     
-    func movingHorizontalView(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? MenuSectionCollectionViewCell else {
+    func movingFloatingView(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MenuCategoryCollectionViewCell else {
             return
         }
         
         collectionView.bringSubviewToFront(cell)
         
-        //이 부분 합치는 바깥으로 빼는거 물어봐야징
         let commentString: String = self.sectionNames[indexPath.item]
         
         let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
         let estimatedForm = NSString(string: commentString).boundingRect(with: size,
                                                                          options: .usesLineFragmentOrigin,
-                                                                         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+                                                                         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)],
+                                                                         context: nil)
         
-        horizontalViewWidthConstraint.constant = estimatedForm.width + 10
+        floatingViewWidthConstraint.constant = estimatedForm.width + 10
         
-        horizontalViewLeadingConstraint.constant = cell.frame.minX
+        floatingViewLeadingConstraint.constant = cell.frame.minX
         
         UIView.animate(withDuration: 0.5,
                        delay: 0,
@@ -528,7 +479,9 @@ class CollectionViewController: UICollectionViewController {
 }
 
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.menuBarCollectionView {
             let commentString: String = self.sectionNames[indexPath.item]
             
@@ -540,7 +493,7 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
             
             return .init(width: estimatedForm.width + 10, height: 50)
         }
-
+        
         guard let section = SectionInStoreView(rawValue: indexPath.section) else {
             return .init()
         }
@@ -554,16 +507,16 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
             return .init(width: view.frame.width, height: 50)
         default:
             let commentString: String = self.foods[indexPath.item].foodContents + "\n" +
-                                        self.foods[indexPath.item].foodName + "\n" +
-                                        self.foods[indexPath.item].price + "\n"
-
+                self.foods[indexPath.item].foodName + "\n" +
+                self.foods[indexPath.item].price + "\n"
+            
             let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
             let estimatedForm = NSString(string: commentString).boundingRect(with: size,
                                                                              options: .usesLineFragmentOrigin,
                                                                              attributes:
-                                                    [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)],
+                [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)],
                                                                              context: nil)
-
+            
             return .init(width: view.frame.width - 2 * padding, height: estimatedForm.height + 45)
         }
     }
@@ -573,10 +526,10 @@ extension CollectionViewController: SearchBarDelegate {
     func showSeachBar() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let searchVC = storyBoard.instantiateViewController(withIdentifier: "searchViewController")
-
+        
         self.addChild(searchVC)
         searchVC.view.frame = self.view.frame
-
+        
         self.view.addSubview(searchVC.view)
         searchVC.didMove(toParent: self)
     }
@@ -585,60 +538,34 @@ extension CollectionViewController: SearchBarDelegate {
 extension CollectionViewController {
     private func handleStoreView(by scrollView: UIScrollView) {
         let currentScroll: CGFloat = scrollView.contentOffset.y
-        let headerHeight: CGFloat = Metric.headerHeight
+        let headerHeight: CGFloat = self.headerHeight
         
         print("currentScroll: \(currentScroll), headerHeight: \(headerHeight)")
         changedContentOffset(currentScroll: currentScroll, headerHeight: headerHeight)
     }
     
     private func changedContentOffset(currentScroll: CGFloat, headerHeight: CGFloat) {
-        
-//        let diff: CGFloat = headerHeight - currentScroll
-        
-        storeView.titleLabel.numberOfLines = currentScroll > (Metric.scrollLimit - 10) ? 1 : 2
-        
-        storeViewTopConstraint.constant = Metric.titleTopMargin - currentScroll
-        
-        if currentScroll < Metric.scrollLimit && currentScroll > 0 {
-            storeViewWidthConstraint.constant = currentScroll * 0.2
-            storeViewHeightConstraint.constant = -(currentScroll * 0.2)
-            storeView.titleLabelTopConstraint.constant = (currentScroll * 0.2) + Metric.titleLabelTopMargin
-            storeView.detailLabel.alpha = 1 - currentScroll/Metric.scrollLimit
-            storeView.timeAndGradeLabel.alpha = 0.8 - currentScroll/Metric.scrollLimit
-            
-            storeView.titleLabelLeadingConstraint.constant = currentScroll * 0.1 + Metric.titleLabelLeadingMargin
-            storeView.titleLabelTrailingConstraint.constant = -(currentScroll * 0.1 + Metric.titleLabelLeadingMargin)
-            
-        } else if currentScroll > Metric.scrollLimit {
-            storeViewTopConstraint.constant = 0
-            storeViewWidthConstraint.constant = self.collectionView.frame.width * 0.1
-            storeViewHeightConstraint.constant = -38
-            storeView.titleLabelTopConstraint.constant = Metric.titleLabelTopMargin * 2.3
-            
-            storeView.titleLabelLeadingConstraint.constant = Metric.buttonSize + 20
-            storeView.titleLabelTrailingConstraint.constant = -(Metric.buttonSize + 20)
-            
-        }
+        self.storeTitleView.changedContentOffset(currentScroll: currentScroll, headerHeight: headerHeight)
         self.view.layoutIfNeeded()
     }
 }
 
 private enum CellId: String {
     case temp = "tempId"
-    case header = "headerId"
+    case stretchyHeader = "stretchyHeaderId"
     case tempHeader = "tempHeaderId"
-    case store = "storeId"
+    case timeAndLocation = "timeAndLocationId"
     case menu = "menuId"
-    case smallMenu = "smallMenuId"
+    case menuCategory = "menuCategoryId"
     case menuDetail = "menuDetailId"
     case menuSection = "menuSectionId"
 }
 
 private enum XibName: String {
-    case storeInfo = "StoreInfoCollectionViewCell"
+    case timeAndLocation = "TimeAndLocationCollectionViewCell"
     case search = "SearchCollectionViewCell"
-    case smallMenu = "SmallMenuHeaderView"
-    case menuSection = "MenuSectionCollectionViewCell"
+    case menuSection = "MenuSectionView"
+    case menuCategory = "MenuCategoryCollectionViewCell"
 }
 
 private enum NumberOfSection: Int {
@@ -655,10 +582,4 @@ private enum SectionInStoreView: Int {
     case foodTwo
     case foodThree
     case foodFour
-}
-
-private enum State: Int {
-    case touching = 0
-    case scrolling = 1
-    case nothing = 2
 }

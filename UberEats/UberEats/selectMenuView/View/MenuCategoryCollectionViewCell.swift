@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MenuSectionCollectionViewCell: UICollectionViewCell {
+class MenuCategoryCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var sectionNameLabel: UILabel!
 

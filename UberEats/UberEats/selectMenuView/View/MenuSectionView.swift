@@ -8,8 +8,7 @@
 
 import UIKit
 
-class SmallMenuHeaderView: UICollectionReusableView {
-
+class MenuSectionView: UICollectionReusableView {
+    
     @IBOutlet weak var menuLabel: UILabel!
-
 }
