@@ -8,7 +8,6 @@
 import UIKit
 
 class CollectionViewController: UICollectionViewController {
-    
     struct Metric {
         static let headerHeight: CGFloat = 283
         static let titleTopMargin: CGFloat = 171
@@ -22,28 +21,26 @@ class CollectionViewController: UICollectionViewController {
     
     private let foods: [Food] = [Food.init(foodName: "제육정식 Korean Set with Grilled Pork",
                                    foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
-                                   price: "₩8,900",
-                                   foodImage: nil),
+                                   price: "₩8,900", foodImage: nil),
                          Food.init(foodName: "부대찌개개개개개ㅐ애애애애애애애 Korean Set with Grilled Pork",
                                    foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
-                                   price: "₩8,900",
-                                   foodImage: nil),
+                                   price: "₩8,900", foodImage: nil),
                          Food.init(foodName: "햄버거 Korean Set with Grilled Pork",
                                    foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
-                                   price: "₩8,900",
-                                   foodImage: nil),
+                                   price: "₩8,900", foodImage: nil),
                          Food.init(foodName: "피자 Korean Set with Grilled Pork",
                                    foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
-                                   price: "₩1,000,900",
-                                   foodImage: nil),
+                                   price: "₩1,000,900", foodImage: nil),
                          Food.init(foodName: "부대찌개개개개개ㅐ애애애애애애애 Korean Set with Grilled Pork",
                                    foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
-                                   price: "₩8,900",
-                                   foodImage: nil)]
+                                   price: "₩8,900", foodImage: nil)]
 
     private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     private var isLiked: Bool = false
+//    private var state: State = .nothing
+    private var isTouched: Bool = true
+    private var lastSection: Int = 3
   
     private var titleViewTopConstraint = NSLayoutConstraint()
     private var titleViewWidthConstraint = NSLayoutConstraint()
@@ -75,7 +72,6 @@ class CollectionViewController: UICollectionViewController {
         view.backgroundColor = .white
         view.layer.cornerRadius = 5
         
-        //shadow
         view.layer.masksToBounds = false
         view.layer.shadowColor = UIColor.gray.cgColor
         view.layer.shadowOpacity = 0.3
@@ -84,7 +80,7 @@ class CollectionViewController: UICollectionViewController {
         return view
     }()
     
-    let horizontalView: UIView = {
+    private let horizontalView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .black
@@ -116,7 +112,6 @@ class CollectionViewController: UICollectionViewController {
     }
 
     // MARK: - Method
-
     private func setupLayout() {
         tabBarController?.tabBar.isHidden = true
 
@@ -166,18 +161,10 @@ class CollectionViewController: UICollectionViewController {
 
     private func setupCollectionView() {
         let selectedIndexPath = IndexPath(item: 0, section: 0)
-        // scrollPostion에 none이 없어졌길래 .centeredVertically 사용했습니다.
         menuBarCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredVertically)
+//        collectionView(menuBarCollectionView, didSelectItemAt: selectedIndexPath)
         
-        collectionView.backgroundColor = .white
-        // scrollBar 없애기 위함
-        collectionView.showsVerticalScrollIndicator = false
-        
-        // collectionView가 위에 safeArea까지 사용하게 한다.
-        // contentInsetAdjustmentBehavior를 never로 하면 scroll view content insets는 절대 조정되지 않는다.
         collectionView.contentInsetAdjustmentBehavior = .never
-        
-        // scrollBar 없애기 위함
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .white
 
@@ -275,13 +262,16 @@ class CollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
         if collectionView == self.menuBarCollectionView {
             return sectionNames.count
         }
 
+        guard let section = SectionInStoreView(rawValue: section) else {
+            return 0
+        }
+        
         switch section {
-        case SectionInSelectMenuView.stretchyHeader.rawValue ... SectionInSelectMenuView.menu.rawValue:
+        case .stretchyHeader, .timeAndLocation, .menu:
             return 1
         default:
             return foods.count
@@ -303,7 +293,7 @@ class CollectionViewController: UICollectionViewController {
             return cell
         }
     
-        guard let section = SectionInSelectMenuView(rawValue: indexPath.section) else {
+        guard let section = SectionInStoreView(rawValue: indexPath.section) else {
             return .init()
         }
         
@@ -346,7 +336,7 @@ class CollectionViewController: UICollectionViewController {
                 return header
             }
 
-            guard let section = SectionInSelectMenuView(rawValue: indexPath.section) else {
+            guard let section = SectionInStoreView(rawValue: indexPath.section) else {
                 return .init()
             }
             
@@ -392,7 +382,7 @@ class CollectionViewController: UICollectionViewController {
             return CGSize(width: 0, height: 0)
         }
         
-        guard let section = SectionInSelectMenuView(rawValue: section) else {
+        guard let section = SectionInStoreView(rawValue: section) else {
             return .init()
         }
         
@@ -410,42 +400,18 @@ class CollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.menuBarCollectionView {
-            guard let cell = collectionView.cellForItem(at: indexPath) as? MenuSectionCollectionViewCell else {
-                return
+            print("indexPath: \(collectionView.indexPathsForSelectedItems), \(isTouched)")
+            
+            movingHorizontalView(collectionView, indexPath)
+            
+            if isTouched {
+                // 선택한 메뉴바의 카테고리에 대한 section목록으로 이동하는 부분
+                let indx = IndexPath(item: 0, section: indexPath.item + 3)
+                self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
+                isTouched = false
+            } else {
+                isTouched = true
             }
-            
-            collectionView.bringSubviewToFront(cell)
-            
-            //이 부분 합치는 바깥으로 빼는거 물어봐야징
-            let commentString: String = self.sectionNames[indexPath.item]
-            
-            let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
-            let estimatedForm = NSString(string: commentString).boundingRect(with: size,
-                                                                             options: .usesLineFragmentOrigin,
-                                                                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
-            
-            horizontalViewWidthConstraint.constant = estimatedForm.width + 10
-            
-            horizontalViewLeadingConstraint.constant = cell.frame.minX
-            
-            UIView.animate(withDuration: 0.5,
-                           delay: 0,
-                           usingSpringWithDamping: 1,
-                           initialSpringVelocity: 1,
-                           options: .curveEaseOut,
-                           animations: {
-                                self.menuBarCollectionView.layoutIfNeeded()
-                            }, completion: nil)
-            
-            cell.setColor(by: true)
-            
-            // 메뉴바의 카테고리를 선택했을 때 왼쪽으로 붙이는 부분
-            let sectionIndx = IndexPath(item: indexPath.item, section: 0)
-            collectionView.selectItem(at: sectionIndx, animated: true, scrollPosition: .left)
-            
-            // 선택한 메뉴바의 카테고리에 대한 section목록으로 이동하는 부분
-            let indx = IndexPath(item: 0, section: indexPath.item + 3)
-            self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
         } else {
             let storyboard = UIStoryboard.init(name: "FoodItemDetails", bundle: nil)
             let footItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
@@ -460,8 +426,7 @@ class CollectionViewController: UICollectionViewController {
         }
         cell.setColor(by: false)
     }
-    
-    
+
     // MARK: - ScrollView
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView != self.menuBarCollectionView {
@@ -504,7 +469,61 @@ class CollectionViewController: UICollectionViewController {
             self.setNeedsStatusBarAppearanceUpdate()
             self.view.layoutIfNeeded()
             handleStoreView(by: scrollView)
+            
+            guard let currentSection = collectionView.indexPathForItem(at: CGPoint(x: 100,
+                                                                                   y: collectionView.contentOffset.y +
+                                                                                    collectionView.frame.width * 0.9 * 0.5 + 40))?.section else {
+                return
+            }
+            
+            if currentSection > 2 && lastSection != currentSection {
+                isTouched = false
+
+                let lastIndexPath = IndexPath(item: lastSection - 3, section: 0)
+                collectionView(menuBarCollectionView, didDeselectItemAt: lastIndexPath)
+
+                let indexPathToMove = IndexPath(item: currentSection - 3, section: 0)
+                print("lastSection: \(lastSection), current: \(currentSection)")
+                collectionView(menuBarCollectionView, didSelectItemAt: indexPathToMove)
+                lastSection = currentSection
+            }
         }
+    }
+    
+    func movingHorizontalView(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MenuSectionCollectionViewCell else {
+            return
+        }
+        
+        collectionView.bringSubviewToFront(cell)
+        
+        //이 부분 합치는 바깥으로 빼는거 물어봐야징
+        let commentString: String = self.sectionNames[indexPath.item]
+        
+        let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
+        let estimatedForm = NSString(string: commentString).boundingRect(with: size,
+                                                                         options: .usesLineFragmentOrigin,
+                                                                         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+        
+        horizontalViewWidthConstraint.constant = estimatedForm.width + 10
+        
+        horizontalViewLeadingConstraint.constant = cell.frame.minX
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 1,
+                       options: .curveEaseOut,
+                       animations: {
+                        self.menuBarCollectionView.layoutIfNeeded()
+        }, completion: nil)
+        
+        cell.setColor(by: true)
+        
+        // 메뉴바의 카테고리를 선택했을 때 왼쪽으로 붙이는 부분
+        let sectionIndx = IndexPath(item: indexPath.item, section: 0)
+        collectionView.selectItem(at: sectionIndx, animated: true, scrollPosition: .left)
+        
     }
 }
 
@@ -522,7 +541,7 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
             return .init(width: estimatedForm.width + 10, height: 50)
         }
 
-        guard let section = SectionInSelectMenuView(rawValue: indexPath.section) else {
+        guard let section = SectionInStoreView(rawValue: indexPath.section) else {
             return .init()
         }
         
@@ -627,7 +646,7 @@ private enum NumberOfSection: Int {
     case collectionView = 7
 }
 
-private enum SectionInSelectMenuView: Int {
+private enum SectionInStoreView: Int {
     case stretchyHeader = 0
     case timeAndLocation
     case menu
@@ -636,4 +655,10 @@ private enum SectionInSelectMenuView: Int {
     case foodTwo
     case foodThree
     case foodFour
+}
+
+private enum State: Int {
+    case touching = 0
+    case scrolling = 1
+    case nothing = 2
 }
