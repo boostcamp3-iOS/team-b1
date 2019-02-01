@@ -17,9 +17,9 @@ class CollectionViewController: UICollectionViewController {
         static let buttonSize: CGFloat = 25
         static let titleLabelLeadingMargin: CGFloat = 27
     }
+  
+    private let sectionNames: [String] = ["나를 위한 추천 메뉴", "햄버거 단품 Single Burger", "햄버거 세트", "디저트 Dessert"]
     
-    private let numberOfItemsInMenuBar = 6
-
     private let foods: [Food] = [Food.init(foodName: "제육정식 Korean Set with Grilled Pork",
                                    foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
                                    price: "₩8,900",
@@ -44,6 +44,12 @@ class CollectionViewController: UICollectionViewController {
     private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     private var isLiked: Bool = false
+  
+    private var titleViewTopConstraint = NSLayoutConstraint()
+    private var titleViewWidthConstraint = NSLayoutConstraint()
+    private var titleViewHeightConstraint = NSLayoutConstraint()
+    private var horizontalViewLeadingConstraint = NSLayoutConstraint()
+    private var horizontalViewWidthConstraint = NSLayoutConstraint()
     
     private var storeViewTopConstraint = NSLayoutConstraint()
     private var storeViewWidthConstraint = NSLayoutConstraint()
@@ -78,10 +84,18 @@ class CollectionViewController: UICollectionViewController {
         return view
     }()
     
+    let horizontalView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        view.layer.cornerRadius = 18
+        return view
+    }()
+    
     lazy var menuBarCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        
+        layout.minimumInteritemSpacing = 0
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -89,6 +103,7 @@ class CollectionViewController: UICollectionViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.alpha = 0
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 10)
         return collectionView
     }()
 
@@ -96,6 +111,7 @@ class CollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         setupLayout()
         setupCollectionView()
+        setupHorizontalView()
         setupCollectionViewLayout()
     }
 
@@ -107,6 +123,7 @@ class CollectionViewController: UICollectionViewController {
         view.addSubview(storeView)
         view.addSubview(backButton)
         view.addSubview(likeButton)
+        menuBarCollectionView.addSubview(horizontalView)
         view.addSubview(menuBarCollectionView)
 
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
@@ -126,7 +143,7 @@ class CollectionViewController: UICollectionViewController {
                                                        toItem: storeView, attribute: .width,
                                                        multiplier: 0.5, constant: 0)
         storeViewHeightConstraint.isActive = true
-        
+
         NSLayoutConstraint.activate([
             storeView.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
             
@@ -148,6 +165,14 @@ class CollectionViewController: UICollectionViewController {
     }
 
     private func setupCollectionView() {
+        let selectedIndexPath = IndexPath(item: 0, section: 0)
+        // scrollPostion에 none이 없어졌길래 .centeredVertically 사용했습니다.
+        menuSectionIndexCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredVertically)
+        
+        collectionView.backgroundColor = .white
+        // scrollBar 없애기 위함
+        collectionView.showsVerticalScrollIndicator = false
+        
         // collectionView가 위에 safeArea까지 사용하게 한다.
         // contentInsetAdjustmentBehavior를 never로 하면 scroll view content insets는 절대 조정되지 않는다.
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -194,9 +219,28 @@ class CollectionViewController: UICollectionViewController {
         }
     }
 
+    func setupHorizontalView() {
+        let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
+        let estimatedForm = NSString(string: sectionNames[0]).boundingRect(with: size,
+                                                                           options: .usesLineFragmentOrigin,
+                                                                           attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+        
+        horizontalViewWidthConstraint = NSLayoutConstraint(item: horizontalView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: estimatedForm.width + 10)
+        horizontalViewWidthConstraint.isActive = true
+        
+        horizontalViewLeadingConstraint = NSLayoutConstraint(item: horizontalView, attribute: .leading, relatedBy: .equal,
+                                                             toItem: menuSectionIndexCollectionView, attribute: .leading, multiplier: 1, constant: 0)
+        horizontalViewLeadingConstraint.isActive = true
+        
+        NSLayoutConstraint.activate([
+            horizontalView.centerYAnchor.constraint(equalTo: self.menuSectionIndexCollectionView.centerYAnchor),
+            horizontalView.heightAnchor.constraint(equalToConstant: 35)
+            ])
+    }
+    
     // Object-C Method
-
     @objc private func touchUpBackButton(_: UIButton) {
+        tabBarController?.tabBar.isHidden = false
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -226,7 +270,7 @@ class CollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
         if collectionView == self.menuBarCollectionView {
-            return numberOfItemsInMenuBar
+            return sectionNames.count
         }
 
         switch section {
@@ -244,7 +288,9 @@ class CollectionViewController: UICollectionViewController {
                 return .init()
             }
             
-            cell.sectionName = "나를 위한 메뉴"
+            collectionView.sendSubviewToBack(horizontalView)
+            
+            cell.sectionName = sectionNames[indexPath.item]
             cell.isSelected = collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false
             
             return cell
@@ -278,7 +324,7 @@ class CollectionViewController: UICollectionViewController {
             }
 
             cell.food = foods[indexPath.item]
-
+            
             return cell
         }
     }
@@ -321,7 +367,7 @@ class CollectionViewController: UICollectionViewController {
                     return .init()
                 }
 
-                header.menuLabel.text = "나를 위한 추천 메뉴"
+                header.menuLabel.text = sectionNames[indexPath.item]
 
                 return header
             }
@@ -334,8 +380,9 @@ class CollectionViewController: UICollectionViewController {
 
     // MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+
         if collectionView == self.menuBarCollectionView {
-            return .init(width: 20, height: 80)
+            return CGSize(width: 0, height: 0)
         }
         
         guard let section = SectionInSelectMenuView(rawValue: section) else {
@@ -356,9 +403,35 @@ class CollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.menuBarCollectionView {
-            // 선택한 section목록으로 이동시키는 부분
-            let indexToMove = IndexPath(item: 0, section: indexPath.row + 3)
-            self.collectionView.selectItem(at: indexToMove, animated: true, scrollPosition: .top)
+            guard let cell = collectionView.cellForItem(at: indexPath) as? MenuSectionCollectionViewCell else {
+                return
+            }
+            
+            collectionView.bringSubviewToFront(cell)
+            
+            //이 부분 합치는 바깥으로 빼는거 물어봐야징
+            let commentString: String = self.sectionNames[indexPath.item]
+            
+            let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
+            let estimatedForm = NSString(string: commentString).boundingRect(with: size,
+                                                                             options: .usesLineFragmentOrigin,
+                                                                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+            
+            horizontalViewWidthConstraint.constant = estimatedForm.width + 10
+            
+            horizontalViewLeadingConstraint.constant = cell.frame.minX
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.menuSectionIndexCollectionView.layoutIfNeeded()
+                }, completion: nil)
+            
+            // 메뉴바의 카테고리를 선택했을 때 왼쪽으로 붙이는 부분
+            let sectionIndx = IndexPath(item: indexPath.item, section: 0)
+            collectionView.selectItem(at: sectionIndx, animated: true, scrollPosition: .left)
+            
+            // 선택한 메뉴바의 카테고리에 대한 section목록으로 이동하는 부분
+            let indx = IndexPath(item: 0, section: indexPath.item + 3)
+            self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
         } else {
             let storyboard = UIStoryboard.init(name: "FoodItemDetails", bundle: nil)
             let footItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
@@ -366,7 +439,7 @@ class CollectionViewController: UICollectionViewController {
             self.navigationController?.pushViewController(footItemVC, animated: true)
         }
     }
-
+    
     // MARK: - ScrollView
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView != self.menuBarCollectionView {
@@ -415,9 +488,15 @@ class CollectionViewController: UICollectionViewController {
 
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         if collectionView == self.menuBarCollectionView {
-            return .init(width: 150, height: 60)
+            let commentString: String = self.sectionNames[indexPath.item]
+            
+            let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
+            let estimatedForm = NSString(string: commentString).boundingRect(with: size,
+                                                                             options: .usesLineFragmentOrigin,
+                                                                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+            
+            return .init(width: estimatedForm.width + 10, height: 50)
         }
 
         guard let section = SectionInSelectMenuView(rawValue: indexPath.section) else {
