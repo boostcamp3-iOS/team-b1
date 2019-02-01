@@ -249,13 +249,20 @@ class CollectionViewController: UICollectionViewController {
             
             return cell
         }
-
-        switch indexPath.section {
-        case SectionInSelectMenuView.timeAndLocation.rawValue:
+    
+        guard let section = SectionInSelectMenuView(rawValue: indexPath.section) else {
+            return .init()
+        }
+        
+        switch section {
+        case .stretchyHeader:
+            // .init()하면 에러 떠서 .init() 사용하지 않았습니다
+            return collectionView.dequeueReusableCell(withReuseIdentifier: CellId.temp.rawValue, for: indexPath)
+        case .timeAndLocation:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.store.rawValue, for: indexPath)
 
             return cell
-        case SectionInSelectMenuView.menu.rawValue:
+        case .menu:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.menu.rawValue,
                                                                 for: indexPath) as? SearchCollectionViewCell else {
                 return .init()
@@ -264,7 +271,7 @@ class CollectionViewController: UICollectionViewController {
             cell.searchBarDelegate = self
             
             return cell
-        case 3...6:
+        default:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.menuDetail.rawValue,
                                                                 for: indexPath) as? FoodCollectionViewCell else {
                 return .init()
@@ -273,8 +280,6 @@ class CollectionViewController: UICollectionViewController {
             cell.food = foods[indexPath.item]
 
             return cell
-        default:
-            return collectionView.dequeueReusableCell(withReuseIdentifier: CellId.temp.rawValue, for: indexPath)
         }
     }
 
@@ -288,8 +293,12 @@ class CollectionViewController: UICollectionViewController {
                 return header
             }
 
-            switch indexPath.section {
-            case SectionInSelectMenuView.stretchyHeader.rawValue:
+            guard let section = SectionInSelectMenuView(rawValue: indexPath.section) else {
+                return .init()
+            }
+            
+            switch section {
+            case .stretchyHeader:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                                    withReuseIdentifier: CellId.header.rawValue,
                                                                                    for: indexPath) as? HeaderView else {
@@ -297,7 +306,14 @@ class CollectionViewController: UICollectionViewController {
                 }
                 
                 return header
-            case 3...6:
+                
+            case .timeAndLocation, .menu:
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: CellId.tempHeader.rawValue,
+                                                                             for: indexPath)
+                
+                return header
+            default:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                                    withReuseIdentifier: CellId.smallMenu.rawValue,
                                                                                    for: indexPath)
@@ -307,12 +323,6 @@ class CollectionViewController: UICollectionViewController {
 
                 header.menuLabel.text = "나를 위한 추천 메뉴"
 
-                return header
-            default:
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: CellId.tempHeader.rawValue,
-                                                                             for: indexPath)
-                
                 return header
             }
         }
@@ -328,15 +338,19 @@ class CollectionViewController: UICollectionViewController {
             return .init(width: 20, height: 80)
         }
         
+        guard let section = SectionInSelectMenuView(rawValue: section) else {
+            return .init()
+        }
+        
         switch section {
-        case SectionInSelectMenuView.stretchyHeader.rawValue:
+        case .stretchyHeader:
             return .init(width: self.view.frame.width, height: Metric.headerHeight)
-        case SectionInSelectMenuView.timeAndLocation.rawValue:
+        case .timeAndLocation:
             return .init(width: self.view.frame.width, height: 1)
-        case 3, 4, 5, 6:
-            return .init(width: self.view.frame.width, height: 70)
-        default:
+        case .menu:
             return .init(width: self.view.frame.width, height: 0)
+        default:
+            return .init(width: self.view.frame.width, height: 70)
         }
     }
 
@@ -406,12 +420,18 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
             return .init(width: 150, height: 60)
         }
 
-        switch indexPath.section {
-        case SectionInSelectMenuView.timeAndLocation.rawValue:
+        guard let section = SectionInSelectMenuView(rawValue: indexPath.section) else {
+            return .init()
+        }
+        
+        switch section {
+        case .stretchyHeader:
+            return .init(width: view.frame.width - 2 * padding, height: 0)
+        case .timeAndLocation:
             return .init(width: view.frame.width, height: view.frame.height * 0.15)
-        case SectionInSelectMenuView.menu.rawValue:
+        case .menu:
             return .init(width: view.frame.width, height: 50)
-        case 3...6:
+        default:
             let commentString: String = self.foods[indexPath.item].foodContents + "\n" +
                                         self.foods[indexPath.item].foodName + "\n" +
                                         self.foods[indexPath.item].price + "\n"
@@ -424,8 +444,6 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
                                                                              context: nil)
 
             return .init(width: view.frame.width - 2 * padding, height: estimatedForm.height + 45)
-        default:
-            return .init(width: view.frame.width - 2 * padding, height: 0)
         }
     }
 }
@@ -511,4 +529,9 @@ private enum SectionInSelectMenuView: Int {
     case stretchyHeader = 0
     case timeAndLocation
     case menu
+    // 예비
+    case foodOne
+    case foodTwo
+    case foodThree
+    case foodFour
 }
