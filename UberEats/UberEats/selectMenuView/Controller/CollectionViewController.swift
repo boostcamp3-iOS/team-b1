@@ -167,7 +167,7 @@ class CollectionViewController: UICollectionViewController {
     private func setupCollectionView() {
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         // scrollPostion에 none이 없어졌길래 .centeredVertically 사용했습니다.
-        menuSectionIndexCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredVertically)
+        menuBarCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredVertically)
         
         collectionView.backgroundColor = .white
         // scrollBar 없애기 위함
@@ -223,17 +223,24 @@ class CollectionViewController: UICollectionViewController {
         let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
         let estimatedForm = NSString(string: sectionNames[0]).boundingRect(with: size,
                                                                            options: .usesLineFragmentOrigin,
-                                                                           attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+                                                                           attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)],
+                                                                           context: nil)
         
-        horizontalViewWidthConstraint = NSLayoutConstraint(item: horizontalView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: estimatedForm.width + 10)
+        horizontalViewWidthConstraint = NSLayoutConstraint(item: horizontalView, attribute: .width, relatedBy: .equal,
+                                                           toItem: nil, attribute: .width,
+                                                           multiplier: 1, constant: estimatedForm.width + 10)
         horizontalViewWidthConstraint.isActive = true
         
-        horizontalViewLeadingConstraint = NSLayoutConstraint(item: horizontalView, attribute: .leading, relatedBy: .equal,
-                                                             toItem: menuSectionIndexCollectionView, attribute: .leading, multiplier: 1, constant: 0)
+        horizontalViewLeadingConstraint = NSLayoutConstraint(item: horizontalView,
+                                                             attribute: .leading,
+                                                             relatedBy: .equal,
+                                                             toItem: menuBarCollectionView,
+                                                             attribute: .leading,
+                                                             multiplier: 1, constant: 0)
         horizontalViewLeadingConstraint.isActive = true
         
         NSLayoutConstraint.activate([
-            horizontalView.centerYAnchor.constraint(equalTo: self.menuSectionIndexCollectionView.centerYAnchor),
+            horizontalView.centerYAnchor.constraint(equalTo: self.menuBarCollectionView.centerYAnchor),
             horizontalView.heightAnchor.constraint(equalToConstant: 35)
             ])
     }
@@ -291,7 +298,7 @@ class CollectionViewController: UICollectionViewController {
             collectionView.sendSubviewToBack(horizontalView)
             
             cell.sectionName = sectionNames[indexPath.item]
-            cell.isSelected = collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false
+            cell.setColor(by: collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false)
             
             return cell
         }
@@ -421,9 +428,16 @@ class CollectionViewController: UICollectionViewController {
             
             horizontalViewLeadingConstraint.constant = cell.frame.minX
             
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                self.menuSectionIndexCollectionView.layoutIfNeeded()
-                }, completion: nil)
+            UIView.animate(withDuration: 0.5,
+                           delay: 0,
+                           usingSpringWithDamping: 1,
+                           initialSpringVelocity: 1,
+                           options: .curveEaseOut,
+                           animations: {
+                                self.menuBarCollectionView.layoutIfNeeded()
+                            }, completion: nil)
+            
+            cell.setColor(by: true)
             
             // 메뉴바의 카테고리를 선택했을 때 왼쪽으로 붙이는 부분
             let sectionIndx = IndexPath(item: indexPath.item, section: 0)
@@ -439,6 +453,14 @@ class CollectionViewController: UICollectionViewController {
             self.navigationController?.pushViewController(footItemVC, animated: true)
         }
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MenuSectionCollectionViewCell else {
+            return
+        }
+        cell.setColor(by: false)
+    }
+    
     
     // MARK: - ScrollView
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -494,7 +516,8 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
             let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
             let estimatedForm = NSString(string: commentString).boundingRect(with: size,
                                                                              options: .usesLineFragmentOrigin,
-                                                                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)], context: nil)
+                                                                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)],
+                                                                             context: nil)
             
             return .init(width: estimatedForm.width + 10, height: 50)
         }
