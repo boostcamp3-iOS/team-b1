@@ -46,6 +46,10 @@
 		D115BBB421F9D49E00C57809 /* SearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D115BBB221F9D49E00C57809 /* SearchCollectionViewCell.xib */; };
 		D115BBB721F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115BBB521F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift */; };
 		D115BBB821F9D66100C57809 /* TimeAndLocationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D115BBB621F9D66100C57809 /* TimeAndLocationCollectionViewCell.xib */; };
+		D11B04D8220583A100F20363 /* LocationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D11B04D7220583A100F20363 /* LocationViewController.storyboard */; };
+		D11B04DA2205847F00F20363 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B04D92205847F00F20363 /* LocationViewController.swift */; };
+		D11B04FF220595EA00F20363 /* OrderCheckingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B04FD220595EA00F20363 /* OrderCheckingCollectionViewCell.swift */; };
+		D11B0500220595EA00F20363 /* OrderCheckingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D11B04FE220595EA00F20363 /* OrderCheckingCollectionViewCell.xib */; };
 		D199236222045BAB00C7C857 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199236122045BAB00C7C857 /* Extensions.swift */; };
 		D1AF1E9D21F9A5A6004CA3A5 /* MenuSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1AF1E9021F9A5A6004CA3A5 /* MenuSectionView.xib */; };
 		D1AF1E9E21F9A5A6004CA3A5 /* TempCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9121F9A5A6004CA3A5 /* TempCollectionReusableView.swift */; };
@@ -126,6 +130,10 @@
 		D115BBB221F9D49E00C57809 /* SearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		D115BBB521F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndLocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		D115BBB621F9D66100C57809 /* TimeAndLocationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeAndLocationCollectionViewCell.xib; sourceTree = "<group>"; };
+		D11B04D7220583A100F20363 /* LocationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationViewController.storyboard; sourceTree = "<group>"; };
+		D11B04D92205847F00F20363 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		D11B04FD220595EA00F20363 /* OrderCheckingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCheckingCollectionViewCell.swift; sourceTree = "<group>"; };
+		D11B04FE220595EA00F20363 /* OrderCheckingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderCheckingCollectionViewCell.xib; sourceTree = "<group>"; };
 		D199236122045BAB00C7C857 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D1AF1E9021F9A5A6004CA3A5 /* MenuSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSectionView.xib; sourceTree = "<group>"; };
 		D1AF1E9121F9A5A6004CA3A5 /* TempCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -263,6 +271,7 @@
 		9956F7EF21F98468004E9854 /* UberEats */ = {
 			isa = PBXGroup;
 			children = (
+				D11B04D62205836900F20363 /* DeliveryLocationView */,
 				992EDCE921FDB07D006CC894 /* FoodItemDetails */,
 				99342CCB21FB12FE0029DB10 /* Utill */,
 				84DC183821F9A51D008EE6D3 /* firstItemView */,
@@ -291,6 +300,17 @@
 				7B151BE5FF725EBA9E065F31 /* Pods_UberEatsTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D11B04D62205836900F20363 /* DeliveryLocationView */ = {
+			isa = PBXGroup;
+			children = (
+				D11B04D7220583A100F20363 /* LocationViewController.storyboard */,
+				D11B04D92205847F00F20363 /* LocationViewController.swift */,
+				D11B04FD220595EA00F20363 /* OrderCheckingCollectionViewCell.swift */,
+				D11B04FE220595EA00F20363 /* OrderCheckingCollectionViewCell.xib */,
+			);
+			path = DeliveryLocationView;
 			sourceTree = "<group>";
 		};
 		D1AF1E8F21F9A5A6004CA3A5 /* selectMenuView */ = {
@@ -444,7 +464,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				998A247621FF2B1500AF250D /* .swiftlint.yml in Resources */,
+				D11B04D8220583A100F20363 /* LocationViewController.storyboard in Resources */,
 				84DC184121F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib in Resources */,
+				D11B0500220595EA00F20363 /* OrderCheckingCollectionViewCell.xib in Resources */,
 				D115BBB821F9D66100C57809 /* TimeAndLocationCollectionViewCell.xib in Resources */,
 				9956F7FD21F98468004E9854 /* LaunchScreen.storyboard in Resources */,
 				9956F7FA21F98468004E9854 /* Assets.xcassets in Resources */,
@@ -565,10 +587,12 @@
 				9956F7F121F98468004E9854 /* AppDelegate.swift in Sources */,
 				84FB11AA22017A90002C5F46 /* SeeMoreRestTableViewCell.swift in Sources */,
 				D1AF1EA621F9A5A6004CA3A5 /* StretchyHeaderView.swift in Sources */,
+				D11B04FF220595EA00F20363 /* OrderCheckingCollectionViewCell.swift in Sources */,
 				D1AF1EAB21F9A631004CA3A5 /* Food.swift in Sources */,
 				D1AF1E9E21F9A5A6004CA3A5 /* TempCollectionReusableView.swift in Sources */,
 				D1AF1EA321F9A5A6004CA3A5 /* MenuSectionView.swift in Sources */,
 				99342CCE21FB13550029DB10 /* Throttler.swift in Sources */,
+				D11B04DA2205847F00F20363 /* LocationViewController.swift in Sources */,
 				D199236222045BAB00C7C857 /* Extensions.swift in Sources */,
 				9956F7F321F98468004E9854 /* FirstViewController.swift in Sources */,
 				992EDCED21FDB0C6006CC894 /* FoodItemDetailsViewController.swift in Sources */,

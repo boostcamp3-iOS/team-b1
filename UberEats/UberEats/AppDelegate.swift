@@ -17,11 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        window = UIWindow(frame: UIScreen.main.bounds)
+//        window = UIWindow(frame: UIScreen.main.bounds)
 
-        window?.rootViewController = TabBarVC()
+//        window?.rootViewController = LocationViewController()
 
-        window?.makeKeyAndVisible()
+//        window?.makeKeyAndVisible()
 
         return true
     }
