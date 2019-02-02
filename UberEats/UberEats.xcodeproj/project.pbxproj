@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		7B07DCA2617C7027DEBD3B1E /* Pods_UberEatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B151BE5FF725EBA9E065F31 /* Pods_UberEatsTests.framework */; };
 		842CC7B921FEBC100045D084 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CC7B821FEBC100045D084 /* CollectionViewController.swift */; };
+		84333AC32202CDA3007372DE /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84333AC22202CDA3007372DE /* ChattingViewController.swift */; };
+		84333AC52202CDB5007372DE /* Chatting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84333AC42202CDB5007372DE /* Chatting.storyboard */; };
+		843B05122203D9240082FEFF /* FirebaseSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B05112203D9240082FEFF /* FirebaseSingleton.swift */; };
+		843B05182203E6F40082FEFF /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B05172203E6F40082FEFF /* ChatModel.swift */; };
+		843B051A220405540082FEFF /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B0519220405540082FEFF /* ChatMessageCell.swift */; };
+		84604F212205928100212A00 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84604F202205928100212A00 /* Message.swift */; };
 		84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */; };
 		84DC184121F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */; };
 		84DC184221F9A51D008EE6D3 /* RecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */; };
@@ -26,6 +32,7 @@
 		84FB11AA22017A90002C5F46 /* SeeMoreRestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FB11A822017A90002C5F46 /* SeeMoreRestTableViewCell.swift */; };
 		84FB11AB22017A90002C5F46 /* SeeMoreRestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FB11A922017A90002C5F46 /* SeeMoreRestTableViewCell.xib */; };
 		84FB11AD2202994F002C5F46 /* SectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FB11AC2202994F002C5F46 /* SectionEnum.swift */; };
+		84FB11B02202CAF9002C5F46 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84FB11AF2202CAF9002C5F46 /* GoogleService-Info.plist */; };
 		992EDCEB21FDB0A7006CC894 /* FoodItemDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 992EDCEA21FDB0A7006CC894 /* FoodItemDetails.storyboard */; };
 		992EDCED21FDB0C6006CC894 /* FoodItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992EDCEC21FDB0C6006CC894 /* FoodItemDetailsViewController.swift */; };
 		992EDCEF21FDB11B006CC894 /* FoodItemDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992EDCEE21FDB11B006CC894 /* FoodItemDetailsCell.swift */; };
@@ -80,6 +87,12 @@
 		754714E789542F3590FBCC3B /* Pods-UberEats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEats.debug.xcconfig"; path = "Target Support Files/Pods-UberEats/Pods-UberEats.debug.xcconfig"; sourceTree = "<group>"; };
 		7B151BE5FF725EBA9E065F31 /* Pods_UberEatsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UberEatsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		842CC7B821FEBC100045D084 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		84333AC22202CDA3007372DE /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
+		84333AC42202CDB5007372DE /* Chatting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chatting.storyboard; sourceTree = "<group>"; };
+		843B05112203D9240082FEFF /* FirebaseSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSingleton.swift; sourceTree = "<group>"; };
+		843B05172203E6F40082FEFF /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		843B0519220405540082FEFF /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		84604F202205928100212A00 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpectTimeCollectionViewCell.xib; sourceTree = "<group>"; };
 		84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -97,6 +110,7 @@
 		84FB11A822017A90002C5F46 /* SeeMoreRestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreRestTableViewCell.swift; sourceTree = "<group>"; };
 		84FB11A922017A90002C5F46 /* SeeMoreRestTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeeMoreRestTableViewCell.xib; sourceTree = "<group>"; };
 		84FB11AC2202994F002C5F46 /* SectionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionEnum.swift; sourceTree = "<group>"; };
+		84FB11AF2202CAF9002C5F46 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "selectMenuView/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		992EDCEA21FDB0A7006CC894 /* FoodItemDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FoodItemDetails.storyboard; sourceTree = "<group>"; };
 		992EDCEC21FDB0C6006CC894 /* FoodItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemDetailsViewController.swift; sourceTree = "<group>"; };
 		992EDCEE21FDB11B006CC894 /* FoodItemDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemDetailsCell.swift; sourceTree = "<group>"; };
@@ -169,6 +183,19 @@
 				6EC7DF705E1117A7299B62BC /* Pods-UberEatsTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		84333AC12202CD38007372DE /* ChattingView */ = {
+			isa = PBXGroup;
+			children = (
+				84333AC22202CDA3007372DE /* ChattingViewController.swift */,
+				843B05112203D9240082FEFF /* FirebaseSingleton.swift */,
+				84333AC42202CDB5007372DE /* Chatting.storyboard */,
+				843B05172203E6F40082FEFF /* ChatModel.swift */,
+				843B0519220405540082FEFF /* ChatMessageCell.swift */,
+				84604F202205928100212A00 /* Message.swift */,
+			);
+			path = ChattingView;
 			sourceTree = "<group>";
 		};
 		84DC183821F9A51D008EE6D3 /* firstItemView */ = {
@@ -258,12 +285,14 @@
 				84DC183821F9A51D008EE6D3 /* firstItemView */,
 				D1AF1E8F21F9A5A6004CA3A5 /* selectMenuView */,
 				9956F7F021F98468004E9854 /* AppDelegate.swift */,
+				84333AC12202CD38007372DE /* ChattingView */,
 				9956F7F221F98468004E9854 /* FirstViewController.swift */,
 				84DC185321F9C426008EE6D3 /* TabBarVC.swift */,
 				9956F7F421F98468004E9854 /* SecondViewController.swift */,
 				9956F7F621F98468004E9854 /* Main.storyboard */,
 				9956F7F921F98468004E9854 /* Assets.xcassets */,
 				9956F7FB21F98468004E9854 /* LaunchScreen.storyboard */,
+				84FB11AF2202CAF9002C5F46 /* GoogleService-Info.plist */,
 				9956F7FE21F98468004E9854 /* Info.plist */,
 				998A247521FF2B1500AF250D /* .swiftlint.yml */,
 			);
@@ -368,6 +397,7 @@
 				9956F7EA21F98468004E9854 /* Frameworks */,
 				9956F7EB21F98468004E9854 /* Resources */,
 				998A247221FF27E200AF250D /* ShellScript */,
+				46A94EBC4DF57530E532C692 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -434,12 +464,14 @@
 				9956F7FD21F98468004E9854 /* LaunchScreen.storyboard in Resources */,
 				9956F7FA21F98468004E9854 /* Assets.xcassets in Resources */,
 				D115BBB421F9D49E00C57809 /* SearchCollectionViewCell.xib in Resources */,
+				84333AC52202CDB5007372DE /* Chatting.storyboard in Resources */,
 				992EDCEB21FDB0A7006CC894 /* FoodItemDetails.storyboard in Resources */,
 				D1AF1E9D21F9A5A6004CA3A5 /* SmallMenuHeaderView.xib in Resources */,
 				84DC184721F9A51D008EE6D3 /* NearestCollectionViewCell.xib in Resources */,
 				84DC184821F9A51D008EE6D3 /* TableViewCell.xib in Resources */,
 				84DC184621F9A51D008EE6D3 /* RecommendCollectionViewCell.xib in Resources */,
 				9956F7F821F98468004E9854 /* Main.storyboard in Resources */,
+				84FB11B02202CAF9002C5F46 /* GoogleService-Info.plist in Resources */,
 				84DC185021F9AD7C008EE6D3 /* ItemView.storyboard in Resources */,
 				84DC184E21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib in Resources */,
 				84FB11AB22017A90002C5F46 /* SeeMoreRestTableViewCell.xib in Resources */,
@@ -450,6 +482,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		46A94EBC4DF57530E532C692 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UberEats/Pods-UberEats-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UberEats/Pods-UberEats-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5486B49BBB49C3F4B9EC8919 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -535,6 +595,7 @@
 				84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */,
 				84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */,
 				84DC184A21F9ACE0008EE6D3 /* ItemViewController.swift in Sources */,
+				84333AC32202CDA3007372DE /* ChattingViewController.swift in Sources */,
 				D1F96F0221FE8D9400D79396 /* ItemSizeDelegate.swift in Sources */,
 				D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */,
 				D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */,
@@ -547,15 +608,19 @@
 				D1EA630221FA9B1D0024CD68 /* SearchBarDelegate.swift in Sources */,
 				D1AF1E9F21F9A5A6004CA3A5 /* TitleCustomView.swift in Sources */,
 				84DC184D21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift in Sources */,
+				84604F212205928100212A00 /* Message.swift in Sources */,
+				843B05182203E6F40082FEFF /* ChatModel.swift in Sources */,
 				9956F7F121F98468004E9854 /* AppDelegate.swift in Sources */,
 				84FB11AA22017A90002C5F46 /* SeeMoreRestTableViewCell.swift in Sources */,
 				D1AF1EA621F9A5A6004CA3A5 /* HeaderView.swift in Sources */,
 				D1AF1EAB21F9A631004CA3A5 /* Food.swift in Sources */,
+				843B051A220405540082FEFF /* ChatMessageCell.swift in Sources */,
 				D1AF1E9E21F9A5A6004CA3A5 /* TempCollectionReusableView.swift in Sources */,
 				D1AF1EA321F9A5A6004CA3A5 /* SmallMenuHeaderView.swift in Sources */,
 				99342CCE21FB13550029DB10 /* Throttler.swift in Sources */,
 				9956F7F321F98468004E9854 /* FirstViewController.swift in Sources */,
 				992EDCED21FDB0C6006CC894 /* FoodItemDetailsViewController.swift in Sources */,
+				843B05122203D9240082FEFF /* FirebaseSingleton.swift in Sources */,
 				84DC184221F9A51D008EE6D3 /* RecommendCollectionViewCell.swift in Sources */,
 				84DC184421F9A51D008EE6D3 /* NearestCollectionViewCell.swift in Sources */,
 			);
