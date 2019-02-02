@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HeaderView: UICollectionReusableView {
+class StretchyHeaderView: UICollectionReusableView {
     
     lazy var gradientView: CAGradientLayer = {
         let gradient = CAGradientLayer()

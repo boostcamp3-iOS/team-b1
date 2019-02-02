@@ -8,15 +8,9 @@
 
 import UIKit
 
-class MenuSectionCollectionViewCell: UICollectionViewCell {
+class MenuCategoryCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var sectionNameLabel: UILabel!
-
-    override var isSelected: Bool {
-        didSet {
-            self.sectionNameLabel.textColor = self.isSelected ? .white : .black
-        }
-    }
 
     var sectionName: String? {
         didSet {
@@ -28,6 +22,10 @@ class MenuSectionCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    func setColor(by isSelected: Bool) {
+        sectionNameLabel?.textColor = isSelected ? .white : .black
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         sectionNameLabel.textColor = .black
