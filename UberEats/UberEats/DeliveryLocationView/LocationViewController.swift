@@ -40,6 +40,8 @@ class LocationViewController: UIViewController {
     private func setupLayout() {
         self.view.addSubview(backButton)
         
+        backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
@@ -96,6 +98,11 @@ class LocationViewController: UIViewController {
         orderDetailCollectionView.register(OrderedMenuCollectionViewCell.self,
                                            forCellWithReuseIdentifier: orderMenuCellId)
         
+    }
+    
+    @objc private func touchUpBackButton(_: UIButton) {
+        tabBarController?.tabBar.isHidden = false
+        self.navigationController?.popViewController(animated: true)
     }
 
 }
