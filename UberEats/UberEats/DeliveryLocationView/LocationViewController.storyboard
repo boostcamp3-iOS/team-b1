@@ -21,8 +21,8 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Epj-xw-Z46">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </mapView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mvf-Ek-UgS">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mvf-Ek-UgS">
+                                <rect key="frame" x="10" y="0.0" width="355" height="812"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="n2X-OC-wme">
                                     <size key="itemSize" width="50" height="50"/>
@@ -53,8 +53,8 @@
                             <constraint firstItem="mvf-Ek-UgS" firstAttribute="top" secondItem="37s-1q-ZC6" secondAttribute="top" id="4rQ-Hj-icm"/>
                             <constraint firstAttribute="trailing" secondItem="Epj-xw-Z46" secondAttribute="trailing" id="GUt-xd-FL8"/>
                             <constraint firstAttribute="bottom" secondItem="Epj-xw-Z46" secondAttribute="bottom" id="M77-FZ-pTc"/>
-                            <constraint firstItem="mvf-Ek-UgS" firstAttribute="leading" secondItem="37s-1q-ZC6" secondAttribute="leading" id="ZE6-Zt-9Lg"/>
-                            <constraint firstAttribute="trailing" secondItem="mvf-Ek-UgS" secondAttribute="trailing" id="oUw-h1-pcC"/>
+                            <constraint firstItem="mvf-Ek-UgS" firstAttribute="leading" secondItem="37s-1q-ZC6" secondAttribute="leading" constant="10" id="ZE6-Zt-9Lg"/>
+                            <constraint firstAttribute="trailing" secondItem="mvf-Ek-UgS" secondAttribute="trailing" constant="10" id="oUw-h1-pcC"/>
                             <constraint firstItem="Epj-xw-Z46" firstAttribute="leading" secondItem="37s-1q-ZC6" secondAttribute="leading" id="wgT-88-h9Y"/>
                             <constraint firstItem="Epj-xw-Z46" firstAttribute="top" secondItem="37s-1q-ZC6" secondAttribute="top" id="wwZ-fI-zT4"/>
                         </constraints>
@@ -68,21 +68,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMv-ru-WK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-414" y="-18"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="9EG-Ec-CNJ">
-            <objects>
-                <viewController id="M8V-UH-3au" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="55D-Uu-ewp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="nLQ-h7-E8V"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tQC-av-dtV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="634" y="-18"/>
         </scene>
     </scenes>
 </document>
