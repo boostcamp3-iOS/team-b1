@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import DependencyContainer
+import Service
 
 class FoodItemDetailsViewController: UIViewController {
     
@@ -30,6 +32,8 @@ class FoodItemDetailsViewController: UIViewController {
 
     private static let coveredToolbarAnimationInterval = 500
     
+    private var foodMarketService: FoodMarketService!
+    
     private lazy var stretchableHeaderMinumumHeight = {
         return self.toolbar.frame.height
     }
@@ -43,6 +47,9 @@ class FoodItemDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
+        
+        foodMarketService = DependencyContainer.share.getDependency(key: .foodMarketService) as! FoodMarketService
+     
     }
  
     private func initView() {
@@ -90,7 +97,7 @@ class FoodItemDetailsViewController: UIViewController {
     }
 }
 
-private class GradientView: UIView {
+public class GradientView: UIView {
     override open class var layerClass: AnyClass {
         return CAGradientLayer.classForCoder()
     }
