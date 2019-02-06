@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Throttler {
+public class Throttler {
 
     private let queue: DispatchQueue = DispatchQueue.global(qos: .background)
     private let interval: DispatchTimeInterval
