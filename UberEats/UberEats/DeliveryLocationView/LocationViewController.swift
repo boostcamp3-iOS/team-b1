@@ -16,6 +16,7 @@ class LocationViewController: UIViewController {
     
     private let arrivalTimeHeaderId: String = "orderChecking"
     private let orderNameHeaderId: String = "orderName"
+    private let separatorHeaderId: String = "separator"
     private let tempHeaderId: String = "tempHeader"
     
     private let separatorFooterId: String = "separator"
@@ -34,17 +35,16 @@ class LocationViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private var userLocation = CLLocationCoordinate2D(latitude: 37.49646975398706, longitude: 127.02905088660754)
     
-    private var orderDetailCollectionViewTopConstraint = NSLayoutConstraint()
-    
     let orderDetailCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
         let collectionView = UICollectionView(frame: CGRect.zero,
                                               collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+        collectionView.backgroundColor = #colorLiteral(red: 0.9525781274, green: 0.9469152093, blue: 0.9569309354, alpha: 1)
+        collectionView.contentInset = UIEdgeInsets(top: 450, left: 10, bottom: 0, right: 10)
         collectionView.showsVerticalScrollIndicator = false
-//        collectionView.isHidden = true
         return collectionView
     }()
     
@@ -75,7 +75,9 @@ class LocationViewController: UIViewController {
                                        longitude: (userLocation.longitude + 127.030378) / 2,
                                        zoom: 17)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        view = mapView
+        mapView?.padding = UIEdgeInsets(top: 0, left: 10, bottom: self.view.frame.height - 500 + 10, right: 0)
+//        mapView
+        orderDetailCollectionView.backgroundView = mapView
         
         let userMarker = GMSMarker(position: userLocation)
         userMarker.icon = UIImage(named: "first")
@@ -90,9 +92,9 @@ class LocationViewController: UIViewController {
     }
     
     private func setupLayout() {
-        self.view.addSubview(backButton)
-        self.view.addSubview(moveCurrentLocationButton)
         self.view.addSubview(orderDetailCollectionView)
+        self.orderDetailCollectionView.backgroundView?.addSubview(moveCurrentLocationButton)
+        self.orderDetailCollectionView.addSubview(backButton)
         
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)),
                              for: .touchUpInside)
@@ -100,16 +102,8 @@ class LocationViewController: UIViewController {
                                             action: #selector(touchUpMoveCurrentLocationButton(_:)),
                                             for: .touchUpInside)
         
-        orderDetailCollectionViewTopConstraint = NSLayoutConstraint(item: orderDetailCollectionView,
-                                                                    attribute: .top,
-                                                                    relatedBy: .equal,
-                                                                    toItem: view,
-                                                                    attribute: .top,
-                                                                    multiplier: 1,
-                                                                    constant: 500)
-        orderDetailCollectionViewTopConstraint.isActive = true
-        
         NSLayoutConstraint.activate([
+            orderDetailCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             orderDetailCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             orderDetailCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             orderDetailCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -119,12 +113,12 @@ class LocationViewController: UIViewController {
             backButton.widthAnchor.constraint(equalToConstant: buttonSize),
             backButton.heightAnchor.constraint(equalToConstant: buttonSize),
             
-            moveCurrentLocationButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                                           constant: 10),
             moveCurrentLocationButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
                                                                 constant: -15),
-            moveCurrentLocationButton.widthAnchor.constraint(equalToConstant: buttonSize),
-            moveCurrentLocationButton.heightAnchor.constraint(equalToConstant: buttonSize)
+            moveCurrentLocationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                                              constant: 450 - 10),
+            moveCurrentLocationButton.widthAnchor.constraint(equalToConstant: 32),
+            moveCurrentLocationButton.heightAnchor.constraint(equalToConstant: 32)
             ])
     }
     
@@ -144,6 +138,10 @@ class LocationViewController: UIViewController {
         orderDetailCollectionView.register(TempCollectionReusableView.self,
                                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                            withReuseIdentifier: tempHeaderId)
+        
+        orderDetailCollectionView.register(SeparatorCollectionReusableView.self,
+                                           forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                           withReuseIdentifier: separatorHeaderId)
         
         //footers
         orderDetailCollectionView.register(SeparatorCollectionReusableView.self,
@@ -183,6 +181,22 @@ class LocationViewController: UIViewController {
 }
 
 extension LocationViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let currentScroll = scrollView.contentOffset.y
+        
+        if currentScroll > -150 {
+            mapView?.alpha = 0
+        } else {
+            
+            mapView?.alpha = -currentScroll / 450
+        }
+        print("scroll \(currentScroll)")
+//        scrollView.backgroundColor = UIColor(red: 0.8039215803,
+//                                             green: 0.8039215803,
+//                                             blue: 0.8039215803,
+//                                             alpha: currentScroll)
+    }
 }
 
 extension LocationViewController: UICollectionViewDataSource {
@@ -242,6 +256,11 @@ extension LocationViewController: UICollectionViewDataSource {
                                                                              withReuseIdentifier: orderNameHeaderId,
                                                                              for: indexPath)
                 return header
+            case 2:
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: separatorHeaderId,
+                                                                             for: indexPath)
+                return header
             default:
                 return collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                        withReuseIdentifier: tempHeaderId,
@@ -278,7 +297,7 @@ extension LocationViewController: UICollectionViewDelegate {
         case 1:
             return .init(width: self.view.frame.width - 20, height: 60)
         default:
-            return .init(width: self.view.frame.width - 20, height: 0)
+            return .init(width: self.view.frame.width - 20, height: 10)
         }
     }
     
@@ -292,28 +311,6 @@ extension LocationViewController: UICollectionViewDelegate {
             return .init(width: self.view.frame.width - 20, height: 10)
         }
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("constentOffy:\(scrollView.contentOffset.y), topconstraint: \(orderDetailCollectionViewTopConstraint.constant)")
-        
-//        scrollView.contentOffset.y > CGFloat(150) ? (self.orderDetailCollectionViewTopConstraint.constant = 0) : (self.orderDetailCollectionViewTopConstraint.constant = 500)
-        if scrollView.contentOffset.y >= 80 {
-            self.orderDetailCollectionViewTopConstraint.constant = 50
-        } else {
-            self.orderDetailCollectionViewTopConstraint.constant = 500 - scrollView.contentOffset.y * 6
-        }
-//
-//        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: {
-//            self.orderDetailCollectionView.layoutIfNeeded()
-//        }, completion: nil)
-//
-//        orderDetailCollectionViewTopConstraint.constant = 500 - scrollView.contentOffset.y*3
-//        print("contentOffset: \(scrollView.contentOffset.y)")
-//        if scrollView.contentOffset.y > -100 {
-//            print("contentOffset: \(scrollView.contentOffset.y)")
-//            orderDetailCollectionView.backgroundColor = .lightGray
-//        }
-    }
 }
 
 extension LocationViewController: UICollectionViewDelegateFlowLayout {
@@ -323,8 +320,10 @@ extension LocationViewController: UICollectionViewDelegateFlowLayout {
         switch indexPath.section {
         case 0:
             return .init(width: self.view.frame.width - 20, height: 40)
-        default:
+        case 1:
             return .init(width: self.view.frame.width - 20, height: 65)
+        default:
+            return .init(width: self.view.frame.width - 20, height: 100)
         }
     }
 }
