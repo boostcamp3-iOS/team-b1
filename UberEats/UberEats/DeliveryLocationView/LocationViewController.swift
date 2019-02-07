@@ -7,10 +7,12 @@
 //
 
 import UIKit
-import MapKit
+import GoogleMaps
+import CoreLocation
 
 class LocationViewController: UIViewController {
     private let backButton = UIButton().initButtonWithImage("blackArrow")
+    private let moveCurrentLocationButton = UIButton().initButtonWithImage("btCurrentlocation")
     
     private let arrivalTimeHeaderId: String = "orderChecking"
     private let orderNameHeaderId: String = "orderName"
@@ -22,46 +24,111 @@ class LocationViewController: UIViewController {
     
     private let orderCancelCellId: String = "orderCancel"
     private let orderMenuCellId: String = "orderedMenu"
+    private let emptyCellId: String = "emptyCell"
     
     private let orders = ["초콜렛 밀크티 (아이스, 라지) Chocolate Milk Tea (Iced, Large)",
                           "아메리카노 (아이스, 라지) Americano (Iced, Large)",
                           "블랙 밀크티+펄(아이스, 라지) Black Milk Tea+Pearl(Iced, Large)"]
 
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var orderDetailCollectionView: UICollectionView!
+    private var mapView: GMSMapView?
+    private let locationManager = CLLocationManager()
+    private var userLocation = CLLocationCoordinate2D(latitude: 37.49646975398706, longitude: 127.02905088660754)
+    
+    private var orderDetailCollectionViewTopConstraint = NSLayoutConstraint()
+    
+    let orderDetailCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 0
+        let collectionView = UICollectionView(frame: CGRect.zero,
+                                              collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+        collectionView.showsVerticalScrollIndicator = false
+//        collectionView.isHidden = true
+        return collectionView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = true
+        orderDetailCollectionView.delegate = self
+        orderDetailCollectionView.dataSource = self
+        setupMapView()
         setupLayout()
-        setupCollectionViewLayout()
         setupCollectionView()
+    }
+    
+    private func setupMapView() {
+        // 장치에서 위치 서비스가 사용된다면
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            //위치 데이터 정확도 설정
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            // 얼마큼 이동했을 때 위치 갱신할 것인지
+            locationManager.distanceFilter = 500.0
+            locationManager.startUpdatingLocation()
+        }
+        
+        GMSServices.provideAPIKey("AIzaSyAphHHY5LL8tq4QOepg2cCFASelCbSLa0E")
+        // user와 deliverer의 중간 지점으로 설정할 것
+        let camera = GMSCameraPosition(latitude: (userLocation.latitude + 37.499862) / 2,
+                                       longitude: (userLocation.longitude + 127.030378) / 2,
+                                       zoom: 17)
+        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        view = mapView
+        
+        let userMarker = GMSMarker(position: userLocation)
+        userMarker.icon = UIImage(named: "first")
+        userMarker.title = "메리츠타워"
+        userMarker.map = mapView
+        
+        let delivererLocation = CLLocationCoordinate2D(latitude: 37.499862, longitude: 127.030378)
+        let delivererMarker = GMSMarker(position: delivererLocation)
+        delivererMarker.icon = UIImage(named: "second")
+        delivererMarker.title = "공차"
+        delivererMarker.map = mapView
     }
     
     private func setupLayout() {
         self.view.addSubview(backButton)
+        self.view.addSubview(moveCurrentLocationButton)
+        self.view.addSubview(orderDetailCollectionView)
         
-        backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(touchUpBackButton(_:)),
+                             for: .touchUpInside)
+        moveCurrentLocationButton.addTarget(self,
+                                            action: #selector(touchUpMoveCurrentLocationButton(_:)),
+                                            for: .touchUpInside)
+        
+        orderDetailCollectionViewTopConstraint = NSLayoutConstraint(item: orderDetailCollectionView,
+                                                                    attribute: .top,
+                                                                    relatedBy: .equal,
+                                                                    toItem: view,
+                                                                    attribute: .top,
+                                                                    multiplier: 1,
+                                                                    constant: 500)
+        orderDetailCollectionViewTopConstraint.isActive = true
         
         NSLayoutConstraint.activate([
+            orderDetailCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            orderDetailCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            orderDetailCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
             backButton.widthAnchor.constraint(equalToConstant: buttonSize),
-            backButton.heightAnchor.constraint(equalToConstant: buttonSize)
+            backButton.heightAnchor.constraint(equalToConstant: buttonSize),
+            
+            moveCurrentLocationButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                                           constant: 10),
+            moveCurrentLocationButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                                                                constant: -15),
+            moveCurrentLocationButton.widthAnchor.constraint(equalToConstant: buttonSize),
+            moveCurrentLocationButton.heightAnchor.constraint(equalToConstant: buttonSize)
             ])
     }
     
-    private func setupCollectionViewLayout() {
-        if let layout = orderDetailCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.minimumLineSpacing = 0
-        }
-    }
-    
     private func setupCollectionView() {
-        orderDetailCollectionView.contentInset = UIEdgeInsets(top: view.frame.height * 0.55,
-                                                              left: 0,
-                                                              bottom: 0,
-                                                              right: 0)
-        
         let arrivalTimeHeaderNib = UINib(nibName: "OrderCheckingCollectionReusableView",
                                          bundle: nil)
         
@@ -98,6 +165,9 @@ class LocationViewController: UIViewController {
         orderDetailCollectionView.register(OrderedMenuCollectionViewCell.self,
                                            forCellWithReuseIdentifier: orderMenuCellId)
         
+        orderDetailCollectionView.register(EmptyCollectionViewCell.self,
+                                           forCellWithReuseIdentifier: emptyCellId)
+        
     }
     
     @objc private func touchUpBackButton(_: UIButton) {
@@ -105,6 +175,14 @@ class LocationViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    @objc private func touchUpMoveCurrentLocationButton(_: UIButton) {
+        mapView?.animate(to: GMSCameraPosition(latitude: (userLocation.latitude + 37.499862) / 2,
+                                                longitude: (userLocation.longitude + 127.030378) / 2,
+                                                zoom: 17))
+    }
+}
+
+extension LocationViewController: UIScrollViewDelegate {
 }
 
 extension LocationViewController: UICollectionViewDataSource {
@@ -143,7 +221,7 @@ extension LocationViewController: UICollectionViewDataSource {
             
             return cell
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: emptyCellId, for: indexPath)
             cell.backgroundColor = .green
             return cell
         }
@@ -214,6 +292,28 @@ extension LocationViewController: UICollectionViewDelegate {
             return .init(width: self.view.frame.width - 20, height: 10)
         }
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("constentOffy:\(scrollView.contentOffset.y), topconstraint: \(orderDetailCollectionViewTopConstraint.constant)")
+        
+//        scrollView.contentOffset.y > CGFloat(150) ? (self.orderDetailCollectionViewTopConstraint.constant = 0) : (self.orderDetailCollectionViewTopConstraint.constant = 500)
+        if scrollView.contentOffset.y >= 80 {
+            self.orderDetailCollectionViewTopConstraint.constant = 50
+        } else {
+            self.orderDetailCollectionViewTopConstraint.constant = 500 - scrollView.contentOffset.y * 6
+        }
+//
+//        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut, animations: {
+//            self.orderDetailCollectionView.layoutIfNeeded()
+//        }, completion: nil)
+//
+//        orderDetailCollectionViewTopConstraint.constant = 500 - scrollView.contentOffset.y*3
+//        print("contentOffset: \(scrollView.contentOffset.y)")
+//        if scrollView.contentOffset.y > -100 {
+//            print("contentOffset: \(scrollView.contentOffset.y)")
+//            orderDetailCollectionView.backgroundColor = .lightGray
+//        }
+    }
 }
 
 extension LocationViewController: UICollectionViewDelegateFlowLayout {
@@ -226,6 +326,15 @@ extension LocationViewController: UICollectionViewDelegateFlowLayout {
         default:
             return .init(width: self.view.frame.width - 20, height: 65)
         }
+    }
+}
+
+extension LocationViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("location")
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+//        self.userLocation = locValue
     }
 }
 

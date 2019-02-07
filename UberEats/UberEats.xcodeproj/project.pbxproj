@@ -48,6 +48,7 @@
 		D115BBB821F9D66100C57809 /* TimeAndLocationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D115BBB621F9D66100C57809 /* TimeAndLocationCollectionViewCell.xib */; };
 		D11B04D8220583A100F20363 /* LocationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D11B04D7220583A100F20363 /* LocationViewController.storyboard */; };
 		D11B04DA2205847F00F20363 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B04D92205847F00F20363 /* LocationViewController.swift */; };
+		D1391FC4220AB2D90064FC37 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1391FC3220AB2D90064FC37 /* EmptyCollectionViewCell.swift */; };
 		D16DAEE3220888F200564823 /* TotalPriceCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16DAEE2220888F200564823 /* TotalPriceCollectionReusableView.swift */; };
 		D199236222045BAB00C7C857 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199236122045BAB00C7C857 /* Extensions.swift */; };
 		D1AF1E9D21F9A5A6004CA3A5 /* MenuSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1AF1E9021F9A5A6004CA3A5 /* MenuSectionView.xib */; };
@@ -135,6 +136,7 @@
 		D115BBB621F9D66100C57809 /* TimeAndLocationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeAndLocationCollectionViewCell.xib; sourceTree = "<group>"; };
 		D11B04D7220583A100F20363 /* LocationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationViewController.storyboard; sourceTree = "<group>"; };
 		D11B04D92205847F00F20363 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		D1391FC3220AB2D90064FC37 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		D16DAEE2220888F200564823 /* TotalPriceCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalPriceCollectionReusableView.swift; sourceTree = "<group>"; };
 		D199236122045BAB00C7C857 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D1AF1E9021F9A5A6004CA3A5 /* MenuSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSectionView.xib; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				D102A6892208335E004B458C /* OrderNameCollectionReusableView.swift */,
 				D102A68D22083853004B458C /* SeparatorCollectionReusableView.swift */,
 				D16DAEE2220888F200564823 /* TotalPriceCollectionReusableView.swift */,
+				D1391FC3220AB2D90064FC37 /* EmptyCollectionViewCell.swift */,
 			);
 			path = DeliveryLocationView;
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				D1CED1C2220756C7007626B4 /* OrderCancelCollectionViewCell.swift in Sources */,
 				D1F96F0221FE8D9400D79396 /* ItemSizeDelegate.swift in Sources */,
 				D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */,
+				D1391FC4220AB2D90064FC37 /* EmptyCollectionViewCell.swift in Sources */,
 				D1CC3E9C22045EAA00670675 /* FloatingView.swift in Sources */,
 				D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */,
 				D115BBB721F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift in Sources */,
