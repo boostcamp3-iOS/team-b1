@@ -8,6 +8,7 @@
 
 import Foundation
 import Common
+import ServiceInterface
 
 internal class FoodMarketServiceImp: FoodMarketService {
     

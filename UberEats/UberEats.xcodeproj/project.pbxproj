@@ -10,7 +10,6 @@
 		7B07DCA2617C7027DEBD3B1E /* Pods_UberEatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B151BE5FF725EBA9E065F31 /* Pods_UberEatsTests.framework */; };
 		842CC7B921FEBC100045D084 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CC7B821FEBC100045D084 /* CollectionViewController.swift */; };
 		84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */; };
-		84CCFCF5220B038600F4A4EF /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CCFCF4220B038600F4A4EF /* Common.framework */; };
 		84DC184121F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */; };
 		84DC184221F9A51D008EE6D3 /* RecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */; };
 		84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183B21F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift */; };
@@ -41,7 +40,7 @@
 		9956F7FD21F98468004E9854 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9956F7FB21F98468004E9854 /* LaunchScreen.storyboard */; };
 		998A247621FF2B1500AF250D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 998A247521FF2B1500AF250D /* .swiftlint.yml */; };
 		99F57913220AD07F002D792A /* DependencyContainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57912220AD07F002D792A /* DependencyContainer.framework */; };
-		99F57915220AD07F002D792A /* Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57914220AD07F002D792A /* Service.framework */; };
+		99F57931220C5A90002D792A /* ServiceInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57930220C5A90002D792A /* ServiceInterface.framework */; };
 		BAADD13A736367A4AF0735E9 /* Pods_UberEats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6506E59626E3060BF7CD65 /* Pods_UberEats.framework */; };
 		D115BBB321F9D49E00C57809 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115BBB121F9D49E00C57809 /* SearchCollectionViewCell.swift */; };
 		D115BBB421F9D49E00C57809 /* SearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D115BBB221F9D49E00C57809 /* SearchCollectionViewCell.xib */; };
@@ -121,6 +120,7 @@
 		998A247521FF2B1500AF250D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		99F57912220AD07F002D792A /* DependencyContainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DependencyContainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F57914220AD07F002D792A /* Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Service.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99F57930220C5A90002D792A /* ServiceInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ServiceInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C3D32B8615DFA8A8B5DDD6 /* Pods-UberEatsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEatsTests.debug.xcconfig"; path = "Target Support Files/Pods-UberEatsTests/Pods-UberEatsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D115BBB121F9D49E00C57809 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		D115BBB221F9D49E00C57809 /* SearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -157,9 +157,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84CCFCF5220B038600F4A4EF /* Common.framework in Frameworks */,
+				99F57931220C5A90002D792A /* ServiceInterface.framework in Frameworks */,
 				99F57913220AD07F002D792A /* DependencyContainer.framework in Frameworks */,
-				99F57915220AD07F002D792A /* Service.framework in Frameworks */,
 				BAADD13A736367A4AF0735E9 /* Pods_UberEats.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,6 +283,7 @@
 		A656A6A175D2C5F42392628E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99F57930220C5A90002D792A /* ServiceInterface.framework */,
 				84CCFCF4220B038600F4A4EF /* Common.framework */,
 				99F57912220AD07F002D792A /* DependencyContainer.framework */,
 				99F57914220AD07F002D792A /* Service.framework */,

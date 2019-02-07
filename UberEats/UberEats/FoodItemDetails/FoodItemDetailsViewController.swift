@@ -8,7 +8,7 @@
 
 import UIKit
 import DependencyContainer
-import Service
+import ServiceInterface
 
 class FoodItemDetailsViewController: UIViewController {
     

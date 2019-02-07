@@ -9,6 +9,7 @@
 import UIKit
 import Service
 import DependencyContainer
+import ServiceInterface
 
 class ItemViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var tableView: UITableView!
