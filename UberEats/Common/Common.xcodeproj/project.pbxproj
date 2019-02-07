@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84CCFCF1220AF40000F4A4EF /* FoodMarketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CCFCF0220AF40000F4A4EF /* FoodMarketModel.swift */; };
 		998A25EC2208255C00AF250D /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A25EB2208255C00AF250D /* HTTPStatusCode.swift */; };
 		998A25F02208267600AF250D /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A25EF2208267600AF250D /* HTTPURLResponse+StatusCode.swift */; };
 		998A25F2220829D100AF250D /* HTTPURLResponse+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A25F1220829D100AF250D /* HTTPURLResponse+init.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84CCFCF0220AF40000F4A4EF /* FoodMarketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMarketModel.swift; sourceTree = "<group>"; };
 		998A25E02208254500AF250D /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		998A25E42208254500AF250D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		998A25EB2208255C00AF250D /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 				998A25EB2208255C00AF250D /* HTTPStatusCode.swift */,
 				998A25EF2208267600AF250D /* HTTPURLResponse+StatusCode.swift */,
 				998A25F1220829D100AF250D /* HTTPURLResponse+init.swift */,
+				84CCFCF0220AF40000F4A4EF /* FoodMarketModel.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				998A25F02208267600AF250D /* HTTPURLResponse+StatusCode.swift in Sources */,
+				84CCFCF1220AF40000F4A4EF /* FoodMarketModel.swift in Sources */,
 				998A25F2220829D100AF250D /* HTTPURLResponse+init.swift in Sources */,
 				998A25EC2208255C00AF250D /* HTTPStatusCode.swift in Sources */,
 			);

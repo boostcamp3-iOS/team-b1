@@ -138,7 +138,6 @@ class StoreTitleView: UIView {
                                                        constant: 0)
         storeViewHeightConstraint.isActive = true
     }
-
     
     public func changedContentOffset(currentScroll: CGFloat, headerHeight: CGFloat) {
         //        let diff: CGFloat = headerHeight - currentScroll

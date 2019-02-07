@@ -22,11 +22,10 @@ public class DependencyContainer {
         let app = createUberEatsApplication()
         
         let mockServer = createMockServer(app: app)
-        
+   
         let foodMarketService = ServiceFactory.createFoodMarketService(network: mockServer)
         
-        dependencyPool[DependencyKey.foodMarketService] = foodMarketService as AnyObject
-        
+        dependencyPool[DependencyKey.foodMarketService] = foodMarketService
     }
     
     private func createUberEatsApplication() -> Application {
@@ -37,7 +36,7 @@ public class DependencyContainer {
         }
     }
     
-    private func createMockServer(app: Application) -> MockServer {
+    private func createMockServer(app: Application) -> Network {
         do {
             return try MockServer(app: app)
         } catch let error {

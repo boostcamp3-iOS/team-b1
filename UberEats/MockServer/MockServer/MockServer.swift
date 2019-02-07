@@ -24,11 +24,18 @@ public class MockServer {
     }
 
     private func setUp() throws {
-        try router.get("market") { reqeust in
+//        try router.get("market") { reqeust in
+//
+//            let result = try ResourceController.resourceWithString(path: reqeust.path, root: type(of: self))
+//            return result
+//        }
 
-            let result = try ResourceController.resourceWithString(path: reqeust.path, root: type(of: self))
+        try router.get("foodMarket", writtenResponse: { (request) -> Response in
+
+            let result = try ResourceController.resourceWithString(path: request.path, root: type(of: self))
+
             return result
-        }
+        })
     }
 
 }

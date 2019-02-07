@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84CCFCF3220B026700F4A4EF /* FoodMarketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CCFCF2220B026700F4A4EF /* FoodMarketService.swift */; };
+		84CCFCF8220B039D00F4A4EF /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CCFCF7220B039D00F4A4EF /* Common.framework */; };
 		998A24CA2203118D00AF250D /* Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 998A24C02203118D00AF250D /* Service.framework */; };
 		998A24CF2203118D00AF250D /* FoodMarketServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A24CE2203118D00AF250D /* FoodMarketServiceTests.swift */; };
 		998A24E4220311BF00AF250D /* FoodMarketServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A24E3220311BF00AF250D /* FoodMarketServiceImp.swift */; };
-		998A24E72203121900AF250D /* FoodMarketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A24E62203121900AF250D /* FoodMarketService.swift */; };
 		998A24E92203129D00AF250D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 998A24E82203129D00AF250D /* .swiftlint.yml */; };
 		998A24EC2203139000AF250D /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A24EB2203139000AF250D /* DataResponse.swift */; };
 		998A24EE2203199100AF250D /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A24ED2203199100AF250D /* ServiceFactory.swift */; };
@@ -28,13 +29,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84CCFCF2220B026700F4A4EF /* FoodMarketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMarketService.swift; sourceTree = "<group>"; };
+		84CCFCF7220B039D00F4A4EF /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		998A24C02203118D00AF250D /* Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Service.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		998A24C42203118D00AF250D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		998A24C92203118D00AF250D /* ServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		998A24CE2203118D00AF250D /* FoodMarketServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMarketServiceTests.swift; sourceTree = "<group>"; };
 		998A24D02203118D00AF250D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		998A24E3220311BF00AF250D /* FoodMarketServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMarketServiceImp.swift; sourceTree = "<group>"; };
-		998A24E62203121900AF250D /* FoodMarketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMarketService.swift; sourceTree = "<group>"; };
 		998A24E82203129D00AF250D /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		998A24EB2203139000AF250D /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
 		998A24ED2203199100AF250D /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84CCFCF8220B039D00F4A4EF /* Common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84CCFCF6220B039D00F4A4EF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84CCFCF7220B039D00F4A4EF /* Common.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		998A24B62203118D00AF250D = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +78,7 @@
 				998A24C22203118D00AF250D /* Service */,
 				998A24CD2203118D00AF250D /* ServiceTests */,
 				998A24C12203118D00AF250D /* Products */,
+				84CCFCF6220B039D00F4A4EF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,8 +115,8 @@
 		998A24E52203120400AF250D /* FoodMarketService */ = {
 			isa = PBXGroup;
 			children = (
-				998A24E62203121900AF250D /* FoodMarketService.swift */,
 				998A24E3220311BF00AF250D /* FoodMarketServiceImp.swift */,
+				84CCFCF2220B026700F4A4EF /* FoodMarketService.swift */,
 			);
 			path = FoodMarketService;
 			sourceTree = "<group>";
@@ -226,9 +238,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				998A24E72203121900AF250D /* FoodMarketService.swift in Sources */,
 				998A24EE2203199100AF250D /* ServiceFactory.swift in Sources */,
 				998A25CE2207081700AF250D /* Network.swift in Sources */,
+				84CCFCF3220B026700F4A4EF /* FoodMarketService.swift in Sources */,
 				998A24EC2203139000AF250D /* DataResponse.swift in Sources */,
 				998A24E4220311BF00AF250D /* FoodMarketServiceImp.swift in Sources */,
 			);
