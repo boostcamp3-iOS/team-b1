@@ -1,0 +1,157 @@
+{
+    "advertisingBoard": [
+        {
+            "bannerImage": "http:blurblur"
+        },
+        {
+            "bannerImage": "http:blurblur2"
+        },
+        {
+            "bannerImage": "http:blurblur3"
+        }
+    ],
+    "recommandFoods" : [
+        {
+            "foodName": "foodname1",
+            "basePrice": 5,
+            "foodDescription": "good",
+            "store": {
+                "mainImage": "http:stro",
+                "name": "dontknow",
+                "category": "일식 , 한식",
+                "deliveryTime" : "30-40",
+                "openTime": {
+                    "startTime": "11:12",
+                    "endTime": "22:13"
+                },
+                "favorites": true,
+                "location": {
+                    "latitude": 124.5325,
+                    "longtitude": 54125.124
+                },
+                "rate": {
+                    "score": 4.5,
+                    "numberOfRater": 120
+                }
+            }
+        }
+    ],
+    "newStores" : [
+        {
+            "mainImage": "http:stro",
+            "name": "dontknow",
+            "category": "일식 , 한식",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 124.5325,
+                "longtitude": 54125.124
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro1",
+            "name": "dontknow1",
+            "category": "일식 , 한식1",
+            "deliveryTime" : "30-401",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 124.5325,
+                "longtitude": 54125.124
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "dontknow2",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-402",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 124.5325,
+                "longtitude": 54125.124
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        }
+    ],
+    "stores": [
+        {
+            "mainImage": "http:stro",
+            "name": "dontknow",
+            "category": "일식 , 한식",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 124.5325,
+                "longtitude": 54125.124
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro1",
+            "name": "dontknow1",
+            "category": "일식 , 한식1",
+            "deliveryTime" : "30-401",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 124.5325,
+                "longtitude": 54125.124
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "dontknow2",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-402",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 124.5325,
+                "longtitude": 54125.124
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        }
+    ]
+}

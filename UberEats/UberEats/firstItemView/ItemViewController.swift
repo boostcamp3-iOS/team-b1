@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Service
+import DependencyContainer
 
 class ItemViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var tableView: UITableView!
@@ -38,6 +40,13 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     
     private static let numberOfSection = 8
     
+    private var foodMarketSevice: FoodMarketService = {
+        guard let foodmarketInstance = DependencyContainer.share.getDependency(key: .foodMarketService) as? FoodMarketService else {
+            fatalError("failed init foodMarketSevice")
+        }
+        return foodmarketInstance
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,6 +58,22 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
         bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self,
                                            selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
+        
+        initFoodMarket()
+    }
+    
+    private func initFoodMarket() {
+        foodMarketSevice.requestFoodMarket { (dataResponse) in
+            if dataResponse.isSuccess {
+                let data = dataResponse.value?.advertisingBoard.first!
+                print("왔다!!!!!")
+                print(data)
+                let asd = 232
+            } else {
+                fatalError()
+            }
+        }
+        
     }
 
     private func setupTableView() {

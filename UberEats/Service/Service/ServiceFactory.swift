@@ -8,10 +8,9 @@
 import Foundation
 
 public enum ServiceFactory {
-    
+   
     public static func createFoodMarketService(network: Network) -> FoodMarketService {
-        
         return FoodMarketServiceImp(network: network)
     }
-    
+   
 }
