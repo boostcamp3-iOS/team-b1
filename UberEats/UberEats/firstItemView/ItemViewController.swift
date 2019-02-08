@@ -9,6 +9,7 @@
 import UIKit
 import Service
 import DependencyContainer
+import ServiceInterface
 
 class ItemViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var tableView: UITableView!
@@ -40,12 +41,8 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     
     private static let numberOfSection = 8
     
-    private var foodMarketSevice: FoodMarketService = {
-        guard let foodmarketInstance = DependencyContainer.share.getDependency(key: .foodMarketService) as? FoodMarketService else {
-            fatalError("failed init foodMarketSevice")
-        }
-        return foodmarketInstance
-    }()
+    private var foodMarketSevice: FoodMarketService =
+        DependencyContainer.share.getDependency(key: .foodMarketService)
     
     override func viewDidLoad() {
         super.viewDidLoad()

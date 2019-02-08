@@ -7,15 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84CCFCF3220B026700F4A4EF /* FoodMarketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CCFCF2220B026700F4A4EF /* FoodMarketService.swift */; };
 		84CCFCF8220B039D00F4A4EF /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CCFCF7220B039D00F4A4EF /* Common.framework */; };
 		998A24CA2203118D00AF250D /* Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 998A24C02203118D00AF250D /* Service.framework */; };
 		998A24CF2203118D00AF250D /* FoodMarketServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A24CE2203118D00AF250D /* FoodMarketServiceTests.swift */; };
 		998A24E4220311BF00AF250D /* FoodMarketServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A24E3220311BF00AF250D /* FoodMarketServiceImp.swift */; };
 		998A24E92203129D00AF250D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 998A24E82203129D00AF250D /* .swiftlint.yml */; };
-		998A24EC2203139000AF250D /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A24EB2203139000AF250D /* DataResponse.swift */; };
 		998A24EE2203199100AF250D /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A24ED2203199100AF250D /* ServiceFactory.swift */; };
 		998A25CE2207081700AF250D /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A25CD2207081700AF250D /* Network.swift */; };
+		99F57937220C5B4E002D792A /* ServiceInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57936220C5B4E002D792A /* ServiceInterface.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +28,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		84CCFCF2220B026700F4A4EF /* FoodMarketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMarketService.swift; sourceTree = "<group>"; };
 		84CCFCF7220B039D00F4A4EF /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		998A24C02203118D00AF250D /* Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Service.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		998A24C42203118D00AF250D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -38,9 +36,9 @@
 		998A24D02203118D00AF250D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		998A24E3220311BF00AF250D /* FoodMarketServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMarketServiceImp.swift; sourceTree = "<group>"; };
 		998A24E82203129D00AF250D /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
-		998A24EB2203139000AF250D /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
 		998A24ED2203199100AF250D /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		998A25CD2207081700AF250D /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		99F57936220C5B4E002D792A /* ServiceInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ServiceInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99F57937220C5B4E002D792A /* ServiceInterface.framework in Frameworks */,
 				84CCFCF8220B039D00F4A4EF /* Common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,6 +65,7 @@
 		84CCFCF6220B039D00F4A4EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99F57936220C5B4E002D792A /* ServiceInterface.framework */,
 				84CCFCF7220B039D00F4A4EF /* Common.framework */,
 			);
 			name = Frameworks;
@@ -97,7 +97,6 @@
 				998A24C42203118D00AF250D /* Info.plist */,
 				998A25CD2207081700AF250D /* Network.swift */,
 				998A24ED2203199100AF250D /* ServiceFactory.swift */,
-				998A24EA220312FB00AF250D /* Common */,
 				998A24E52203120400AF250D /* FoodMarketService */,
 			);
 			path = Service;
@@ -116,17 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				998A24E3220311BF00AF250D /* FoodMarketServiceImp.swift */,
-				84CCFCF2220B026700F4A4EF /* FoodMarketService.swift */,
 			);
 			path = FoodMarketService;
-			sourceTree = "<group>";
-		};
-		998A24EA220312FB00AF250D /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				998A24EB2203139000AF250D /* DataResponse.swift */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,8 +230,6 @@
 			files = (
 				998A24EE2203199100AF250D /* ServiceFactory.swift in Sources */,
 				998A25CE2207081700AF250D /* Network.swift in Sources */,
-				84CCFCF3220B026700F4A4EF /* FoodMarketService.swift in Sources */,
-				998A24EC2203139000AF250D /* DataResponse.swift in Sources */,
 				998A24E4220311BF00AF250D /* FoodMarketServiceImp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

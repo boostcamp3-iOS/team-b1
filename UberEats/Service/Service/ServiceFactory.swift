@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ServiceInterface
 
 public enum ServiceFactory {
    

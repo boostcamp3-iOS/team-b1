@@ -15,7 +15,6 @@ public class MockServer {
 
     private let app: Application
     private let router: Router
-    private let baseUrl = "www.uberEats.com"
 
     public init(app: Application) throws {
         self.app = app
@@ -24,11 +23,6 @@ public class MockServer {
     }
 
     private func setUp() throws {
-//        try router.get("market") { reqeust in
-//
-//            let result = try ResourceController.resourceWithString(path: reqeust.path, root: type(of: self))
-//            return result
-//        }
 
         try router.get("foodMarket", writtenResponse: { (request) -> Response in
 

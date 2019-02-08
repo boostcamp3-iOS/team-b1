@@ -44,9 +44,9 @@ class ResourceController {
         }
 
         do {
-            let datas = try Data(contentsOf: URL(fileURLWithPath: resultPath), options: .mappedIfSafe)
+            let data = try Data(contentsOf: URL(fileURLWithPath: resultPath), options: .mappedIfSafe)
 
-            return datas
+            return data
 
         } catch {
             fatalError()

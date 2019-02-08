@@ -9,11 +9,12 @@
 import Foundation
 import Waltz
 import MockServer
+import ServiceInterface
 import Service
 
 public class DependencyContainer {
     
-    private var dependencyPool = [DependencyKey: AnyObject]()
+    private let dependencyPool = DependencyPool()
     
     public static let share: DependencyContainer = DependencyContainer()
     
@@ -25,7 +26,8 @@ public class DependencyContainer {
    
         let foodMarketService = ServiceFactory.createFoodMarketService(network: mockServer)
         
-        dependencyPool[DependencyKey.foodMarketService] = foodMarketService
+        register(key: .foodMarketService, value: foodMarketService)
+        
     }
     
     private func createUberEatsApplication() -> Application {
@@ -44,8 +46,28 @@ public class DependencyContainer {
         }
     }
     
-    public func getDependency(key: DependencyKey) -> AnyObject {
-        return dependencyPool[key]!
+    private func register<T>(key: DependencyKey, value: T) {
+        do {
+            try dependencyPool.register(key: .foodMarketService, value: value)
+        } catch DependencyPoolError.keyAlreadyExistsError {
+            fatalError("keyAlreadyExistsError \(key)")
+        } catch DependencyPoolError.downcastingFailureError {
+            fatalError("downcastingFailureError \(value)")
+        } catch {
+            fatalError("failed dependencyPool.register\(value)")
+        }
+    }
+    
+    public func getDependency<T>(key: DependencyKey) -> T {
+        do {
+            return try dependencyPool.getDependency(key: key)
+        } catch DependencyPoolError.unregisteredKeyError {
+            fatalError("unregisteredKeyError \(key)")
+        } catch DependencyPoolError.downcastingFailureError {
+            fatalError("downcastingFailureError \(key)")
+        } catch {
+            fatalError("failed getDependencyr \(key)")
+        }
     }
 
 }

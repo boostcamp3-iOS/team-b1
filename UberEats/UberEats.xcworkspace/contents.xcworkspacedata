@@ -8,7 +8,7 @@
       location = "group:DependencyContainer/DependencyContainer.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
+      location = "group:ServiceInterface/ServiceInterface.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Service/Service.xcodeproj">
@@ -17,9 +17,12 @@
       location = "group:MockServer/MockServer.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Common/Common.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Waltz/Waltz.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Common/Common.xcodeproj">
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

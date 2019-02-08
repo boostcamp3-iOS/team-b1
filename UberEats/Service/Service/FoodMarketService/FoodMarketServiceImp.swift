@@ -8,24 +8,7 @@
 
 import Foundation
 import Common
-
-//internal class FoodMarketServiceImp: FoodMarketService {
-//    
-//    private let network: Network
-//    
-//    init(network: Network) {
-//        self.network = network
-//    }
-//    
-//    func requestFoodMarket(completionHandler: @escaping (DataResponse<FoodMarket>) -> Void) {
-//        
-//    }
-//    
-//    func requestFoodMarket(queue: DispatchQueue?, completionHandler: @escaping (DataResponse<FoodMarket>) -> Void) {
-//     
-//    }
-//    
-//}
+import ServiceInterface
 
 internal class FoodMarketServiceImp: FoodMarketService {
     
@@ -60,11 +43,12 @@ internal class FoodMarketServiceImp: FoodMarketService {
             
         }
         
-        //completionHandler(Data)
     }
     
     func requestFoodMarket(dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<FoodMarket>) -> Void) {
-        
+        dispatchQueue?.async {
+            self.requestFoodMarket(completionHandler: completionHandler)
+        }
     }
     
 }

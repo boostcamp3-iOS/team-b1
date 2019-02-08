@@ -8,7 +8,7 @@
 
 import UIKit
 import DependencyContainer
-import Service
+import ServiceInterface
 
 class FoodItemDetailsViewController: UIViewController {
     
@@ -32,8 +32,6 @@ class FoodItemDetailsViewController: UIViewController {
 
     private static let coveredToolbarAnimationInterval = 500
     
-    private var foodMarketService: FoodMarketService!
-    
     private lazy var stretchableHeaderMinumumHeight = {
         return self.toolbar.frame.height
     }
@@ -48,8 +46,6 @@ class FoodItemDetailsViewController: UIViewController {
         super.viewDidLoad()
         initView()
         
-        foodMarketService = DependencyContainer.share.getDependency(key: .foodMarketService) as! FoodMarketService
-     
     }
  
     private func initView() {
