@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ItemViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var tableView: UITableView!
@@ -29,6 +30,8 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     
     private var isScrolledByUser: Bool!
     
+    private let locationManager = CLLocationManager()
+    
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl(frame: CGRect(x: 50, y: scrollView.frame.height - 40,
                                                       width: scrollView.frame.width - 280, height: 37))
@@ -41,6 +44,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupLocationAuthority()
         setupTableView()
         setupScrollView()
 
@@ -49,6 +53,12 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
         bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self,
                                            selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
+    }
+    
+    private func setupLocationAuthority() {
+        // 위치 권한 요청
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
     }
 
     private func setupTableView() {

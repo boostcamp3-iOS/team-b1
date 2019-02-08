@@ -8,6 +8,8 @@ target 'UberEats' do
   # Pods for UberEats
 
 pod 'SwiftLint'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
 
   target 'UberEatsTests' do
     inherit! :search_paths
@@ -15,3 +17,4 @@ pod 'SwiftLint'
   end
 
 end
+
