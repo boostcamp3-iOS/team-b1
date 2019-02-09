@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderCheckingCollectionReusableView" customModule="UberEats" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="OrderCheckingCollectionReusableView" customModule="UberEats" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="484" height="252"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="공차 북경 고려학원점 Gongcha Bukgeung Goryohakwon Branch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gt9-qA-nBy">
+                    <rect key="frame" x="15" y="25" width="454" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlE-gF-uhH">
+                    <rect key="frame" x="15" y="73" width="454" height="36"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6:18PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sh-jU-lQh">
+                            <rect key="frame" x="0.0" y="0.0" width="304" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="예상 도착 시간" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvZ-bT-JYt">
+                            <rect key="frame" x="304" y="0.0" width="150" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="ueF-Kh-218"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9U7-XT-JQf">
+                    <rect key="frame" x="13" y="114" width="458" height="73.5"/>
+                    <color key="tintColor" red="0.3989361421" green="0.60376348349999998" blue="0.1714961045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="thumbTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레스토랑 주문 확인 중" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLZ-sW-0ZL">
+                    <rect key="frame" x="15" y="206.5" width="454" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wiz-G7-MAf">
+                    <rect key="frame" x="0.0" y="251" width="484" height="1"/>
+                    <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" red="0.95963281097471687" green="0.9549969036753222" blue="0.96426871827411165" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="Aj7-2Y-Ke9"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="rlE-gF-uhH" secondAttribute="trailing" constant="15" id="522-uI-sVs"/>
+                <constraint firstItem="rlE-gF-uhH" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="C1O-an-gjb"/>
+                <constraint firstAttribute="trailing" secondItem="jLZ-sW-0ZL" secondAttribute="trailing" constant="15" id="CIM-7r-Q1e"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="jLZ-sW-0ZL" secondAttribute="bottom" constant="25" id="KCi-7k-Du4"/>
+                <constraint firstItem="jLZ-sW-0ZL" firstAttribute="top" secondItem="9U7-XT-JQf" secondAttribute="bottom" constant="20" id="SQL-ci-Qo3"/>
+                <constraint firstItem="Wiz-G7-MAf" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="T5J-BD-W3r"/>
+                <constraint firstItem="Gt9-qA-nBy" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="WiM-tI-vTR"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="Gt9-qA-nBy" secondAttribute="trailing" constant="15" id="d58-nm-8MQ"/>
+                <constraint firstItem="9U7-XT-JQf" firstAttribute="top" secondItem="rlE-gF-uhH" secondAttribute="bottom" constant="5" id="eWS-nb-r3Q"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="Wiz-G7-MAf" secondAttribute="trailing" id="iaO-Fu-red"/>
+                <constraint firstItem="jLZ-sW-0ZL" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="jDs-C8-GXc"/>
+                <constraint firstAttribute="bottom" secondItem="Wiz-G7-MAf" secondAttribute="bottom" id="jmN-2n-5CK"/>
+                <constraint firstAttribute="trailing" secondItem="9U7-XT-JQf" secondAttribute="trailing" constant="15" id="phj-EA-4Ik"/>
+                <constraint firstItem="9U7-XT-JQf" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="pqX-Fh-ZAU"/>
+                <constraint firstItem="rlE-gF-uhH" firstAttribute="top" secondItem="Gt9-qA-nBy" secondAttribute="bottom" constant="30" id="sSQ-uJ-KzX"/>
+                <constraint firstItem="Gt9-qA-nBy" firstAttribute="top" secondItem="VXr-Tz-HHm" secondAttribute="top" constant="25" id="t8q-5v-zuU"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <connections>
+                <outlet property="arrivalTimeLabel" destination="8Sh-jU-lQh" id="M9U-9r-6gD"/>
+                <outlet property="arrivalTimeTitleLabel" destination="vvZ-bT-JYt" id="hrd-Ic-4Ij"/>
+                <outlet property="currentProgressLabel" destination="jLZ-sW-0ZL" id="AOH-R2-7DI"/>
+                <outlet property="currentProgressSlider" destination="9U7-XT-JQf" id="c9U-Ua-497"/>
+                <outlet property="storeNameLabel" destination="Gt9-qA-nBy" id="a8G-sF-SZQ"/>
+            </connections>
+            <point key="canvasLocation" x="-188.80000000000001" y="98.050974512743636"/>
+        </collectionReusableView>
+    </objects>
+</document>

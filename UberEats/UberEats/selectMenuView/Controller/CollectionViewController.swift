@@ -7,6 +7,8 @@
 //
 import UIKit
 
+public let buttonSize: CGFloat = 25
+
 class CollectionViewController: UICollectionViewController {
     private let sectionNames: [String] = ["나를 위한 추천 메뉴", "햄버거 단품 Single Burger", "햄버거 세트", "디저트 Dessert"]
     
@@ -28,7 +30,6 @@ class CollectionViewController: UICollectionViewController {
     
     private let headerHeight: CGFloat = 283
     private let scrollLimit: CGFloat = 171
-    private let buttonSize: CGFloat = 25
     
     private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent
