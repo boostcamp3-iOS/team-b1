@@ -29,7 +29,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "99342CC021FB12CF0029DB10"
@@ -48,6 +48,26 @@
                   Identifier = "ThrottlerTests/testSingleJobAutherThread()">
                </Test>
             </SkippedTests>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "998A24C82203118D00AF250D"
+               BuildableName = "ServiceTests.xctest"
+               BlueprintName = "ServiceTests"
+               ReferencedContainer = "container:Service/Service.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "998A253C2204845E00AF250D"
+               BuildableName = "WaltzTests.xctest"
+               BlueprintName = "WaltzTests"
+               ReferencedContainer = "container:Waltz/Waltz.xcodeproj">
+            </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>

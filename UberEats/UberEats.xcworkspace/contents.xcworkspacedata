@@ -5,6 +5,24 @@
       location = "group:UberEats.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:DependencyContainer/DependencyContainer.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ServiceInterface/ServiceInterface.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Service/Service.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:MockServer/MockServer.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Common/Common.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Waltz/Waltz.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

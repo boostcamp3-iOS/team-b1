@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreLocation
+import Service
+import DependencyContainer
+import ServiceInterface
 
 class ItemViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var tableView: UITableView!
@@ -41,6 +44,9 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     
     private static let numberOfSection = 8
     
+    private var foodMarketSevice: FoodMarketService =
+        DependencyContainer.share.getDependency(key: .foodMarketService)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,12 +59,28 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
         bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self,
                                            selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
+        
+        initFoodMarket()
     }
     
     private func setupLocationAuthority() {
         // 위치 권한 요청
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
+    }
+    
+    private func initFoodMarket() {
+        foodMarketSevice.requestFoodMarket { (dataResponse) in
+            if dataResponse.isSuccess {
+                let data = dataResponse.value?.advertisingBoard.first!
+                print("왔다!!!!!")
+                print(data)
+                let asd = 232
+            } else {
+                fatalError()
+            }
+        }
+        
     }
 
     private func setupTableView() {

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import DependencyContainer
+import ServiceInterface
 
 class FoodItemDetailsViewController: UIViewController {
     
@@ -43,6 +45,7 @@ class FoodItemDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
+        
     }
  
     private func initView() {
@@ -90,7 +93,7 @@ class FoodItemDetailsViewController: UIViewController {
     }
 }
 
-private class GradientView: UIView {
+public class GradientView: UIView {
     override open class var layerClass: AnyClass {
         return CAGradientLayer.classForCoder()
     }
