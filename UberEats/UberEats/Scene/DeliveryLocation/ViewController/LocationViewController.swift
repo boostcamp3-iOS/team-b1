@@ -124,6 +124,11 @@ class LocationViewController: UIViewController {
 
     private func setupCollectionView() {
         //headers
+        let deliveryManInfoHeaderNib = UINib(nibName: "DeliveryManInfoCollectionReusableView",
+                                             bundle: nil)
+
+        orderDetailCollectionView.register(deliveryManInfoHeaderNib, forSupplementaryViewOfKind: sectionHeader, withReuseIdentifier: Identifiers.deliveryManInfoHeaderId)
+
         let arrivalTimeHeaderNib = UINib(nibName: "OrderCheckingCollectionReusableView",
                                          bundle: nil)
 
@@ -190,7 +195,7 @@ extension LocationViewController: UIScrollViewDelegate {
 
 extension LocationViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 4
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -200,7 +205,7 @@ extension LocationViewController: UICollectionViewDataSource {
         }
 
         switch section {
-        case .timeDetail, .sale:
+        case .deliveryManInfo, .timeDetail, .sale:
             return 1
         case .orders:
             return orders.count
@@ -215,6 +220,15 @@ extension LocationViewController: UICollectionViewDataSource {
         }
 
         switch section {
+        case .deliveryManInfo:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.orderCancelCellId,
+                                                                for: indexPath) as? OrderCancelCollectionViewCell else {
+                                                                    return .init()
+            }
+
+            cell.cancelLabel.text = "연락처"
+
+            return cell
         case .timeDetail:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.orderCancelCellId,
                                                           for: indexPath)
@@ -246,6 +260,8 @@ extension LocationViewController: UICollectionViewDataSource {
 
         if kind == UICollectionView.elementKindSectionHeader {
             switch section {
+            case .deliveryManInfo:
+                identifier = Identifiers.deliveryManInfoHeaderId
             case .timeDetail:
                 identifier = Identifiers.arrivalTimeHeaderId
             case .orders:
@@ -255,7 +271,7 @@ extension LocationViewController: UICollectionViewDataSource {
             }
         } else {
             switch section {
-            case .timeDetail:
+            case .deliveryManInfo, .timeDetail:
                 identifier = Identifiers.separatorFooterId
             case .orders:
                 identifier = Identifiers.totalPriceFooterId
@@ -280,6 +296,8 @@ extension LocationViewController: UICollectionViewDelegate {
         }
 
         switch section {
+        case .deliveryManInfo:
+            return .init(width: self.view.frame.width - 20, height: 90)
         case .timeDetail:
             return .init(width: self.view.frame.width - 20, height: 200)
         case .orders:
@@ -300,7 +318,7 @@ extension LocationViewController: UICollectionViewDelegate {
         switch section {
         case .orders:
             return .init(width: self.view.frame.width - 20, height: 50)
-        case .timeDetail, .sale:
+        case .deliveryManInfo, .timeDetail, .sale:
             return .init(width: self.view.frame.width - 20, height: 10)
         }
     }
@@ -316,7 +334,7 @@ extension LocationViewController: UICollectionViewDelegateFlowLayout {
         }
 
         switch section {
-        case .timeDetail:
+        case .deliveryManInfo, .timeDetail:
             return .init(width: self.view.frame.width - 20, height: 40)
         case .orders:
             return .init(width: self.view.frame.width - 20, height: 65)

@@ -9,12 +9,14 @@
 import Foundation
 
 enum SectionName: Int {
-    case timeDetail = 0
+    case deliveryManInfo = 0
+    case timeDetail
     case orders
     case sale
 }
 
 struct Identifiers {
+    static let deliveryManInfoHeaderId: String = "deliveryManInfo"
     static let arrivalTimeHeaderId: String = "orderChecking"
     static let orderNameHeaderId: String = "orderName"
     static let separatorHeaderId: String = "separator"

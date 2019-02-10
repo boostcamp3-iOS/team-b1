@@ -16,13 +16,9 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var currentProgressSlider: UISlider!
     @IBOutlet weak var currentProgressLabel: UILabel!
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func awakeFromNib() {
+        super.awakeFromNib()
         setupLayout()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
 
     private func setupLayout() {
