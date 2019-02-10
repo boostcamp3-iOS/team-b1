@@ -315,7 +315,6 @@
 				D1AF1E8F21F9A5A6004CA3A5 /* selectMenuView */,
 				9956F7F021F98468004E9854 /* AppDelegate.swift */,
 				84333AC12202CD38007372DE /* ChattingView */,
-				9956F7F221F98468004E9854 /* FirstViewController.swift */,
 				84DC185321F9C426008EE6D3 /* TabBarVC.swift */,
 				9956F7F621F98468004E9854 /* Main.storyboard */,
 				9956F7F921F98468004E9854 /* Assets.xcassets */,

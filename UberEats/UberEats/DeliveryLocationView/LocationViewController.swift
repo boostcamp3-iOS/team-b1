@@ -91,6 +91,8 @@ class LocationViewController: UIViewController {
                                             action: #selector(touchUpMoveCurrentLocationButton(_:)),
                                             for: .touchUpInside)
         
+        backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
             orderDetailCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             orderDetailCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

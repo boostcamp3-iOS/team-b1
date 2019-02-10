@@ -47,7 +47,7 @@ class ChatMesageCell: UICollectionViewCell {
         bubbleViewLeadingAnchor?.isActive = true
             
         textFieldView.leadingAnchor.constraint(equalTo: chatBubbleView.leadingAnchor,
-                                               constant:10).isActive = true
+                                               constant: 10).isActive = true
         textFieldView.trailingAnchor.constraint(equalTo: chatBubbleView.trailingAnchor,
                                                 constant: -8).isActive = true
         textFieldView.topAnchor.constraint(equalTo: chatBubbleView.topAnchor).isActive = true
@@ -91,4 +91,3 @@ class ChatMesageCell: UICollectionViewCell {
         }
     }
 }
-

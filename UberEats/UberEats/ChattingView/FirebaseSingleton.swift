@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 //모든 데이터의 루트 (ubereats-ada19) 를 의미
-fileprivate let baseRef = Database.database().reference()
+private let baseRef = Database.database().reference()
 
 class FirebaseDataService {
     static let instance = FirebaseDataService()
@@ -35,13 +35,13 @@ class FirebaseDataService {
     }
     
     //신규 유저 만들기
-    func createUserInfoFromAuth(uid: String , userData: Dictionary<String, String> ) {
+    func createUserInfoFromAuth(uid: String, userData: Dictionary<String, String> ) {
         userRef.child(uid).updateChildValues(userData)
     }
     
     //사용자 로그인 하기
     func singIn(email withEmail: String, password: String, completion: @escaping () -> Void) {
-        Auth.auth().signIn(withEmail: withEmail, password: password) { (user, error) in
+        Auth.auth().signIn(withEmail: withEmail, password: password) { (_, error) in
             guard error == nil else {
                 print("Error Occurred during Sign In")
                 return

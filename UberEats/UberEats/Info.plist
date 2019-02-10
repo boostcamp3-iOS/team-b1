@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>get ur location for collecting data</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>get ur location for collecting data</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>get ur location for collecting data</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -24,10 +18,19 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>tel</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>get ur location for collecting data</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>get ur location for collecting data</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>get ur location for collecting data</string>
+	<key>UILaunchStoryboardName</key>
 	<string>Chatting</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Chatting</string>
@@ -35,10 +38,6 @@
 	<array>
 		<string>armv7</string>
 	</array>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>tel</string>
-    </array>
 	<key>UIStatusBarTintParameters</key>
 	<dict>
 		<key>UINavigationBar</key>
