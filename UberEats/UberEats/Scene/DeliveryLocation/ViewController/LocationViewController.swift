@@ -12,6 +12,8 @@ import CoreLocation
 
 class LocationViewController: UIViewController {
     private let topInset: CGFloat = 450
+    // 배달이 시작되면 130으로 아니면 0으로 바꿀것
+    private var deliveryStartInfoHeight: CGFloat = 0
     private let backButton = UIButton().initButtonWithImage("blackArrow")
     private let moveCurrentLocationButton = UIButton().initButtonWithImage("btCurrentlocation")
 
@@ -37,7 +39,7 @@ class LocationViewController: UIViewController {
                                               collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = #colorLiteral(red: 0.9525781274, green: 0.9469152093, blue: 0.9569309354, alpha: 1)
-        collectionView.contentInset = UIEdgeInsets(top: self.topInset, left: 10, bottom: 0, right: 10)
+        collectionView.contentInset = UIEdgeInsets(top: self.view.frame.height * 0.4 + deliveryStartInfoHeight, left: 10, bottom: 0, right: 10)
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -189,7 +191,13 @@ extension LocationViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentScroll = scrollView.contentOffset.y
 
-        mapView?.alpha = currentScroll > -150 ? 0 : (-currentScroll / topInset)
+        print("currentScroll \(currentScroll)")
+
+        if currentScroll > -deliveryStartInfoHeight {
+            mapView?.alpha = 0
+        } else {
+            mapView?.alpha = -currentScroll / (view.frame.height * 0.4 + deliveryStartInfoHeight)
+        }
     }
 }
 
@@ -227,6 +235,7 @@ extension LocationViewController: UICollectionViewDataSource {
             }
 
             cell.cancelLabel.text = "연락처"
+            cell.isHidden = true
 
             return cell
         case .timeDetail:
@@ -261,7 +270,12 @@ extension LocationViewController: UICollectionViewDataSource {
         if kind == UICollectionView.elementKindSectionHeader {
             switch section {
             case .deliveryManInfo:
-                identifier = Identifiers.deliveryManInfoHeaderId
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: Identifiers.deliveryManInfoHeaderId,
+                                                                             for: indexPath)
+                header.isHidden = true
+
+                return header
             case .timeDetail:
                 identifier = Identifiers.arrivalTimeHeaderId
             case .orders:

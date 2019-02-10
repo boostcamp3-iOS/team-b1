@@ -36,6 +36,7 @@ class DeliveryStartNoticeView: UIView {
     }
 
     private func setupLayout() {
+        isHidden = true
         backgroundColor = .black
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 5
