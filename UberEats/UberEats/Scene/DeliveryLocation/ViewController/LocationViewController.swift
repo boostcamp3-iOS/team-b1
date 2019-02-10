@@ -22,9 +22,12 @@ class LocationViewController: UIViewController {
     private let sectionHeader = UICollectionView.elementKindSectionHeader
     private let sectionFooter = UICollectionView.elementKindSectionFooter
 
+    private let deliveryStartView = DeliveryStartNoticeView()
     private var mapView: GMSMapView?
     private let locationManager = CLLocationManager()
     private var userLocation = CLLocationCoordinate2D(latitude: 37.49646975398706, longitude: 127.02905088660754)
+
+    private var isStartingDelivery: Bool = false
 
     lazy var orderDetailCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -83,6 +86,7 @@ class LocationViewController: UIViewController {
     private func setupLayout() {
         self.view.addSubview(orderDetailCollectionView)
         self.orderDetailCollectionView.backgroundView?.addSubview(moveCurrentLocationButton)
+        self.orderDetailCollectionView.backgroundView?.addSubview(deliveryStartView)
         self.orderDetailCollectionView.addSubview(backButton)
 
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)),
@@ -109,7 +113,12 @@ class LocationViewController: UIViewController {
             moveCurrentLocationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                                               constant: topInset - 10),
             moveCurrentLocationButton.widthAnchor.constraint(equalToConstant: 32),
-            moveCurrentLocationButton.heightAnchor.constraint(equalToConstant: 32)
+            moveCurrentLocationButton.heightAnchor.constraint(equalToConstant: 32),
+
+            deliveryStartView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
+            deliveryStartView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            deliveryStartView.heightAnchor.constraint(equalToConstant: 70),
+            deliveryStartView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             ])
     }
 

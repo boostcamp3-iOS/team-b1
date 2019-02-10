@@ -49,6 +49,7 @@
 		BAADD13A736367A4AF0735E9 /* Pods_UberEats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6506E59626E3060BF7CD65 /* Pods_UberEats.framework */; };
 		D102A68A2208335E004B458C /* OrderNameCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102A6892208335E004B458C /* OrderNameCollectionReusableView.swift */; };
 		D102A68E22083853004B458C /* SeparatorCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102A68D22083853004B458C /* SeparatorCollectionReusableView.swift */; };
+		D1135C302210114C0032F103 /* DeliveryStartNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1135C2F2210114C0032F103 /* DeliveryStartNoticeView.swift */; };
 		D115BBB321F9D49E00C57809 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115BBB121F9D49E00C57809 /* SearchCollectionViewCell.swift */; };
 		D115BBB421F9D49E00C57809 /* SearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D115BBB221F9D49E00C57809 /* SearchCollectionViewCell.xib */; };
 		D115BBB721F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115BBB521F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift */; };
@@ -145,6 +146,7 @@
 		A2C3D32B8615DFA8A8B5DDD6 /* Pods-UberEatsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEatsTests.debug.xcconfig"; path = "Target Support Files/Pods-UberEatsTests/Pods-UberEatsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D102A6892208335E004B458C /* OrderNameCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderNameCollectionReusableView.swift; sourceTree = "<group>"; };
 		D102A68D22083853004B458C /* SeparatorCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCollectionReusableView.swift; sourceTree = "<group>"; };
+		D1135C2F2210114C0032F103 /* DeliveryStartNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStartNoticeView.swift; sourceTree = "<group>"; };
 		D115BBB121F9D49E00C57809 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		D115BBB221F9D49E00C57809 /* SearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		D115BBB521F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndLocationCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				D102A6892208335E004B458C /* OrderNameCollectionReusableView.swift */,
 				D102A68D22083853004B458C /* SeparatorCollectionReusableView.swift */,
 				D16DAEE2220888F200564823 /* TotalPriceCollectionReusableView.swift */,
+				D1135C2F2210114C0032F103 /* DeliveryStartNoticeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -800,6 +803,7 @@
 				D1CC3E9C22045EAA00670675 /* FloatingView.swift in Sources */,
 				D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */,
 				D115BBB721F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift in Sources */,
+				D1135C302210114C0032F103 /* DeliveryStartNoticeView.swift in Sources */,
 				84DC185421F9C426008EE6D3 /* TabBarVC.swift in Sources */,
 				D115BBB321F9D49E00C57809 /* SearchCollectionViewCell.swift in Sources */,
 				D1CED1BF22075039007626B4 /* OrderCheckingCollectionReusableView.swift in Sources */,
