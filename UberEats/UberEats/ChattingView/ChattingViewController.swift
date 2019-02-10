@@ -54,6 +54,16 @@ class ChattingViewController: UIViewController {
         
         messageTextField.dropShadow(color: .gray, offSet: CGSize.zero)
     }
+    
+    @IBAction func callAction(_ sender: Any) {
+        if let phoneCallURL = URL(string: "tel://\(+82-10-2031-3421)") {
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(phoneCallURL)) {
+                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
     private func setupTextFieldNoti() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)),
                                                name: UIResponder.keyboardWillShowNotification, object: nil)

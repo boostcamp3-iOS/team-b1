@@ -35,6 +35,13 @@
                                             <action selector="sendMessages:" destination="Cxa-Fy-Bvm" eventType="touchUpInside" id="Dzu-kC-GSJ"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNm-xU-eEo">
+                                        <rect key="frame" x="36" y="33.666666666666671" width="30" height="30"/>
+                                        <state key="normal" title="전화"/>
+                                        <connections>
+                                            <action selector="callAction:" destination="Cxa-Fy-Bvm" eventType="touchUpInside" id="p7Q-sC-DMN"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -42,6 +49,8 @@
                                     <constraint firstItem="xey-QB-92S" firstAttribute="centerY" secondItem="7Ie-1I-pYZ" secondAttribute="centerY" id="JH2-qE-VI3"/>
                                     <constraint firstItem="xey-QB-92S" firstAttribute="leading" secondItem="7Ie-1I-pYZ" secondAttribute="trailing" constant="69" id="MzE-qZ-4DT"/>
                                     <constraint firstItem="7Ie-1I-pYZ" firstAttribute="centerY" secondItem="Vaz-jk-P3p" secondAttribute="centerY" id="U44-TK-in6"/>
+                                    <constraint firstItem="ZNm-xU-eEo" firstAttribute="centerY" secondItem="Vaz-jk-P3p" secondAttribute="centerY" id="cmE-hI-HkX"/>
+                                    <constraint firstItem="ZNm-xU-eEo" firstAttribute="leading" secondItem="Vaz-jk-P3p" secondAttribute="leading" constant="36" id="wx7-aj-v8C"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rba-p3-DqZ">
