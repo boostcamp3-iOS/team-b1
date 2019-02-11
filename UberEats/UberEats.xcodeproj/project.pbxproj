@@ -49,6 +49,9 @@
 		BAADD13A736367A4AF0735E9 /* Pods_UberEats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6506E59626E3060BF7CD65 /* Pods_UberEats.framework */; };
 		D102A68A2208335E004B458C /* OrderNameCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102A6892208335E004B458C /* OrderNameCollectionReusableView.swift */; };
 		D102A68E22083853004B458C /* SeparatorCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102A68D22083853004B458C /* SeparatorCollectionReusableView.swift */; };
+		D1135C302210114C0032F103 /* DeliveryStartNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1135C2F2210114C0032F103 /* DeliveryStartNoticeView.swift */; };
+		D1135C3322102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1135C3122102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift */; };
+		D1135C3422102C0A0032F103 /* DeliveryManInfoCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1135C3222102C0A0032F103 /* DeliveryManInfoCollectionReusableView.xib */; };
 		D115BBB321F9D49E00C57809 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115BBB121F9D49E00C57809 /* SearchCollectionViewCell.swift */; };
 		D115BBB421F9D49E00C57809 /* SearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D115BBB221F9D49E00C57809 /* SearchCollectionViewCell.xib */; };
 		D115BBB721F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115BBB521F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift */; };
@@ -145,6 +148,9 @@
 		A2C3D32B8615DFA8A8B5DDD6 /* Pods-UberEatsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEatsTests.debug.xcconfig"; path = "Target Support Files/Pods-UberEatsTests/Pods-UberEatsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D102A6892208335E004B458C /* OrderNameCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderNameCollectionReusableView.swift; sourceTree = "<group>"; };
 		D102A68D22083853004B458C /* SeparatorCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCollectionReusableView.swift; sourceTree = "<group>"; };
+		D1135C2F2210114C0032F103 /* DeliveryStartNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStartNoticeView.swift; sourceTree = "<group>"; };
+		D1135C3122102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryManInfoCollectionReusableView.swift; sourceTree = "<group>"; };
+		D1135C3222102C0A0032F103 /* DeliveryManInfoCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryManInfoCollectionReusableView.xib; sourceTree = "<group>"; };
 		D115BBB121F9D49E00C57809 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		D115BBB221F9D49E00C57809 /* SearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		D115BBB521F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndLocationCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -319,8 +325,8 @@
 		995D9019220FFEF200DCA964 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D1391FC3220AB2D90064FC37 /* EmptyCollectionViewCell.swift */,
 				D11B04D7220583A100F20363 /* LocationViewController.storyboard */,
+				D1391FC3220AB2D90064FC37 /* EmptyCollectionViewCell.swift */,
 				D1CED1BB22074759007626B4 /* OrderedMenuCollectionViewCell.swift */,
 				D1CED1BD22075039007626B4 /* OrderCheckingCollectionReusableView.swift */,
 				D1CED1BE22075039007626B4 /* OrderCheckingCollectionReusableView.xib */,
@@ -328,6 +334,9 @@
 				D102A6892208335E004B458C /* OrderNameCollectionReusableView.swift */,
 				D102A68D22083853004B458C /* SeparatorCollectionReusableView.swift */,
 				D16DAEE2220888F200564823 /* TotalPriceCollectionReusableView.swift */,
+				D1135C2F2210114C0032F103 /* DeliveryStartNoticeView.swift */,
+				D1135C3122102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift */,
+				D1135C3222102C0A0032F103 /* DeliveryManInfoCollectionReusableView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -629,6 +638,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1135C3422102C0A0032F103 /* DeliveryManInfoCollectionReusableView.xib in Resources */,
 				998A247621FF2B1500AF250D /* .swiftlint.yml in Resources */,
 				D11B04D8220583A100F20363 /* LocationViewController.storyboard in Resources */,
 				84DC184121F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib in Resources */,
@@ -800,6 +810,7 @@
 				D1CC3E9C22045EAA00670675 /* FloatingView.swift in Sources */,
 				D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */,
 				D115BBB721F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift in Sources */,
+				D1135C302210114C0032F103 /* DeliveryStartNoticeView.swift in Sources */,
 				84DC185421F9C426008EE6D3 /* TabBarVC.swift in Sources */,
 				D115BBB321F9D49E00C57809 /* SearchCollectionViewCell.swift in Sources */,
 				D1CED1BF22075039007626B4 /* OrderCheckingCollectionReusableView.swift in Sources */,
@@ -817,6 +828,7 @@
 				D1AF1EAB21F9A631004CA3A5 /* Food.swift in Sources */,
 				843B051A220405540082FEFF /* ChatMessageCell.swift in Sources */,
 				D16DAEE3220888F200564823 /* TotalPriceCollectionReusableView.swift in Sources */,
+				D1135C3322102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift in Sources */,
 				D1AF1E9E21F9A5A6004CA3A5 /* TempCollectionReusableView.swift in Sources */,
 				D1AF1EA321F9A5A6004CA3A5 /* MenuSectionView.swift in Sources */,
 				99342CCE21FB13550029DB10 /* Throttler.swift in Sources */,

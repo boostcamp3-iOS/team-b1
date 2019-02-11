@@ -12,6 +12,8 @@ import CoreLocation
 
 class LocationViewController: UIViewController {
     private let topInset: CGFloat = 450
+    // 배달이 시작되면 130으로 아니면 0으로 바꿀것
+    private var deliveryStartInfoHeight: CGFloat = 0
     private let backButton = UIButton().initButtonWithImage("blackArrow")
     private let moveCurrentLocationButton = UIButton().initButtonWithImage("btCurrentlocation")
 
@@ -22,9 +24,12 @@ class LocationViewController: UIViewController {
     private let sectionHeader = UICollectionView.elementKindSectionHeader
     private let sectionFooter = UICollectionView.elementKindSectionFooter
 
+    private let deliveryStartView = DeliveryStartNoticeView()
     private var mapView: GMSMapView?
     private let locationManager = CLLocationManager()
     private var userLocation = CLLocationCoordinate2D(latitude: 37.49646975398706, longitude: 127.02905088660754)
+
+    private var isStartingDelivery: Bool = false
 
     lazy var orderDetailCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -34,7 +39,7 @@ class LocationViewController: UIViewController {
                                               collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = #colorLiteral(red: 0.9525781274, green: 0.9469152093, blue: 0.9569309354, alpha: 1)
-        collectionView.contentInset = UIEdgeInsets(top: self.topInset, left: 10, bottom: 0, right: 10)
+        collectionView.contentInset = UIEdgeInsets(top: self.view.frame.height * 0.4 + deliveryStartInfoHeight, left: 10, bottom: 0, right: 10)
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -83,6 +88,7 @@ class LocationViewController: UIViewController {
     private func setupLayout() {
         self.view.addSubview(orderDetailCollectionView)
         self.orderDetailCollectionView.backgroundView?.addSubview(moveCurrentLocationButton)
+        self.orderDetailCollectionView.backgroundView?.addSubview(deliveryStartView)
         self.orderDetailCollectionView.addSubview(backButton)
 
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)),
@@ -109,12 +115,22 @@ class LocationViewController: UIViewController {
             moveCurrentLocationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                                               constant: topInset - 10),
             moveCurrentLocationButton.widthAnchor.constraint(equalToConstant: 32),
-            moveCurrentLocationButton.heightAnchor.constraint(equalToConstant: 32)
+            moveCurrentLocationButton.heightAnchor.constraint(equalToConstant: 32),
+
+            deliveryStartView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
+            deliveryStartView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            deliveryStartView.heightAnchor.constraint(equalToConstant: 70),
+            deliveryStartView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             ])
     }
 
     private func setupCollectionView() {
         //headers
+        let deliveryManInfoHeaderNib = UINib(nibName: "DeliveryManInfoCollectionReusableView",
+                                             bundle: nil)
+
+        orderDetailCollectionView.register(deliveryManInfoHeaderNib, forSupplementaryViewOfKind: sectionHeader, withReuseIdentifier: Identifiers.deliveryManInfoHeaderId)
+
         let arrivalTimeHeaderNib = UINib(nibName: "OrderCheckingCollectionReusableView",
                                          bundle: nil)
 
@@ -175,13 +191,19 @@ extension LocationViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentScroll = scrollView.contentOffset.y
 
-        mapView?.alpha = currentScroll > -150 ? 0 : (-currentScroll / topInset)
+        print("currentScroll \(currentScroll)")
+
+        if currentScroll > -deliveryStartInfoHeight {
+            mapView?.alpha = 0
+        } else {
+            mapView?.alpha = -currentScroll / (view.frame.height * 0.4 + deliveryStartInfoHeight)
+        }
     }
 }
 
 extension LocationViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 4
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -191,7 +213,7 @@ extension LocationViewController: UICollectionViewDataSource {
         }
 
         switch section {
-        case .timeDetail, .sale:
+        case .deliveryManInfo, .timeDetail, .sale:
             return 1
         case .orders:
             return orders.count
@@ -206,6 +228,16 @@ extension LocationViewController: UICollectionViewDataSource {
         }
 
         switch section {
+        case .deliveryManInfo:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.orderCancelCellId,
+                                                                for: indexPath) as? OrderCancelCollectionViewCell else {
+                                                                    return .init()
+            }
+
+            cell.cancelLabel.text = "연락처"
+            cell.isHidden = true
+
+            return cell
         case .timeDetail:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.orderCancelCellId,
                                                           for: indexPath)
@@ -237,6 +269,13 @@ extension LocationViewController: UICollectionViewDataSource {
 
         if kind == UICollectionView.elementKindSectionHeader {
             switch section {
+            case .deliveryManInfo:
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: Identifiers.deliveryManInfoHeaderId,
+                                                                             for: indexPath)
+                header.isHidden = true
+
+                return header
             case .timeDetail:
                 identifier = Identifiers.arrivalTimeHeaderId
             case .orders:
@@ -246,7 +285,7 @@ extension LocationViewController: UICollectionViewDataSource {
             }
         } else {
             switch section {
-            case .timeDetail:
+            case .deliveryManInfo, .timeDetail:
                 identifier = Identifiers.separatorFooterId
             case .orders:
                 identifier = Identifiers.totalPriceFooterId
@@ -271,6 +310,8 @@ extension LocationViewController: UICollectionViewDelegate {
         }
 
         switch section {
+        case .deliveryManInfo:
+            return .init(width: self.view.frame.width - 20, height: 90)
         case .timeDetail:
             return .init(width: self.view.frame.width - 20, height: 200)
         case .orders:
@@ -291,7 +332,7 @@ extension LocationViewController: UICollectionViewDelegate {
         switch section {
         case .orders:
             return .init(width: self.view.frame.width - 20, height: 50)
-        case .timeDetail, .sale:
+        case .deliveryManInfo, .timeDetail, .sale:
             return .init(width: self.view.frame.width - 20, height: 10)
         }
     }
@@ -307,7 +348,7 @@ extension LocationViewController: UICollectionViewDelegateFlowLayout {
         }
 
         switch section {
-        case .timeDetail:
+        case .deliveryManInfo, .timeDetail:
             return .init(width: self.view.frame.width - 20, height: 40)
         case .orders:
             return .init(width: self.view.frame.width - 20, height: 65)
