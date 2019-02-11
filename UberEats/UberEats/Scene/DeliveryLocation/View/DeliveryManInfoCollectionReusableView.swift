@@ -23,5 +23,6 @@ class DeliveryManInfoCollectionReusableView: UICollectionReusableView {
         deliveryManImageView.layer.cornerRadius = 25
         deliveryManNameLabel.text = "수근 (99% 👍🏻)"
         vehicleLabel.text = "우버 Moterbike"
+        isHidden = true
     }
 }

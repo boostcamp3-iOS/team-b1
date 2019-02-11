@@ -94,15 +94,15 @@ class ChattingViewController: UIViewController {
         var changeInHeight = (keyboardFrame.height) * (show ? -1 : 1)
         
         if changeInHeight > 0 {
-           changeInHeight -= 37
+           changeInHeight -= 5
         }
         
         //5
         UIView.animate(withDuration: animationDurarion, animations: { () -> Void in
             //self.bottomConstraint.constant += changeInHeight
             self.view.frame.origin.y += changeInHeight
+            //self.chattingCollecionView.frame.origin.y += changeInHeight
         })
-        
     }
     
     private func setupChattingCollectionView() {
@@ -145,7 +145,7 @@ class ChattingViewController: UIViewController {
         let deliveryUID = "yJI58ZZYyiZVaatNUrIMaBdNsL42"
         
         let data: Dictionary<String, AnyObject> = [
-            "userEmail": "@gmail.com" as AnyObject,
+            "userEmail": "user@gmail.com" as AnyObject,
             "text" : messageTextField.text as AnyObject,
             "timestamp": NSNumber(value: Date().timeIntervalSince1970)
         ]
@@ -205,6 +205,13 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
             height = text.estimateCGRect.height
         }
         return CGSize(width: view.frame.width, height: height + 15)
+    }
+}
+
+extension ChattingViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
