@@ -31,7 +31,6 @@ class ChattingViewController: UIViewController {
     
     private func observeMessages() {
         let messageFromGroup = Database.database().reference().child("groups").child("-LXbWKQsskziJ50aw8qN")
-        
         messageFromGroup.observe(.childAdded) { (snapshot) in
             //print(snapshot.key)
             let messageRef = Database.database().reference().child("message").child(snapshot.key)
@@ -49,7 +48,6 @@ class ChattingViewController: UIViewController {
                     let messageInstance = Message(text: text, userEmail: userEmail)
                     self.messages.append(messageInstance)
                     self.chattingCollecionView.reloadData()
-                    
                     
                     self.scrollToBottom()
                     self.chattingCollecionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
@@ -163,6 +161,7 @@ class ChattingViewController: UIViewController {
             Database.database().reference().child("groups").child("-LXbWKQsskziJ50aw8qN").updateChildValues(postData)
         }
     }
+    
     @IBAction private func loginAction(_ sender: Any) {
         
     }
@@ -192,7 +191,7 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
             cell.bubbleViewWidhAnchor?.constant = text.estimateCGRect.width + 32
         }
         cell.fromEmail(userEmail: fromEmail)
-        cell.textFieldView.text = message.text!
+        cell.messageLabel.text = message.text!
         return cell
     }
     
@@ -204,6 +203,7 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
         if let text = messages[indexPath.row].text {
             height = text.estimateCGRect.height
         }
+        
         return CGSize(width: view.frame.width, height: height + 15)
     }
 }

@@ -2,13 +2,12 @@ import UIKit
 
 class ChatMesageCell: UICollectionViewCell {
 
-    let textFieldView: UITextView = {
-        let textView = UITextView()
-        textView.text = "Sample Text"
-        textView.font = UIFont.systemFont(ofSize: 16)
-        textView.isScrollEnabled = false
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        return textView
+    let messageLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
 
     let chatBubbleView: UIView = {
@@ -28,30 +27,35 @@ class ChatMesageCell: UICollectionViewCell {
     var bubbleViewWidhAnchor: NSLayoutConstraint?
     var bubbleViewTrailingAnchor: NSLayoutConstraint?
     var bubbleViewLeadingAnchor: NSLayoutConstraint?
+    var bubbleViewHeightAnchor: NSLayoutConstraint?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         addSubview(chatBubbleView)
-        addSubview(textFieldView)
+        addSubview(messageLabel)
 
         chatBubbleView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         chatBubbleView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+
         bubbleViewWidhAnchor = chatBubbleView.widthAnchor.constraint(equalToConstant: 300)
         bubbleViewLeadingAnchor = chatBubbleView.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                                           constant: 3)
         bubbleViewTrailingAnchor = chatBubbleView.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                                             constant: -10)
+        bubbleViewHeightAnchor = chatBubbleView.heightAnchor.constraint(equalToConstant: 1000)
 
         bubbleViewWidhAnchor?.isActive = true
         bubbleViewLeadingAnchor?.isActive = true
+        bubbleViewTrailingAnchor?.isActive = true
+        bubbleViewHeightAnchor?.isActive = true
 
-        textFieldView.leadingAnchor.constraint(equalTo: chatBubbleView.leadingAnchor,
+        messageLabel.leadingAnchor.constraint(equalTo: chatBubbleView.leadingAnchor,
                                                constant: 10).isActive = true
-        textFieldView.trailingAnchor.constraint(equalTo: chatBubbleView.trailingAnchor,
+        messageLabel.trailingAnchor.constraint(equalTo: chatBubbleView.trailingAnchor,
                                                 constant: -8).isActive = true
-        textFieldView.topAnchor.constraint(equalTo: chatBubbleView.topAnchor).isActive = true
-        textFieldView.bottomAnchor.constraint(equalTo: chatBubbleView.bottomAnchor).isActive = true
+        messageLabel.topAnchor.constraint(equalTo: chatBubbleView.topAnchor).isActive = true
+        messageLabel.bottomAnchor.constraint(equalTo: chatBubbleView.bottomAnchor).isActive = true
 
     }
 
@@ -61,11 +65,11 @@ class ChatMesageCell: UICollectionViewCell {
 
     func fromEmail(userEmail: String) {
         if userEmail == "user@gmail.com" {
-            textFieldView.backgroundColor = UIColor(displayP3Red: 10 / 255,
+            messageLabel.backgroundColor = UIColor(displayP3Red: 10 / 255,
                                                     green: 128 / 255,
                                                     blue: 2 / 255,
                                                     alpha: 1.0)
-            textFieldView.textColor = .white
+            messageLabel.textColor = .white
 
             chatBubbleView.backgroundColor = UIColor(displayP3Red: 10 / 255,
                                                      green: 128 / 255,
@@ -79,8 +83,8 @@ class ChatMesageCell: UICollectionViewCell {
             bubbleViewLeadingAnchor?.isActive = false
             bubbleViewTrailingAnchor?.isActive = true
         } else {
-            textFieldView.backgroundColor = .blue
-            textFieldView.textColor = .white
+            messageLabel.backgroundColor = .blue
+            messageLabel.textColor = .white
             chatBubbleView.backgroundColor = .blue
             chatBubbleView.layer.maskedCorners = [.layerMaxXMinYCorner,
                                                   .layerMaxXMaxYCorner,

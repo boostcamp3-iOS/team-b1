@@ -37,7 +37,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     private let locationManager = CLLocationManager()
 
     private lazy var pageControl: UIPageControl = {
-        let pageControl = UIPageControl(frame: CGRect(x: 50, y: scrollView.frame.height - 40,
+        let pageControl = UIPageControl(frame: CGRect(x: 50, y: scrollView.bounds.height - 40,
                                                       width: scrollView.frame.width - 280, height: 37))
         pageControl.currentPage = 0
         return pageControl
@@ -45,8 +45,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     private static let numberOfSection = 8
 
-    private var foodMarketSevice: FoodMarketService =
-        DependencyContainer.share.getDependency(key: .foodMarketService)
+    private var foodMarketService: FoodMarketService = DependencyContainer.share.getDependency(key: .foodMarketService)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +54,10 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         setupTableView()
         setupScrollView()
 
-        pageControl.currentPage = 0
         isScrolledByUser = false
 
         bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self,
                                            selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
-
         initFoodMarket()
     }
 
@@ -71,7 +68,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     }
 
     private func initFoodMarket() {
-        foodMarketSevice.requestFoodMarket { (dataResponse) in
+        foodMarketService.requestFoodMarket { (dataResponse) in
             if dataResponse.isSuccess {
                 let data = dataResponse.value?.advertisingBoard.first!
                 print("왔다!!!!!")
@@ -81,7 +78,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
                 fatalError()
             }
         }
-
     }
 
     private func setupTableView() {
@@ -155,10 +151,10 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.scrollView {
             //수정
-            if scrollView.contentOffset.x >= view.frame.width * CGFloat(bannerImages.count - 1) {
-                scrollView.isScrollEnabled = false
-                scrollView.isScrollEnabled = true
-            }
+//            if scrollView.contentOffset.x >= view.frame.width * CGFloat(bannerImages.count - 1) {
+//                scrollView.isScrollEnabled = false
+//                scrollView.isScrollEnabled = true
+//            }
 
             let page = scrollView.contentOffset.x / scrollView.frame.size.width
             pageControl.currentPage = Int(page)
@@ -380,11 +376,9 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-
         guard let section = Section(rawValue: collectionView.tag) else {
             preconditionFailure("")
         }
-
         switch section {
         case .recommendFood:
             return CGSize(width: tableView.frame.width * 0.6, height: tableView.frame.width * 0.61 * 0.92)
@@ -395,7 +389,6 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         default:
             return CGSize(width: 400, height: 400)
         }
-
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -417,4 +410,5 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         }
     }
+
 }
