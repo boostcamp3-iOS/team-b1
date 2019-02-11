@@ -62,6 +62,16 @@ class LocationViewController: UIViewController {
         setupMapView()
         setupLayout()
         setupCollectionView()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.backButton.setImage(UIImage(named: "btnClose"), for: .normal)
+            self.deliveryStartView.isHidden = false
+            self.deliveryStartInfoHeight = 130
+            self.orderDetailCollectionView.contentInset = UIEdgeInsets(top: self.view.frame.height * 0.4 + self.deliveryStartInfoHeight, left: 10, bottom: 0, right: 10)
+
+            self.orderDetailCollectionView.contentOffset.y = self.orderDetailCollectionView.contentOffset.y - 130
+            self.view.layoutIfNeeded()
+        }
     }
 
     private func setupMapView() {
@@ -258,6 +268,10 @@ extension LocationViewController: UICollectionViewDataSource {
             cell.cancelLabel.text = "연락처"
             cell.isHidden = true
 
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                cell.isHidden = false
+            }
+
             return cell
         case .timeDetail:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.orderCancelCellId,
@@ -294,6 +308,10 @@ extension LocationViewController: UICollectionViewDataSource {
                                                                              withReuseIdentifier: Identifiers.deliveryManInfoHeaderId,
                                                                              for: indexPath)
                 header.isHidden = true
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                    header.isHidden = false
+                }
 
                 return header
             case .timeDetail:
