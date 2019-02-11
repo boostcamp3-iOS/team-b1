@@ -38,8 +38,6 @@
 		998A255B2205CCDD00AF250D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		998A255D2205CCF500AF250D /* Router+Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Method.swift"; sourceTree = "<group>"; };
 		998A25622205D2A600AF250D /* DataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
-		998A25652205DDB300AF250D /* Pods_UberEats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_UberEats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		998A25672205DE6F00AF250D /* Pods_UberEats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_UberEats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		998A25FE22089C5C00AF250D /* RoutingTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,8 +105,6 @@
 		998A25642205DDB300AF250D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				998A25672205DE6F00AF250D /* Pods_UberEats.framework */,
-				998A25652205DDB300AF250D /* Pods_UberEats.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

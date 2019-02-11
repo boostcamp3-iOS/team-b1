@@ -7,20 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84CA5E88221114DF007E95FF /* ServiceInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5E87221114DF007E95FF /* ServiceInterface.framework */; };
+		84CA5ECD22113281007E95FF /* MockServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5ECC22113281007E95FF /* MockServer.framework */; };
 		99CC24EC220C679800A86AC7 /* DependencyPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CC24EB220C679800A86AC7 /* DependencyPool.swift */; };
 		99F5790B220ACDA5002D792A /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F5790A220ACDA5002D792A /* Common.framework */; };
-		99F5790D220ACDA5002D792A /* MockServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F5790C220ACDA5002D792A /* MockServer.framework */; };
 		99F5790F220ACDA5002D792A /* Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F5790E220ACDA5002D792A /* Service.framework */; };
 		99F57911220ACDB5002D792A /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F57910220ACDB5002D792A /* DependencyContainer.swift */; };
 		99F57917220AD0F0002D792A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 99F57916220AD0F0002D792A /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84CA5E87221114DF007E95FF /* ServiceInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ServiceInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84CA5ECC22113281007E95FF /* MockServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MockServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99CC24EB220C679800A86AC7 /* DependencyPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyPool.swift; sourceTree = "<group>"; };
 		99F578FE220ACD8C002D792A /* DependencyContainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DependencyContainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F57902220ACD8C002D792A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99F5790A220ACDA5002D792A /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		99F5790C220ACDA5002D792A /* MockServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MockServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F5790E220ACDA5002D792A /* Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Service.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F57910220ACDB5002D792A /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		99F57916220AD0F0002D792A /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -31,8 +33,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84CA5ECD22113281007E95FF /* MockServer.framework in Frameworks */,
+				84CA5E88221114DF007E95FF /* ServiceInterface.framework in Frameworks */,
 				99F5790B220ACDA5002D792A /* Common.framework in Frameworks */,
-				99F5790D220ACDA5002D792A /* MockServer.framework in Frameworks */,
 				99F5790F220ACDA5002D792A /* Service.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,8 +74,9 @@
 		99F57909220ACDA5002D792A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84CA5ECC22113281007E95FF /* MockServer.framework */,
+				84CA5E87221114DF007E95FF /* ServiceInterface.framework */,
 				99F5790A220ACDA5002D792A /* Common.framework */,
-				99F5790C220ACDA5002D792A /* MockServer.framework */,
 				99F5790E220ACDA5002D792A /* Service.framework */,
 			);
 			name = Frameworks;

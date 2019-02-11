@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B07DCA2617C7027DEBD3B1E /* Pods_UberEatsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B151BE5FF725EBA9E065F31 /* Pods_UberEatsTests.framework */; };
 		842CC7B921FEBC100045D084 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CC7B821FEBC100045D084 /* CollectionViewController.swift */; };
 		84333AC32202CDA3007372DE /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84333AC22202CDA3007372DE /* ChattingViewController.swift */; };
 		84333AC52202CDB5007372DE /* Chatting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84333AC42202CDB5007372DE /* Chatting.storyboard */; };
@@ -16,6 +15,18 @@
 		843B051A220405540082FEFF /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B0519220405540082FEFF /* ChatMessageCell.swift */; };
 		84604F212205928100212A00 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84604F202205928100212A00 /* Message.swift */; };
 		84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */; };
+		84CA5ED22211347E007E95FF /* MockServer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5ECE221133D8007E95FF /* MockServer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84CA5ED522113482007E95FF /* DependencyContainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5ED422113482007E95FF /* DependencyContainer.framework */; };
+		84CA5ED622113482007E95FF /* DependencyContainer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5ED422113482007E95FF /* DependencyContainer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84CA5ED722113487007E95FF /* ServiceInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57930220C5A90002D792A /* ServiceInterface.framework */; };
+		84CA5EDA2211348F007E95FF /* ServiceInterface.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57930220C5A90002D792A /* ServiceInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84CA5EDC22113498007E95FF /* Service.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57914220AD07F002D792A /* Service.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84CA5EDE2211349E007E95FF /* MockServer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5ECE221133D8007E95FF /* MockServer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84CA5EDF221134A3007E95FF /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CCFCF4220B038600F4A4EF /* Common.framework */; };
+		84CA5EE0221134A3007E95FF /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CCFCF4220B038600F4A4EF /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84CA5EE2221134AA007E95FF /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CCFCF4220B038600F4A4EF /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84CA5EE4221134E9007E95FF /* Waltz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5EE3221134E9007E95FF /* Waltz.framework */; };
+		84CA5EE5221134E9007E95FF /* Waltz.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5EE3221134E9007E95FF /* Waltz.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84DC184121F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */; };
 		84DC184221F9A51D008EE6D3 /* RecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */; };
 		84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183B21F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift */; };
@@ -44,8 +55,6 @@
 		9956F7FD21F98468004E9854 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9956F7FB21F98468004E9854 /* LaunchScreen.storyboard */; };
 		995D90242210023C00DCA964 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 995D90232210023B00DCA964 /* GoogleService-Info.plist */; };
 		998A247621FF2B1500AF250D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 998A247521FF2B1500AF250D /* .swiftlint.yml */; };
-		99F57913220AD07F002D792A /* DependencyContainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57912220AD07F002D792A /* DependencyContainer.framework */; };
-		99F57931220C5A90002D792A /* ServiceInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57930220C5A90002D792A /* ServiceInterface.framework */; };
 		BAADD13A736367A4AF0735E9 /* Pods_UberEats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6506E59626E3060BF7CD65 /* Pods_UberEats.framework */; };
 		D102A68A2208335E004B458C /* OrderNameCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102A6892208335E004B458C /* OrderNameCollectionReusableView.swift */; };
 		D102A68E22083853004B458C /* SeparatorCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102A68D22083853004B458C /* SeparatorCollectionReusableView.swift */; };
@@ -89,6 +98,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		84CA5ED32211347E007E95FF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				84CA5EDA2211348F007E95FF /* ServiceInterface.framework in Embed Frameworks */,
+				84CA5ED22211347E007E95FF /* MockServer.framework in Embed Frameworks */,
+				84CA5EDC22113498007E95FF /* Service.framework in Embed Frameworks */,
+				84CA5EE0221134A3007E95FF /* Common.framework in Embed Frameworks */,
+				84CA5ED622113482007E95FF /* DependencyContainer.framework in Embed Frameworks */,
+				84CA5EE5221134E9007E95FF /* Waltz.framework in Embed Frameworks */,
+				84CA5EE2221134AA007E95FF /* Common.framework in Embed Frameworks */,
+				84CA5EDE2211349E007E95FF /* MockServer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		21E5371DEE7450775E68850B /* Pods-UberEatsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEatsTests.release.xcconfig"; path = "Target Support Files/Pods-UberEatsTests/Pods-UberEatsTests.release.xcconfig"; sourceTree = "<group>"; };
 		2C582C1577D833CF963E43A5 /* Pods-UberEatsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEatsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UberEatsTests/Pods-UberEatsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,7 +127,6 @@
 		4626BB81DAD6F796D73B2CB1 /* Pods-UberEats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEats.release.xcconfig"; path = "Pods/Target Support Files/Pods-UberEats/Pods-UberEats.release.xcconfig"; sourceTree = "<group>"; };
 		6EC7DF705E1117A7299B62BC /* Pods-UberEatsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEatsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UberEatsTests/Pods-UberEatsTests.release.xcconfig"; sourceTree = "<group>"; };
 		754714E789542F3590FBCC3B /* Pods-UberEats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEats.debug.xcconfig"; path = "Target Support Files/Pods-UberEats/Pods-UberEats.debug.xcconfig"; sourceTree = "<group>"; };
-		7B151BE5FF725EBA9E065F31 /* Pods_UberEatsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UberEatsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		842CC7B821FEBC100045D084 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		84333AC22202CDA3007372DE /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
 		84333AC42202CDB5007372DE /* Chatting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chatting.storyboard; sourceTree = "<group>"; };
@@ -106,6 +135,9 @@
 		843B0519220405540082FEFF /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		84604F202205928100212A00 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
+		84CA5ECE221133D8007E95FF /* MockServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MockServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84CA5ED422113482007E95FF /* DependencyContainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DependencyContainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84CA5EE3221134E9007E95FF /* Waltz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Waltz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CCFCF4220B038600F4A4EF /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpectTimeCollectionViewCell.xib; sourceTree = "<group>"; };
 		84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -139,7 +171,6 @@
 		9956F7FE21F98468004E9854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		995D90232210023B00DCA964 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		998A247521FF2B1500AF250D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
-		99F57912220AD07F002D792A /* DependencyContainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DependencyContainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F57914220AD07F002D792A /* Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Service.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F57930220C5A90002D792A /* ServiceInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ServiceInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C3D32B8615DFA8A8B5DDD6 /* Pods-UberEatsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEatsTests.debug.xcconfig"; path = "Target Support Files/Pods-UberEatsTests/Pods-UberEatsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -181,7 +212,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B07DCA2617C7027DEBD3B1E /* Pods_UberEatsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,9 +219,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99F57931220C5A90002D792A /* ServiceInterface.framework in Frameworks */,
-				99F57913220AD07F002D792A /* DependencyContainer.framework in Frameworks */,
+				84CA5ED722113487007E95FF /* ServiceInterface.framework in Frameworks */,
 				BAADD13A736367A4AF0735E9 /* Pods_UberEats.framework in Frameworks */,
+				84CA5ED522113482007E95FF /* DependencyContainer.framework in Frameworks */,
+				84CA5EE4221134E9007E95FF /* Waltz.framework in Frameworks */,
+				84CA5EDF221134A3007E95FF /* Common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +304,9 @@
 		9956F7E421F98468004E9854 = {
 			isa = PBXGroup;
 			children = (
+				84CA5EE3221134E9007E95FF /* Waltz.framework */,
+				84CA5ED422113482007E95FF /* DependencyContainer.framework */,
+				84CA5ECE221133D8007E95FF /* MockServer.framework */,
 				9956F7EF21F98468004E9854 /* UberEats */,
 				99342CC221FB12CF0029DB10 /* UberEatsTests */,
 				9956F7EE21F98468004E9854 /* Products */,
@@ -467,10 +502,8 @@
 			children = (
 				99F57930220C5A90002D792A /* ServiceInterface.framework */,
 				84CCFCF4220B038600F4A4EF /* Common.framework */,
-				99F57912220AD07F002D792A /* DependencyContainer.framework */,
 				99F57914220AD07F002D792A /* Service.framework */,
 				3F6506E59626E3060BF7CD65 /* Pods_UberEats.framework */,
-				7B151BE5FF725EBA9E065F31 /* Pods_UberEatsTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -569,6 +602,7 @@
 				998A247221FF27E200AF250D /* ShellScript */,
 				46A94EBC4DF57530E532C692 /* [CP] Embed Pods Frameworks */,
 				EA8A779FD3DFD84A6E2EF7C5 /* [CP] Copy Pods Resources */,
+				84CA5ED32211347E007E95FF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1023,13 +1057,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6958JMS7R4;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1042,13 +1076,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6958JMS7R4;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
