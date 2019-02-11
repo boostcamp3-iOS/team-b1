@@ -14,8 +14,10 @@ class LocationViewController: UIViewController {
     private let topInset: CGFloat = 450
     // 배달이 시작되면 130으로 아니면 0으로 바꿀것
     private var deliveryStartInfoHeight: CGFloat = 0
+
     private let backButton = UIButton().initButtonWithImage("blackArrow")
     private let moveCurrentLocationButton = UIButton().initButtonWithImage("btCurrentlocation")
+    private let contactButton = UIButton().initButtonWithImage("btInquiry")
 
     private let orders = ["초콜렛 밀크티 (아이스, 라지) Chocolate Milk Tea (Iced, Large)",
                           "아메리카노 (아이스, 라지) Americano (Iced, Large)",
@@ -30,6 +32,14 @@ class LocationViewController: UIViewController {
     private var userLocation = CLLocationCoordinate2D(latitude: 37.49646975398706, longitude: 127.02905088660754)
 
     private var isStartingDelivery: Bool = false
+
+    let contactLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "문의하기"
+        label.font = .systemFont(ofSize: 11)
+        return label
+    }()
 
     lazy var orderDetailCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -90,6 +100,8 @@ class LocationViewController: UIViewController {
         self.orderDetailCollectionView.backgroundView?.addSubview(moveCurrentLocationButton)
         self.orderDetailCollectionView.backgroundView?.addSubview(deliveryStartView)
         self.orderDetailCollectionView.addSubview(backButton)
+        self.orderDetailCollectionView.addSubview(contactButton)
+        self.orderDetailCollectionView.addSubview(contactLabel)
 
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)),
                              for: .touchUpInside)
@@ -100,6 +112,7 @@ class LocationViewController: UIViewController {
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
 
         NSLayoutConstraint.activate([
+
             orderDetailCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             orderDetailCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             orderDetailCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -109,6 +122,14 @@ class LocationViewController: UIViewController {
             backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
             backButton.widthAnchor.constraint(equalToConstant: buttonSize),
             backButton.heightAnchor.constraint(equalToConstant: buttonSize),
+
+            contactButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            contactButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            contactButton.widthAnchor.constraint(equalToConstant: buttonSize),
+            contactButton.heightAnchor.constraint(equalToConstant: buttonSize),
+
+            contactLabel.centerYAnchor.constraint(equalTo: contactButton.centerYAnchor),
+            contactLabel.trailingAnchor.constraint(equalTo: contactButton.leadingAnchor, constant: -5),
 
             moveCurrentLocationButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
                                                                 constant: -15),
@@ -252,7 +273,6 @@ extension LocationViewController: UICollectionViewDataSource {
             return cell
         case .sale:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.emptyCellId, for: indexPath)
-            cell.backgroundColor = .green
             return cell
         }
     }
