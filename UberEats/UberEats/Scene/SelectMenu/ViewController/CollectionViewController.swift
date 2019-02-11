@@ -110,6 +110,7 @@ class CollectionViewController: UICollectionViewController {
     }
 
     private func setupCollectionView() {
+
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         menuBarCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredVertically)
         //        collectionView(menuBarCollectionView, didSelectItemAt: selectedIndexPath)
@@ -344,7 +345,9 @@ class CollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.menuBarCollectionView {
-            print("indexPath: \(collectionView.indexPathsForSelectedItems), \(isScrolling)")
+//            print("indexPath: \(collectionView.indexPathsForSelectedItems), \(isScrolling)")
+
+            print("scrolling Value: \(isScrolling)")
 
             movingFloatingView(collectionView, indexPath)
 
@@ -372,6 +375,16 @@ class CollectionViewController: UICollectionViewController {
     }
 
     // MARK: - ScrollView
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        print("scrollWillBegin")
+
+        isScrolling = true
+    }
+
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        isScrolling = false
+    }
+
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView != self.menuBarCollectionView {
 
@@ -414,17 +427,18 @@ class CollectionViewController: UICollectionViewController {
             self.view.layoutIfNeeded()
             handleStoreView(by: scrollView)
 
-            let yPoint = collectionView.contentOffset.y + collectionView.frame.width * 0.9 * 0.5 + 40
+            // collectionView.frame.width * 0.9 * 0.5 - 38 => storeTitleView의 높이
+            // 70 : header 높이
+            let yPoint = collectionView.contentOffset.y + collectionView.frame.width * 0.9 * 0.5 - 38 + 70
 
             guard let currentSection = collectionView.indexPathForItem(at: CGPoint(x: 100,
                                                                                    y: yPoint))?.section else {
                 return
             }
 
-            print("lastSection: \(lastSection), current: \(currentSection)")
+//            print("lastSection: \(lastSection), current: \(currentSection)")
 
-            if currentSection > 2 && lastSection != currentSection {
-                isScrolling = !isScrolling
+            if currentSection > 2 && lastSection != currentSection && isScrolling {
 
                 let lastIndexPath = IndexPath(item: lastSection - 3, section: 0)
                 collectionView(menuBarCollectionView, didDeselectItemAt: lastIndexPath)
@@ -516,7 +530,7 @@ extension CollectionViewController {
         let currentScroll: CGFloat = scrollView.contentOffset.y
         let headerHeight: CGFloat = self.headerHeight
 
-        print("currentScroll: \(currentScroll), headerHeight: \(headerHeight)")
+//        print("currentScroll: \(currentScroll), headerHeight: \(headerHeight)")
         changedContentOffset(currentScroll: currentScroll, headerHeight: headerHeight)
     }
 
