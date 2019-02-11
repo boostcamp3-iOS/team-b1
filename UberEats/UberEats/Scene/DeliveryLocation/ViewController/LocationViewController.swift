@@ -339,6 +339,13 @@ extension LocationViewController: UICollectionViewDataSource {
 }
 
 extension LocationViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard.init(name: "Chatting", bundle: nil)
+        let chattingVC = storyBoard.instantiateViewController(withIdentifier: "ChattingViewController")
+
+        present(chattingVC, animated: true, completion: nil)
+    }
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {

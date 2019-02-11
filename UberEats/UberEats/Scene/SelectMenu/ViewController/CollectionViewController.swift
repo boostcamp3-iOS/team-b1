@@ -156,19 +156,13 @@ class CollectionViewController: UICollectionViewController {
     }
 
     func setupFloatingView() {
-        let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
-        let estimatedForm = NSString(string: sectionNames[0]).boundingRect(with: size,
-                                                                           options: .usesLineFragmentOrigin,
-                                                                           attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)],
-                                                                           context: nil)
-
         floatingViewWidthConstraint = NSLayoutConstraint(item: floatingView,
                                                             attribute: .width,
                                                             relatedBy: .equal,
                                                             toItem: nil,
                                                             attribute: .width,
                                                             multiplier: 1,
-                                                            constant: estimatedForm.width + 10)
+                                                            constant: sectionNames[0].estimateCGRect.width + 10)
         floatingViewWidthConstraint.isActive = true
 
         floatingViewLeadingConstraint = NSLayoutConstraint(item: floatingView,
@@ -449,13 +443,7 @@ class CollectionViewController: UICollectionViewController {
 
         collectionView.bringSubviewToFront(cell)
 
-        let commentString: String = self.sectionNames[indexPath.item]
-
-        let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
-        let estimatedForm = NSString(string: commentString).boundingRect(with: size,
-                                                                         options: .usesLineFragmentOrigin,
-                                                                         attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)],
-                                                                         context: nil)
+        let estimatedForm = self.sectionNames[indexPath.item].estimateCGRect
 
         floatingViewWidthConstraint.constant = estimatedForm.width + 10
 
@@ -484,13 +472,7 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.menuBarCollectionView {
-            let commentString: String = self.sectionNames[indexPath.item]
-
-            let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
-            let estimatedForm = NSString(string: commentString).boundingRect(with: size,
-                                                                             options: .usesLineFragmentOrigin,
-                                                                             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)],
-                                                                             context: nil)
+            let estimatedForm = self.sectionNames[indexPath.item].estimateCGRect
 
             return .init(width: estimatedForm.width + 10, height: 50)
         }
@@ -511,14 +493,7 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
                 self.foods[indexPath.item].foodName + "\n" +
                 self.foods[indexPath.item].price + "\n"
 
-            let size: CGSize = CGSize(width: view.frame.width - 2 * padding, height: 500)
-            let estimatedForm = NSString(string: commentString).boundingRect(with: size,
-                                                                             options: .usesLineFragmentOrigin,
-                                                                             attributes:
-                [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)],
-                                                                             context: nil)
-
-            return .init(width: view.frame.width - 2 * padding, height: estimatedForm.height + 45)
+            return .init(width: view.frame.width - 2 * padding, height: commentString.estimateCGRect.height + 45)
         }
     }
 }

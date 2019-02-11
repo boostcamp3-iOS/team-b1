@@ -19,6 +19,16 @@ class ChattingViewController: UIViewController {
     
     private var messages: [Message] = []
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupChattingCollectionView()
+        setupTextFieldNoti()
+        observeMessages()
+        
+        messageTextField.dropShadow(color: .gray, offSet: CGSize.zero)
+    }
+    
     private func observeMessages() {
         let messageFromGroup = Database.database().reference().child("groups").child("-LXbWKQsskziJ50aw8qN")
         
@@ -28,8 +38,12 @@ class ChattingViewController: UIViewController {
             messageRef.observe(.value, with: { (messageSnapshot) in
                 if let dictionary = messageSnapshot.value as? [String: Any] {
                     
-                    guard let text = dictionary["text"] as? String else {return}
-                    guard let userEmail = dictionary["userEmail"] as? String else {return}
+                    guard let text = dictionary["text"] as? String else {
+                        return
+                    }
+                    guard let userEmail = dictionary["userEmail"] as? String else {
+                        return
+                    }
                     //guard let timestamp = dictionary["timestamp"] as? String else {return}
                     
                     let messageInstance = Message(text: text, userEmail: userEmail)
@@ -43,16 +57,6 @@ class ChattingViewController: UIViewController {
             })
             
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupChattingCollectionView()
-        setupTextFieldNoti()
-        observeMessages()
-        
-        messageTextField.dropShadow(color: .gray, offSet: CGSize.zero)
     }
     
     @IBAction func callAction(_ sender: Any) {
@@ -129,7 +133,7 @@ class ChattingViewController: UIViewController {
     
     func scrollToBottom() {
         DispatchQueue.main.async {
-            let lastIndex = IndexPath(item: self.messages.count-1, section: 0)
+            let lastIndex = IndexPath(item: self.messages.count - 1, section: 0)
             self.chattingCollecionView.scrollToItem(at: lastIndex, at: .bottom, animated: false)
         }
     }
@@ -151,22 +155,16 @@ class ChattingViewController: UIViewController {
                 print(error as Any)
                 return
             }
-            guard let postData: Dictionary<String, AnyObject> = [ref.key:1] as? [String : AnyObject] else {return}
+            
+            guard let postData: Dictionary<String, AnyObject> = [ref.key:1] as? [String : AnyObject] else {
+                return
+            }
+            
             Database.database().reference().child("groups").child("-LXbWKQsskziJ50aw8qN").updateChildValues(postData)
         }
     }
     @IBAction private func loginAction(_ sender: Any) {
         
-    }
-    
-    private func estimateFrameForText(text: String) -> CGRect {
-        let size = CGSize(width: 200, height: 1000)
-        let option = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        
-        return NSString(string: text).boundingRect(with: size,
-                                                   options: option,
-                                                   attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
-                                                   context: nil)
     }
 }
 
@@ -191,7 +189,7 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
         
         if let text = messages[indexPath.item].text {
             cell.textFieldView.text = text
-            cell.bubbleViewWidhAnchor?.constant = estimateFrameForText(text: text).width + 32
+            cell.bubbleViewWidhAnchor?.constant = text.estimateCGRect.width + 32
         }
         cell.fromEmail(userEmail: fromEmail)
         cell.textFieldView.text = message.text!
@@ -204,7 +202,7 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
         var height: CGFloat = 80
         //get estimated height
         if let text = messages[indexPath.row].text {
-            height = estimateFrameForText(text: text).height
+            height = text.estimateCGRect.height
         }
         return CGSize(width: view.frame.width, height: height + 15)
     }
