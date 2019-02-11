@@ -10,13 +10,25 @@ import UIKit
 
 class OrderedMenuCollectionViewCell: UICollectionViewCell {
 
+    private struct NumberForCell {
+        static let foodLabelLeadingAndTrailingMargin: CGFloat = 20
+
+        static let orderMenuLabelFontSize: CGFloat = 15
+        static let orderMenuLabelLeadingMargin: CGFloat = 20
+        static let orderMenuLabelNumberOfLines: Int = 2
+
+        static let numberOfFoodLabelFontSize: CGFloat = 13
+        static let numberOfFoodLabelSize: CGFloat = 15
+        static let numberOfFoodBorderWidth: CGFloat = 1
+    }
+
     let numberOfFoodLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
-        label.layer.borderWidth = 1
+        label.layer.borderWidth = NumberForCell.numberOfFoodBorderWidth
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 13)
+        label.font = .systemFont(ofSize: NumberForCell.numberOfFoodLabelFontSize)
         label.textColor = .darkGray
         label.text = "1"
         return label
@@ -25,9 +37,9 @@ class OrderedMenuCollectionViewCell: UICollectionViewCell {
     let orderMenuLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 2
+        label.numberOfLines = NumberForCell.orderMenuLabelNumberOfLines
         label.textColor = .darkGray
-        label.font = .systemFont(ofSize: 15)
+        label.font = .systemFont(ofSize: NumberForCell.orderMenuLabelFontSize)
         return label
     }()
 
@@ -46,14 +58,30 @@ class OrderedMenuCollectionViewCell: UICollectionViewCell {
         addSubview(orderMenuLabel)
 
         NSLayoutConstraint.activate([
-            numberOfFoodLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            numberOfFoodLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            numberOfFoodLabel.widthAnchor.constraint(equalToConstant: 15),
-            numberOfFoodLabel.heightAnchor.constraint(equalToConstant: 15),
 
-            orderMenuLabel.leadingAnchor.constraint(equalTo: numberOfFoodLabel.trailingAnchor, constant: 20),
-            orderMenuLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            orderMenuLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+            numberOfFoodLabel
+                .leadingAnchor.constraint(equalTo: leadingAnchor,
+                                          constant: NumberForCell.foodLabelLeadingAndTrailingMargin),
+
+            numberOfFoodLabel.centerYAnchor
+                .constraint(equalTo: centerYAnchor),
+
+            numberOfFoodLabel.widthAnchor
+                .constraint(equalToConstant: NumberForCell.numberOfFoodLabelSize),
+
+            numberOfFoodLabel.heightAnchor
+                .constraint(equalToConstant: NumberForCell.numberOfFoodLabelSize),
+
+            orderMenuLabel.leadingAnchor
+                .constraint(equalTo: numberOfFoodLabel.trailingAnchor,
+                            constant: NumberForCell.orderMenuLabelLeadingMargin),
+
+            orderMenuLabel.centerYAnchor
+                .constraint(equalTo: centerYAnchor),
+
+            orderMenuLabel.trailingAnchor
+                .constraint(equalTo: trailingAnchor,
+                            constant: -NumberForCell.foodLabelLeadingAndTrailingMargin)
             ])
     }
 }

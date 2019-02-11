@@ -15,18 +15,12 @@
 		843B051A220405540082FEFF /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B0519220405540082FEFF /* ChatMessageCell.swift */; };
 		84604F212205928100212A00 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84604F202205928100212A00 /* Message.swift */; };
 		84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */; };
-		84CA5ED22211347E007E95FF /* MockServer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5ECE221133D8007E95FF /* MockServer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		84CA5ED522113482007E95FF /* DependencyContainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5ED422113482007E95FF /* DependencyContainer.framework */; };
-		84CA5ED622113482007E95FF /* DependencyContainer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5ED422113482007E95FF /* DependencyContainer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84CA5ED722113487007E95FF /* ServiceInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57930220C5A90002D792A /* ServiceInterface.framework */; };
 		84CA5EDA2211348F007E95FF /* ServiceInterface.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57930220C5A90002D792A /* ServiceInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84CA5EDC22113498007E95FF /* Service.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57914220AD07F002D792A /* Service.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		84CA5EDE2211349E007E95FF /* MockServer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5ECE221133D8007E95FF /* MockServer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84CA5EDF221134A3007E95FF /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CCFCF4220B038600F4A4EF /* Common.framework */; };
 		84CA5EE0221134A3007E95FF /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CCFCF4220B038600F4A4EF /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84CA5EE2221134AA007E95FF /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CCFCF4220B038600F4A4EF /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		84CA5EE4221134E9007E95FF /* Waltz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5EE3221134E9007E95FF /* Waltz.framework */; };
-		84CA5EE5221134E9007E95FF /* Waltz.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CA5EE3221134E9007E95FF /* Waltz.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84DC184121F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */; };
 		84DC184221F9A51D008EE6D3 /* RecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */; };
 		84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183B21F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift */; };
@@ -110,13 +104,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				84CA5EDA2211348F007E95FF /* ServiceInterface.framework in Embed Frameworks */,
-				84CA5ED22211347E007E95FF /* MockServer.framework in Embed Frameworks */,
 				84CA5EDC22113498007E95FF /* Service.framework in Embed Frameworks */,
 				84CA5EE0221134A3007E95FF /* Common.framework in Embed Frameworks */,
-				84CA5ED622113482007E95FF /* DependencyContainer.framework in Embed Frameworks */,
-				84CA5EE5221134E9007E95FF /* Waltz.framework in Embed Frameworks */,
 				84CA5EE2221134AA007E95FF /* Common.framework in Embed Frameworks */,
-				84CA5EDE2211349E007E95FF /* MockServer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,9 +129,6 @@
 		843B0519220405540082FEFF /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		84604F202205928100212A00 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
-		84CA5ECE221133D8007E95FF /* MockServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MockServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		84CA5ED422113482007E95FF /* DependencyContainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DependencyContainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		84CA5EE3221134E9007E95FF /* Waltz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Waltz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CCFCF4220B038600F4A4EF /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpectTimeCollectionViewCell.xib; sourceTree = "<group>"; };
 		84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -229,8 +216,6 @@
 			files = (
 				84CA5ED722113487007E95FF /* ServiceInterface.framework in Frameworks */,
 				BAADD13A736367A4AF0735E9 /* Pods_UberEats.framework in Frameworks */,
-				84CA5ED522113482007E95FF /* DependencyContainer.framework in Frameworks */,
-				84CA5EE4221134E9007E95FF /* Waltz.framework in Frameworks */,
 				84CA5EDF221134A3007E95FF /* Common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,9 +297,6 @@
 		9956F7E421F98468004E9854 = {
 			isa = PBXGroup;
 			children = (
-				84CA5EE3221134E9007E95FF /* Waltz.framework */,
-				84CA5ED422113482007E95FF /* DependencyContainer.framework */,
-				84CA5ECE221133D8007E95FF /* MockServer.framework */,
 				9956F7EF21F98468004E9854 /* UberEats */,
 				99342CC221FB12CF0029DB10 /* UberEatsTests */,
 				9956F7EE21F98468004E9854 /* Products */,
