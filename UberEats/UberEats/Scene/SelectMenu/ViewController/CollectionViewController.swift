@@ -307,7 +307,7 @@ class CollectionViewController: UICollectionViewController {
                     return .init()
                 }
 
-                header.menuLabel.text = sectionNames[indexPath.item]
+                header.menuTitle = sectionNames[indexPath.section - 3]
 
                 return header
             }
