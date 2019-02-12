@@ -223,7 +223,7 @@ class CollectionViewController: UICollectionViewController {
 
         switch section {
         case .stretchyHeader, .timeAndLocation, .menu:
-            return 1
+            return basicNumberOfItems
         default:
             return foods.count + DistanceBetween.titleAndFoodCell
         }
@@ -411,12 +411,15 @@ class CollectionViewController: UICollectionViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView != self.menuBarCollectionView {
 
+            var imageName = ""
+
             if scrollView.contentOffset.y > AnimationValues.likeButtonChangeLimit {
-                self.likeButton.setImage(UIImage(named: "search"), for: .normal)
+                imageName = "search"
             } else {
-                isLiked == true ? self.likeButton.setImage(UIImage(named: "selectLike"), for: .normal)
-                    : self.likeButton.setImage(UIImage(named: "like"), for: .normal)
+                imageName = isLiked ? "selectLike" : "like"
             }
+
+            self.likeButton.setImage(UIImage(named: imageName), for: .normal)
 
             if scrollView.contentOffset.y > AnimationValues.scrollLimit
                 && backButton.currentImage == UIImage(named: "arrow") {

@@ -9,6 +9,7 @@
 import UIKit
 
 let buttonSize: CGFloat = 25
+let basicNumberOfItems = 1
 
 enum CellId: String {
     case temp = "tempId"
