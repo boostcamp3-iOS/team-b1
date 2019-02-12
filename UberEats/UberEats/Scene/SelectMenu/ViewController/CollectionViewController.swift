@@ -30,6 +30,7 @@ class CollectionViewController: UICollectionViewController {
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     private var isLiked: Bool = false
     private var isScrolling: Bool = false
+    private var isChangedSection: Bool = false
     private var lastSection: Int = 3
 
     private var identifier = ""
@@ -408,18 +409,18 @@ class CollectionViewController: UICollectionViewController {
         isScrolling = false
     }
 
+    private func getLikeButtonImageName(_ offsetY: CGFloat) -> String {
+        if offsetY > AnimationValues.likeButtonChangeLimit {
+            return "search"
+        } else {
+            return isLiked ? "selectLike" : "like"
+        }
+    }
+    
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView != self.menuBarCollectionView {
 
-            var imageName = ""
-
-            if scrollView.contentOffset.y > AnimationValues.likeButtonChangeLimit {
-                imageName = "search"
-            } else {
-                imageName = isLiked ? "selectLike" : "like"
-            }
-
-            self.likeButton.setImage(UIImage(named: imageName), for: .normal)
+            self.likeButton.setImage(UIImage(named: getLikeButtonImageName(scrollView.contentOffset.y)), for: .normal)
 
             if scrollView.contentOffset.y > AnimationValues.scrollLimit
                 && backButton.currentImage == UIImage(named: "arrow") {
@@ -475,7 +476,10 @@ class CollectionViewController: UICollectionViewController {
             }
 
             print("currentSection: \(currentSection), lastSection: \(lastSection), isScrolling: \(isScrolling)")
-            if currentSection > 2 && lastSection != currentSection && isScrolling {
+
+            isChangedSection = (lastSection != currentSection)
+
+            if currentSection >= menuStartSection && isChangedSection && isScrolling {
                 print("willChangeSelectedItem")
 
                 let lastIndexPath = IndexPath(item: lastSection - DistanceBetween.menuAndRest, section: 0)
