@@ -7,8 +7,6 @@
 //
 import UIKit
 
-public let buttonSize: CGFloat = 25
-
 class CollectionViewController: UICollectionViewController {
     private let sectionNames: [String] = ["나를 위한 추천 메뉴", "햄버거 단품 Single Burger", "햄버거 세트", "디저트 Dessert"]
 
@@ -27,9 +25,6 @@ class CollectionViewController: UICollectionViewController {
                                  .init(foodName: "부대찌개개개개개ㅐ애애애애애애애 Korean Set with Grilled Pork",
                                        foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
                                        price: "₩8,900", foodImage: nil)]
-
-    private let headerHeight: CGFloat = 283
-    private let scrollLimit: CGFloat = 171
 
     private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent
@@ -52,15 +47,18 @@ class CollectionViewController: UICollectionViewController {
     lazy var menuBarCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 0
+        layout.minimumInteritemSpacing = ValuesForCollectionView.menuBarMinSpacing
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.alpha = 0
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 10)
+        collectionView.alpha = ValuesForCollectionView.menuBarZeroAlpha
+        collectionView.contentInset = UIEdgeInsets(top: ValuesForCollectionView.menuBarZeroInset,
+                                                   left: ValuesForCollectionView.menuBarLeftInset,
+                                                   bottom: ValuesForCollectionView.menuBarZeroInset,
+                                                   right: ValuesForCollectionView.menuBarRightInset)
         return collectionView
     }()
 
@@ -95,15 +93,19 @@ class CollectionViewController: UICollectionViewController {
             menuBarCollectionView.bottomAnchor.constraint(equalTo: storeTitleView.bottomAnchor),
             menuBarCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             menuBarCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            menuBarCollectionView.heightAnchor.constraint(equalToConstant: 60),
+            menuBarCollectionView.heightAnchor.constraint(equalToConstant: ValuesForCollectionView.menuBarHeightConstant),
 
-            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                            constant: ValuesForButton.backAndLikeTopConstant),
+            backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                                                constant: ValuesForButton.backLeadingConstant),
             backButton.widthAnchor.constraint(equalToConstant: buttonSize),
             backButton.heightAnchor.constraint(equalToConstant: buttonSize),
 
-            likeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            likeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            likeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                            constant: ValuesForButton.backAndLikeTopConstant),
+            likeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                                                 constant: -ValuesForButton.likeTrailingConstant),
             likeButton.widthAnchor.constraint(equalToConstant: buttonSize),
             likeButton.heightAnchor.constraint(equalToConstant: buttonSize)
             ])
@@ -162,8 +164,9 @@ class CollectionViewController: UICollectionViewController {
                                                             relatedBy: .equal,
                                                             toItem: nil,
                                                             attribute: .width,
-                                                            multiplier: 1,
-                                                            constant: sectionNames[0].estimateCGRect.width + 10)
+                                                            multiplier: ValuesForFloatingView.fullMultiplier,
+                                                            constant: sectionNames[0].estimateCGRect.width
+                                                                + ValuesForFloatingView.widthPadding)
         floatingViewWidthConstraint.isActive = true
 
         floatingViewLeadingConstraint = NSLayoutConstraint(item: floatingView,
@@ -171,12 +174,13 @@ class CollectionViewController: UICollectionViewController {
                                                              relatedBy: .equal,
                                                              toItem: menuBarCollectionView,
                                                              attribute: .leading,
-                                                             multiplier: 1, constant: 0)
+                                                             multiplier: ValuesForFloatingView.fullMultiplier,
+                                                             constant: ValuesForFloatingView.leadingConstant)
         floatingViewLeadingConstraint.isActive = true
 
         NSLayoutConstraint.activate([
             floatingView.centerYAnchor.constraint(equalTo: self.menuBarCollectionView.centerYAnchor),
-            floatingView.heightAnchor.constraint(equalToConstant: 35)
+            floatingView.heightAnchor.constraint(equalToConstant: ValuesForFloatingView.heightConstant)
             ])
     }
 
@@ -221,7 +225,7 @@ class CollectionViewController: UICollectionViewController {
         case .stretchyHeader, .timeAndLocation, .menu:
             return 1
         default:
-            return foods.count + 1
+            return foods.count + DistanceBetween.titleAndFoodCell
         }
     }
 
@@ -267,7 +271,7 @@ class CollectionViewController: UICollectionViewController {
                     return .init()
                 }
 
-                cell.title = self.sectionNames[indexPath.section - 3]
+                cell.title = self.sectionNames[indexPath.section - DistanceBetween.menuAndRest]
 
                 return cell
             default:
@@ -276,7 +280,7 @@ class CollectionViewController: UICollectionViewController {
                                                                         return .init()
                 }
 
-                cell.food = foods[indexPath.item - 1]
+                cell.food = foods[indexPath.item - DistanceBetween.titleAndFoodCell]
 
                 return cell
             }
@@ -337,7 +341,7 @@ class CollectionViewController: UICollectionViewController {
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
 
         if collectionView == self.menuBarCollectionView {
-            return CGSize(width: 0, height: 0)
+            return CGSize(width: 0, height: HeightsOfHeader.menuBarAndMenu)
         }
 
         guard let section = SectionInStoreView(rawValue: section) else {
@@ -346,14 +350,11 @@ class CollectionViewController: UICollectionViewController {
 
         switch section {
         case .stretchyHeader:
-            return .init(width: self.view.frame.width, height: headerHeight)
-        case .timeAndLocation:
-            return .init(width: self.view.frame.width, height: 1)
-        case .menu:
-            return .init(width: self.view.frame.width, height: 0)
+            return .init(width: self.view.frame.width,
+                         height: HeightsOfHeader.stretchy)
         default:
-            return .init(width: self.view.frame.width, height: 0)
-//            return .init(width: self.view.frame.width, height: 70)
+            return .init(width: self.view.frame.width,
+                         height: HeightsOfHeader.food)
         }
     }
 
@@ -368,7 +369,7 @@ class CollectionViewController: UICollectionViewController {
             if !isScrolling {
 
                 // 선택한 메뉴바의 카테고리에 대한 section목록으로 이동하는 부분
-                let indx = IndexPath(item: 0, section: indexPath.item + 3)
+                let indx = IndexPath(item: 0, section: indexPath.item + DistanceBetween.menuAndRest)
                 self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
             }
         } else {
@@ -410,36 +411,43 @@ class CollectionViewController: UICollectionViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView != self.menuBarCollectionView {
 
-            if scrollView.contentOffset.y > 320 {
+            if scrollView.contentOffset.y > AnimationValues.likeButtonChangeLimit {
                 self.likeButton.setImage(UIImage(named: "search"), for: .normal)
             } else {
                 isLiked == true ? self.likeButton.setImage(UIImage(named: "selectLike"), for: .normal)
                     : self.likeButton.setImage(UIImage(named: "like"), for: .normal)
             }
 
-            if scrollView.contentOffset.y > scrollLimit
+            if scrollView.contentOffset.y > AnimationValues.scrollLimit
                 && backButton.currentImage == UIImage(named: "arrow") {
 
-                self.collectionView.contentInset = UIEdgeInsets(top: storeTitleView.frame.height, left: 0,
-                                                                bottom: 0, right: 0)
+                self.collectionView.contentInset = UIEdgeInsets(top: storeTitleView.frame.height,
+                                                                left: ValuesForCollectionView.menuBarZeroInset,
+                                                                bottom: ValuesForCollectionView.menuBarZeroInset,
+                                                                right: ValuesForCollectionView.menuBarZeroInset)
 
-                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1,
-                               options: .curveEaseIn, animations: {
+                UIView.animate(withDuration: AnimationValues.duration,
+                               delay: AnimationValues.delay,
+                               options: .curveEaseIn,
+                               animations: {
                                 self.backButton.setImage(UIImage(named: "blackArrow"), for: .normal)
-                                self.menuBarCollectionView.alpha = 1
+                                self.menuBarCollectionView.alpha = ValuesForCollectionView.menuBarFullAlpha
                 }, completion: { _ in
                     self.statusBarStyle = .default
                 })
-
-            } else if scrollView.contentOffset.y < scrollLimit
+            } else if scrollView.contentOffset.y < AnimationValues.scrollLimit
                 && backButton.currentImage == UIImage(named: "blackArrow") {
 
-                self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                self.collectionView.contentInset = UIEdgeInsets(top: ValuesForCollectionView.menuBarZeroInset,
+                                                                left: ValuesForCollectionView.menuBarZeroInset,
+                                                                bottom: ValuesForCollectionView.menuBarZeroInset,
+                                                                right: ValuesForCollectionView.menuBarZeroInset)
 
-                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1,
+                UIView.animate(withDuration: AnimationValues.duration,
+                               delay: AnimationValues.delay,
                                options: .curveEaseIn, animations: {
                                 self.backButton.setImage(UIImage(named: "arrow"), for: .normal)
-                                self.menuBarCollectionView.alpha = 0
+                                self.menuBarCollectionView.alpha = ValuesForCollectionView.menuBarZeroAlpha
                 }, completion: { _ in
                     self.statusBarStyle = .lightContent
                 })
@@ -450,8 +458,11 @@ class CollectionViewController: UICollectionViewController {
             handleStoreView(by: scrollView)
 
             // collectionView.frame.width * 0.9 * 0.5 - 38 => storeTitleView의 높이
-            // 70 : header 높이
-            let yPoint = collectionView.contentOffset.y + collectionView.frame.width * 0.9 * 0.5 - 38 + 15
+            let yPoint = collectionView.contentOffset.y
+                            + collectionView.frame.width
+                            * ValuesForStoreView.widthMultiplier
+                            * ValuesForStoreView.heightMultiplier
+                            - ValuesForStoreView.distanceBetweenHeightAfterStick + 15
 
 //            print("lastSection: \(lastSection), current: \(collectionView.indexPathForItem(at: CGPoint(x: 100, y: yPoint)))")
 
@@ -464,10 +475,10 @@ class CollectionViewController: UICollectionViewController {
             if currentSection > 2 && lastSection != currentSection && isScrolling {
                 print("willChangeSelectedItem")
 
-                let lastIndexPath = IndexPath(item: lastSection - 3, section: 0)
+                let lastIndexPath = IndexPath(item: lastSection - DistanceBetween.menuAndRest, section: 0)
                 collectionView(menuBarCollectionView, didDeselectItemAt: lastIndexPath)
 
-                let indexPathToMove = IndexPath(item: currentSection - 3, section: 0)
+                let indexPathToMove = IndexPath(item: currentSection - DistanceBetween.menuAndRest, section: 0)
                 collectionView(menuBarCollectionView, didSelectItemAt: indexPathToMove)
                 lastSection = currentSection
             }
@@ -483,14 +494,12 @@ class CollectionViewController: UICollectionViewController {
 
         let estimatedForm = self.sectionNames[indexPath.item].estimateCGRect
 
-        floatingViewWidthConstraint.constant = estimatedForm.width + 10
+        floatingViewWidthConstraint.constant = estimatedForm.width + ValuesForFloatingView.widthPadding
 
         floatingViewLeadingConstraint.constant = cell.frame.minX
 
-        UIView.animate(withDuration: 0.5,
-                       delay: 0,
-                       usingSpringWithDamping: 1,
-                       initialSpringVelocity: 1,
+        UIView.animate(withDuration: AnimationValues.duration,
+                       delay: AnimationValues.delay,
                        options: .curveEaseOut,
                        animations: {
                         self.menuBarCollectionView.layoutIfNeeded()
@@ -512,7 +521,8 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
         if collectionView == self.menuBarCollectionView {
             let estimatedForm = self.sectionNames[indexPath.item].estimateCGRect
 
-            return .init(width: estimatedForm.width + 10, height: 50)
+            return .init(width: estimatedForm.width + ValuesForFloatingView.widthPadding,
+                         height: HeightsOfCell.menuBarAndMenu)
         }
 
         guard let section = SectionInStoreView(rawValue: indexPath.section) else {
@@ -521,20 +531,23 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 
         switch section {
         case .stretchyHeader:
-            return .init(width: view.frame.width - 2 * padding, height: 0)
+            return .init(width: view.frame.width - 2 * padding,
+                         height: HeightsOfCell.empty)
         case .timeAndLocation:
-            return .init(width: view.frame.width, height: view.frame.height * 0.15)
+            return .init(width: view.frame.width,
+                         height: view.frame.height * HeightsOfCell.timeAndLocationMultiplier)
         case .menu:
-            return .init(width: view.frame.width, height: 50)
+            return .init(width: view.frame.width,
+                         height: HeightsOfCell.menuBarAndMenu)
         default:
             if indexPath.item != 0 {
                 let commentString: String = self.foods[indexPath.item - 1].foodContents + "\n" +
-                    self.foods[indexPath.item - 1].foodName + "\n" +
-                    self.foods[indexPath.item - 1].price + "\n"
+                    self.foods[indexPath.item - DistanceBetween.titleAndFoodCell].foodName + "\n" +
+                    self.foods[indexPath.item - DistanceBetween.titleAndFoodCell].price + "\n"
 
                 return .init(width: view.frame.width - 2 * padding, height: commentString.estimateCGRect.height + 45)
             }
-            return .init(width: view.frame.width, height: 50)
+            return .init(width: view.frame.width, height: HeightsOfCell.food)
         }
     }
 }
@@ -555,7 +568,7 @@ extension CollectionViewController: SearchBarDelegate {
 extension CollectionViewController {
     private func handleStoreView(by scrollView: UIScrollView) {
         let currentScroll: CGFloat = scrollView.contentOffset.y
-        let headerHeight: CGFloat = self.headerHeight
+        let headerHeight: CGFloat = HeightsOfHeader.stretchy
 
 //        print("currentScroll: \(currentScroll), headerHeight: \(headerHeight)")
         changedContentOffset(currentScroll: currentScroll, headerHeight: headerHeight)
@@ -565,38 +578,4 @@ extension CollectionViewController {
         self.storeTitleView.changedContentOffset(currentScroll: currentScroll, headerHeight: headerHeight)
         self.view.layoutIfNeeded()
     }
-}
-
-private enum CellId: String {
-    case temp = "tempId"
-    case stretchyHeader = "stretchyHeaderId"
-    case tempHeader = "tempHeaderId"
-    case timeAndLocation = "timeAndLocationId"
-    case menu = "menuId"
-    case menuCategory = "menuCategoryId"
-    case menuDetail = "menuDetailId"
-    case menuSection = "menuSectionId"
-}
-
-private enum XibName: String {
-    case timeAndLocation = "TimeAndLocationCollectionViewCell"
-    case search = "SearchCollectionViewCell"
-    case menuSection = "MenuSectionView"
-    case menuCategory = "MenuCategoryCollectionViewCell"
-}
-
-private enum NumberOfSection: Int {
-    case menuBar = 1
-    case collectionView = 7
-}
-
-private enum SectionInStoreView: Int {
-    case stretchyHeader = 0
-    case timeAndLocation
-    case menu
-    // 예비
-    case foodOne
-    case foodTwo
-    case foodThree
-    case foodFour
 }

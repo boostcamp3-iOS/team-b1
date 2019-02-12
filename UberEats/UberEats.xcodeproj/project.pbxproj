@@ -89,6 +89,7 @@
 		D1CED1C2220756C7007626B4 /* OrderCancelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CED1C1220756C7007626B4 /* OrderCancelCollectionViewCell.swift */; };
 		D1EA630221FA9B1D0024CD68 /* SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */; };
 		D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */; };
+		D1F3A8F22212E606000448DD /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3A8F12212E606000448DD /* StoreModel.swift */; };
 		D1F96F0221FE8D9400D79396 /* ItemSizeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F96F0121FE8D9400D79396 /* ItemSizeDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -211,6 +212,7 @@
 		D1CED1C1220756C7007626B4 /* OrderCancelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCancelCollectionViewCell.swift; sourceTree = "<group>"; };
 		D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarDelegate.swift; sourceTree = "<group>"; };
 		D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		D1F3A8F12212E606000448DD /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
 		D1F96F0121FE8D9400D79396 /* ItemSizeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSizeDelegate.swift; sourceTree = "<group>"; };
 		DEC6C5CD7778A868430235B7 /* Pods-UberEats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UberEats/Pods-UberEats.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -577,6 +579,7 @@
 			isa = PBXGroup;
 			children = (
 				D1AF1EAA21F9A631004CA3A5 /* Food.swift */,
+				D1F3A8F12212E606000448DD /* StoreModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -872,6 +875,7 @@
 				99342CCE21FB13550029DB10 /* Throttler.swift in Sources */,
 				D11B04DA2205847F00F20363 /* LocationViewController.swift in Sources */,
 				D199236222045BAB00C7C857 /* Extensions.swift in Sources */,
+				D1F3A8F22212E606000448DD /* StoreModel.swift in Sources */,
 				D102A68A2208335E004B458C /* OrderNameCollectionReusableView.swift in Sources */,
 				992EDCED21FDB0C6006CC894 /* FoodItemDetailsViewController.swift in Sources */,
 				843B05122203D9240082FEFF /* FirebaseSingleton.swift in Sources */,
