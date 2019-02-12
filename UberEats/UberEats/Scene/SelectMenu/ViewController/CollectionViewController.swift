@@ -78,7 +78,7 @@ class CollectionViewController: UICollectionViewController {
 
         storeTitleView = StoreTitleView(parentView: view)
 
-        view.addSubview(storeTitleView)
+        collectionView.addSubview(storeTitleView)
         view.addSubview(backButton)
         view.addSubview(likeButton)
         menuBarCollectionView.addSubview(floatingView)

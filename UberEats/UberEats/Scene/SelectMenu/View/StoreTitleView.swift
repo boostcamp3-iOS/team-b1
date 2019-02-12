@@ -85,6 +85,7 @@ class StoreTitleView: UIView {
 
     func setupLayout() {
         backgroundColor = .white
+        layer.zPosition = .greatestFiniteMagnitude
 
         addSubview(titleLabel)
         addSubview(detailLabel)
