@@ -11,4 +11,18 @@ import UIKit
 class MenuSectionView: UICollectionReusableView {
 
     @IBOutlet weak var menuLabel: UILabel!
+
+    var menuTitle: String? {
+        didSet {
+            guard let menuTitle = self.menuTitle else {
+                return
+            }
+
+            menuLabel.text = menuTitle
+        }
+    }
+
+    override func prepareForReuse() {
+        menuLabel.text = nil
+    }
 }

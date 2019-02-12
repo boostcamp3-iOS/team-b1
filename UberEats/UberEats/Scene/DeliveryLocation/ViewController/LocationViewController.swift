@@ -304,7 +304,6 @@ extension LocationViewController: UICollectionViewDataSource {
                 let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: Identifiers.deliveryManInfoHeaderId,
                                                                              for: indexPath)
-                header.isHidden = true
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                     header.isHidden = false

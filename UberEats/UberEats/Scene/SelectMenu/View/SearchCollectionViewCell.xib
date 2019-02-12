@@ -47,6 +47,10 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="295" height="50"/>
+            <connections>
+                <outlet property="searchButton" destination="Inp-Is-pgH" id="KJU-Ta-PKN"/>
+                <outlet property="titleLabel" destination="E65-Zm-Pjm" id="Igp-3T-RZN"/>
+            </connections>
             <point key="canvasLocation" x="68" y="112"/>
         </collectionViewCell>
     </objects>
