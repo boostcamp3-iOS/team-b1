@@ -10,12 +10,18 @@ import UIKit
 
 class OrderNameCollectionReusableView: UICollectionReusableView {
 
+    private struct numberForLabel {
+        static let orderNameLabelFontSize: CGFloat = 14
+        static let orderNameLabelLeadingMargin: CGFloat = 20
+        static let orderNameLabelBottomMargin: CGFloat = -15
+    }
+
     let orderNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "#46F45 주문"
         label.textColor = .gray
-        label.font = .systemFont(ofSize: 14)
+        label.font = .systemFont(ofSize: numberForLabel.orderNameLabelFontSize)
         return label
     }()
 
@@ -33,8 +39,10 @@ class OrderNameCollectionReusableView: UICollectionReusableView {
         addSubview(orderNameLabel)
 
         NSLayoutConstraint.activate([
-            orderNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            orderNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15)
+            orderNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                    constant: numberForLabel.orderNameLabelLeadingMargin),
+            orderNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                                   constant: numberForLabel.orderNameLabelBottomMargin)
             ])
     }
 }

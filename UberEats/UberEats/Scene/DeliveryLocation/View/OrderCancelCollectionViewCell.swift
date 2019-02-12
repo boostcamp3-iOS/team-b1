@@ -9,12 +9,15 @@
 import UIKit
 
 class OrderCancelCollectionViewCell: UICollectionViewCell {
+
+    private static let cancelLabelFontSize: CGFloat = 15
+
     let cancelLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "주문 취소"
         label.textColor = .gray
-        label.font = .systemFont(ofSize: 15)
+        label.font = .systemFont(ofSize: OrderCancelCollectionViewCell.cancelLabelFontSize)
         return label
     }()
 
