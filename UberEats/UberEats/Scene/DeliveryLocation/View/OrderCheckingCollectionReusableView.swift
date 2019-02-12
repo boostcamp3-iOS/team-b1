@@ -18,10 +18,5 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupLayout()
-    }
-
-    private func setupLayout() {
-
     }
 }

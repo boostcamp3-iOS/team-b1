@@ -75,20 +75,17 @@ class LocationViewController: UIViewController {
     }
 
     private func setupMapView() {
-        // 장치에서 위치 서비스가 사용된다면
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            //위치 데이터 정확도 설정
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            // 얼마큼 이동했을 때 위치 갱신할 것인지
-            locationManager.distanceFilter = 500.0
-            locationManager.startUpdatingLocation()
-        }
-
+        
+        locationManager.customInit(delegate: self)
+       
         // user와 deliverer의 중간 지점으로 설정할 것
+        
+        //GMSCameraPosition.centor(37.499862)
+        
         let camera = GMSCameraPosition(latitude: (userLocation.latitude + 37.499862) / 2,
                                        longitude: (userLocation.longitude + 127.030378) / 2,
                                        zoom: 17)
+
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView?.padding = UIEdgeInsets(top: 0, left: 10, bottom: self.view.frame.height - 500 + 10, right: 0)
         orderDetailCollectionView.backgroundView = mapView
@@ -410,4 +407,42 @@ extension LocationViewController: CLLocationManagerDelegate {
         print("locations = \(locValue.latitude) \(locValue.longitude)")
 //        self.userLocation = locValue
     }
+}
+
+//extension GMSMarker {
+//    func setXXXModel(model: Model)
+//}
+//
+//
+//struct Model {
+//    let image: UIImage
+//    let title: String
+//    let location: Int
+//
+//    init(종류: 종류, ) {
+//
+//        if( 조)
+//    }
+//
+//}
+//
+//enum 종류 {
+//    case 사용자
+//    case 배달원
+//}
+
+private extension CLLocationManager {
+    
+    func customInit(delegate: CLLocationManagerDelegate) {
+        
+        if CLLocationManager.locationServicesEnabled() {
+            self.delegate = delegate
+            //위치 데이터 정확도 설정
+            self.desiredAccuracy = kCLLocationAccuracyBest
+            // 얼마큼 이동했을 때 위치 갱신할 것인지
+            self.distanceFilter = 500.0
+            self.startUpdatingLocation()
+        }
+    }
+    
 }
