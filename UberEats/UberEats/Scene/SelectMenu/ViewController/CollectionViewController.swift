@@ -221,7 +221,7 @@ class CollectionViewController: UICollectionViewController {
         case .stretchyHeader, .timeAndLocation, .menu:
             return 1
         default:
-            return foods.count
+            return foods.count + 1
         }
     }
 
@@ -260,14 +260,26 @@ class CollectionViewController: UICollectionViewController {
 
             return cell
         default:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.menuDetail.rawValue,
-                                                                for: indexPath) as? FoodCollectionViewCell else {
-                                                                    return .init()
+            switch indexPath.item {
+            case 0:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.menu.rawValue,
+                                                                    for: indexPath) as? SearchCollectionViewCell else {
+                    return .init()
+                }
+
+                cell.title = self.sectionNames[indexPath.section - 3]
+
+                return cell
+            default:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.menuDetail.rawValue,
+                                                                    for: indexPath) as? FoodCollectionViewCell else {
+                                                                        return .init()
+                }
+
+                cell.food = foods[indexPath.item - 1]
+
+                return cell
             }
-
-            cell.food = foods[indexPath.item]
-
-            return cell
         }
         return collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     }
@@ -301,15 +313,16 @@ class CollectionViewController: UICollectionViewController {
             case .timeAndLocation, .menu:
                 identifier = CellId.tempHeader.rawValue
             default:
-                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                   withReuseIdentifier: CellId.menuSection.rawValue,
-                                                                                   for: indexPath) as? MenuSectionView else {
-                    return .init()
-                }
-
-                header.menuTitle = sectionNames[indexPath.section - 3]
-
-                return header
+                return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CellId.tempHeader.rawValue, for: indexPath)
+//                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+//                                                                                   withReuseIdentifier: CellId.menuSection.rawValue,
+//                                                                                   for: indexPath) as? MenuSectionView else {
+//                    return .init()
+//                }
+//
+//                header.menuTitle = sectionNames[indexPath.section - 3]
+//
+//                return header
             }
         }
 
@@ -339,7 +352,8 @@ class CollectionViewController: UICollectionViewController {
         case .menu:
             return .init(width: self.view.frame.width, height: 0)
         default:
-            return .init(width: self.view.frame.width, height: 70)
+            return .init(width: self.view.frame.width, height: 0)
+//            return .init(width: self.view.frame.width, height: 70)
         }
     }
 
@@ -351,10 +365,7 @@ class CollectionViewController: UICollectionViewController {
 
             movingFloatingView(collectionView, indexPath)
 
-            // 스크롤중인 경우
-            if isScrolling {
-                isScrolling = false
-            } else {
+            if !isScrolling {
                 // 선택한 메뉴바의 카테고리에 대한 section목록으로 이동하는 부분
                 let indx = IndexPath(item: 0, section: indexPath.item + 3)
                 self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
@@ -377,11 +388,11 @@ class CollectionViewController: UICollectionViewController {
     // MARK: - ScrollView
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         print("scrollWillBegin")
-
         isScrolling = true
     }
 
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print("scrolldidenddecelerating")
         isScrolling = false
     }
 
@@ -429,16 +440,18 @@ class CollectionViewController: UICollectionViewController {
 
             // collectionView.frame.width * 0.9 * 0.5 - 38 => storeTitleView의 높이
             // 70 : header 높이
-            let yPoint = collectionView.contentOffset.y + collectionView.frame.width * 0.9 * 0.5 - 38 + 70
+            let yPoint = collectionView.contentOffset.y + collectionView.frame.width * 0.9 * 0.5 - 38 + 15
+
+//            print("lastSection: \(lastSection), current: \(collectionView.indexPathForItem(at: CGPoint(x: 100, y: yPoint)))")
 
             guard let currentSection = collectionView.indexPathForItem(at: CGPoint(x: 100,
                                                                                    y: yPoint))?.section else {
                 return
             }
 
-//            print("lastSection: \(lastSection), current: \(currentSection)")
-
+            print("currentSection: \(currentSection), lastSection: \(lastSection), isScrolling: \(isScrolling)")
             if currentSection > 2 && lastSection != currentSection && isScrolling {
+                print("willChangeSelectedItem")
 
                 let lastIndexPath = IndexPath(item: lastSection - 3, section: 0)
                 collectionView(menuBarCollectionView, didDeselectItemAt: lastIndexPath)
@@ -503,11 +516,14 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
         case .menu:
             return .init(width: view.frame.width, height: 50)
         default:
-            let commentString: String = self.foods[indexPath.item].foodContents + "\n" +
-                self.foods[indexPath.item].foodName + "\n" +
-                self.foods[indexPath.item].price + "\n"
+            if indexPath.item != 0 {
+                let commentString: String = self.foods[indexPath.item - 1].foodContents + "\n" +
+                    self.foods[indexPath.item - 1].foodName + "\n" +
+                    self.foods[indexPath.item - 1].price + "\n"
 
-            return .init(width: view.frame.width - 2 * padding, height: commentString.estimateCGRect.height + 45)
+                return .init(width: view.frame.width - 2 * padding, height: commentString.estimateCGRect.height + 45)
+            }
+            return .init(width: view.frame.width, height: 50)
         }
     }
 }
