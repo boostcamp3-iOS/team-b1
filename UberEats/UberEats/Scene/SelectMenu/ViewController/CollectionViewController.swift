@@ -366,6 +366,7 @@ class CollectionViewController: UICollectionViewController {
             movingFloatingView(collectionView, indexPath)
 
             if !isScrolling {
+
                 // 선택한 메뉴바의 카테고리에 대한 section목록으로 이동하는 부분
                 let indx = IndexPath(item: 0, section: indexPath.item + 3)
                 self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
@@ -391,6 +392,16 @@ class CollectionViewController: UICollectionViewController {
         isScrolling = true
     }
 
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        if scrollView.contentOffset.y > 100 && scrollView.contentOffset.y < scrollLimit {
+//            print("움직여라")
+//            scrollView.setContentOffset(CGPoint(x: 0, y: 200), animated: true)
+//        } else if scrollView.contentOffset.y < 100 {
+//
+//            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+//        }
+    }
+
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         print("scrolldidenddecelerating")
         isScrolling = false
@@ -409,7 +420,7 @@ class CollectionViewController: UICollectionViewController {
             if scrollView.contentOffset.y > scrollLimit
                 && backButton.currentImage == UIImage(named: "arrow") {
 
-                self.collectionView.contentInset = UIEdgeInsets(top: storeTitleView.frame.height + 80, left: 0,
+                self.collectionView.contentInset = UIEdgeInsets(top: storeTitleView.frame.height, left: 0,
                                                                 bottom: 0, right: 0)
 
                 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1,
