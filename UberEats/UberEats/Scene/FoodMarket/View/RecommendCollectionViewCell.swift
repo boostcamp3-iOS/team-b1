@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Common
 
 class RecommendCollectionViewCell: UICollectionViewCell {
 
@@ -19,8 +20,23 @@ class RecommendCollectionViewCell: UICollectionViewCell {
     @IBOutlet var gradeLabel: UILabel!
     @IBOutlet var commentLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    var recommendFood: RecommandFood? {
+        didSet {
+            guard let recommendFood = recommendFood else {
+                return
+            }
+            let imageURL = URL(string: recommendFood.foodImageURL)!
+
+            label.text = recommendFood.foodName
+
+            NetworkManager.shared.getImageByCache(imageURL: imageURL) { (downloadImage, _) in
+                self.image.image = downloadImage
+            }
+        }
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+    }
 }

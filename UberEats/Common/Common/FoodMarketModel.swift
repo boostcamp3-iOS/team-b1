@@ -35,5 +35,7 @@ public struct RecommandFood: Codable {
     public let foodName: String
     public let basePrice: Int
     public let foodDescription: String
+    public let foodImageURL: String
     public let store: Store
+
 }

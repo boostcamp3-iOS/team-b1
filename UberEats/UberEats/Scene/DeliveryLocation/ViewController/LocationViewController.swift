@@ -75,13 +75,13 @@ class LocationViewController: UIViewController {
     }
 
     private func setupMapView() {
-        
+
         locationManager.customInit(delegate: self)
-       
+
         // user와 deliverer의 중간 지점으로 설정할 것
-        
+
         //GMSCameraPosition.centor(37.499862)
-        
+
         let camera = GMSCameraPosition(latitude: (userLocation.latitude + 37.499862) / 2,
                                        longitude: (userLocation.longitude + 127.030378) / 2,
                                        zoom: 17)
@@ -431,9 +431,9 @@ extension LocationViewController: CLLocationManagerDelegate {
 //}
 
 private extension CLLocationManager {
-    
+
     func customInit(delegate: CLLocationManagerDelegate) {
-        
+
         if CLLocationManager.locationServicesEnabled() {
             self.delegate = delegate
             //위치 데이터 정확도 설정
@@ -443,5 +443,5 @@ private extension CLLocationManager {
             self.startUpdatingLocation()
         }
     }
-    
+
 }

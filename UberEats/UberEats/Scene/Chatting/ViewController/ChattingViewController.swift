@@ -10,7 +10,7 @@ import Firebase
 
 // swiftlint:disable all
 // 채팅방에서 delivertUID를 알고 있고 서로 1대일 채팅 한다는 가정을 하자.
-class ChattingViewController: UIViewController {
+class ChattingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var deliveryInfoVIew: UIView!
     @IBOutlet private weak var chattingCollecionView: UICollectionView!
     @IBOutlet private weak var messageTextField: UITextField!
@@ -26,12 +26,13 @@ class ChattingViewController: UIViewController {
         setupTextFieldNoti()
         observeMessages()
         
+        messageTextField.delegate = self
+        
         messageTextField.dropShadow(color: .gray, offSet: CGSize.zero)
     }
     
     private func observeMessages() {
         let messageFromGroup = Database.database().reference().child("groups").child("-LXbWKQsskziJ50aw8qN")
-        
         messageFromGroup.observe(.childAdded) { (snapshot) in
             //print(snapshot.key)
             let messageRef = Database.database().reference().child("message").child(snapshot.key)
@@ -49,7 +50,6 @@ class ChattingViewController: UIViewController {
                     let messageInstance = Message(text: text, userEmail: userEmail)
                     self.messages.append(messageInstance)
                     self.chattingCollecionView.reloadData()
-                    
                     
                     self.scrollToBottom()
                     self.chattingCollecionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
@@ -83,11 +83,16 @@ class ChattingViewController: UIViewController {
         adjustingHeight(show: false, notification: notification)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func adjustingHeight(show:Bool, notification:NSNotification) {
         // 1
         var userInfo = notification.userInfo!
         // 2
-        let keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         // 3
         let animationDurarion = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         // 4
@@ -163,12 +168,14 @@ class ChattingViewController: UIViewController {
             Database.database().reference().child("groups").child("-LXbWKQsskziJ50aw8qN").updateChildValues(postData)
         }
     }
+    
     @IBAction private func loginAction(_ sender: Any) {
         
     }
 }
 
 extension ChattingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -185,14 +192,15 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
         }
         
         let message = messages[indexPath.item]
-        guard let fromEmail = message.userEmail else {return .init()}
+        guard let fromEmail = message.userEmail else {
+            return .init()
+        }
         
         if let text = messages[indexPath.item].text {
-            cell.textFieldView.text = text
             cell.bubbleViewWidhAnchor?.constant = text.estimateCGRect.width + 32
         }
         cell.fromEmail(userEmail: fromEmail)
-        cell.textFieldView.text = message.text!
+        cell.messageLabel.text = message.text!
         return cell
     }
     
@@ -204,24 +212,18 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
         if let text = messages[indexPath.row].text {
             height = text.estimateCGRect.height
         }
+        
         return CGSize(width: view.frame.width, height: height + 15)
-    }
-}
-
-extension ChattingViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }
 
 extension UITextField {
     //뷰 라운드 처리 설정
-    func makeRounded(cornerRadius : CGFloat?){
+    func makeRounded(cornerRadius : CGFloat?) {
         if let cornerRad = cornerRadius {
             self.layer.cornerRadius = cornerRad
         } else {
-            self.layer.cornerRadius = self.layer.frame.height/2
+            self.layer.cornerRadius = self.layer.frame.height / 2
         }
         self.layer.masksToBounds = true
     }
@@ -229,7 +231,6 @@ extension UITextField {
     //뷰 그림자 설정
     //color: 색상, opacity: 그림자 투명도, offset: 그림자 위치, radius: 그림자 크기
     func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
-        
         layer.cornerRadius = 10.0
         layer.shadowColor = color.cgColor
         layer.shadowOffset = offSet
@@ -237,18 +238,6 @@ extension UITextField {
         layer.shadowRadius = radius
         layer.shadowPath = nil
         layer.shouldRasterize = true
-
-//
-//        layer.masksToBounds = false
-//        layer.shadowColor = color.cgColor
-//        layer.shadowOpacity = opacity
-//        layer.shadowOffset = offSet
-//        layer.shadowRadius = radius
-//        layer.cornerRadius = 10.0
-//
-//        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-//        layer.shouldRasterize = true
-//        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
     
     func dropShadow2(scale: Bool = true) {
@@ -260,8 +249,6 @@ extension UITextField {
         
         layer.shadowPath = UIBezierPath(rect: bounds).cgPath
         layer.shouldRasterize = true
-        
-        //layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
 }
 
