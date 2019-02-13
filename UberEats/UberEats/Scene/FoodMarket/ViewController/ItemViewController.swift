@@ -64,7 +64,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
             for food in recommendFood {
                 let imageURL = URL(string: food.foodImageURL)!
 
-                NetworkManager.shared.getImageByCache(imageURL: imageURL) { (_, error) in
+                ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (_, error) in
                     if error != nil {
                         return
                     }
@@ -73,9 +73,27 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
-    private var nearestRest: [Store] = [] {
+    private var stores: [Store] = [] {
         didSet {
+            for store in stores {
+                setNearestRest(store)
+            }
+        }
+    }
 
+    private var nearestRest: [Store] = []
+
+    private func setNearestRest(_ store: Store) {
+        let currentLatitude: Double = 37.498146
+        let currentLongtitude: Double = 127.027642
+
+        let storeCoordinate = CLLocation(latitude: store.location.latitude, longitude: store.location.longtitude)
+        let currentCoordinate = CLLocation(latitude: currentLatitude, longitude: currentLongtitude)
+
+        let distance = storeCoordinate.distance(from: currentCoordinate) / 1000
+
+        if distance < 2.0 {
+            nearestRest.append(store)
         }
     }
 
@@ -92,6 +110,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
         bannerTimer = Timer.scheduledTimer(timeInterval: ItemViewController.bannerTimeInterval, target: self,
                                            selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
+
     }
 
     private func setupLocationAuthority() {
@@ -101,13 +120,17 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     }
 
     private func initFoodMarket() {
-        foodMarketService.requestFoodMarket { [weak self](dataResponse) in
+        foodMarketService.requestFoodMarket { [weak self] (dataResponse) in
             if dataResponse.isSuccess {
                 guard let recommendFoodModel = dataResponse.value?.recommandFoods else {
                     return
                 }
-
+                guard let stores = dataResponse.value?.stores else {
+                    return
+                }
                 self?.recommendFood = recommendFoodModel
+                self?.stores = stores
+
             } else {
                 fatalError()
             }
@@ -328,7 +351,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case .recommendFood:
             return recommendFood.count
         case .nearestRest:
-            return 6
+            return nearestRest.count
         case .expectedTime:
             return 6
         case .newRest:
@@ -348,7 +371,15 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             recommendFoodCell.recommendFood = recommendFood[indexPath.item]
             return recommendFoodCell
-        case .nearestRest, .expectedTime, .newRest:
+        case .nearestRest:
+            guard let nearestRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? NearestCollectionViewCell else {
+                return .init()
+            }
+
+            nearestRestCell.nearestRest = nearestRest[indexPath.item]
+            return nearestRestCell
+
+        case .expectedTime, .newRest:
             return collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath)
         default:
             return .init()

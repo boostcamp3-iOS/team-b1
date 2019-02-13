@@ -23,37 +23,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="311" height="270"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zinger" translatesAutoresizingMaskIntoConstraints="NO" id="Rez-OW-kW8">
-                                <rect key="frame" x="8" y="5" width="295" height="140"/>
+                                <rect key="frame" x="9" y="9" width="293" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Rez-OW-kW8" secondAttribute="height" multiplier="295:140" id="Jdq-9p-gc8"/>
+                                    <constraint firstAttribute="height" constant="90" id="rCG-dL-PQI"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Dn2-mQ-W59">
-                                <rect key="frame" x="12" y="159.5" width="287" height="86"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Dn2-mQ-W59">
+                                <rect key="frame" x="12" y="114" width="287" height="141"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="명인만두 명동점 Myungin Mandu MyeongDong" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="jaH-G4-9vE">
-                                        <rect key="frame" x="0.0" y="0.0" width="286" height="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="286" height="31"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ * 분식" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hA-dM-PSu">
-                                        <rect key="frame" x="0.0" y="23" width="47.5" height="17"/>
+                                        <rect key="frame" x="0.0" y="37" width="47.5" height="30.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="s9U-Xf-9hB">
-                                        <rect key="frame" x="0.0" y="46" width="106" height="17"/>
+                                        <rect key="frame" x="0.0" y="73.5" width="106" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25~35분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKM-eM-D7b">
-                                                <rect key="frame" x="0.0" y="0.0" width="55" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="31"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$7000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYe-gY-OCe">
-                                                <rect key="frame" x="63" y="0.0" width="43" height="17"/>
+                                                <rect key="frame" x="63" y="0.0" width="43" height="31"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -61,7 +61,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="케이에프씨 광화문 KFC Gwanghwa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xiv-rP-glh">
-                                        <rect key="frame" x="0.0" y="69" width="206" height="17"/>
+                                        <rect key="frame" x="0.0" y="110.5" width="206" height="30.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -71,12 +71,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Rez-OW-kW8" firstAttribute="centerX" secondItem="Zsg-eV-HuY" secondAttribute="centerX" id="96X-94-xff"/>
                             <constraint firstAttribute="trailing" secondItem="Dn2-mQ-W59" secondAttribute="trailing" constant="12" id="NCb-h8-7pg"/>
-                            <constraint firstItem="Dn2-mQ-W59" firstAttribute="centerY" secondItem="Zsg-eV-HuY" secondAttribute="centerY" multiplier="1.5" id="OYG-x4-qEI"/>
-                            <constraint firstItem="Rez-OW-kW8" firstAttribute="height" secondItem="Zsg-eV-HuY" secondAttribute="height" multiplier="14/27" id="U9R-VQ-JxR"/>
-                            <constraint firstItem="Rez-OW-kW8" firstAttribute="top" secondItem="Zsg-eV-HuY" secondAttribute="top" constant="5" id="ULi-kN-j9e"/>
+                            <constraint firstItem="Rez-OW-kW8" firstAttribute="leading" secondItem="Zsg-eV-HuY" secondAttribute="leading" constant="9" id="OkQ-K3-5Zh"/>
+                            <constraint firstAttribute="trailing" secondItem="Rez-OW-kW8" secondAttribute="trailing" constant="9" id="OtG-kX-pja"/>
+                            <constraint firstItem="Rez-OW-kW8" firstAttribute="top" secondItem="Zsg-eV-HuY" secondAttribute="top" constant="9" id="ULi-kN-j9e"/>
+                            <constraint firstItem="Dn2-mQ-W59" firstAttribute="top" secondItem="Rez-OW-kW8" secondAttribute="bottom" constant="15" id="hyM-oK-IDu"/>
                             <constraint firstItem="Dn2-mQ-W59" firstAttribute="leading" secondItem="Zsg-eV-HuY" secondAttribute="leading" constant="12" id="vvd-l3-F2V"/>
+                            <constraint firstAttribute="bottom" secondItem="Dn2-mQ-W59" secondAttribute="bottom" constant="15" id="zAP-Vv-8y3"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -89,6 +90,13 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="189" height="215"/>
+            <connections>
+                <outlet property="category" destination="7hA-dM-PSu" id="Skb-sb-08q"/>
+                <outlet property="deliveryTime" destination="xKM-eM-D7b" id="HTu-lA-OS0"/>
+                <outlet property="mainImage" destination="Rez-OW-kW8" id="oJb-u4-AJf"/>
+                <outlet property="name" destination="jaH-G4-9vE" id="beU-Xs-7hG"/>
+                <outlet property="promotion" destination="Xiv-rP-glh" id="Ey7-wI-kfs"/>
+            </connections>
             <point key="canvasLocation" x="248" y="204.19790104947529"/>
         </collectionViewCell>
     </objects>

@@ -239,8 +239,8 @@
             },
             "favorites": true,
             "location": {
-                "latitude": 100,
-                "longtitude": 54
+                "latitude": 37.498245,
+                "longtitude": 127.027642
             },
             "rate": {
                 "score": 4.5,
@@ -258,8 +258,8 @@
             },
             "favorites": true,
             "location": {
-                "latitude": 101,
-                "longtitude": 53
+                "latitude": 37.488245,
+                "longtitude": 127.027642
             },
             "rate": {
                 "score": 4.5,
@@ -277,8 +277,274 @@
             },
             "favorites": true,
             "location": {
-                "latitude": 102,
-                "longtitude": 55
+                "latitude": 37.488245,
+                "longtitude": 127.077642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "바스 버거 후암점 Bas Buger Huam",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "케이에프씨 광화문 KFC Gwanghwamun",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "투썸플레이스 매경미디어센터 Twosome Place",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "핸썸 베이글 Handsomebagel",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "버거킹 종로구청 BurgerKing Jongno-gu Office",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "피자헛 창신점 Pizza Hut Changsin",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "주시브로스 그랑서울 Juicybros Granseoul",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "장도뚝배기 Jangdo Ttukbaegi",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "만족오향족발 동대문점 Manjok-Ohyang Jokbal",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "샌드리아 행당점 Sandria Hangdang Branch",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "배스킨 라빈스 성동금호점 BaskinRobbins",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "순대실록 Sundae Story",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "모스버거 명동중앙점 MosBurger Myeong-dong",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
+            },
+            "rate": {
+                "score": 4.5,
+                "numberOfRater": 120
+            }
+        },
+        {
+            "mainImage": "http:stro2",
+            "name": "고래식당 왕십리점",
+            "category": "일식 , 한식2",
+            "deliveryTime" : "30-40",
+            "openTime": {
+                "startTime": "11:12",
+                "endTime": "22:13"
+            },
+            "favorites": true,
+            "location": {
+                "latitude": 37.488245,
+                "longtitude": 127.027642
             },
             "rate": {
                 "score": 4.5,
