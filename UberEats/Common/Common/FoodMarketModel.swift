@@ -32,6 +32,7 @@ public struct Rate: Codable {
 }
 
 public struct RecommandFood: Codable {
+    public let UID: String
     public let foodName: String
     public let basePrice: Int
     public let foodDescription: String
