@@ -217,13 +217,6 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
     }
 }
 
-extension ChattingViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-}
-
 extension UITextField {
     //뷰 라운드 처리 설정
     func makeRounded(cornerRadius : CGFloat?) {

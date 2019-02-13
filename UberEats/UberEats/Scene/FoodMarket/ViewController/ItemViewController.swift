@@ -41,7 +41,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     private let heightOfPageControl: CGFloat = 37
 
     private lazy var pageControl: UIPageControl = {
-        let pageControl = UIPageControl(frame: CGRect(x: leftPaddingOfPageControl,
+        let pageControl = UIPageControl(frame: CGRect(x: self.leftPaddingOfPageControl,
                                                       y: heightOfScrollView - heightOfPageControl,
                                                       width: widthOfPageControl,
                                                       height: heightOfPageControl))
@@ -57,13 +57,19 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         return self.view.frame.height * (10 / 812)
     }()
 
-    private lazy var cache: NSCache = NSCache<NSString, UIImage>()
-
     private var foodMarketService: FoodMarketService = DependencyContainer.share.getDependency(key: .foodMarketService)
 
     private var recommendFood: [RecommandFood] = [] {
         didSet {
+            for food in recommendFood {
+                let imageURL = URL(string: food.foodImageURL)!
 
+                NetworkManager.shared.getImageByCache(imageURL: imageURL) { (_, error) in
+                    if error != nil {
+                        return
+                    }
+                }
+            }
         }
     }
 
@@ -80,16 +86,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
         bannerTimer = Timer.scheduledTimer(timeInterval: ItemViewController.bannerTimeInterval, target: self,
                                            selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
-
-        for food in recommendFood {
-            let imageURL = URL(string: food.foodImageURL)!
-
-            NetworkManager.shared.getImageByCache(imageURL: imageURL) { (_, error) in
-                if error != nil {
-                    return
-                }
-            }
-        }
     }
 
     private func setupLocationAuthority() {
@@ -97,8 +93,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
     }
-    
-    private var recommendFood:[RecommandFood] = []
 
     private func initFoodMarket() {
         foodMarketService.requestFoodMarket { [weak self](dataResponse) in
@@ -155,7 +149,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         pageControl.addTarget(self, action: #selector(changePage), for: .valueChanged)
     }
 
-    func setupScrollView() {
+    private func setupScrollView() {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.delegate = self
 
@@ -169,10 +163,8 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         setupPageControl()
     }
 
-        scrollView.scrollRectToVisible(frame, animated: true)
-    }
-
-    @objc func changePage() {
+    @objc private func changePage() {
+        var frame = CGRect(origin: CGPoint.zero, size: CGSize.zero)
         let changedPageNumber = pageControl.currentPage
         scrollView.frame.origin = CGPoint(x: frame.size.width * CGFloat(changedPageNumber), y: 0)
         scrollView.scrollRectToVisible(scrollView.frame, animated: true)
@@ -206,9 +198,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         //enum의 연관값 사용!
         let section = Section(rawValue: section)!
         switch section {
-        case .bannerScroll:
-            return section.numberOfSection
-        case .recommendFood, .nearestRest, .expectedTime, .newRest, .discount, .searchAndSee:
+        case .bannerScroll, .recommendFood, .nearestRest, .expectedTime, .newRest, .discount, .searchAndSee:
             return section.numberOfSection
         case .moreRest:
             return 10
@@ -378,16 +368,15 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         guard let section = Section(rawValue: collectionView.tag) else {
             preconditionFailure("")
         }
-
         switch section {
         case .recommendFood:
-            return CGSize(width: view.frame.width * 0.8, height: view.frame.width * 0.8 * 0.82)
+            return .init(width: view.frame.width * 0.8, height: view.frame.width * 0.8 * 0.82)
         case .nearestRest, .expectedTime, .newRest :
-            return CGSize(width: view.frame.width * 0.76, height: view.frame.width * 0.76 * 0.868)
+            return .init(width: view.frame.width * 0.76, height: view.frame.width * 0.76 * 0.868)
         case .discount:
-            return CGSize(width: 0, height: 0)
+            return .init(width: 0, height: 0)
         default:
-            return CGSize(width: 400, height: 400)
+            return .init(width: 400, height: 400)
         }
     }
 
@@ -398,18 +387,4 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         return section.getEdgeInset
     }
 
-}
-
-extension UIImageView {
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-    }
-    func load(url: URL) {
-        getData(from: url) { [weak self] data, response, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async() {
-                self?.image = UIImage(data: data)
-            }
-        }
-    }
 }

@@ -416,7 +416,7 @@ class CollectionViewController: UICollectionViewController {
             return isLiked ? "selectLike" : "like"
         }
     }
-    
+
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView != self.menuBarCollectionView {
 

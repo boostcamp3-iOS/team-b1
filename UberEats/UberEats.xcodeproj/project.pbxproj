@@ -14,13 +14,15 @@
 		843B05182203E6F40082FEFF /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B05172203E6F40082FEFF /* ChatModel.swift */; };
 		843B051A220405540082FEFF /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B0519220405540082FEFF /* ChatMessageCell.swift */; };
 		84604F212205928100212A00 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84604F202205928100212A00 /* Message.swift */; };
+		847794912213D8B0003EA68D /* DependencyContainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847794902213D8B0003EA68D /* DependencyContainer.framework */; };
+		847794922213D8B0003EA68D /* DependencyContainer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 847794902213D8B0003EA68D /* DependencyContainer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		847794952213D8BC003EA68D /* MockServer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 847794932213D8BC003EA68D /* MockServer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8477949A2213D8F2003EA68D /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847794992213D8F2003EA68D /* Common.framework */; };
+		8477949B2213D8F2003EA68D /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 847794992213D8F2003EA68D /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */; };
 		84CA5ED722113487007E95FF /* ServiceInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57930220C5A90002D792A /* ServiceInterface.framework */; };
 		84CA5EDA2211348F007E95FF /* ServiceInterface.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57930220C5A90002D792A /* ServiceInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84CA5EDC22113498007E95FF /* Service.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57914220AD07F002D792A /* Service.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		84CA5EDF221134A3007E95FF /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CCFCF4220B038600F4A4EF /* Common.framework */; };
-		84CA5EE0221134A3007E95FF /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CCFCF4220B038600F4A4EF /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		84CA5EE2221134AA007E95FF /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CCFCF4220B038600F4A4EF /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84DC184121F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */; };
 		84DC184221F9A51D008EE6D3 /* RecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */; };
 		84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC183B21F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift */; };
@@ -106,8 +108,9 @@
 			files = (
 				84CA5EDA2211348F007E95FF /* ServiceInterface.framework in Embed Frameworks */,
 				84CA5EDC22113498007E95FF /* Service.framework in Embed Frameworks */,
-				84CA5EE0221134A3007E95FF /* Common.framework in Embed Frameworks */,
-				84CA5EE2221134AA007E95FF /* Common.framework in Embed Frameworks */,
+				8477949B2213D8F2003EA68D /* Common.framework in Embed Frameworks */,
+				847794922213D8B0003EA68D /* DependencyContainer.framework in Embed Frameworks */,
+				847794952213D8BC003EA68D /* MockServer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +132,9 @@
 		843B05172203E6F40082FEFF /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		843B0519220405540082FEFF /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		84604F202205928100212A00 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		847794902213D8B0003EA68D /* DependencyContainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DependencyContainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		847794932213D8BC003EA68D /* MockServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MockServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		847794992213D8F2003EA68D /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		84CCFCF4220B038600F4A4EF /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpectTimeCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -217,8 +223,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				84CA5ED722113487007E95FF /* ServiceInterface.framework in Frameworks */,
+				8477949A2213D8F2003EA68D /* Common.framework in Frameworks */,
+				847794912213D8B0003EA68D /* DependencyContainer.framework in Frameworks */,
 				BAADD13A736367A4AF0735E9 /* Pods_UberEats.framework in Frameworks */,
-				84CA5EDF221134A3007E95FF /* Common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +306,9 @@
 		9956F7E421F98468004E9854 = {
 			isa = PBXGroup;
 			children = (
+				847794992213D8F2003EA68D /* Common.framework */,
+				847794932213D8BC003EA68D /* MockServer.framework */,
+				847794902213D8B0003EA68D /* DependencyContainer.framework */,
 				9956F7EF21F98468004E9854 /* UberEats */,
 				9956F7EE21F98468004E9854 /* Products */,
 				0FFB9E38DDD2D4629C93313E /* Pods */,
