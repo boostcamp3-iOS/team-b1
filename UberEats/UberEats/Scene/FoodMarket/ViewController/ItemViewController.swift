@@ -93,8 +93,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
     }
-    
-    private var recommendFood:[RecommandFood] = []
 
     private func initFoodMarket() {
         foodMarketService.requestFoodMarket { [weak self](dataResponse) in
@@ -167,12 +165,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     @objc private func changePage() {
         var frame = CGRect(origin: CGPoint.zero, size: CGSize.zero)
-        let changedPageNumber = pageControl.currentPage
-        scrollView.frame.origin = CGPoint(x: frame.size.width * CGFloat(changedPageNumber), y: 0)
-        scrollView.scrollRectToVisible(scrollView.frame, animated: true)
-    }
-
-    @objc func changePage() {
         let changedPageNumber = pageControl.currentPage
         scrollView.frame.origin = CGPoint(x: frame.size.width * CGFloat(changedPageNumber), y: 0)
         scrollView.scrollRectToVisible(scrollView.frame, animated: true)
@@ -376,7 +368,6 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         guard let section = Section(rawValue: collectionView.tag) else {
             preconditionFailure("")
         }
-
         switch section {
         case .recommendFood:
             return .init(width: view.frame.width * 0.8, height: view.frame.width * 0.8 * 0.82)
@@ -396,18 +387,4 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         return section.getEdgeInset
     }
 
-}
-
-extension UIImageView {
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-    }
-    func load(url: URL) {
-        getData(from: url) { [weak self] data, response, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async() {
-                self?.image = UIImage(data: data)
-            }
-        }
-    }
 }
