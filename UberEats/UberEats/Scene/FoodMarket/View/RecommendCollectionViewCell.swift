@@ -25,13 +25,13 @@ class RecommendCollectionViewCell: UICollectionViewCell {
             guard let recommendFood = recommendFood else {
                 return
             }
-//            let imageURL = URL(string: recommendFood.foodImageURL)!
 
             label.text = recommendFood.foodName
 
-//            NetworkManager.shared.getImageByCache(imageURL: imageURL) { (downloadImage, _) in
-//                self.image.image = downloadImage
-//            }
+            let imageURL = URL(string: recommendFood.foodImageURL)!
+            ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (downloadImage, _) in
+                self.image.image = downloadImage
+            }
         }
     }
 
