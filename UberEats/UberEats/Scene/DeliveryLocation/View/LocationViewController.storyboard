@@ -13,17 +13,72 @@
         <!--Location View Controller-->
         <scene sceneID="Dmt-05-K2Q">
             <objects>
-                <viewController storyboardIdentifier="searchView" id="M39-Jk-Y9m" customClass="LocationViewController" customModule="UberEats" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="M39-Jk-Y9m" customClass="LocationViewController" customModule="UberEats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="37s-1q-ZC6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ge2-Ui-TJN"/>
                     </view>
+                    <navigationItem key="navigationItem" id="XB1-Sx-RCf">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="obC-g1-HZU">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mEQ-yy-BHB">
+                                <rect key="frame" x="16" y="9.6666666666666643" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="blackArrow"/>
+                            </button>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" style="plain" id="6Lf-mv-oh5">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="k7V-cE-oSg">
+                                    <rect key="frame" x="327" y="6" width="32" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="btInquiry"/>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="xgs-JH-37u">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rcD-WP-bXz">
+                                    <rect key="frame" x="280" y="7" width="39" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <state key="normal" title="문의하기">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="coveredBackButton" destination="mEQ-yy-BHB" id="vq2-oL-ckJ"/>
+                        <outlet property="coveredContactButton" destination="k7V-cE-oSg" id="VVB-t4-3b0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMv-ru-WK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-414" y="-18"/>
+            <point key="canvasLocation" x="527.20000000000005" y="-18.472906403940886"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0A6-A5-rqx">
+            <objects>
+                <navigationController storyboardIdentifier="searchView" automaticallyAdjustsScrollViewInsets="NO" id="Jrp-Wy-mW2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BLb-Cf-0Sx">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="M39-Jk-Y9m" kind="relationship" relationship="rootViewController" id="hSc-IU-zVB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HCQ-vm-8HS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-415.19999999999999" y="-18.472906403940886"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="blackArrow" width="24" height="24"/>
+        <image name="btInquiry" width="32" height="32"/>
+    </resources>
 </document>

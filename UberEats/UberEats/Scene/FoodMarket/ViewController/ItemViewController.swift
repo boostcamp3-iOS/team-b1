@@ -62,13 +62,13 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     private var recommendFood: [RecommandFood] = [] {
         didSet {
             for food in recommendFood {
-                let imageURL = URL(string: food.foodImageURL)!
+//                let imageURL = URL(string: food.foodImageURL)!
 
-                NetworkManager.shared.getImageByCache(imageURL: imageURL) { (_, error) in
-                    if error != nil {
-                        return
-                    }
-                }
+//                NetworkManager.shared.getImageByCache(imageURL: imageURL) { (_, error) in
+//                    if error != nil {
+//                        return
+//                    }
+//                }
             }
         }
     }
