@@ -12,10 +12,11 @@
     ],
     "recommandFoods" : [
         {
+            "UID" : "recommandFoods1",
             "foodName": "바스 버거 세트 Bas Burger Set",
             "basePrice": 5,
             "foodDescription": "바스바스 바스버거링~",
-            "foodImageURL" : "https://firebasestorage.googleapis.com/v0/b/ubereats-ada19.appspot.com/o/recommandFood1.jpg?alt=media&token=abcd5140-5478-40f5-8d68-f02b3fbe5b2a",
+            "foodImageURL" : "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/master/images/FoodMarket/recommandFood1.jpg",
             "store": {
                 "mainImage": "http:stro",
                 "name": "dontknow",
@@ -37,10 +38,11 @@
             }
         },
         {
-            "foodName": "바스 버거 세트 Bas Burger Set",
+            "UID" : "recommandFoods2",
+            "foodName": "바스 버거",
             "basePrice": 5,
             "foodDescription": "바스바스 바스버거링~",
-            "foodImageURL" : "https://firebasestorage.googleapis.com/v0/b/ubereats-ada19.appspot.com/o/recommandFood2.jpg?alt=media&token=3e77384a-43f9-4b3e-916b-2c6f0e98458a",
+            "foodImageURL" : "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/master/images/FoodMarket/recommandFood2.jpg",
             "store": {
                 "mainImage": "http:stro",
                 "name": "dontknow",
@@ -62,10 +64,11 @@
             }
         },
         {
-            "foodName": "바스 버거 세트 Bas Burger Set",
+            "UID" : "recommandFoods3",
+            "foodName": "모스 버거",
             "basePrice": 5,
             "foodDescription": "바스바스 바스버거링~",
-            "foodImageURL" : "https://firebasestorage.googleapis.com/v0/b/ubereats-ada19.appspot.com/o/recommandFood3.jpg?alt=media&token=37677fdb-73f8-4b9c-a780-14f52b1ec5fb",
+            "foodImageURL" : "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/master/images/FoodMarket/recommandFood3.jpg",
             "store": {
                 "mainImage": "http:stro",
                 "name": "dontknow",
@@ -87,10 +90,11 @@
             }
         },
         {
-            "foodName": "바스 버거 세트 Bas Burger Set",
+            "UID" : "recommandFoods4",
+            "foodName": "와규 치즈버거 세트",
             "basePrice": 5,
             "foodDescription": "바스바스 바스버거링~",
-            "foodImageURL" : "https://firebasestorage.googleapis.com/v0/b/ubereats-ada19.appspot.com/o/recommandFood4.jpg?alt=media&token=ac90b29c-7f05-4e7f-ad47-452b61fb9a18",
+            "foodImageURL" : "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/master/images/FoodMarket/recommandFood4.jpg",
             "store": {
                 "mainImage": "http:stro",
                 "name": "dontknow",
@@ -112,10 +116,11 @@
             }
         },
         {
-            "foodName": "바스 버거 세트 Bas Burger Set",
+            "UID" : "recommandFoods5",
+            "foodName": "교촌 후라이드",
             "basePrice": 5,
             "foodDescription": "바스바스 바스버거링~",
-            "foodImageURL" : "https://firebasestorage.googleapis.com/v0/b/ubereats-ada19.appspot.com/o/recommandFood5.jpg?alt=media&token=f26c60fb-11f3-466e-b414-cf307a3bb52d",
+            "foodImageURL" : "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/master/images/FoodMarket/recommandFood5.jpg",
             "store": {
                 "mainImage": "http:stro",
                 "name": "dontknow",
@@ -137,10 +142,11 @@
             }
         },
         {
-            "foodName": "바스 버거 세트 Bas Burger Set",
+            "UID" : "recommandFoods6",
+            "foodName": "버팔로 치킨 윙",
             "basePrice": 5,
             "foodDescription": "바스바스 바스버거링~",
-            "foodImageURL" : "https://firebasestorage.googleapis.com/v0/b/ubereats-ada19.appspot.com/o/recommandFood6.jpg?alt=media&token=f8865b4c-edfd-453d-9fd3-d6373db4fc56",
+            "foodImageURL" : "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/master/images/FoodMarket/recommandFood6.jpg",
             "store": {
                 "mainImage": "http:stro",
                 "name": "dontknow",
@@ -224,7 +230,7 @@
     "stores": [
         {
             "mainImage": "http:stro",
-            "name": "dontknow",
+            "name": "스쿨푸드 딜리버리 왕십리 뉴타운점 School Food Delivery",
             "category": "일식 , 한식",
             "deliveryTime" : "30-40",
             "openTime": {
@@ -233,8 +239,8 @@
             },
             "favorites": true,
             "location": {
-                "latitude": 124.5325,
-                "longtitude": 54125.124
+                "latitude": 100,
+                "longtitude": 54
             },
             "rate": {
                 "score": 4.5,
@@ -243,17 +249,17 @@
         },
         {
             "mainImage": "http:stro1",
-            "name": "dontknow1",
+            "name": "명인 만두 명동점 Myungin Mandu Myeondong",
             "category": "일식 , 한식1",
-            "deliveryTime" : "30-401",
+            "deliveryTime" : "30-40",
             "openTime": {
                 "startTime": "11:12",
                 "endTime": "22:13"
             },
             "favorites": true,
             "location": {
-                "latitude": 124.5325,
-                "longtitude": 54125.124
+                "latitude": 101,
+                "longtitude": 53
             },
             "rate": {
                 "score": 4.5,
@@ -262,17 +268,17 @@
         },
         {
             "mainImage": "http:stro2",
-            "name": "dontknow2",
+            "name": "공차 시청점",
             "category": "일식 , 한식2",
-            "deliveryTime" : "30-402",
+            "deliveryTime" : "30-40",
             "openTime": {
                 "startTime": "11:12",
                 "endTime": "22:13"
             },
             "favorites": true,
             "location": {
-                "latitude": 124.5325,
-                "longtitude": 54125.124
+                "latitude": 102,
+                "longtitude": 55
             },
             "rate": {
                 "score": 4.5,

@@ -73,6 +73,12 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
+    private var nearestRest: [Store] = [] {
+        didSet {
+
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -102,10 +108,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
                 }
 
                 self?.recommendFood = recommendFoodModel
-
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
             } else {
                 fatalError()
             }
@@ -297,15 +299,16 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = Section(rawValue: indexPath.section)!
         switch section {
-        case .recommendFood, .nearestRest, .expectedTime, .newRest, .discount, .searchAndSee, .bannerScroll:
-            return section.heightOfTableViewCell(view.frame.height)
         case .moreRest:
             if indexPath.row == 0 {
                 return 80
             } else {
                 return section.heightOfTableViewCell(view.frame.height)
             }
+        default:
+            return section.heightOfTableViewCell(view.frame.height)
         }
+
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

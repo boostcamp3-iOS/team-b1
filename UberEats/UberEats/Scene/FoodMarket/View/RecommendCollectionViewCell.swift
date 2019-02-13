@@ -25,10 +25,9 @@ class RecommendCollectionViewCell: UICollectionViewCell {
             guard let recommendFood = recommendFood else {
                 return
             }
-            let imageURL = URL(string: recommendFood.foodImageURL)!
-
             label.text = recommendFood.foodName
 
+            let imageURL = URL(string: recommendFood.foodImageURL)!
             NetworkManager.shared.getImageByCache(imageURL: imageURL) { (downloadImage, _) in
                 self.image.image = downloadImage
             }
