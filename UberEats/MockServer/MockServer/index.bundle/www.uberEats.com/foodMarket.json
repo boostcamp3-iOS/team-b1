@@ -12,9 +12,135 @@
     ],
     "recommandFoods" : [
         {
-            "foodName": "foodname1",
+            "foodName": "바스 버거 세트 Bas Burger Set",
             "basePrice": 5,
-            "foodDescription": "good",
+            "foodDescription": "바스바스 바스버거링~",
+            "foodImageURL" : "https://firebasestorage.googleapis.com/v0/b/ubereats-ada19.appspot.com/o/recommandFood1.jpg?alt=media&token=abcd5140-5478-40f5-8d68-f02b3fbe5b2a",
+            "store": {
+                "mainImage": "http:stro",
+                "name": "dontknow",
+                "category": "일식 , 한식",
+                "deliveryTime" : "30-40",
+                "openTime": {
+                    "startTime": "11:12",
+                    "endTime": "22:13"
+                },
+                "favorites": true,
+                "location": {
+                    "latitude": 124.5325,
+                    "longtitude": 54125.124
+                },
+                "rate": {
+                    "score": 4.5,
+                    "numberOfRater": 120
+                }
+            }
+        },
+        {
+            "foodName": "바스 버거 세트 Bas Burger Set",
+            "basePrice": 5,
+            "foodDescription": "바스바스 바스버거링~",
+            "foodImageURL" : "https://firebasestorage.googleapis.com/v0/b/ubereats-ada19.appspot.com/o/recommandFood2.jpg?alt=media&token=3e77384a-43f9-4b3e-916b-2c6f0e98458a",
+            "store": {
+                "mainImage": "http:stro",
+                "name": "dontknow",
+                "category": "일식 , 한식",
+                "deliveryTime" : "30-40",
+                "openTime": {
+                    "startTime": "11:12",
+                    "endTime": "22:13"
+                },
+                "favorites": true,
+                "location": {
+                    "latitude": 124.5325,
+                    "longtitude": 54125.124
+                },
+                "rate": {
+                    "score": 4.5,
+                    "numberOfRater": 120
+                }
+            }
+        },
+        {
+            "foodName": "바스 버거 세트 Bas Burger Set",
+            "basePrice": 5,
+            "foodDescription": "바스바스 바스버거링~",
+            "foodImageURL" : "https://firebasestorage.googleapis.com/v0/b/ubereats-ada19.appspot.com/o/recommandFood3.jpg?alt=media&token=37677fdb-73f8-4b9c-a780-14f52b1ec5fb",
+            "store": {
+                "mainImage": "http:stro",
+                "name": "dontknow",
+                "category": "일식 , 한식",
+                "deliveryTime" : "30-40",
+                "openTime": {
+                    "startTime": "11:12",
+                    "endTime": "22:13"
+                },
+                "favorites": true,
+                "location": {
+                    "latitude": 124.5325,
+                    "longtitude": 54125.124
+                },
+                "rate": {
+                    "score": 4.5,
+                    "numberOfRater": 120
+                }
+            }
+        },
+        {
+            "foodName": "바스 버거 세트 Bas Burger Set",
+            "basePrice": 5,
+            "foodDescription": "바스바스 바스버거링~",
+            "foodImageURL" : "https://firebasestorage.googleapis.com/v0/b/ubereats-ada19.appspot.com/o/recommandFood4.jpg?alt=media&token=ac90b29c-7f05-4e7f-ad47-452b61fb9a18",
+            "store": {
+                "mainImage": "http:stro",
+                "name": "dontknow",
+                "category": "일식 , 한식",
+                "deliveryTime" : "30-40",
+                "openTime": {
+                    "startTime": "11:12",
+                    "endTime": "22:13"
+                },
+                "favorites": true,
+                "location": {
+                    "latitude": 124.5325,
+                    "longtitude": 54125.124
+                },
+                "rate": {
+                    "score": 4.5,
+                    "numberOfRater": 120
+                }
+            }
+        },
+        {
+            "foodName": "바스 버거 세트 Bas Burger Set",
+            "basePrice": 5,
+            "foodDescription": "바스바스 바스버거링~",
+            "foodImageURL" : "https://firebasestorage.googleapis.com/v0/b/ubereats-ada19.appspot.com/o/recommandFood5.jpg?alt=media&token=f26c60fb-11f3-466e-b414-cf307a3bb52d",
+            "store": {
+                "mainImage": "http:stro",
+                "name": "dontknow",
+                "category": "일식 , 한식",
+                "deliveryTime" : "30-40",
+                "openTime": {
+                    "startTime": "11:12",
+                    "endTime": "22:13"
+                },
+                "favorites": true,
+                "location": {
+                    "latitude": 124.5325,
+                    "longtitude": 54125.124
+                },
+                "rate": {
+                    "score": 4.5,
+                    "numberOfRater": 120
+                }
+            }
+        },
+        {
+            "foodName": "바스 버거 세트 Bas Burger Set",
+            "basePrice": 5,
+            "foodDescription": "바스바스 바스버거링~",
+            "foodImageURL" : "https://firebasestorage.googleapis.com/v0/b/ubereats-ada19.appspot.com/o/recommandFood6.jpg?alt=media&token=f8865b4c-edfd-453d-9fd3-d6373db4fc56",
             "store": {
                 "mainImage": "http:stro",
                 "name": "dontknow",

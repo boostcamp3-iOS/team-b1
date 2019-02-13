@@ -300,7 +300,6 @@
 			isa = PBXGroup;
 			children = (
 				9956F7EF21F98468004E9854 /* UberEats */,
-				99342CC221FB12CF0029DB10 /* UberEatsTests */,
 				9956F7EE21F98468004E9854 /* Products */,
 				0FFB9E38DDD2D4629C93313E /* Pods */,
 				A656A6A175D2C5F42392628E /* Frameworks */,
@@ -417,6 +416,7 @@
 				84DC183C21F9A51D008EE6D3 /* NearestCollectionViewCell.swift */,
 				84DC183F21F9A51D008EE6D3 /* NearestCollectionViewCell.xib */,
 				84DC184F21F9AD7C008EE6D3 /* ItemView.storyboard */,
+				99342CC221FB12CF0029DB10 /* UberEatsTests */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1065,7 +1065,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1084,7 +1084,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

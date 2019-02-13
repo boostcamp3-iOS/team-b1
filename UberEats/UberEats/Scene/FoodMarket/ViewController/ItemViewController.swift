@@ -5,12 +5,12 @@
 //  Created by admin on 23/01/2019.
 //  Copyright © 2019 team-b1. All rights reserved.
 //
-
 import UIKit
 import CoreLocation
 import Service
 import DependencyContainer
 import ServiceInterface
+import Common
 
 class ItemViewController: UIViewController, UIScrollViewDelegate {
 
@@ -20,14 +20,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     private var images: [String] = ["1_1", "2_1", "3_1", "4_1", "5_1", "6_1"]
 
-    private var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-
-    private var labelString: [String] = ["추천요리", "가까운 인기 레스토랑", "예상 시간 30분 이하", "Uber Eats 신규 레스토랑",
-                                         "주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
-    private var gameTimer: Timer!
-
-    private var collectionViewItems: [Int] = []
-
     private var bannerImages: [String] = ["1_1", "2_1", "3_1", "4_1", "5_1", "6_1"]
 
     private var bannerTimer: Timer!
@@ -36,29 +28,68 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     private let locationManager = CLLocationManager()
 
+    private lazy var heightOfScrollView: CGFloat = {
+         return self.view.frame.height * 0.25
+    }()
+
+    private lazy var widthOfPageControl: CGFloat = {
+       return self.view.frame.width - 280
+    }()
+
+    private let leftPaddingOfPageControl: CGFloat = 60
+
+    private let heightOfPageControl: CGFloat = 37
+
     private lazy var pageControl: UIPageControl = {
-        let pageControl = UIPageControl(frame: CGRect(x: 50, y: scrollView.bounds.height - 40,
-                                                      width: scrollView.frame.width - 280, height: 37))
+        let pageControl = UIPageControl(frame: CGRect(x: leftPaddingOfPageControl,
+                                                      y: heightOfScrollView - heightOfPageControl,
+                                                      width: widthOfPageControl,
+                                                      height: heightOfPageControl))
         pageControl.currentPage = 0
         return pageControl
     }()
 
+    private static let bannerTimeInterval: TimeInterval = 4
+
     private static let numberOfSection = 8
 
+    private  lazy var heightOfFooter: CGFloat = {
+        return self.view.frame.height * (10 / 812)
+    }()
+
+    private lazy var cache: NSCache = NSCache<NSString, UIImage>()
+
     private var foodMarketService: FoodMarketService = DependencyContainer.share.getDependency(key: .foodMarketService)
+
+    private var recommendFood: [RecommandFood] = [] {
+        didSet {
+
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupLocationAuthority()
+
+        initFoodMarket()
         setupTableView()
         setupScrollView()
 
         isScrolledByUser = false
 
-        bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self,
+        bannerTimer = Timer.scheduledTimer(timeInterval: ItemViewController.bannerTimeInterval, target: self,
                                            selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
-        initFoodMarket()
+
+        for food in recommendFood {
+            let imageURL = URL(string: food.foodImageURL)!
+
+            NetworkManager.shared.getImageByCache(imageURL: imageURL) { (_, error) in
+                if error != nil {
+                    return
+                }
+            }
+        }
     }
 
     private func setupLocationAuthority() {
@@ -66,14 +97,21 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
     }
+    
+    private var recommendFood:[RecommandFood] = []
 
     private func initFoodMarket() {
-        foodMarketService.requestFoodMarket { (dataResponse) in
+        foodMarketService.requestFoodMarket { [weak self](dataResponse) in
             if dataResponse.isSuccess {
-                let data = dataResponse.value?.advertisingBoard.first!
-                print("왔다!!!!!")
-                print(data)
-                let asd = 232
+                guard let recommendFoodModel = dataResponse.value?.recommandFoods else {
+                    return
+                }
+
+                self?.recommendFood = recommendFoodModel
+
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
             } else {
                 fatalError()
             }
@@ -83,32 +121,23 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     private func setupTableView() {
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
+
         tableView.addSubview(pageControl)
         tableView.bringSubviewToFront(pageControl)
     }
 
     @objc func scrolledBanner() {
-        /* guard로 false 처리
-         guard isAutoScrollMode else {
-         return
-         }
-         */
-        let nextPage = pageControl.currentPage + 1
+        let nextPageOfPageControl: Int = pageControl.currentPage + 1
 
-        let point = nextPage >= bannerImages.count ?
-            CGPoint(x: 0, y: 0) :
-            CGPoint(x: view.frame.width * CGFloat(nextPage), y: 0)
+        let point = nextPageOfPageControl >= bannerImages.count ?
+            CGPoint.zero :
+            CGPoint(x: view.frame.width * CGFloat(nextPageOfPageControl), y: 0)
 
         scrollView.setContentOffset(point, animated: true)
     }
 
-    func setupScrollView() {
-        scrollView.showsHorizontalScrollIndicator = false
-
-        var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-
-        scrollView.frame = CGRect(origin: CGPoint(x: 0, y: 0),
-                                  size: CGSize(width: view.frame.width, height: view.frame.height * 0.25))
+    private func  addBannerImageView() {
+        var frame = CGRect(origin: CGPoint.zero, size: CGSize.zero)
 
         for index in 0..<bannerImages.count {
             frame.origin.x = view.frame.width * CGFloat(index)
@@ -119,24 +148,34 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
             scrollView.addSubview(bannerImage)
         }
+    }
+
+    private func setupPageControl() {
+        pageControl.numberOfPages = bannerImages.count
+        pageControl.addTarget(self, action: #selector(changePage), for: .valueChanged)
+    }
+
+    func setupScrollView() {
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.delegate = self
+
+        scrollView.frame = CGRect(origin: CGPoint.zero,
+                                  size: CGSize(width: view.frame.width, height: heightOfScrollView))
 
         scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(bannerImages.count),
                                         height: scrollView.frame.height)
 
-        scrollView.delegate = self
-
-        pageControl.numberOfPages = bannerImages.count
-        pageControl.addTarget(self, action: #selector(pageChanged), for: .valueChanged)
+        addBannerImageView()
+        setupPageControl()
     }
 
-    @objc func pageChanged() {
-        let pageNumber = pageControl.currentPage
-        var frame = scrollView.frame
-
-        frame.origin.x = frame.size.width * CGFloat(pageNumber)
-        frame.origin.y = 0
-
         scrollView.scrollRectToVisible(frame, animated: true)
+    }
+
+    @objc func changePage() {
+        let changedPageNumber = pageControl.currentPage
+        scrollView.frame.origin = CGPoint(x: frame.size.width * CGFloat(changedPageNumber), y: 0)
+        scrollView.scrollRectToVisible(scrollView.frame, animated: true)
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -150,30 +189,27 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.scrollView {
-            //수정
-//            if scrollView.contentOffset.x >= view.frame.width * CGFloat(bannerImages.count - 1) {
-//                scrollView.isScrollEnabled = false
-//                scrollView.isScrollEnabled = true
-//            }
-
-            let page = scrollView.contentOffset.x / scrollView.frame.size.width
-            pageControl.currentPage = Int(page)
+            let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+            pageControl.currentPage = pageIndex
         }
     }
 }
 
+// MARK: - TabelViewDelegate
 extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return ItemViewController.numberOfSection
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //enum의 연관값 사용!
         let section = Section(rawValue: section)!
         switch section {
         case .bannerScroll:
-            return 0
+            return section.numberOfSection
         case .recommendFood, .nearestRest, .expectedTime, .newRest, .discount, .searchAndSee:
-            return 1
+            return section.numberOfSection
         case .moreRest:
             return 10
         }
@@ -186,42 +222,34 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
                                                             for: indexPath) as? TableViewCell else {
                                                                 return .init()
         }
+
         tablecell.selectionStyle = .none
         tablecell.collectionView.tag = indexPath.section
+        tablecell.collectionView.showsHorizontalScrollIndicator = false
+        tablecell.collectionView.backgroundColor = .lightGray
 
         return tablecell
     }
 
     func setupCollectionViewCell(indexPath: IndexPath, nibName: String, tablecell: TableViewCell) {
         let NIB = UINib(nibName: nibName, bundle: nil)
+        let heightOfCollectionViewCell: CGFloat = 0.8333
+
         tablecell.addSubview(tablecell.collectionView)
         tablecell.collectionView.register(NIB, forCellWithReuseIdentifier: nibName + "Id")
 
-        tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
-        tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255,
-                                                           blue: 247 / 255, alpha: 1.0)
+        tablecell.collectionView.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
+        tablecell.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
 
-        let section = Section(rawValue: indexPath.section)!
-        switch section {
-        case .recommendFood:
-            tablecell.recommendLabel.text = "추천 요리"
-        case .nearestRest:
-            tablecell.recommendLabel.text = "가까운 인기 레스토랑"
-        case .expectedTime:
-            tablecell.recommendLabel.text = "예상 시간 30분 이하"
-        case .newRest:
-            tablecell.recommendLabel.text = "새로운 레스토랑"
-        default:
-            tablecell.recommendLabel.text = ""
-        }
-
+        tablecell.setLabel(indexPath.section)
         tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate(
             [
                 tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor),
                 tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor),
                 tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor),
-                tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833)
+                tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: heightOfCollectionViewCell)
             ]
         )
 
@@ -243,22 +271,11 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
                     scrollView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor)
                 ]
             )
-        case .recommendFood:
-            let tablecell = setupTableViewCell(indexPath: indexPath)
-            setupCollectionViewCell(indexPath: indexPath, nibName: "RecommendCollectionViewCell", tablecell: tablecell)
-            return tablecell
-        case .nearestRest:
-            let tablecell = setupTableViewCell(indexPath: indexPath)
-            setupCollectionViewCell(indexPath: indexPath, nibName: "NearestCollectionViewCell", tablecell: tablecell)
-            return tablecell
-        case .expectedTime:
-            let tablecell = setupTableViewCell(indexPath: indexPath)
-            setupCollectionViewCell(indexPath: indexPath, nibName: "ExpectTimeCollectionViewCell", tablecell: tablecell)
-            return tablecell
-        case .newRest:
-            let tablecell = setupTableViewCell(indexPath: indexPath)
-            setupCollectionViewCell(indexPath: indexPath, nibName: "NewRestCollectionViewCell", tablecell: tablecell)
-            return tablecell
+        case .recommendFood, .newRest, .expectedTime, .nearestRest:
+            let tableCell = setupTableViewCell(indexPath: indexPath)
+            setupCollectionViewCell(indexPath: indexPath, nibName: section.nibName, tablecell: tableCell)
+            tableCell.collectionView.reloadData()
+            return tableCell
         case .discount:
             let tablecell = setupTableViewCell(indexPath: indexPath)
             tablecell.recommendLabel.text = "주문시 5천원 할인 받기"
@@ -266,7 +283,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         case .moreRest:
             if indexPath.row != 0 {
                 let seeMoreRestTableViewCellNIB = UINib(nibName: "SeeMoreRestTableViewCell", bundle: nil)
-                tableView.register(seeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
+                tableView.register(seeMoreRestTableViewCellNIB, forCellReuseIdentifier: section.identifier)
                 guard let tablecellOfsixCell = tableView.dequeueReusableCell(
                     withIdentifier: "SeeMoreRestTableViewCellId",
                     for: indexPath) as? SeeMoreRestTableViewCell else {
@@ -290,33 +307,24 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = Section(rawValue: indexPath.section)!
         switch section {
-        case .recommendFood:
-            return view.frame.height * 0.44
-        case .nearestRest, .expectedTime, .newRest:
-            return view.frame.height * 0.5
-        case .discount:
-            return view.frame.height * 0.14
+        case .recommendFood, .nearestRest, .expectedTime, .newRest, .discount, .searchAndSee, .bannerScroll:
+            return section.heightOfTableViewCell(view.frame.height)
         case .moreRest:
             if indexPath.row == 0 {
                 return 80
             } else {
-                return view.frame.height * 0.5
+                return section.heightOfTableViewCell(view.frame.height)
             }
-        case .searchAndSee:
-            return view.frame.height * 0.2
-        case .bannerScroll:
-            return 0
         }
-        // MARK: - 디바이스별 분기 나눠서 오토레이아웃 적용 방법 예시
-        //return UIDevice.current.screenType.tableCellSize(for: Section.init(rawValue: indexPath.row)
-
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return view.frame.height * (10/812)
+        return heightOfFooter
     }
+
 }
 
+// MARK: - CollectionViewDelegate
 extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
@@ -325,7 +333,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case .bannerScroll:
             return 0
         case .recommendFood:
-            return 7
+            return recommendFood.count
         case .nearestRest:
             return 6
         case .expectedTime:
@@ -339,30 +347,20 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        collectionView.showsHorizontalScrollIndicator = false
-
-        var identifier: String = ""
         let section = Section(rawValue: collectionView.tag)!
         switch section {
-        case .bannerScroll:
-            collectionView.backgroundColor = .lightGray
-        case .recommendFood://추천요리
-            identifier = "RecommendCollectionViewCellId"
-
-        case .nearestRest://가까운 인기 레스토랑
-            identifier = "NearestCollectionViewCellId"
-
-        case .expectedTime://예상 시간
-            identifier = "ExpectTimeCollectionViewCellId"
-
-        case .newRest://신규 레스토랑
-            identifier = "NewRestCollectionViewCellId"
+        case .recommendFood:
+            guard let recommendFoodCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? RecommendCollectionViewCell else {
+                return .init()
+            }
+            recommendFoodCell.recommendFood = recommendFood[indexPath.item]
+            return recommendFoodCell
+        case .nearestRest, .expectedTime, .newRest:
+            return collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath)
         default:
             return .init()
         }
 
-        return collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -376,14 +374,16 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
+
         guard let section = Section(rawValue: collectionView.tag) else {
             preconditionFailure("")
         }
+
         switch section {
         case .recommendFood:
-            return CGSize(width: tableView.frame.width * 0.6, height: tableView.frame.width * 0.61 * 0.92)
+            return CGSize(width: view.frame.width * 0.8, height: view.frame.width * 0.8 * 0.82)
         case .nearestRest, .expectedTime, .newRest :
-            return CGSize(width: tableView.frame.width * 0.76, height: tableView.frame.width * 0.76 * 0.868)
+            return CGSize(width: view.frame.width * 0.76, height: view.frame.width * 0.76 * 0.868)
         case .discount:
             return CGSize(width: 0, height: 0)
         default:
@@ -395,20 +395,21 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         let section = Section(rawValue: collectionView.tag)!
-        switch section {
-        case .bannerScroll:
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        case .recommendFood:
-            return UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24)
-        case .nearestRest:
-            return UIEdgeInsets(top: 30, left: 24, bottom: 24, right: 30)
-        case .expectedTime:
-            return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
-        case .newRest:
-            return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
-        default:
-            return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
-        }
+        return section.getEdgeInset
     }
 
+}
+
+extension UIImageView {
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    func load(url: URL) {
+        getData(from: url) { [weak self] data, response, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async() {
+                self?.image = UIImage(data: data)
+            }
+        }
+    }
 }
