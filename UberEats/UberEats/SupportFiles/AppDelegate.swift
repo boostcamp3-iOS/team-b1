@@ -23,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        window?.rootViewController = TabBarVC()
+//        window?.rootViewController = TabBarVC()
+        window?.rootViewController = UINavigationController(rootViewController: SettingLocationViewController())
 
         window?.makeKeyAndVisible()
 
