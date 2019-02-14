@@ -155,6 +155,9 @@
                                         <state key="normal" title="카트에 1 추가">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="clickedCartButton:" destination="AXi-XS-cxW" eventType="touchUpInside" id="PDI-WU-Fxs"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

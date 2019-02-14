@@ -60,6 +60,12 @@ class FoodItemDetailsViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    @IBAction func clickedCartButton(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Cart", bundle: nil)
+        let cartViewController = storyboard.instantiateViewController(withIdentifier: "CartVC") as! CartViewController
+        self.present(cartViewController, animated: true, completion: nil)
+    }
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let stretchableHeaderY = -scrollView.contentOffset.y
 
