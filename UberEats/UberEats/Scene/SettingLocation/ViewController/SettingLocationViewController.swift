@@ -12,6 +12,7 @@ class SettingLocationViewController: UIViewController {
 
     private let HeightOfcompleteButton: CGFloat = 50
     private let nubmerOfSections: Int = 3
+    private let tapGesture = UITapGestureRecognizer()
 
     struct HeaderHeight {
         static let moment: CGFloat = 40
@@ -57,6 +58,7 @@ class SettingLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         toolBarView.delegate = self
+        tapGesture.delegate = self
         setupLayout()
         setupTableView()
     }
@@ -77,6 +79,7 @@ class SettingLocationViewController: UIViewController {
         self.view.addSubview(deliveryDetailTableView)
         self.view.addSubview(completeButton)
         self.view.addSubview(toolBarView)
+        self.view.addGestureRecognizer(tapGesture)
 
         completeButton.addTarget(self, action: #selector(touchUpCompleteButton(_:)), for: .touchUpInside)
 
@@ -99,6 +102,13 @@ class SettingLocationViewController: UIViewController {
 
     @objc private func touchUpCompleteButton(_: UIButton) {
 
+    }
+}
+
+extension SettingLocationViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        view.endEditing(true)
+        return false
     }
 }
 
