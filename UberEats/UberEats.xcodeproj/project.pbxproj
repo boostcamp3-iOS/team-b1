@@ -72,6 +72,14 @@
 		BAADD13A736367A4AF0735E9 /* Pods_UberEats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6506E59626E3060BF7CD65 /* Pods_UberEats.framework */; };
 		D102A68A2208335E004B458C /* OrderNameCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102A6892208335E004B458C /* OrderNameCollectionReusableView.swift */; };
 		D102A68E22083853004B458C /* SeparatorCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102A68D22083853004B458C /* SeparatorCollectionReusableView.swift */; };
+		D107D2192215064300322379 /* SettingLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107D2182215064300322379 /* SettingLocationViewController.swift */; };
+		D107D21B22150B4200322379 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107D21A22150B4100322379 /* LocationTableViewCell.swift */; };
+		D107D21D22150E1D00322379 /* UIImageView+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107D21C22150E1D00322379 /* UIImageView+Init.swift */; };
+		D107D22122152AA100322379 /* NewAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107D22022152AA100322379 /* NewAddressTableViewCell.swift */; };
+		D107D22522153A6300322379 /* MomentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107D22422153A6300322379 /* MomentTableViewCell.swift */; };
+		D107D22722153A8100322379 /* LocationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107D22622153A8100322379 /* LocationCellModel.swift */; };
+		D107D229221541A200322379 /* MomentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107D228221541A200322379 /* MomentHeaderView.swift */; };
+		D107D22B22154DCD00322379 /* SettingLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107D22A22154DCD00322379 /* SettingLocationModel.swift */; };
 		D1135C302210114C0032F103 /* DeliveryStartNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1135C2F2210114C0032F103 /* DeliveryStartNoticeView.swift */; };
 		D1135C3322102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1135C3122102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift */; };
 		D1135C3422102C0A0032F103 /* DeliveryManInfoCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1135C3222102C0A0032F103 /* DeliveryManInfoCollectionReusableView.xib */; };
@@ -87,7 +95,7 @@
 		D1391FC4220AB2D90064FC37 /* SaleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1391FC3220AB2D90064FC37 /* SaleCollectionViewCell.swift */; };
 		D16DAEE3220888F200564823 /* TotalPriceCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16DAEE2220888F200564823 /* TotalPriceCollectionReusableView.swift */; };
 		D196FE9D220DB48100F522C8 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D196FE9C220DB48100F522C8 /* LocationModel.swift */; };
-		D199236222045BAB00C7C857 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199236122045BAB00C7C857 /* Extensions.swift */; };
+		D199236222045BAB00C7C857 /* UIButton+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199236122045BAB00C7C857 /* UIButton+Init.swift */; };
 		D1AF1E9D21F9A5A6004CA3A5 /* MenuSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1AF1E9021F9A5A6004CA3A5 /* MenuSectionView.xib */; };
 		D1AF1E9E21F9A5A6004CA3A5 /* TempCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9121F9A5A6004CA3A5 /* TempCollectionReusableView.swift */; };
 		D1AF1E9F21F9A5A6004CA3A5 /* StoreTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9221F9A5A6004CA3A5 /* StoreTitleView.swift */; };
@@ -212,6 +220,14 @@
 		A2C3D32B8615DFA8A8B5DDD6 /* Pods-UberEatsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEatsTests.debug.xcconfig"; path = "Target Support Files/Pods-UberEatsTests/Pods-UberEatsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D102A6892208335E004B458C /* OrderNameCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderNameCollectionReusableView.swift; sourceTree = "<group>"; };
 		D102A68D22083853004B458C /* SeparatorCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorCollectionReusableView.swift; sourceTree = "<group>"; };
+		D107D2182215064300322379 /* SettingLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLocationViewController.swift; sourceTree = "<group>"; };
+		D107D21A22150B4100322379 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		D107D21C22150E1D00322379 /* UIImageView+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Init.swift"; sourceTree = "<group>"; };
+		D107D22022152AA100322379 /* NewAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAddressTableViewCell.swift; sourceTree = "<group>"; };
+		D107D22422153A6300322379 /* MomentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentTableViewCell.swift; sourceTree = "<group>"; };
+		D107D22622153A8100322379 /* LocationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCellModel.swift; sourceTree = "<group>"; };
+		D107D228221541A200322379 /* MomentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeaderView.swift; sourceTree = "<group>"; };
+		D107D22A22154DCD00322379 /* SettingLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLocationModel.swift; sourceTree = "<group>"; };
 		D1135C2F2210114C0032F103 /* DeliveryStartNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStartNoticeView.swift; sourceTree = "<group>"; };
 		D1135C3122102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryManInfoCollectionReusableView.swift; sourceTree = "<group>"; };
 		D1135C3222102C0A0032F103 /* DeliveryManInfoCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryManInfoCollectionReusableView.xib; sourceTree = "<group>"; };
@@ -228,7 +244,7 @@
 		D1391FC3220AB2D90064FC37 /* SaleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCollectionViewCell.swift; sourceTree = "<group>"; };
 		D16DAEE2220888F200564823 /* TotalPriceCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalPriceCollectionReusableView.swift; sourceTree = "<group>"; };
 		D196FE9C220DB48100F522C8 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
-		D199236122045BAB00C7C857 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D199236122045BAB00C7C857 /* UIButton+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Init.swift"; sourceTree = "<group>"; };
 		D1AF1E9021F9A5A6004CA3A5 /* MenuSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuSectionView.xib; sourceTree = "<group>"; };
 		D1AF1E9121F9A5A6004CA3A5 /* TempCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempCollectionReusableView.swift; sourceTree = "<group>"; };
 		D1AF1E9221F9A5A6004CA3A5 /* StoreTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTitleView.swift; sourceTree = "<group>"; };
@@ -398,6 +414,7 @@
 				D1B3E33522113D280043CE50 /* String+TextEstimate.swift */,
 				996F6BC72212F6690052CC36 /* CALayer+Border.swift */,
 				996F6BCD221304B50052CC36 /* UITableViewCell+ViewOption.swift */,
+				D107D21C22150E1D00322379 /* UIImageView+Init.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -445,6 +462,7 @@
 			children = (
 				995D902B22103FBC00DCA964 /* Cart */,
 				995D902A221002FA00DCA964 /* Main */,
+				D107D214221505F200322379 /* SettingLocation */,
 				84333AC12202CD38007372DE /* Chatting */,
 				D1AF1E8F21F9A5A6004CA3A5 /* SelectMenu */,
 				992EDCE921FDB07D006CC894 /* FoodItemDetails */,
@@ -511,7 +529,7 @@
 		995D90222210007700DCA964 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D199236122045BAB00C7C857 /* Extensions.swift */,
+				D199236122045BAB00C7C857 /* UIButton+Init.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -616,6 +634,44 @@
 				3F6506E59626E3060BF7CD65 /* Pods_UberEats.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D107D214221505F200322379 /* SettingLocation */ = {
+			isa = PBXGroup;
+			children = (
+				D107D2152215061400322379 /* View */,
+				D107D2162215061E00322379 /* ViewController */,
+				D107D2172215062700322379 /* Model */,
+			);
+			path = SettingLocation;
+			sourceTree = "<group>";
+		};
+		D107D2152215061400322379 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D107D21A22150B4100322379 /* LocationTableViewCell.swift */,
+				D107D22022152AA100322379 /* NewAddressTableViewCell.swift */,
+				D107D22422153A6300322379 /* MomentTableViewCell.swift */,
+				D107D228221541A200322379 /* MomentHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D107D2162215061E00322379 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D107D2182215064300322379 /* SettingLocationViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D107D2172215062700322379 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D107D22622153A8100322379 /* LocationCellModel.swift */,
+				D107D22A22154DCD00322379 /* SettingLocationModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D11B04D62205836900F20363 /* DeliveryLocation */ = {
@@ -933,9 +989,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1AF1EA521F9A5A6004CA3A5 /* FoodCollectionViewCell.swift in Sources */,
+				D107D22722153A8100322379 /* LocationCellModel.swift in Sources */,
 				995D903F2210609400DCA964 /* StoreInfoCell.swift in Sources */,
 				992EDCEF21FDB11B006CC894 /* FoodItemDetailsCell.swift in Sources */,
 				84FB11AD2202994F002C5F46 /* SectionEnum.swift in Sources */,
+				D107D22122152AA100322379 /* NewAddressTableViewCell.swift in Sources */,
 				84DC184521F9A51D008EE6D3 /* TableViewCell.swift in Sources */,
 				84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */,
 				84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */,
@@ -954,11 +1012,14 @@
 				D1391FC4220AB2D90064FC37 /* SaleCollectionViewCell.swift in Sources */,
 				D1B3E33622113D280043CE50 /* String+TextEstimate.swift in Sources */,
 				D1CC3E9C22045EAA00670675 /* FloatingView.swift in Sources */,
+				D107D21D22150E1D00322379 /* UIImageView+Init.swift in Sources */,
 				D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */,
 				D115BBB721F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift in Sources */,
 				D1135C302210114C0032F103 /* DeliveryStartNoticeView.swift in Sources */,
 				84DC185421F9C426008EE6D3 /* TabBarVC.swift in Sources */,
+				D107D229221541A200322379 /* MomentHeaderView.swift in Sources */,
 				D115BBB321F9D49E00C57809 /* SearchCollectionViewCell.swift in Sources */,
+				D107D22522153A6300322379 /* MomentTableViewCell.swift in Sources */,
 				D1CED1BF22075039007626B4 /* OrderCheckingCollectionReusableView.swift in Sources */,
 				D1AF1EA021F9A5A6004CA3A5 /* MenuCategoryCollectionViewCell.swift in Sources */,
 				842CC7B921FEBC100045D084 /* CollectionViewController.swift in Sources */,
@@ -970,6 +1031,7 @@
 				84604F212205928100212A00 /* Message.swift in Sources */,
 				843B05182203E6F40082FEFF /* ChatModel.swift in Sources */,
 				9956F7F121F98468004E9854 /* AppDelegate.swift in Sources */,
+				D107D22B22154DCD00322379 /* SettingLocationModel.swift in Sources */,
 				84FB11AA22017A90002C5F46 /* SeeMoreRestTableViewCell.swift in Sources */,
 				D1AF1EA621F9A5A6004CA3A5 /* StretchyHeaderView.swift in Sources */,
 				996F6BC82212F6690052CC36 /* CALayer+Border.swift in Sources */,
@@ -979,13 +1041,14 @@
 				843B051A220405540082FEFF /* ChatMessageCell.swift in Sources */,
 				D16DAEE3220888F200564823 /* TotalPriceCollectionReusableView.swift in Sources */,
 				996F6BCE221304B50052CC36 /* UITableViewCell+ViewOption.swift in Sources */,
+				D107D2192215064300322379 /* SettingLocationViewController.swift in Sources */,
 				D1135C3322102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift in Sources */,
 				D1AF1E9E21F9A5A6004CA3A5 /* TempCollectionReusableView.swift in Sources */,
 				D1AF1EA321F9A5A6004CA3A5 /* MenuSectionView.swift in Sources */,
 				996F6BD822145D3B0052CC36 /* OrderCell.swift in Sources */,
 				99342CCE21FB13550029DB10 /* Throttler.swift in Sources */,
 				D11B04DA2205847F00F20363 /* LocationViewController.swift in Sources */,
-				D199236222045BAB00C7C857 /* Extensions.swift in Sources */,
+				D199236222045BAB00C7C857 /* UIButton+Init.swift in Sources */,
 				D1F3A8F22212E606000448DD /* StoreModel.swift in Sources */,
 				D102A68A2208335E004B458C /* OrderNameCollectionReusableView.swift in Sources */,
 				992EDCED21FDB0C6006CC894 /* FoodItemDetailsViewController.swift in Sources */,
@@ -994,6 +1057,7 @@
 				84DC184221F9A51D008EE6D3 /* RecommendCollectionViewCell.swift in Sources */,
 				D118B7D32213A79E00E5A85E /* UserLocationView.swift in Sources */,
 				84DC184421F9A51D008EE6D3 /* NearestCollectionViewCell.swift in Sources */,
+				D107D21B22150B4200322379 /* LocationTableViewCell.swift in Sources */,
 				D118B7D722143D3F00E5A85E /* ChangeScrollDelegate.swift in Sources */,
 				8443049A22154B2000FCFADB /* FoodMarketSelectState.swift in Sources */,
 				D1CED1BC22074759007626B4 /* OrderedMenuCollectionViewCell.swift in Sources */,
