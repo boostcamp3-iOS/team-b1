@@ -23,37 +23,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="311" height="270"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="Recommend1" translatesAutoresizingMaskIntoConstraints="NO" id="5jX-Jq-NAO">
-                                <rect key="frame" x="9" y="9" width="293" height="90"/>
+                                <rect key="frame" x="9" y="9" width="293" height="140"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="xO1-IE-vGf"/>
+                                    <constraint firstAttribute="height" constant="140" id="xO1-IE-vGf"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="6al-RW-xG2">
-                                <rect key="frame" x="12" y="114" width="287" height="144"/>
+                                <rect key="frame" x="12" y="164" width="287" height="94"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="케이에프씨 광화문 KFC Gwanghwamun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h9C-H8-sg3">
-                                        <rect key="frame" x="0.0" y="0.0" width="249.5" height="31.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="249.5" height="19"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$$ * 치컨 * 버거" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Saz-5z-Sdd">
-                                        <rect key="frame" x="0.0" y="37.5" width="100.5" height="31.5"/>
+                                        <rect key="frame" x="0.0" y="25" width="100.5" height="19"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OuP-Tn-80Y" userLabel="Line3">
-                                        <rect key="frame" x="0.0" y="75" width="70.5" height="31.5"/>
+                                        <rect key="frame" x="0.0" y="50" width="70.5" height="19"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25-35 분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cor-hx-BB3">
-                                                <rect key="frame" x="0.0" y="0.0" width="45.5" height="31.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="45.5" height="19"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a8f-IF-hCA">
-                                                <rect key="frame" x="53.5" y="0.0" width="17" height="31.5"/>
+                                                <rect key="frame" x="53.5" y="0.0" width="17" height="19"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -61,7 +61,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정직한 음식이 만드는 행복한 세상! KFC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ieC-xR-Grw">
-                                        <rect key="frame" x="0.0" y="112.5" width="174.5" height="31.5"/>
+                                        <rect key="frame" x="0.0" y="75" width="174.5" height="19"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

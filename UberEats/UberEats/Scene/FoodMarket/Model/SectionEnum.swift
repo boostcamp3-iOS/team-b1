@@ -65,7 +65,7 @@ enum Section: Int, CaseIterable {
     func heightOfTableViewCell(_ height: CGFloat) -> CGFloat {
         switch self {
         case .recommendFood, .nearestRest, .expectedTime, .newRest, .moreRest:
-            return height * 0.5
+            return height * 0.56
         case .discount:
             return height * 0.14
         case .searchAndSee:
@@ -82,9 +82,9 @@ enum Section: Int, CaseIterable {
         case .bannerScroll:
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         case .recommendFood:
-            return UIEdgeInsets(top: 0, left: 24, bottom: 24, right: 24)
+            return UIEdgeInsets(top: 12, left: 24, bottom: 24, right: 24)
         case .nearestRest:
-            return UIEdgeInsets(top: 30, left: 24, bottom: 24, right: 30)
+            return UIEdgeInsets(top: 0, left: 24, bottom: 24, right: 24)
         case .expectedTime:
             return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         case .newRest:

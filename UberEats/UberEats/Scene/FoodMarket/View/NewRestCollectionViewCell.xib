@@ -23,34 +23,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="311" height="270"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="schoolFood" translatesAutoresizingMaskIntoConstraints="NO" id="otV-fj-wF2">
-                                <rect key="frame" x="8" y="5" width="295" height="140"/>
+                                <rect key="frame" x="9" y="9" width="293" height="140"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="otV-fj-wF2" secondAttribute="height" multiplier="295:140" id="IZb-Fb-mEk"/>
+                                    <constraint firstAttribute="height" constant="140" id="gpM-qK-dT6"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Sqa-im-utD">
-                                <rect key="frame" x="12" y="149.5" width="287" height="106"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Sqa-im-utD">
+                                <rect key="frame" x="12" y="161" width="287" height="97"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="스쿨푸드 명동엠플라지점 School Food My" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQU-t2-Cnm">
-                                        <rect key="frame" x="0.0" y="0.0" width="287" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="287" height="18.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$한식" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3O-Sv-ASI">
-                                        <rect key="frame" x="0.0" y="28.5" width="40.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="26.5" width="40.5" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15-25분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qdj-ZI-L1U">
-                                        <rect key="frame" x="0.0" y="57" width="60.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="52.5" width="60.5" height="18.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[하루종일] 신규회원 50% 할인코드 SEOUL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQS-O8-HlV">
-                                        <rect key="frame" x="0.0" y="85.5" width="287" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="79" width="287" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -60,12 +60,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Sqa-im-utD" firstAttribute="centerY" secondItem="HkK-pq-1N0" secondAttribute="centerY" multiplier="1.5" id="8lM-wW-nTr"/>
-                            <constraint firstItem="otV-fj-wF2" firstAttribute="top" secondItem="HkK-pq-1N0" secondAttribute="top" constant="5" id="Hhc-CB-cuO"/>
+                            <constraint firstAttribute="trailing" secondItem="otV-fj-wF2" secondAttribute="trailing" constant="9" id="4KB-2d-SzP"/>
+                            <constraint firstItem="otV-fj-wF2" firstAttribute="leading" secondItem="HkK-pq-1N0" secondAttribute="leading" constant="9" id="CS9-Gq-EW1"/>
+                            <constraint firstItem="otV-fj-wF2" firstAttribute="top" secondItem="HkK-pq-1N0" secondAttribute="top" constant="9" id="Hhc-CB-cuO"/>
                             <constraint firstItem="Sqa-im-utD" firstAttribute="leading" secondItem="HkK-pq-1N0" secondAttribute="leading" constant="12" id="ZTD-C9-ZpQ"/>
                             <constraint firstAttribute="trailing" secondItem="Sqa-im-utD" secondAttribute="trailing" constant="12" id="eoj-Pw-Jwc"/>
-                            <constraint firstItem="otV-fj-wF2" firstAttribute="height" secondItem="HkK-pq-1N0" secondAttribute="height" multiplier="140:270" id="jji-ib-iu6"/>
-                            <constraint firstItem="otV-fj-wF2" firstAttribute="centerX" secondItem="HkK-pq-1N0" secondAttribute="centerX" id="njF-fT-LZo"/>
+                            <constraint firstItem="Sqa-im-utD" firstAttribute="top" secondItem="otV-fj-wF2" secondAttribute="bottom" constant="12" id="gOH-k4-6eA"/>
+                            <constraint firstAttribute="bottom" secondItem="Sqa-im-utD" secondAttribute="bottom" constant="12" id="xNf-5M-Aj3"/>
                         </constraints>
                     </view>
                 </subviews>
