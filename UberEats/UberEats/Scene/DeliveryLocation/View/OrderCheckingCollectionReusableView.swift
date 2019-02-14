@@ -16,7 +16,13 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var currentProgressSlider: UISlider!
     @IBOutlet weak var currentProgressLabel: UILabel!
 
+    var delegate: ChangeScrollDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        delegate?.scrollToTop()
     }
 }

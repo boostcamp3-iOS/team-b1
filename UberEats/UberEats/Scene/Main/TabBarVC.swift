@@ -22,6 +22,7 @@ class TabBarVC: UITabBarController {
 
         let secondViewController = UIStoryboard(name: "LocationViewController", bundle: nil)
             .instantiateViewController(withIdentifier: "searchView")
+
         secondViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"),
                                                        selectedImage: UIImage(named: "icons8-home-50"))
 

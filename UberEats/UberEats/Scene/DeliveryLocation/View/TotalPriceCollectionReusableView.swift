@@ -20,9 +20,9 @@ class TotalPriceCollectionReusableView: UICollectionReusableView {
     let billButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.text = "영수증 보기"
-        button.titleLabel?.font = .systemFont(ofSize: 13)
-        button.titleLabel?.textColor = .gray
+        button.setTitle("영수증 보기", for: .normal)
+        button.setTitleColor(.gray, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 12)
         return button
     }()
 
@@ -48,6 +48,7 @@ class TotalPriceCollectionReusableView: UICollectionReusableView {
 
             billButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10),
             billButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+
             ])
     }
 }

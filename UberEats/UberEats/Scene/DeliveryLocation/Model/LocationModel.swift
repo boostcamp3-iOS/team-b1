@@ -28,5 +28,5 @@ struct Identifiers {
 
     static let orderCancelCellId: String = "orderCancel"
     static let orderMenuCellId: String = "orderedMenu"
-    static let emptyCellId: String = "emptyCell"
+    static let saleCellId: String = "saleCell"
 }

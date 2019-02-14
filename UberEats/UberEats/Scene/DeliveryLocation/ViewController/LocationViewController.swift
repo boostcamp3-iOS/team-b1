@@ -15,9 +15,11 @@ class LocationViewController: UIViewController {
     // 배달이 시작되면 130으로 아니면 0으로 바꿀것
     private var deliveryStartInfoHeight: CGFloat = 0
 
+    @IBOutlet weak var coveredBackButton: UIButton!
     private let backButton = UIButton().initButtonWithImage("blackArrow")
     private let moveCurrentLocationButton = UIButton().initButtonWithImage("btCurrentlocation")
     private let contactButton = UIButton().initButtonWithImage("btInquiry")
+    @IBOutlet weak var coveredContactButton: UIButton!
 
     private let orders = ["초콜렛 밀크티 (아이스, 라지) Chocolate Milk Tea (Iced, Large)",
                           "아메리카노 (아이스, 라지) Americano (Iced, Large)",
@@ -49,13 +51,14 @@ class LocationViewController: UIViewController {
                                               collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = #colorLiteral(red: 0.9525781274, green: 0.9469152093, blue: 0.9569309354, alpha: 1)
-        collectionView.contentInset = UIEdgeInsets(top: self.view.frame.height * 0.4 + deliveryStartInfoHeight, left: 10, bottom: 0, right: 10)
+        collectionView.contentInset = UIEdgeInsets(top: self.view.frame.height * 0.4 + deliveryStartInfoHeight - 30, left: 10, bottom: 0, right: 10)
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tabBarController?.tabBar.isHidden = true
         orderDetailCollectionView.delegate = self
         orderDetailCollectionView.dataSource = self
@@ -63,15 +66,15 @@ class LocationViewController: UIViewController {
         setupLayout()
         setupCollectionView()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.backButton.setImage(UIImage(named: "btnClose"), for: .normal)
-            self.deliveryStartView.isHidden = false
-            self.deliveryStartInfoHeight = 130
-            self.orderDetailCollectionView.contentInset = UIEdgeInsets(top: self.view.frame.height * 0.4 + self.deliveryStartInfoHeight, left: 10, bottom: 0, right: 10)
-
-            self.orderDetailCollectionView.contentOffset.y = self.orderDetailCollectionView.contentOffset.y - 130
-            self.view.layoutIfNeeded()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//            self.backButton.setImage(UIImage(named: "btnClose"), for: .normal)
+//            self.deliveryStartView.isHidden = false
+//            self.deliveryStartInfoHeight = 130
+//            self.orderDetailCollectionView.contentInset = UIEdgeInsets(top: self.view.frame.height * 0.4 + self.deliveryStartInfoHeight - 30, left: 10, bottom: 0, right: 10)
+//
+//            self.orderDetailCollectionView.contentOffset.y = self.orderDetailCollectionView.contentOffset.y - 130
+//            self.view.layoutIfNeeded()
+//        }
     }
 
     private func setupMapView() {
@@ -79,7 +82,6 @@ class LocationViewController: UIViewController {
         locationManager.customInit(delegate: self)
 
         // user와 deliverer의 중간 지점으로 설정할 것
-
         //GMSCameraPosition.centor(37.499862)
 
         let camera = GMSCameraPosition(latitude: (userLocation.latitude + 37.499862) / 2,
@@ -87,19 +89,19 @@ class LocationViewController: UIViewController {
                                        zoom: 17)
 
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        mapView?.padding = UIEdgeInsets(top: 0, left: 10, bottom: self.view.frame.height - 500 + 10, right: 0)
+        mapView?.padding = UIEdgeInsets(top: 0, left: 10, bottom: self.view.frame.height - (self.view.frame.height * 0.4 + 130 - deliveryStartInfoHeight), right: 0)
+        mapView?.delegate = self
         orderDetailCollectionView.backgroundView = mapView
 
         let userMarker = GMSMarker(position: userLocation)
-        userMarker.icon = UIImage(named: "first")
-        userMarker.title = "메리츠타워"
+        userMarker.icon = UIImage(named: "icMarkUser")
         userMarker.map = mapView
 
         let delivererLocation = CLLocationCoordinate2D(latitude: 37.499862, longitude: 127.030378)
         let delivererMarker = GMSMarker(position: delivererLocation)
-        delivererMarker.icon = UIImage(named: "second")
-        delivererMarker.title = "공차"
+        delivererMarker.icon = UIImage(named: "icMarkDelivery")
         delivererMarker.map = mapView
+
     }
 
     private func setupLayout() {
@@ -112,25 +114,34 @@ class LocationViewController: UIViewController {
 
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)),
                              for: .touchUpInside)
+
         moveCurrentLocationButton.addTarget(self,
                                             action: #selector(touchUpMoveCurrentLocationButton(_:)),
                                             for: .touchUpInside)
 
         backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
+        coveredContactButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
+
+        let buttonTopConstant = getButtonTopConstraint(UIScreen.main.nativeBounds.height)
 
         NSLayoutConstraint.activate([
+            coveredBackButton.widthAnchor.constraint(equalToConstant: buttonSize),
+            coveredBackButton.heightAnchor.constraint(equalToConstant: buttonSize),
+
+            coveredContactButton.widthAnchor.constraint(equalToConstant: buttonSize),
+            coveredContactButton.heightAnchor.constraint(equalToConstant: buttonSize),
 
             orderDetailCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             orderDetailCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             orderDetailCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             orderDetailCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
-            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: buttonTopConstant),
             backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
             backButton.widthAnchor.constraint(equalToConstant: buttonSize),
             backButton.heightAnchor.constraint(equalToConstant: buttonSize),
 
-            contactButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            contactButton.topAnchor.constraint(equalTo: view.topAnchor, constant: buttonTopConstant),
             contactButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             contactButton.widthAnchor.constraint(equalToConstant: buttonSize),
             contactButton.heightAnchor.constraint(equalToConstant: buttonSize),
@@ -140,8 +151,8 @@ class LocationViewController: UIViewController {
 
             moveCurrentLocationButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
                                                                 constant: -15),
-            moveCurrentLocationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                                              constant: topInset - 10),
+            moveCurrentLocationButton.bottomAnchor.constraint(equalTo: view.topAnchor,
+                                                              constant: self.view.frame.height * 0.4 + 130 - deliveryStartInfoHeight - 10),
             moveCurrentLocationButton.widthAnchor.constraint(equalToConstant: 32),
             moveCurrentLocationButton.heightAnchor.constraint(equalToConstant: 32),
 
@@ -150,6 +161,17 @@ class LocationViewController: UIViewController {
             deliveryStartView.heightAnchor.constraint(equalToConstant: 70),
             deliveryStartView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             ])
+    }
+
+    private func getButtonTopConstraint(_ height: CGFloat) -> CGFloat {
+        switch height {
+        case 960, 1136, 1334, 1920, 2208:
+            return 25
+        case 1792, 2436, 2688:
+            return 45
+        default:
+            return 0
+        }
     }
 
     private func setupCollectionView() {
@@ -198,8 +220,8 @@ class LocationViewController: UIViewController {
         orderDetailCollectionView.register(OrderedMenuCollectionViewCell.self,
                                            forCellWithReuseIdentifier: Identifiers.orderMenuCellId)
 
-        orderDetailCollectionView.register(EmptyCollectionViewCell.self,
-                                           forCellWithReuseIdentifier: Identifiers.emptyCellId)
+        orderDetailCollectionView.register(SaleCollectionViewCell.self,
+                                           forCellWithReuseIdentifier: Identifiers.saleCellId)
 
     }
 
@@ -213,20 +235,44 @@ class LocationViewController: UIViewController {
                                                 longitude: (userLocation.longitude + 127.030378) / 2,
                                                 zoom: 17))
     }
+
+}
+
+extension LocationViewController: GMSMapViewDelegate {
+
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+//        print("position: \(marker.position)")
+        let view = UserLocationView(frame: CGRect.init(x: 0, y: 0, width: 150, height: 70))
+
+        return view
+    }
+
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        print("position: \(marker.infoWindowAnchor)")
+        // 정확히 어디가 기준인지 모르겠음 질문할것
+        marker.infoWindowAnchor = CGPoint(x: 3, y: 0.5)
+        return false
+    }
+
 }
 
 extension LocationViewController: UIScrollViewDelegate {
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        func getMapViewAlpha(_ currentY: CGFloat) -> CGFloat {
+            let ret = -currentY / (view.frame.height * 0.4 + deliveryStartInfoHeight)
+            return currentY > -deliveryStartInfoHeight ? 0 : ret
+        }
+
         let currentScroll = scrollView.contentOffset.y
 
-        print("currentScroll \(currentScroll)")
+        print("currentScroll : \(currentScroll)")
 
-        if currentScroll > -deliveryStartInfoHeight {
-            mapView?.alpha = 0
-        } else {
-            mapView?.alpha = -currentScroll / (view.frame.height * 0.4 + deliveryStartInfoHeight)
-        }
+        mapView?.alpha = getMapViewAlpha(currentScroll)
+        navigationController?.updateNavigationBarStatus(currentScroll, deliveryStartInfoHeight)
     }
+
 }
 
 extension LocationViewController: UICollectionViewDataSource {
@@ -265,9 +311,9 @@ extension LocationViewController: UICollectionViewDataSource {
             cell.cancelLabel.text = "연락처"
             cell.isHidden = true
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                cell.isHidden = false
-            }
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//                cell.isHidden = false
+//            }
 
             return cell
         case .timeDetail:
@@ -283,7 +329,7 @@ extension LocationViewController: UICollectionViewDataSource {
 
             return cell
         case .sale:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.emptyCellId, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.saleCellId, for: indexPath)
             return cell
         }
     }
@@ -301,17 +347,27 @@ extension LocationViewController: UICollectionViewDataSource {
         if kind == UICollectionView.elementKindSectionHeader {
             switch section {
             case .deliveryManInfo:
-                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: Identifiers.deliveryManInfoHeaderId,
-                                                                             for: indexPath)
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    header.isHidden = false
+                                                                             for: indexPath) as? DeliveryManInfoCollectionReusableView else {
+                    return .init()
                 }
+
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//                    header.isHidden = false
+//                }
+                header.delegate = self
 
                 return header
             case .timeDetail:
-                identifier = Identifiers.arrivalTimeHeaderId
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: Identifiers.arrivalTimeHeaderId,
+                                                                             for: indexPath) as? OrderCheckingCollectionReusableView else {
+                    return .init()
+                }
+                header.delegate = self
+
+                return header
             case .orders:
                 identifier = Identifiers.orderNameHeaderId
             case .sale:
@@ -335,6 +391,7 @@ extension LocationViewController: UICollectionViewDataSource {
 }
 
 extension LocationViewController: UICollectionViewDelegate {
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard.init(name: "Chatting", bundle: nil)
         let chattingVC = storyBoard.instantiateViewController(withIdentifier: "ChattingViewController")
@@ -408,32 +465,15 @@ extension LocationViewController: CLLocationManagerDelegate {
     }
 }
 
-//extension GMSMarker {
-//    func setXXXModel(model: Model)
-//}
-//
-//
-//struct Model {
-//    let image: UIImage
-//    let title: String
-//    let location: Int
-//
-//    init(종류: 종류, ) {
-//
-//        if( 조)
-//    }
-//
-//}
-//
-//enum 종류 {
-//    case 사용자
-//    case 배달원
-//}
+extension LocationViewController: ChangeScrollDelegate {
+    func scrollToTop() {
+        orderDetailCollectionView.setContentOffset(CGPoint(x: -10, y: 37 - deliveryStartInfoHeight), animated: true)
+    }
+}
 
 private extension CLLocationManager {
 
     func customInit(delegate: CLLocationManagerDelegate) {
-
         if CLLocationManager.locationServicesEnabled() {
             self.delegate = delegate
             //위치 데이터 정확도 설정
@@ -444,4 +484,11 @@ private extension CLLocationManager {
         }
     }
 
+}
+
+extension UINavigationController {
+    func updateNavigationBarStatus(_ currentY: CGFloat, _ height: CGFloat) {
+        let isHidden = currentY > -height ? false : true
+        self.setNavigationBarHidden(isHidden, animated: true)
+    }
 }

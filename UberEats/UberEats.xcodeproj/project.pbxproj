@@ -61,9 +61,14 @@
 		D115BBB421F9D49E00C57809 /* SearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D115BBB221F9D49E00C57809 /* SearchCollectionViewCell.xib */; };
 		D115BBB721F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D115BBB521F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift */; };
 		D115BBB821F9D66100C57809 /* TimeAndLocationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D115BBB621F9D66100C57809 /* TimeAndLocationCollectionViewCell.xib */; };
+		D118B7D32213A79E00E5A85E /* UserLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D118B7D22213A79E00E5A85E /* UserLocationView.swift */; };
+		D118B7D52213A7AE00E5A85E /* StoreLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D118B7D42213A7AE00E5A85E /* StoreLocationView.swift */; };
+		D118B7D722143D3F00E5A85E /* ChangeScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D118B7D622143D3F00E5A85E /* ChangeScrollDelegate.swift */; };
+		D118B7D92214424D00E5A85E /* Waltz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D118B7D82214424D00E5A85E /* Waltz.framework */; };
+		D118B7DA2214424D00E5A85E /* Waltz.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D118B7D82214424D00E5A85E /* Waltz.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D11B04D8220583A100F20363 /* LocationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D11B04D7220583A100F20363 /* LocationViewController.storyboard */; };
 		D11B04DA2205847F00F20363 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B04D92205847F00F20363 /* LocationViewController.swift */; };
-		D1391FC4220AB2D90064FC37 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1391FC3220AB2D90064FC37 /* EmptyCollectionViewCell.swift */; };
+		D1391FC4220AB2D90064FC37 /* SaleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1391FC3220AB2D90064FC37 /* SaleCollectionViewCell.swift */; };
 		D16DAEE3220888F200564823 /* TotalPriceCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16DAEE2220888F200564823 /* TotalPriceCollectionReusableView.swift */; };
 		D196FE9D220DB48100F522C8 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D196FE9C220DB48100F522C8 /* LocationModel.swift */; };
 		D199236222045BAB00C7C857 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199236122045BAB00C7C857 /* Extensions.swift */; };
@@ -107,6 +112,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				84CA5EDA2211348F007E95FF /* ServiceInterface.framework in Embed Frameworks */,
+				D118B7DA2214424D00E5A85E /* Waltz.framework in Embed Frameworks */,
 				84CA5EDC22113498007E95FF /* Service.framework in Embed Frameworks */,
 				8477949B2213D8F2003EA68D /* Common.framework in Embed Frameworks */,
 				847794922213D8B0003EA68D /* DependencyContainer.framework in Embed Frameworks */,
@@ -181,9 +187,13 @@
 		D115BBB221F9D49E00C57809 /* SearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		D115BBB521F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndLocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		D115BBB621F9D66100C57809 /* TimeAndLocationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeAndLocationCollectionViewCell.xib; sourceTree = "<group>"; };
+		D118B7D22213A79E00E5A85E /* UserLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationView.swift; sourceTree = "<group>"; };
+		D118B7D42213A7AE00E5A85E /* StoreLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocationView.swift; sourceTree = "<group>"; };
+		D118B7D622143D3F00E5A85E /* ChangeScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeScrollDelegate.swift; sourceTree = "<group>"; };
+		D118B7D82214424D00E5A85E /* Waltz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Waltz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D11B04D7220583A100F20363 /* LocationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationViewController.storyboard; sourceTree = "<group>"; };
 		D11B04D92205847F00F20363 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
-		D1391FC3220AB2D90064FC37 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
+		D1391FC3220AB2D90064FC37 /* SaleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCollectionViewCell.swift; sourceTree = "<group>"; };
 		D16DAEE2220888F200564823 /* TotalPriceCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalPriceCollectionReusableView.swift; sourceTree = "<group>"; };
 		D196FE9C220DB48100F522C8 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		D199236122045BAB00C7C857 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -225,6 +235,7 @@
 				84CA5ED722113487007E95FF /* ServiceInterface.framework in Frameworks */,
 				8477949A2213D8F2003EA68D /* Common.framework in Frameworks */,
 				847794912213D8B0003EA68D /* DependencyContainer.framework in Frameworks */,
+				D118B7D92214424D00E5A85E /* Waltz.framework in Frameworks */,
 				BAADD13A736367A4AF0735E9 /* Pods_UberEats.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +317,7 @@
 		9956F7E421F98468004E9854 = {
 			isa = PBXGroup;
 			children = (
+				D118B7D82214424D00E5A85E /* Waltz.framework */,
 				847794992213D8F2003EA68D /* Common.framework */,
 				847794932213D8BC003EA68D /* MockServer.framework */,
 				847794902213D8B0003EA68D /* DependencyContainer.framework */,
@@ -348,6 +360,7 @@
 		995D9018220FFEBF00DCA964 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				D118B7D622143D3F00E5A85E /* ChangeScrollDelegate.swift */,
 				D11B04D92205847F00F20363 /* LocationViewController.swift */,
 			);
 			path = ViewController;
@@ -357,7 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				D11B04D7220583A100F20363 /* LocationViewController.storyboard */,
-				D1391FC3220AB2D90064FC37 /* EmptyCollectionViewCell.swift */,
+				D1391FC3220AB2D90064FC37 /* SaleCollectionViewCell.swift */,
 				D1CED1BB22074759007626B4 /* OrderedMenuCollectionViewCell.swift */,
 				D1CED1BD22075039007626B4 /* OrderCheckingCollectionReusableView.swift */,
 				D1CED1BE22075039007626B4 /* OrderCheckingCollectionReusableView.xib */,
@@ -368,6 +381,8 @@
 				D1135C2F2210114C0032F103 /* DeliveryStartNoticeView.swift */,
 				D1135C3122102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift */,
 				D1135C3222102C0A0032F103 /* DeliveryManInfoCollectionReusableView.xib */,
+				D118B7D22213A79E00E5A85E /* UserLocationView.swift */,
+				D118B7D42213A7AE00E5A85E /* StoreLocationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -838,7 +853,8 @@
 				D1F96F0221FE8D9400D79396 /* ItemSizeDelegate.swift in Sources */,
 				D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */,
 				D196FE9D220DB48100F522C8 /* LocationModel.swift in Sources */,
-				D1391FC4220AB2D90064FC37 /* EmptyCollectionViewCell.swift in Sources */,
+				D118B7D52213A7AE00E5A85E /* StoreLocationView.swift in Sources */,
+				D1391FC4220AB2D90064FC37 /* SaleCollectionViewCell.swift in Sources */,
 				D1B3E33622113D280043CE50 /* String+TextEstimate.swift in Sources */,
 				D1CC3E9C22045EAA00670675 /* FloatingView.swift in Sources */,
 				D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */,
@@ -872,7 +888,9 @@
 				992EDCED21FDB0C6006CC894 /* FoodItemDetailsViewController.swift in Sources */,
 				843B05122203D9240082FEFF /* FirebaseSingleton.swift in Sources */,
 				84DC184221F9A51D008EE6D3 /* RecommendCollectionViewCell.swift in Sources */,
+				D118B7D32213A79E00E5A85E /* UserLocationView.swift in Sources */,
 				84DC184421F9A51D008EE6D3 /* NearestCollectionViewCell.swift in Sources */,
+				D118B7D722143D3F00E5A85E /* ChangeScrollDelegate.swift in Sources */,
 				D1CED1BC22074759007626B4 /* OrderedMenuCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1075,7 +1093,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1094,7 +1112,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

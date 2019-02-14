@@ -14,6 +14,8 @@ class DeliveryManInfoCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var deliveryManNameLabel: UILabel!
     @IBOutlet weak var vehicleLabel: UILabel!
 
+    var delegate: ChangeScrollDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setupLayout()
@@ -24,5 +26,9 @@ class DeliveryManInfoCollectionReusableView: UICollectionReusableView {
         deliveryManNameLabel.text = "수근 (99% 👍🏻)"
         vehicleLabel.text = "우버 Moterbike"
         isHidden = true
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        delegate?.scrollToTop()
     }
 }
