@@ -52,8 +52,11 @@ class SettingLocationViewController: UIViewController {
         return button
     }()
 
+    let toolBarView = ToolBarView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        toolBarView.delegate = self
         setupLayout()
         setupTableView()
     }
@@ -69,13 +72,16 @@ class SettingLocationViewController: UIViewController {
     }
 
     private func setupLayout() {
+        self.view.backgroundColor = .white
+
         self.view.addSubview(deliveryDetailTableView)
         self.view.addSubview(completeButton)
+        self.view.addSubview(toolBarView)
 
         completeButton.addTarget(self, action: #selector(touchUpCompleteButton(_:)), for: .touchUpInside)
 
         NSLayoutConstraint.activate([
-            deliveryDetailTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            deliveryDetailTableView.topAnchor.constraint(equalTo: toolBarView.bottomAnchor),
             deliveryDetailTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             deliveryDetailTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             deliveryDetailTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -83,7 +89,11 @@ class SettingLocationViewController: UIViewController {
             completeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             completeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             completeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            completeButton.heightAnchor.constraint(equalToConstant: HeightOfcompleteButton)
+            completeButton.heightAnchor.constraint(equalToConstant: HeightOfcompleteButton),
+
+            toolBarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            toolBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            toolBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             ])
     }
 
@@ -188,6 +198,14 @@ extension SettingLocationViewController: UITableViewDelegate {
         default:
             return HeaderHeight.basic
         }
+    }
+
+}
+
+extension SettingLocationViewController: CloseDelegate {
+
+    func dismissModal() {
+        dismiss(animated: true, completion: nil)
     }
 
 }
