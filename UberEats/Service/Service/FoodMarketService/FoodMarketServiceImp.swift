@@ -60,7 +60,6 @@ internal class FoodMarketServiceImp: FoodMarketService {
         }
     }
     
-    
     private func caculateDistance(stores: [Store]) -> [Store] {
         var nearestRest: [Store] = []
         for store in stores {

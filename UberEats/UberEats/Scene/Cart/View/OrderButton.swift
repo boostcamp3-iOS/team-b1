@@ -23,7 +23,7 @@ class OrderButton: UIButton {
     }
 
     func setup() {
-        view = loadViewFromNib() as! UIButton!
+        view = loadViewFromNib() as! UIButton
         view.frame = bounds
 
         view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth,
@@ -31,9 +31,6 @@ class OrderButton: UIButton {
 
         addSubview(view)
 
-        // Add our border here and every custom setup
-        view.layer.borderWidth = 2
-        view.layer.borderColor = UIColor.white.cgColor
         view.titleLabel!.font = UIFont.systemFont(ofSize: 40)
     }
 
