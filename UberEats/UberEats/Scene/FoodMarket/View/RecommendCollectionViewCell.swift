@@ -38,5 +38,10 @@ class RecommendCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        self.layer.cornerRadius = 3
+        self.layer.masksToBounds = true
+
+        image.layer.cornerRadius = 3
+        image.layer.masksToBounds = true
     }
 }

@@ -7,11 +7,11 @@
 //
 import UIKit
 
-public class ImageNetworkManager {
+class ImageNetworkManager {
 
-    let session: URLSession
+    private let session: URLSession
 
-    public static let shared = ImageNetworkManager()
+    static let shared = ImageNetworkManager()
 
     private let cache: NSCache = NSCache<NSString, UIImage>()
 
@@ -26,6 +26,7 @@ public class ImageNetworkManager {
     private func downloadImage(imageURL: URL, complection: @escaping (UIImage?, Error?) -> Void) {
         session.dataTask(with: imageURL) { (data, _, error) in
             if error != nil {
+                //실패시 기본 이미지로 처리.
                 print("네트워크 에러")
             }
             guard let data = data else {
@@ -44,7 +45,7 @@ public class ImageNetworkManager {
             }.resume()
     }
 
-    public func getImageByCache(imageURL: URL, complection: @escaping (UIImage?, Error?) -> Void) {
+    func getImageByCache(imageURL: URL, complection: @escaping (UIImage?, Error?) -> Void) {
         if let image = cache.object(forKey: imageURL.absoluteString as NSString) {
             complection(image, nil)
             return

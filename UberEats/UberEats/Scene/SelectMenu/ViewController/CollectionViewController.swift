@@ -6,6 +6,7 @@
 //  Copyright © 2019 leehyeju. All rights reserved.
 //
 import UIKit
+import Common
 
 class CollectionViewController: UICollectionViewController {
     private let sectionNames: [String] = ["나를 위한 추천 메뉴", "햄버거 단품 Single Burger", "햄버거 세트", "디저트 Dessert"]
@@ -25,6 +26,18 @@ class CollectionViewController: UICollectionViewController {
                                  .init(foodName: "부대찌개개개개개ㅐ애애애애애애애 Korean Set with Grilled Pork",
                                        foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
                                        price: "₩8,900", foodImage: nil)]
+
+    var storeId: String? {
+        didSet {
+            print("storeId \(storeId)")
+        }
+    }
+
+    var foodId: String? {
+        didSet {
+            print("foodId \(foodId)")
+        }
+    }
 
     private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent

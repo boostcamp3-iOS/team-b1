@@ -10,7 +10,7 @@ import Foundation
 import Common
 
 public protocol FoodMarketService: class {
-    func requestFoodMarket(completionHandler: @escaping (DataResponse<FoodMarket>) -> Void)
+    func requestFoodMarket(completionHandler: @escaping (DataResponse<CaculatedFoodMarket>) -> Void)
 
-    func requestFoodMarket(dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<FoodMarket>) -> Void )
+    func requestFoodMarket(dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<CaculatedFoodMarket>) -> Void )
 }

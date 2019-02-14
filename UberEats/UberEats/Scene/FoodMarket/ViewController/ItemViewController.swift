@@ -14,31 +14,12 @@ import Common
 
 class ItemViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet var tableView: UITableView!
-
-    @IBOutlet var scrollView: UIScrollView!
-
-    private var images: [String] = ["1_1", "2_1", "3_1", "4_1", "5_1", "6_1"]
-
-    private var bannerImages: [String] = ["1_1", "2_1", "3_1", "4_1", "5_1", "6_1"]
-
-    private var bannerTimer: Timer!
-
-    private var isScrolledByUser: Bool!
-
     private let locationManager = CLLocationManager()
 
-    private lazy var heightOfScrollView: CGFloat = {
-         return self.view.frame.height * 0.25
-    }()
+    @IBOutlet var tableView: UITableView!
 
-    private lazy var widthOfPageControl: CGFloat = {
-       return self.view.frame.width - 280
-    }()
-
-    private let leftPaddingOfPageControl: CGFloat = 60
-
-    private let heightOfPageControl: CGFloat = 37
+    // MARK: - ScrollView
+    @IBOutlet var scrollView: UIScrollView!
 
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl(frame: CGRect(x: self.leftPaddingOfPageControl,
@@ -49,14 +30,32 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         return pageControl
     }()
 
-    private static let bannerTimeInterval: TimeInterval = 4
+    private var bannerTimer: Timer!
 
-    private static let numberOfSection = 8
+    private var isScrolledByUser: Bool!
+
+    // MARK: - Magic Number
+    private lazy var heightOfScrollView: CGFloat = {
+         return self.view.frame.height * 0.3
+    }()
+
+    private lazy var widthOfPageControl: CGFloat = {
+       return self.view.frame.width - 280
+    }()
+
+    private let leftPaddingOfPageControl: CGFloat = 30
+
+    private let heightOfPageControl: CGFloat = 37
 
     private  lazy var heightOfFooter: CGFloat = {
         return self.view.frame.height * (10 / 812)
     }()
 
+    private static let bannerTimeInterval: TimeInterval = 4
+
+    private static let numberOfSection = 8
+
+    // MARK: - Data
     private var foodMarketService: FoodMarketService = DependencyContainer.share.getDependency(key: .foodMarketService)
 
     private var recommendFood: [RecommandFood] = [] {
@@ -73,27 +72,31 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
-    private var stores: [Store] = [] {
+    private var bannerImagesURL: [String] = [] {
         didSet {
-            for store in stores {
-                setNearestRest(store)
+            for bannerImageURL in bannerImagesURL {
+                let imageURL = URL(string: bannerImageURL)!
+
+                ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (_, error) in
+                    if error != nil {
+                        return
+                    }
+                }
             }
         }
     }
 
-    private var nearestRest: [Store] = []
+    private var nearestRests: [Store] = [] {
+        didSet {
+            for nearestRest in nearestRests {
+                let imageURL = URL(string: nearestRest.mainImage)!
 
-    private func setNearestRest(_ store: Store) {
-        let currentLatitude: Double = 37.498146
-        let currentLongtitude: Double = 127.027642
-
-        let storeCoordinate = CLLocation(latitude: store.location.latitude, longitude: store.location.longtitude)
-        let currentCoordinate = CLLocation(latitude: currentLatitude, longitude: currentLongtitude)
-
-        let distance = storeCoordinate.distance(from: currentCoordinate) / 1000
-
-        if distance < 2.0 {
-            nearestRest.append(store)
+                ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (_, error) in
+                    if error != nil {
+                        return
+                    }
+                }
+            }
         }
     }
 
@@ -122,14 +125,22 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     private func initFoodMarket() {
         foodMarketService.requestFoodMarket { [weak self] (dataResponse) in
             if dataResponse.isSuccess {
-                guard let recommendFoodModel = dataResponse.value?.recommandFoods else {
+
+                guard let recommendFood = dataResponse.value?.recommendFood else {
                     return
                 }
-                guard let stores = dataResponse.value?.stores else {
+
+                guard let nearestRest = dataResponse.value?.nearestRest else {
                     return
                 }
-                self?.recommendFood = recommendFoodModel
-                self?.stores = stores
+
+                guard let bannerImagesURL = dataResponse.value?.bannerImages else {
+                    return
+                }
+
+                self?.recommendFood = recommendFood
+                self?.nearestRests = nearestRest
+                self?.bannerImagesURL = bannerImagesURL
 
             } else {
                 fatalError()
@@ -148,7 +159,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     @objc func scrolledBanner() {
         let nextPageOfPageControl: Int = pageControl.currentPage + 1
 
-        let point = nextPageOfPageControl >= bannerImages.count ?
+        let point = nextPageOfPageControl >= bannerImagesURL.count ?
             CGPoint.zero :
             CGPoint(x: view.frame.width * CGFloat(nextPageOfPageControl), y: 0)
 
@@ -158,19 +169,24 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     private func  addBannerImageView() {
         var frame = CGRect(origin: CGPoint.zero, size: CGSize.zero)
 
-        for index in 0..<bannerImages.count {
+        for index in 0..<bannerImagesURL.count {
             frame.origin.x = view.frame.width * CGFloat(index)
             frame.size = scrollView.frame.size
 
             let bannerImage = UIImageView(frame: frame)
-            bannerImage.image = UIImage(named: bannerImages[index])
+
+            let imageURL = URL(string: bannerImagesURL[index])!
+
+            ImageNetworkManager.shared.getImageByCache(imageURL: imageURL, complection: { (downloadImage, _) in
+                bannerImage.image = downloadImage
+            })
 
             scrollView.addSubview(bannerImage)
         }
     }
 
     private func setupPageControl() {
-        pageControl.numberOfPages = bannerImages.count
+        pageControl.numberOfPages = bannerImagesURL.count
         pageControl.addTarget(self, action: #selector(changePage), for: .valueChanged)
     }
 
@@ -181,7 +197,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         scrollView.frame = CGRect(origin: CGPoint.zero,
                                   size: CGSize(width: view.frame.width, height: heightOfScrollView))
 
-        scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(bannerImages.count),
+        scrollView.contentSize = CGSize(width: scrollView.frame.width * CGFloat(bannerImagesURL.count),
                                         height: scrollView.frame.height)
 
         addBannerImageView()
@@ -258,13 +274,13 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
         tablecell.setLabel(indexPath.section)
         tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate(
             [
                 tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor),
                 tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor),
                 tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor),
-                tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: heightOfCollectionViewCell)
+                tablecell.collectionView.topAnchor.constraint(equalTo: tablecell.recommendLabel.bottomAnchor)
+//                tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: heightOfCollectionViewCell)
             ]
         )
 
@@ -351,7 +367,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case .recommendFood:
             return recommendFood.count
         case .nearestRest:
-            return nearestRest.count
+            return nearestRests.count
         case .expectedTime:
             return 6
         case .newRest:
@@ -370,15 +386,14 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 return .init()
             }
             recommendFoodCell.recommendFood = recommendFood[indexPath.item]
+            recommendFoodCell.dropShadow(color: .gray, offSet: CGSize(width: 0, height: 0))
             return recommendFoodCell
         case .nearestRest:
             guard let nearestRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? NearestCollectionViewCell else {
                 return .init()
             }
-
-            nearestRestCell.nearestRest = nearestRest[indexPath.item]
+            nearestRestCell.nearestRest = nearestRests[indexPath.item]
             return nearestRestCell
-
         case .expectedTime, .newRest:
             return collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath)
         default:
@@ -388,8 +403,23 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
         let storboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let collectionViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController")
+        guard let collectionViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController") as? CollectionViewController else {
+            return
+        }
+
+        let section = Section(rawValue: collectionView.tag)!
+
+        switch section {
+        case .recommendFood:
+            collectionViewController.foodId = recommendFood[indexPath.item].id
+            collectionViewController.storeId = recommendFood[indexPath.item].storeId
+        default:
+            print("123123")
+        }
+        print("selected collectionview tag \(collectionView.tag)")
+
         self.navigationController?.pushViewController(collectionViewController, animated: true)
     }
 }
@@ -404,9 +434,9 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         }
         switch section {
         case .recommendFood:
-            return .init(width: view.frame.width * 0.8, height: view.frame.width * 0.8 * 0.82)
+            return .init(width: view.frame.width * 0.8, height: view.frame.width * 0.8)
         case .nearestRest, .expectedTime, .newRest :
-            return .init(width: view.frame.width * 0.76, height: view.frame.width * 0.76 * 0.868)
+            return .init(width: view.frame.width * 0.8, height: view.frame.width * 0.8 * 0.82)
         case .discount:
             return .init(width: 0, height: 0)
         default:
@@ -421,4 +451,18 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         return section.getEdgeInset
     }
 
+}
+
+extension UICollectionViewCell {
+    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = offSet
+        layer.shadowRadius = radius
+
+        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 2
+    }
 }
