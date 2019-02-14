@@ -27,6 +27,16 @@ class CollectionViewController: UICollectionViewController {
                                        foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
                                        price: "₩8,900", foodImage: nil)]
 
+    func passingData(status: SelectState) {
+        switch status {
+        case .store(let storeId):
+            self.storeId = storeId
+        case .food(foodId: let foodId, storeId: let storeId):
+            self.storeId = storeId
+            self.foodId = foodId
+        }
+    }
+
     var storeId: String? {
         didSet {
             print("storeId \(storeId)")

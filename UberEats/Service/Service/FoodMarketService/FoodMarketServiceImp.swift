@@ -19,47 +19,30 @@ internal class FoodMarketServiceImp: FoodMarketService {
         self.network = network
     }
     
-    func requestFoodMarket(completionHandler: @escaping (DataResponse<CaculatedFoodMarket>) -> Void) {
+    func requestFoodMarket(completionHandler: @escaping (DataResponse<BusinessFoodMarket>) -> Void) {
         let requestURL = URL(string: "www.uberEats.com/foodMarket")!
         network.request(with: requestURL) { ( data, response, _) in
             if response?.httpStatusCode == .ok {
+                
                 guard let data = data else {
                     return
                 }
+                
                 do {
-                    let foodMarket: FoodMarket = try JSONDecoder().decode(FoodMarket.self, from: data)
                     //completionHandler(DataResponse.success(foodMarket))
-                    let stores = foodMarket.stores
+                    let foodMarket: FoodMarket = try JSONDecoder().decode(FoodMarket.self, from: data)
                     
-                    var nearestRest: [Store] = []
-                    let recommendFood: [RecommandFood] = foodMarket.recommandFoods
+                    let stores = foodMarket.stores
                     let banners: [AdvertisingBoard] = foodMarket.advertisingBoard
                     
-                    var bannerImagesURL: [String] = []
+                    let nearestRest = caculateDistance(stores: stores)
+                    let recommendFood: [RecommandFood] = foodMarket.recommandFoods
+                    let bannerImageURL = getBannerImageURL(banners: banners)
                     
-                    for banner in banners {
-                        bannerImagesURL.append(banner.bannerImage)
-                    }
-                    
-                    for store in stores {
-                        let currentLatitude: Double = 37.498146
-                        let currentLongtitude: Double = 127.027642
-                        
-                        let storeCoordinate = CLLocation(latitude: store.location.latitude, longitude: store.location.longtitude)
-                        let currentCoordinate = CLLocation(latitude: currentLatitude, longitude: currentLongtitude)
-                        
-                        let distance = storeCoordinate.distance(from: currentCoordinate) / 1000
-                        
-                        if distance < 2.0 {
-                            nearestRest.append(store)
-                        }
-                    }
-                    
-                    let caculatedFoodMarket: CaculatedFoodMarket = CaculatedFoodMarket(neareRest: nearestRest,
-                                                                                       recommendFood: recommendFood, bannerImages: bannerImagesURL)
-                    
+                    let caculatedFoodMarket = BusinessFoodMarket(neareRest: nearestRest,
+                                                                                     recommendFood: recommendFood,
+                                                                                     bannerImages: bannerImageURL)
                     completionHandler(DataResponse.success(caculatedFoodMarket))
-                    
                     //FIXME: - Service에서 비즈니스 로직 담당 -> nearestRest 반환하는 로직을 여기서 짜자.
                 } catch {
                     fatalError()
@@ -68,14 +51,41 @@ internal class FoodMarketServiceImp: FoodMarketService {
             } else {
                 fatalError()
             }
-            
         }
     }
     
-    func requestFoodMarket(dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<CaculatedFoodMarket>) -> Void) {
+    func requestFoodMarket(dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<BusinessFoodMarket>) -> Void) {
         dispatchQueue?.async {
             self.requestFoodMarket(completionHandler: completionHandler)
         }
+    }
+    
+    
+    private func caculateDistance(stores: [Store]) -> [Store] {
+        var nearestRest: [Store] = []
+        for store in stores {
+            let currentLatitude: Double = 37.498146
+            let currentLongtitude: Double = 127.027642
+            
+            let storeCoordinate = CLLocation(latitude: store.location.latitude, longitude: store.location.longtitude)
+            let currentCoordinate = CLLocation(latitude: currentLatitude, longitude: currentLongtitude)
+            
+            let distance = storeCoordinate.distance(from: currentCoordinate) / 1000
+            
+            if distance < 2.0 {
+                nearestRest.append(store)
+            }
+        }
+        
+        return nearestRest
+    }
+    
+    private func getBannerImageURL(banners: [AdvertisingBoard]) -> [String] {
+        var bannerImagesURL: [String] = []
+        for banner in banners {
+            bannerImagesURL.append(banner.bannerImage)
+        }
+        return bannerImagesURL
     }
     
 }

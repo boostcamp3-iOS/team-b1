@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Common
 
-public struct CaculatedFoodMarket {
+public struct BusinessFoodMarket {
     public let nearestRest: [Store]
     public let recommendFood: [RecommandFood]
     public let bannerImages: [String]

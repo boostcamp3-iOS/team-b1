@@ -413,15 +413,18 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
         switch section {
         case .recommendFood:
-            collectionViewController.foodId = recommendFood[indexPath.item].id
-            collectionViewController.storeId = recommendFood[indexPath.item].storeId
+            collectionViewController.passingData(status: SelectState.food(foodId: recommendFood[indexPath.item].id, storeId: recommendFood[indexPath.item].storeId))
+        case .nearestRest:
+            collectionViewController.passingData(status: SelectState.store(nearestRests[indexPath.item].id))
         default:
+
             print("123123")
         }
         print("selected collectionview tag \(collectionView.tag)")
 
         self.navigationController?.pushViewController(collectionViewController, animated: true)
     }
+
 }
 
 extension ItemViewController: UICollectionViewDelegateFlowLayout {
