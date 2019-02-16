@@ -12,6 +12,7 @@ class SettingLocationViewController: UIViewController {
 
     private let HeightOfcompleteButton: CGFloat = 50
     private let nubmerOfSections: Int = 3
+    private let tapGesture = UITapGestureRecognizer()
 
     struct HeaderHeight {
         static let moment: CGFloat = 40
@@ -52,8 +53,12 @@ class SettingLocationViewController: UIViewController {
         return button
     }()
 
+    let toolBarView = ToolBarView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        toolBarView.delegate = self
+        tapGesture.delegate = self
         setupLayout()
         setupTableView()
     }
@@ -69,13 +74,17 @@ class SettingLocationViewController: UIViewController {
     }
 
     private func setupLayout() {
+        self.view.backgroundColor = .white
+
         self.view.addSubview(deliveryDetailTableView)
         self.view.addSubview(completeButton)
+        self.view.addSubview(toolBarView)
+        self.view.addGestureRecognizer(tapGesture)
 
         completeButton.addTarget(self, action: #selector(touchUpCompleteButton(_:)), for: .touchUpInside)
 
         NSLayoutConstraint.activate([
-            deliveryDetailTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            deliveryDetailTableView.topAnchor.constraint(equalTo: toolBarView.bottomAnchor),
             deliveryDetailTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             deliveryDetailTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             deliveryDetailTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -83,12 +92,23 @@ class SettingLocationViewController: UIViewController {
             completeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             completeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             completeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            completeButton.heightAnchor.constraint(equalToConstant: HeightOfcompleteButton)
+            completeButton.heightAnchor.constraint(equalToConstant: HeightOfcompleteButton),
+
+            toolBarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            toolBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            toolBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             ])
     }
 
     @objc private func touchUpCompleteButton(_: UIButton) {
 
+    }
+}
+
+extension SettingLocationViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        view.endEditing(true)
+        return false
     }
 }
 
@@ -188,6 +208,14 @@ extension SettingLocationViewController: UITableViewDelegate {
         default:
             return HeaderHeight.basic
         }
+    }
+
+}
+
+extension SettingLocationViewController: CloseDelegate {
+
+    func dismissModal() {
+        dismiss(animated: true, completion: nil)
     }
 
 }

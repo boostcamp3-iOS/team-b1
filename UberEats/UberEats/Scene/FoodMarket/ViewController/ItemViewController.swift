@@ -116,6 +116,10 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     }
 
+    @IBAction func touchUpSettingLocation(_ sender: Any) {
+        present(SettingLocationViewController(), animated: true, completion: nil)
+    }
+
     private func setupLocationAuthority() {
         // 위치 권한 요청
         self.locationManager.requestAlwaysAuthorization()

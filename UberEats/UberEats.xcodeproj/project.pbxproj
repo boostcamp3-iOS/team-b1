@@ -80,6 +80,8 @@
 		D107D22722153A8100322379 /* LocationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107D22622153A8100322379 /* LocationCellModel.swift */; };
 		D107D229221541A200322379 /* MomentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107D228221541A200322379 /* MomentHeaderView.swift */; };
 		D107D22B22154DCD00322379 /* SettingLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107D22A22154DCD00322379 /* SettingLocationModel.swift */; };
+		D107D22D2215823000322379 /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107D22C2215823000322379 /* ToolBarView.swift */; };
+		D107D22F2215875F00322379 /* CloseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D107D22E2215875F00322379 /* CloseDelegate.swift */; };
 		D1135C302210114C0032F103 /* DeliveryStartNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1135C2F2210114C0032F103 /* DeliveryStartNoticeView.swift */; };
 		D1135C3322102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1135C3122102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift */; };
 		D1135C3422102C0A0032F103 /* DeliveryManInfoCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1135C3222102C0A0032F103 /* DeliveryManInfoCollectionReusableView.xib */; };
@@ -228,6 +230,8 @@
 		D107D22622153A8100322379 /* LocationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCellModel.swift; sourceTree = "<group>"; };
 		D107D228221541A200322379 /* MomentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeaderView.swift; sourceTree = "<group>"; };
 		D107D22A22154DCD00322379 /* SettingLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLocationModel.swift; sourceTree = "<group>"; };
+		D107D22C2215823000322379 /* ToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
+		D107D22E2215875F00322379 /* CloseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseDelegate.swift; sourceTree = "<group>"; };
 		D1135C2F2210114C0032F103 /* DeliveryStartNoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStartNoticeView.swift; sourceTree = "<group>"; };
 		D1135C3122102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryManInfoCollectionReusableView.swift; sourceTree = "<group>"; };
 		D1135C3222102C0A0032F103 /* DeliveryManInfoCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryManInfoCollectionReusableView.xib; sourceTree = "<group>"; };
@@ -653,6 +657,7 @@
 				D107D22022152AA100322379 /* NewAddressTableViewCell.swift */,
 				D107D22422153A6300322379 /* MomentTableViewCell.swift */,
 				D107D228221541A200322379 /* MomentHeaderView.swift */,
+				D107D22C2215823000322379 /* ToolBarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -661,6 +666,7 @@
 			isa = PBXGroup;
 			children = (
 				D107D2182215064300322379 /* SettingLocationViewController.swift */,
+				D107D22E2215875F00322379 /* CloseDelegate.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1002,6 +1008,7 @@
 				995D904622119D3600DCA964 /* FoodsOrderedByOthersCell.swift in Sources */,
 				8477949F22142D3D003EA68D /* ImageNetworkManager.swift in Sources */,
 				D1CED1C2220756C7007626B4 /* OrderCancelCollectionViewCell.swift in Sources */,
+				D107D22F2215875F00322379 /* CloseDelegate.swift in Sources */,
 				84333AC32202CDA3007372DE /* ChattingViewController.swift in Sources */,
 				D1F96F0221FE8D9400D79396 /* ItemSizeDelegate.swift in Sources */,
 				D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */,
@@ -1016,6 +1023,7 @@
 				D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */,
 				D115BBB721F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift in Sources */,
 				D1135C302210114C0032F103 /* DeliveryStartNoticeView.swift in Sources */,
+				D107D22D2215823000322379 /* ToolBarView.swift in Sources */,
 				84DC185421F9C426008EE6D3 /* TabBarVC.swift in Sources */,
 				D107D229221541A200322379 /* MomentHeaderView.swift in Sources */,
 				D115BBB321F9D49E00C57809 /* SearchCollectionViewCell.swift in Sources */,

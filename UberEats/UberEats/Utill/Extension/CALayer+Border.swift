@@ -8,9 +8,7 @@
 
 import UIKit
 
-//https://devsc.tistory.com/62
 extension CALayer {
-
     func addBorder(_ edges: [UIRectEdge], color: UIColor, width: CGFloat) {
         for edge in edges {
             let border = CALayer()
