@@ -25,7 +25,47 @@ public class MockServer {
     private func setUp() throws {
         //"www.uberEats.com/foodMerket/food?id=12"
         try router.get("foodMarket", writtenResponse: { (request) -> Response in
+            let data = try ResourceController.resourceWithData(path: request.path, root: type(of: self))
 
+//            request.component.query
+            let storesData = try ResourceController.resourceWithData(path: "www.uberEats.com/stores", root: type(of: self))
+
+            let foodsData = try ResourceController.resourceWithData(path: "www.uberEats.com/foods", root: type(of: self))
+
+            var foodMarket: FoodMarket = try JSONDecoder().decode(FoodMarket.self, from: data)
+
+            do {
+                let stores: [Store] = try JSONDecoder().decode([Store].self, from: storesData)
+                let foods: [Food] = try JSONDecoder().decode([Food].self, from: foodsData)
+
+                stores.forEach {
+                    $0.isNewStore ? foodMarket.newStores.append($0) : foodMarket.stores.append($0)
+                }
+
+                for index in 1..<6 {
+                    let storeId = "store" + String(index)
+                    let foodsOfStore = foods.filter {
+                        return $0.storeId == storeId
+                    }
+
+                    guard let randomFood = foodsOfStore.randomElement() else {
+                        return ""
+                    }
+
+                    foodMarket.recommandFoods.append(randomFood)
+                }
+            } catch {
+                fatalError()
+            }
+
+            guard let result = try? JSONEncoder().encode(foodMarket) else {
+                return ""
+            }
+
+            return String(decoding: result, as: UTF8.self)
+        })
+
+        try router.get("menu", writtenResponse: { (request) -> Response in
             let result = try ResourceController.resourceWithString(path: request.path, root: type(of: self))
 
             return result

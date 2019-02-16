@@ -8,10 +8,10 @@
 import UIKit
 import Common
 
-class CollectionViewController: UICollectionViewController {
+class StoreCollectionViewController: UICollectionViewController {
     private let sectionNames: [String] = ["나를 위한 추천 메뉴", "햄버거 단품 Single Burger", "햄버거 세트", "디저트 Dessert"]
 
-    private let foods: [Food] = [.init(foodName: "제육정식 Korean Set with Grilled Pork",
+    private let foods: [FoodFood] = [.init(foodName: "제육정식 Korean Set with Grilled Pork",
                                        foodContents: "알싸한 매콤함이 일품인 부거부거 최고 메뉴입니다.",
                                        price: "₩8,900", foodImage: nil),
                                  .init(foodName: "부대찌개개개개개ㅐ애애애애애애애 Korean Set with Grilled Pork",
@@ -37,17 +37,8 @@ class CollectionViewController: UICollectionViewController {
         }
     }
 
-    var storeId: String? {
-        didSet {
-            print("storeId \(storeId)")
-        }
-    }
-
-    var foodId: String? {
-        didSet {
-            print("foodId \(foodId)")
-        }
-    }
+    var storeId: String?
+    var foodId: String?
 
     private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent
@@ -545,7 +536,7 @@ class CollectionViewController: UICollectionViewController {
     }
 }
 
-extension CollectionViewController: UICollectionViewDelegateFlowLayout {
+extension StoreCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -583,7 +574,7 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension CollectionViewController: SearchBarDelegate {
+extension StoreCollectionViewController: SearchBarDelegate {
     func showSeachBar() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let searchVC = storyBoard.instantiateViewController(withIdentifier: "searchViewController")
@@ -596,7 +587,7 @@ extension CollectionViewController: SearchBarDelegate {
     }
 }
 
-extension CollectionViewController {
+extension StoreCollectionViewController {
     private func handleStoreView(by scrollView: UIScrollView) {
         let currentScroll: CGFloat = scrollView.contentOffset.y
         let headerHeight: CGFloat = HeightsOfHeader.stretchy

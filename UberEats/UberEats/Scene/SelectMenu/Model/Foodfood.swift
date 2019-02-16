@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Food {
+struct FoodFood {
     let foodName: String
     let foodContents: String
     let price: String

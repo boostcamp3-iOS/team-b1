@@ -12,5 +12,5 @@ import Common
 public protocol FoodMarketService: class {
     func requestFoodMarket(completionHandler: @escaping (DataResponse<BusinessFoodMarket>) -> Void)
 
-    func requestFoodMarket(dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<BusinessFoodMarket>) -> Void )
+    func requestFoodMarket(dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<BusinessFoodMarket>) -> Void)
 }

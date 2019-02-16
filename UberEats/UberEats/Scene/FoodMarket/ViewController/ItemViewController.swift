@@ -58,10 +58,12 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - Data
     private var foodMarketService: FoodMarketService = DependencyContainer.share.getDependency(key: .foodMarketService)
 
-    private var recommendFood: [RecommandFood] = [] {
+    private var recommendFood: [Food] = [] {
         didSet {
             for food in recommendFood {
-                let imageURL = URL(string: food.foodImageURL)!
+                guard let imageURL = URL(string: food.foodImageURL) else {
+                    return
+                }
 
                 ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (_, error) in
                     if error != nil {
@@ -134,16 +136,16 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
                     return
                 }
 
-                guard let nearestRest = dataResponse.value?.nearestRest else {
-                    return
-                }
+//                guard let nearestRest = dataResponse.value?.nearestRest else {
+//                    return
+//                }
 
                 guard let bannerImagesURL = dataResponse.value?.bannerImages else {
                     return
                 }
 
                 self?.recommendFood = recommendFood
-                self?.nearestRests = nearestRest
+//                self?.nearestRests = nearestRest
                 self?.bannerImagesURL = bannerImagesURL
 
             } else {
@@ -409,7 +411,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         let storboard = UIStoryboard.init(name: "Main", bundle: nil)
-        guard let collectionViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController") as? CollectionViewController else {
+        guard let collectionViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController") as? StoreCollectionViewController else {
             return
         }
 

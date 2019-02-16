@@ -11,10 +11,10 @@ import Common
 
 public struct BusinessFoodMarket {
     public let nearestRest: [Store]
-    public let recommendFood: [RecommandFood]
+    public let recommendFood: [Food]
     public let bannerImages: [String]
 
-    public init(neareRest: [Store], recommendFood: [RecommandFood], bannerImages: [String]) {
+    public init(neareRest: [Store], recommendFood: [Food], bannerImages: [String]) {
         self.nearestRest = neareRest
         self.recommendFood = recommendFood
         self.bannerImages = bannerImages

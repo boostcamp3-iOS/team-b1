@@ -36,13 +36,17 @@ internal class FoodMarketServiceImp: FoodMarketService {
                     let banners: [AdvertisingBoard] = foodMarket.advertisingBoard
                     
                     let nearestRest = caculateDistance(stores: stores)
-                    let recommendFood: [RecommandFood] = foodMarket.recommandFoods
+                    let recommendFood: [Food] = foodMarket.recommandFoods
                     let bannerImageURL = getBannerImageURL(banners: banners)
                     
                     let caculatedFoodMarket = BusinessFoodMarket(neareRest: nearestRest,
                                                                                      recommendFood: recommendFood,
                                                                                      bannerImages: bannerImageURL)
-                    completionHandler(DataResponse.success(caculatedFoodMarket))
+                    
+                    DispatchQueue.main.async {
+                        completionHandler(DataResponse.success(caculatedFoodMarket))
+                    }
+                    
                     //FIXME: - Service에서 비즈니스 로직 담당 -> nearestRest 반환하는 로직을 여기서 짜자.
                 } catch {
                     fatalError()
