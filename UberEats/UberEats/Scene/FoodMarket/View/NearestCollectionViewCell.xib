@@ -23,37 +23,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="311" height="270"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zinger" translatesAutoresizingMaskIntoConstraints="NO" id="Rez-OW-kW8">
-                                <rect key="frame" x="9" y="9" width="293" height="90"/>
+                                <rect key="frame" x="9" y="9" width="293" height="140"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="rCG-dL-PQI"/>
+                                    <constraint firstAttribute="height" constant="140" id="rCG-dL-PQI"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Dn2-mQ-W59">
-                                <rect key="frame" x="12" y="114" width="287" height="141"/>
+                                <rect key="frame" x="12" y="164" width="287" height="94"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="명인만두 명동점 Myungin Mandu MyeongDong" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="jaH-G4-9vE">
-                                        <rect key="frame" x="0.0" y="0.0" width="286" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="286" height="19"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ * 분식" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hA-dM-PSu">
-                                        <rect key="frame" x="0.0" y="37" width="47.5" height="30.5"/>
+                                        <rect key="frame" x="0.0" y="25" width="47.5" height="19"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="s9U-Xf-9hB">
-                                        <rect key="frame" x="0.0" y="73.5" width="106" height="31"/>
+                                        <rect key="frame" x="0.0" y="50" width="106" height="19"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25~35분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKM-eM-D7b">
-                                                <rect key="frame" x="0.0" y="0.0" width="55" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="55" height="19"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$7000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYe-gY-OCe">
-                                                <rect key="frame" x="63" y="0.0" width="43" height="31"/>
+                                                <rect key="frame" x="63" y="0.0" width="43" height="19"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -61,7 +61,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="케이에프씨 광화문 KFC Gwanghwa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xiv-rP-glh">
-                                        <rect key="frame" x="0.0" y="110.5" width="206" height="30.5"/>
+                                        <rect key="frame" x="0.0" y="75" width="206" height="19"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -77,7 +77,7 @@
                             <constraint firstItem="Rez-OW-kW8" firstAttribute="top" secondItem="Zsg-eV-HuY" secondAttribute="top" constant="9" id="ULi-kN-j9e"/>
                             <constraint firstItem="Dn2-mQ-W59" firstAttribute="top" secondItem="Rez-OW-kW8" secondAttribute="bottom" constant="15" id="hyM-oK-IDu"/>
                             <constraint firstItem="Dn2-mQ-W59" firstAttribute="leading" secondItem="Zsg-eV-HuY" secondAttribute="leading" constant="12" id="vvd-l3-F2V"/>
-                            <constraint firstAttribute="bottom" secondItem="Dn2-mQ-W59" secondAttribute="bottom" constant="15" id="zAP-Vv-8y3"/>
+                            <constraint firstAttribute="bottom" secondItem="Dn2-mQ-W59" secondAttribute="bottom" constant="12" id="zAP-Vv-8y3"/>
                         </constraints>
                     </view>
                 </subviews>

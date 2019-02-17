@@ -285,7 +285,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
                 tablecell.collectionView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor),
                 tablecell.collectionView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor),
                 tablecell.collectionView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor),
-                tablecell.collectionView.topAnchor.constraint(equalTo: tablecell.recommendLabel.bottomAnchor)
+                tablecell.collectionView.topAnchor.constraint(equalTo: tablecell.recommendLabel.bottomAnchor, constant: 10)
 //                tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: heightOfCollectionViewCell)
             ]
         )
@@ -348,12 +348,11 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             if indexPath.row == 0 {
                 return 80
             } else {
-                return section.heightOfTableViewCell(view.frame.height)
+                return section.heightOfTableViewCell()
             }
         default:
-            return section.heightOfTableViewCell(view.frame.height)
+            return section.heightOfTableViewCell()
         }
-
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -398,7 +397,10 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
             guard let nearestRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? NearestCollectionViewCell else {
                 return .init()
             }
+
             nearestRestCell.nearestRest = nearestRests[indexPath.item]
+            nearestRestCell.dropShadow(color: .gray, offSet: CGSize(width: 0, height: 0))
+
             return nearestRestCell
         case .expectedTime, .newRest:
             return collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath)
@@ -430,7 +432,6 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
         self.navigationController?.pushViewController(collectionViewController, animated: true)
     }
-
 }
 
 extension ItemViewController: UICollectionViewDelegateFlowLayout {
@@ -442,10 +443,8 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
             preconditionFailure("")
         }
         switch section {
-        case .recommendFood:
+        case .recommendFood, .nearestRest, .expectedTime, .newRest:
             return .init(width: view.frame.width * 0.8, height: view.frame.width * 0.8)
-        case .nearestRest, .expectedTime, .newRest :
-            return .init(width: view.frame.width * 0.8, height: view.frame.width * 0.8 * 0.82)
         case .discount:
             return .init(width: 0, height: 0)
         default:
@@ -459,7 +458,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         let section = Section(rawValue: collectionView.tag)!
         return section.getEdgeInset
     }
-
+    
 }
 
 extension UICollectionViewCell {

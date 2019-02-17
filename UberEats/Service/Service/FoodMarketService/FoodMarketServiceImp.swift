@@ -23,6 +23,7 @@ internal class FoodMarketServiceImp: FoodMarketService {
         let requestURL = URL(string: "www.uberEats.com/foodMarket")!
         
         network.request(with: requestURL) { ( data, response, _) in
+            
             if response?.httpStatusCode == .ok {
                 
                 guard let data = data else {
