@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderButton" customModule="UberEats" customModuleProvider="target">
+            <connections>
+                <outlet property="orderButtonVIew" destination="ZuW-vi-yNd" id="AgD-6j-CLa"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ZuW-vi-yNd" userLabel="OrderButtonVIew">
+            <rect key="frame" x="0.0" y="0.0" width="334" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fq6-B3-n3A" userLabel="orderButton">
+                    <rect key="frame" x="0.0" y="0.0" width="334" height="44"/>
+                    <color key="backgroundColor" red="0.3411764706" green="0.58823529409999997" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <state key="normal" title="주문하기">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="clickedOrderButton:" destination="-1" eventType="touchUpInside" id="nUb-iq-vo4"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Fq6-B3-n3A" firstAttribute="top" secondItem="wxm-j0-880" secondAttribute="top" id="7dk-k4-w9d"/>
+                <constraint firstItem="Fq6-B3-n3A" firstAttribute="leading" secondItem="wxm-j0-880" secondAttribute="leading" id="Gme-58-1QT"/>
+                <constraint firstItem="wxm-j0-880" firstAttribute="bottom" secondItem="Fq6-B3-n3A" secondAttribute="bottom" id="cU0-px-RJY"/>
+                <constraint firstItem="wxm-j0-880" firstAttribute="trailing" secondItem="Fq6-B3-n3A" secondAttribute="trailing" id="rAu-kr-fef"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="wxm-j0-880"/>
+            <point key="canvasLocation" x="15.199999999999999" y="-526.23688155922048"/>
+        </view>
+    </objects>
+</document>
