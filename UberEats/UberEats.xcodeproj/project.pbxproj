@@ -13,6 +13,7 @@
 		843B05122203D9240082FEFF /* FirebaseSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B05112203D9240082FEFF /* FirebaseSingleton.swift */; };
 		843B05182203E6F40082FEFF /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B05172203E6F40082FEFF /* ChatModel.swift */; };
 		843B051A220405540082FEFF /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B0519220405540082FEFF /* ChatMessageCell.swift */; };
+		8442E4152219143E00831099 /* ItemCollecionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442E4142219143E00831099 /* ItemCollecionViewFlowLayout.swift */; };
 		8443049A22154B2000FCFADB /* FoodMarketSelectState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443049922154B2000FCFADB /* FoodMarketSelectState.swift */; };
 		84604F212205928100212A00 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84604F202205928100212A00 /* Message.swift */; };
 		8477949F22142D3D003EA68D /* ImageNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477949E22142D3C003EA68D /* ImageNetworkManager.swift */; };
@@ -167,6 +168,7 @@
 		843B05112203D9240082FEFF /* FirebaseSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSingleton.swift; sourceTree = "<group>"; };
 		843B05172203E6F40082FEFF /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		843B0519220405540082FEFF /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		8442E4142219143E00831099 /* ItemCollecionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollecionViewFlowLayout.swift; sourceTree = "<group>"; };
 		8443049922154B2000FCFADB /* FoodMarketSelectState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMarketSelectState.swift; sourceTree = "<group>"; };
 		84604F202205928100212A00 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8477949E22142D3C003EA68D /* ImageNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetworkManager.swift; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 		995D901F2210001D00DCA964 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8442E4142219143E00831099 /* ItemCollecionViewFlowLayout.swift */,
 				84FB11A822017A90002C5F46 /* SeeMoreRestTableViewCell.swift */,
 				84FB11A922017A90002C5F46 /* SeeMoreRestTableViewCell.xib */,
 				84DC183A21F9A51D008EE6D3 /* RecommendCollectionViewCell.swift */,
@@ -1029,6 +1032,7 @@
 				D107D22122152AA100322379 /* NewAddressTableViewCell.swift in Sources */,
 				84DC184521F9A51D008EE6D3 /* TableViewCell.swift in Sources */,
 				84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */,
+				8442E4152219143E00831099 /* ItemCollecionViewFlowLayout.swift in Sources */,
 				84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */,
 				84DC184A21F9ACE0008EE6D3 /* ItemViewController.swift in Sources */,
 				995D903D22104ECE00DCA964 /* CartViewController.swift in Sources */,
