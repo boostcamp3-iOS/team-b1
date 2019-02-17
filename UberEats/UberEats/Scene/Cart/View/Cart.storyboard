@@ -15,7 +15,7 @@
             <objects>
                 <viewController storyboardIdentifier="CartVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NPq-gl-TgC" customClass="CartViewController" customModule="UberEats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XXK-It-a8T">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="950"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="329-ls-PLL">
@@ -34,9 +34,14 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E1a-Ul-YKg">
-                                <rect key="frame" x="0.0" y="88" width="414" height="878"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="828"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="MLP-l4-ZdH" userLabel="emptyFooter">
+                                    <rect key="frame" x="0.0" y="791" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="storeInfoCell" rowHeight="128" id="YWk-YQ-Em1" customClass="StoreInfoCell" customModule="UberEats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="128"/>
@@ -477,7 +482,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="paymentInfoCell" rowHeight="52" id="gJi-hH-ltq" userLabel="paymentInfoCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="paymentInfoCell" rowHeight="52" id="gJi-hH-ltq" userLabel="paymentInfoCell" customClass="PaymentInfoCell" customModule="UberEats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="685" width="414" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gJi-hH-ltq" id="gvJ-e5-WuW">
@@ -553,24 +558,11 @@
                                     <outlet property="delegate" destination="NPq-gl-TgC" id="23b-gm-RxC"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wvW-kZ-7GC">
-                                <rect key="frame" x="0.0" y="922" width="414" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btu-ah-Hlo" customClass="OrderButton" customModule="UberEats" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="주문하기">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wvW-kZ-7GC" customClass="OrderButton" customModule="UberEats" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="866" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.3411764706" green="0.58823529409999997" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstItem="Btu-ah-Hlo" firstAttribute="top" secondItem="wvW-kZ-7GC" secondAttribute="top" id="Oo7-Q6-VLI"/>
-                                    <constraint firstAttribute="trailing" secondItem="Btu-ah-Hlo" secondAttribute="trailing" id="U6p-Cl-drY"/>
-                                    <constraint firstAttribute="bottom" secondItem="Btu-ah-Hlo" secondAttribute="bottom" id="XTg-ca-BKz"/>
                                     <constraint firstAttribute="height" constant="50" id="YPW-KD-rMU"/>
-                                    <constraint firstItem="Btu-ah-Hlo" firstAttribute="leading" secondItem="wvW-kZ-7GC" secondAttribute="leading" id="gV8-1c-xpf"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -590,9 +582,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8eY-nX-v3x"/>
                     </view>
-                    <size key="freeformSize" width="414" height="1000"/>
+                    <size key="freeformSize" width="414" height="950"/>
                     <connections>
-                        <outlet property="orderButton" destination="Btu-ah-Hlo" id="NLp-pC-mV4"/>
+                        <outlet property="orderButton" destination="wvW-kZ-7GC" id="V9X-4k-6VL"/>
                         <outlet property="tableView" destination="E1a-Ul-YKg" id="Hwf-kP-zSa"/>
                     </connections>
                 </viewController>
