@@ -20,7 +20,7 @@ class RecommendCollectionViewCell: UICollectionViewCell {
     @IBOutlet var gradeLabel: UILabel!
     @IBOutlet var commentLabel: UILabel!
 
-    var recommendFood: RecommandFood? {
+    var recommendFood: Food? {
         didSet {
             guard let recommendFood = recommendFood else {
                 return
@@ -28,7 +28,10 @@ class RecommendCollectionViewCell: UICollectionViewCell {
 
             label.text = recommendFood.foodName
 
-            let imageURL = URL(string: recommendFood.foodImageURL)!
+            guard let imageURL = URL(string: recommendFood.foodImageURL) else {
+                return
+            }
+
             ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (downloadImage, _) in
                 self.image.image = downloadImage
             }

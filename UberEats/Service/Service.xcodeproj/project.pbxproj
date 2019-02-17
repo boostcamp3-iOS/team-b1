@@ -15,6 +15,7 @@
 		998A24EE2203199100AF250D /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A24ED2203199100AF250D /* ServiceFactory.swift */; };
 		998A25CE2207081700AF250D /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A25CD2207081700AF250D /* Network.swift */; };
 		99F57937220C5B4E002D792A /* ServiceInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57936220C5B4E002D792A /* ServiceInterface.framework */; };
+		D1D5F3A52216905300370784 /* StoreServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F3A42216905300370784 /* StoreServiceImp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		998A24ED2203199100AF250D /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		998A25CD2207081700AF250D /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		99F57936220C5B4E002D792A /* ServiceInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ServiceInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1D5F3A42216905300370784 /* StoreServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreServiceImp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				998A25CD2207081700AF250D /* Network.swift */,
 				998A24ED2203199100AF250D /* ServiceFactory.swift */,
 				998A24E52203120400AF250D /* FoodMarketService */,
+				D1D5F3A32216902700370784 /* StoreService */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -117,6 +120,14 @@
 				998A24E3220311BF00AF250D /* FoodMarketServiceImp.swift */,
 			);
 			path = FoodMarketService;
+			sourceTree = "<group>";
+		};
+		D1D5F3A32216902700370784 /* StoreService */ = {
+			isa = PBXGroup;
+			children = (
+				D1D5F3A42216905300370784 /* StoreServiceImp.swift */,
+			);
+			path = StoreService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1D5F3A52216905300370784 /* StoreServiceImp.swift in Sources */,
 				998A24EE2203199100AF250D /* ServiceFactory.swift in Sources */,
 				998A25CE2207081700AF250D /* Network.swift in Sources */,
 				998A24E4220311BF00AF250D /* FoodMarketServiceImp.swift in Sources */,

@@ -74,4 +74,5 @@ public class DependencyContainer {
 
 public enum DependencyKey {
     case foodMarketService
+    case storeService
 }

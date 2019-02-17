@@ -29,14 +29,20 @@ class ImageNetworkManager {
                 //실패시 기본 이미지로 처리.
                 print("네트워크 에러")
             }
+
             guard let data = data else {
                 print("데이터 변환 에러")
                 return
             }
+
+            print("image: \(imageURL)")
+            print("imagedata: \(data)")
+
             guard let image: UIImage = UIImage(data: data) else {
                 print("이미지 변환 에러")
                 return
             }
+
             self.cache.setObject(image, forKey: imageURL.absoluteString as NSString)
 
             DispatchQueue.main.async {
