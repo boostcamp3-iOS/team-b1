@@ -27,6 +27,29 @@ struct DeilveryInfoModel {
     let roomNumber: Int
 }
 
+struct PriceInfoModel {
+    let price: Int
+    let subPrice: Int
+
+    init(_ price: Int) {
+        self.price = price
+        self.subPrice = price
+    }
+
+    init(_ orderInfos: [OrderInfoModel], _ subPrice: Int? = nil) {
+        let amount = orderInfos.map({ $0.price })
+            .reduce(0) { $0 + $1 }
+        self.price = amount
+
+        guard let subPrice = subPrice else {
+            self.subPrice = amount
+            return
+        }
+
+        self.subPrice = subPrice
+    }
+}
+
 struct FoodsOrderedByOthersInfoModel {
 
 }
@@ -49,7 +72,7 @@ enum CartItemModelType {
     case orderBookTitleInfo()
     case order(OrderInfoModel)
     case memo
-    case priceInfo
+    case priceInfo(PriceInfoModel)
     case paymentInfo
     case empty
 }

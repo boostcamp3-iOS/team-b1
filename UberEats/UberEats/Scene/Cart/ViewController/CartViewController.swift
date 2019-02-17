@@ -19,33 +19,21 @@ class CartViewController: UIViewController {
     var cartModel: CartModel = CartModel.empty() {
         didSet {
             setUpCartModel()
+            tableView.reloadData()
         }
     }
 
     var orderInfoModels: [OrderInfoModel] = [OrderInfoModel]() {
         didSet {
-            cartItems[CartSection.order.rawValue] = orderInfoModels.map({
-                CartItemModelType.order($0)
-            })
+            setUpOrderInfo(orderInfoModels)
+            setUpPriceInfo(orderInfoModels)
             tableView.reloadData()
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setUpDummy()
         orderButton.orderButtonClickable = self
-
-    }
-
-    private func setUpDummy() {
-        cartModel = CartModel.empty()
-        let pancakeOrder = OrderInfoModel(amount: 1,
-                                          orderName: "딸기 수플래 팬케이크 Strawberry Souffle Pancake",
-                                          price: 17000)
-
-        orderInfoModels.append(pancakeOrder)
     }
 
     @IBAction func clickedExitButton(_ sender: Any) {
@@ -76,7 +64,7 @@ class CartViewController: UIViewController {
         )
 
         cartItems[CartSection.priceInfo.rawValue].append(
-            CartItemModelType.priceInfo
+            CartItemModelType.priceInfo(PriceInfoModel.empty())
         )
 
         cartItems[CartSection.paymentInfo.rawValue].append(
@@ -87,13 +75,27 @@ class CartViewController: UIViewController {
             CartItemModelType.empty
         )
     }
+
+    private func setUpOrderInfo(_ orderInfoModels: [OrderInfoModel]) {
+        cartItems[CartSection.order.rawValue] = orderInfoModels.map({
+            CartItemModelType.order($0)
+        })
+        orderButton?.orderInfos = orderInfoModels
+    }
+
+    private func setUpPriceInfo(_ orderInfoModels: [OrderInfoModel]) {
+        cartItems[CartSection.priceInfo.rawValue].removeAll()
+        cartItems[CartSection.priceInfo.rawValue].append(
+            CartItemModelType.priceInfo(PriceInfoModel(orderInfoModels))
+        )
+    }
+    
 }
 
 extension CartViewController: OrderButtonClickable {
 
     func onClickedOrderButton(_ sender: Any) {
         // TO DO
-        _ = ""
     }
 
 }
@@ -109,7 +111,6 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         guard let cartSection = CartSection(rawValue: indexPath.section) else {
             fatalError("failed casting CartSection")
         }
@@ -134,7 +135,10 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         case .order(let orderInfo):
             (cell as! OrderCell).order = orderInfo
             return cell
-        case .memo, .priceInfo, .paymentInfo, .empty:
+        case .priceInfo(let priceInfo):
+            (cell as! PriceInfoCell).priceInfo = priceInfo
+            return cell
+        case .memo, .paymentInfo, .empty:
             return cell
         }
     }

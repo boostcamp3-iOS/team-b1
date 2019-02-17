@@ -25,3 +25,9 @@ extension CartModel {
                              foodOrderedInfo: nil)
     }
 }
+
+extension PriceInfoModel {
+    static func empty() -> PriceInfoModel {
+        return PriceInfoModel(0)
+    }
+}
