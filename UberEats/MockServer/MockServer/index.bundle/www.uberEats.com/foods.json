@@ -13,7 +13,7 @@
         "id": "food2",
         "foodName": "아메리카노 Americano",
         "foodDescription": "",
-        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/americano.jpeg?raw=true",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/airInTheCafe/americano.jpeg?raw=true",
         "basePrice": 3000,
         "storeId": "store1",
         "categoryId": "category1",
@@ -33,7 +33,7 @@
         "id": "food4",
         "foodName": "카푸치노 Cappucinno",
         "foodDescription": "",
-        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/cappucinno.jpeg?raw=true",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/airInTheCafe/cappucinno.jpeg?raw=true",
         "basePrice": 4000,
         "storeId": "store1",
         "categoryId": "category1",
@@ -143,7 +143,7 @@
         "id": "food15",
         "foodName": "블루베리 레몬 에이드 Blueberry Lemon Ade",
         "foodDescription": "",
-        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/blueberryLemonAde.jpeg?raw=true",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/airInTheCafe/blueberryLemonAde.jpeg?raw=true",
         "basePrice": 5000,
         "storeId": "store1",
         "categoryId": "category3",
@@ -163,7 +163,7 @@
         "id": "food17",
         "foodName": "캐모마일 Chamomile",
         "foodDescription": "",
-        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/chamomile.jpeg?raw=true",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/airInTheCafe/chamomile.jpeg?raw=true",
         "basePrice": 4500,
         "storeId": "store1",
         "categoryId": "category4",
@@ -173,7 +173,7 @@
         "id": "food18",
         "foodName": "라벤더 Lavender",
         "foodDescription": "",
-        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/lavender.jpeg?raw=true",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/airInTheCafe/lavender.jpeg?raw=true",
         "basePrice": 4500,
         "storeId": "store1",
         "categoryId": "category4",
@@ -213,7 +213,7 @@
         "id": "food22",
         "foodName": "토마토 떡볶이 Tomato Tteokbokki for 2 ppl",
         "foodDescription": "",
-        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/tomatoTteokbokki.jpeg?raw=true",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/airInTheCafe/tomatoTteokbokki.jpeg?raw=true",
         "basePrice": 14000,
         "storeId": "store1",
         "categoryId": "category5",
@@ -223,7 +223,7 @@
         "id": "food23",
         "foodName": "토마토 샐러드 Tomato Salad",
         "foodDescription": "",
-        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/tomatoSalad.jpeg?raw=true",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/airInTheCafe/tomatoSalad.jpeg?raw=true",
         "basePrice": 6000,
         "storeId": "store1",
         "categoryId": "category5",
@@ -250,62 +250,682 @@
         "categoryName": "푸드 Food"
     },
     {
-        "id": "food2",
-        "foodName": "고기 만두 Meat Dumplings",
-        "foodDescription": "",
+        "id": "food1",
+        "foodName": "징거더블다운맥스세트 Zinger Double Dawn Maxx Set",
+        "foodDescription": "징거더블다운맥스 1 + 후렌치후라이 1 + 콜라(L)",
         "foodImageURL": "",
-        "basePrice": 4000,
+        "basePrice": 8900,
         "storeId": "store2",
-        "categoryId": "category2",
-        "categoryName": "푸드 Food"
+        "categoryId": "category1",
+        "categoryName": "나를 위한 추천 메뉴"
+    },
+    {
+        "id": "food2",
+        "foodName": "트위스터세트 Twister Set",
+        "foodDescription": "트위스터 1 + 후렌치후라이 1 + 콜라(L)",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/twisterSet.jpeg?raw=true",
+        "basePrice": 6100,
+        "storeId": "store2",
+        "categoryId": "category1",
+        "categoryName": "나를 위한 추천 메뉴"
     },
     {
         "id": "food3",
-        "foodName": "비빔만두 Bibim Dumplings",
+        "foodName": "텐더스트립스 8조각 Tender Strips 8pcs",
         "foodDescription": "",
-        "foodImageURL": "",
-        "basePrice": 7000,
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/tenderStrips8.jpeg?raw=true",
+        "basePrice": 9800,
         "storeId": "store2",
-        "categoryId": "category2",
-        "categoryName": "푸드 Food"
+        "categoryId": "category1",
+        "categoryName": "나를 위한 추천 메뉴"
     },
     {
         "id": "food4",
-        "foodName": "모듬만두 Assorted Dumplings",
+        "foodName": "핫윙 8조각 Hot Wing 8pc",
         "foodDescription": "",
         "foodImageURL": "",
-        "basePrice": 7000,
+        "basePrice": 9800,
         "storeId": "store2",
-        "categoryId": "category2",
-        "categoryName": "푸드 Food"
+        "categoryId": "category1",
+        "categoryName": "나를 위한 추천 메뉴"
     },
     {
         "id": "food5",
+        "foodName": "에그타르트 Egg Tart",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/eggTart.jpeg?raw=true",
+        "basePrice": 1900,
+        "storeId": "store2",
+        "categoryId": "category1",
+        "categoryName": "나를 위한 추천 메뉴"
+    },
+    {
+        "id": "food6",
+        "foodName": "핫앤크리스피치킨 1조각 Hot&Crispy Chicken 1pc",
+        "foodDescription": "핫크리스피 1조각",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/hotCrispy1.jpeg?raw=true",
+        "basePrice": 2700,
+        "storeId": "store2",
+        "categoryId": "category2",
+        "categoryName": "치킨 Chicken"
+    },
+    {
+        "id": "food7",
+        "foodName": "핫앤크리스피치킨 4조각 Hot&Crispy Chicken 4pcs",
+        "foodDescription": "핫크리스피 4조각",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/hotCrispy4.jpeg?raw=true",
+        "basePrice": 9600,
+        "storeId": "store2",
+        "categoryId": "category2",
+        "categoryName": "치킨 Chicken"
+    },
+    {
+        "id": "food8",
+        "foodName": "핫앤크리스피치킨 6조각 Hot&Crispy Chicken 6pc",
+        "foodDescription": "핫크리스피 6조각",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/hotCrispy6.jpeg?raw=true",
+        "basePrice": 14300,
+        "storeId": "store2",
+        "categoryId": "category2",
+        "categoryName": "치킨 Chicken"
+    },
+    {
+        "id": "food9",
+        "foodName": "핫앤크리스피 버켓 Hot&Crispy Bucket 9pcs",
+        "foodDescription": "핫크리스피 9조각",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/hotCrispyBucket9.jpeg?raw=true",
+        "basePrice": 20600,
+        "storeId": "store2",
+        "categoryId": "category2",
+        "categoryName": "치킨 Chicken"
+    },
+    {
+        "id": "food10",
+        "foodName": "핫앤크리스피 버켓세트 Hot&Crispy Bucket Set",
+        "foodDescription": "핫크리스피 9 + 올쉐킷(치즈) 1 + 코울슬로 1 + 캔콜라 2",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/hotCrispyBucketSet.jpeg?raw=true",
+        "basePrice": 22800,
+        "storeId": "store2",
+        "categoryId": "category2",
+        "categoryName": "치킨 Chicken"
+    },
+    {
+        "id": "food11",
+        "foodName": "빨간맛 1조각 Red Chicken 1pc",
+        "foodDescription": "빨간맛 1조각",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/red1.jpeg?raw=true",
+        "basePrice": 2900,
+        "storeId": "store2",
+        "categoryId": "category2",
+        "categoryName": "치킨 Chicken"
+    },
+    {
+        "id": "food12",
+        "foodName": "빨간맛 4조각 Red Chicken 4pcs",
+        "foodDescription": "빨간맛 4조각",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/red4.jpeg?raw=true",
+        "basePrice": 10600,
+        "storeId": "store2",
+        "categoryId": "category2",
+        "categoryName": "치킨 Chicken"
+    },
+    {
+        "id": "food13",
+        "foodName": "빨간맛 6조각 Red Chicken 6pcs",
+        "foodDescription": "빨간맛 6조각",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/red6.jpeg?raw=true",
+        "basePrice": 15700,
+        "storeId": "store2",
+        "categoryId": "category2",
+        "categoryName": "치킨 Chicken"
+    },
+    {
+        "id": "food14",
+        "foodName": "빨간맛 8조각 Red Chicken 8pcs",
+        "foodDescription": "빨간맛 8조각",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/red8.jpeg?raw=true",
+        "basePrice": 20700,
+        "storeId": "store2",
+        "categoryId": "category2",
+        "categoryName": "치킨 Chicken"
+    },
+    {
+        "id": "food15",
+        "foodName": "파티버켓세트 Party Bucket Set",
+        "foodDescription": "핫크리스피 6 + 오리지널 6 + 올쉐킷치즈 + 콘샐러드 + 코울슬로 + 페트콜라",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/partyBucketSet.jpeg?raw=true",
+        "basePrice": 27900,
+        "storeId": "store2",
+        "categoryId": "category2",
+        "categoryName": "치킨 Chicken"
+    },
+    {
+        "id": "food16",
+        "foodName": "징거버거세트 ZingerBurger Set",
+        "foodDescription": "징거버거 1 + 후렌치후라이 1 + 콜라(L)",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/zingerSet.jpeg?raw=true",
+        "basePrice": 7000,
+        "storeId": "store2",
+        "categoryId": "category3",
+        "categoryName": "버거(세트) Barger(Set)"
+    },
+    {
+        "id": "food17",
+        "foodName": "타워버거세트 Tower Burger Set",
+        "foodDescription": "타워버거 1 + 후렌치후라이 1 + 콜라(L)",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/towerSet.jpeg?raw=true",
+        "basePrice": 7900,
+        "storeId": "store2",
+        "categoryId": "category3",
+        "categoryName": "버거(세트) Barger(Set)"
+    },
+    {
+        "id": "food18",
+        "foodName": "블랙라벨클래식버거세트 Black Label Classic Burger Set",
+        "foodDescription": "블랙라벨클래식버거 1 + 후렌치후라이 1 + 콜라(L)",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/blackLabelClassicSet.jpeg?raw=true",
+        "basePrice": 8700,
+        "storeId": "store2",
+        "categoryId": "category3",
+        "categoryName": "버거(세트) Barger(Set)"
+    },
+    {
+        "id": "food19",
+        "foodName": "치킨바베큐버거세트 Chicken BBQ Burger Set",
+        "foodDescription": "치킨바베큐버거 1 + 후렌치후라이 1 + 콜라(L)",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/chickenBBQSet.jpeg?raw=true",
+        "basePrice": 6300,
+        "storeId": "store2",
+        "categoryId": "category3",
+        "categoryName": "버거(세트) Barger(Set)"
+    },
+    {
+        "id": "food20",
+        "foodName": "트위스터세트 Twister Set",
+        "foodDescription": "트위스터 1 + 후렌치후라이 1 + 콜라(L)",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/twisterSet.jpeg?raw=true",
+        "basePrice": 6100,
+        "storeId": "store2",
+        "categoryId": "category3",
+        "categoryName": "버거(세트) Barger(Set)"
+    },
+    {
+        "id": "food21",
+        "foodName": "오리지널버거세트 Original Burger Set",
+        "foodDescription": "오리지널버거 1 + 후렌치후라이 1 + 콜라(L)",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/originalSet.jpeg?raw=true",
+        "basePrice": 7200,
+        "storeId": "store2",
+        "categoryId": "category3",
+        "categoryName": "버거(세트) Barger(Set)"
+    },
+    {
+        "id": "food22",
+        "foodName": "블랙라벨클래식버거 Black label Classic Burger",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/blacklabelclassic.jpeg?raw=true",
+        "basePrice": 6700,
+        "storeId": "store2",
+        "categoryId": "category4",
+        "categoryName": "버거(단품) Barger(Single)"
+    },
+    {
+        "id": "food23",
+        "foodName": "트위스터 Twister",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/twister.jpeg?raw=true",
+        "basePrice": 4000,
+        "storeId": "store2",
+        "categoryId": "category4",
+        "categoryName": "버거(단품) Barger(Single)"
+    },
+    {
+        "id": "food24",
+        "foodName": "징거버거 Zinger Burger",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/zinger.jpeg?raw=true",
+        "basePrice": 4800,
+        "storeId": "store2",
+        "categoryId": "category4",
+        "categoryName": "버거(단품) Barger(Single)"
+    },
+    {
+        "id": "food25",
+        "foodName": "타워버거 Tower Burger",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/tower.jpeg?raw=true",
+        "basePrice": 5700,
+        "storeId": "store2",
+        "categoryId": "category4",
+        "categoryName": "버거(단품) Barger(Single)"
+    },
+    {
+        "id": "food26",
+        "foodName": "치킨바베큐버거 Chicken BBQ Burger",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "basePrice": 6200,
+        "storeId": "store2",
+        "categoryId": "category4",
+        "categoryName": "버거(단품) Barger(Single)"
+    },
+    {
+        "id": "food27",
+        "foodName": "오리지널버거 Original Burger",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/original.jpeg?raw=true",
+        "basePrice": 5100,
+        "storeId": "store2",
+        "categoryId": "category4",
+        "categoryName": "버거(단품) Barger(Single)"
+    },
+    {
+        "id": "food28",
+        "foodName": "텐더스트립스 1조각 Tender Strips 1pc",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/tenderStrips1.jpeg?raw=true",
+        "basePrice": 1400,
+        "storeId": "store2",
+        "categoryId": "category5",
+        "categoryName": "치킨스낵 Chicken Snacks"
+    },
+    {
+        "id": "food29",
+        "foodName": "텐더스트립스 4조각 Tender Strips 4pcs",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/tenderStrips4.jpeg?raw=true",
+        "basePrice": 4900,
+        "storeId": "store2",
+        "categoryId": "category5",
+        "categoryName": "치킨스낵 Chicken Snacks"
+    },
+    {
+        "id": "food30",
+        "foodName": "텐더스트립스 8조각 Tender Strips 8pcs",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/tenderStrips8.jpeg?raw=true",
+        "basePrice": 9800,
+        "storeId": "store2",
+        "categoryId": "category5",
+        "categoryName": "치킨스낵 Chicken Snacks"
+    },
+    {
+        "id": "food31",
+        "foodName": "핫윙 1조각 Hot Wing 1pc",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/hotWing1.jpeg?raw=true",
+        "basePrice": 1400,
+        "storeId": "store2",
+        "categoryId": "category5",
+        "categoryName": "치킨스낵 Chicken Snacks"
+    },
+    {
+        "id": "food32",
+        "foodName": "핫윙 4조각 Hot Wing 4pc",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/hotWing4pc.jpeg?raw=true",
+        "basePrice": 4900,
+        "storeId": "store2",
+        "categoryId": "category5",
+        "categoryName": "치킨스낵 Chicken Snacks"
+    },
+    {
+        "id": "food33",
+        "foodName": "핫윙 8조각 Hot Wing 8pc",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/hotWing8.jpeg?raw=true",
+        "basePrice": 9800,
+        "storeId": "store2",
+        "categoryId": "category5",
+        "categoryName": "치킨스낵 Chicken Snacks"
+    },
+    {
+        "id": "food34",
+        "foodName": "에그타르트 Egg Tart",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "basePrice": 1900,
+        "storeId": "store2",
+        "categoryId": "category6",
+        "categoryName": "스낵 Snack"
+    },
+    {
+        "id": "food35",
+        "foodName": "치즈타르트 Cheese Tart",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "basePrice": 2100,
+        "storeId": "store2",
+        "categoryId": "category6",
+        "categoryName": "스낵 Snack"
+    },
+    {
+        "id": "food36",
+        "foodName": "롱치즈스틱 Long Cheese Stick",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "basePrice": 2100,
+        "storeId": "store2",
+        "categoryId": "category6",
+        "categoryName": "스낵 Snack"
+    },
+    {
+        "id": "food37",
+        "foodName": "뉴비스켓 New Biscuit",
+        "foodDescription": "비스켓",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/biscuit.jpeg?raw=true",
+        "basePrice": 2100,
+        "storeId": "store2",
+        "categoryId": "category6",
+        "categoryName": "스낵 Snack"
+    },
+    {
+        "id": "food38",
+        "foodName": "콘샐러드 Corn Salad",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/cornSalad.jpeg?raw=ture",
+        "basePrice": 2000,
+        "storeId": "store2",
+        "categoryId": "category6",
+        "categoryName": "스낵 Snack"
+    },
+    {
+        "id": "food39",
+        "foodName": "코울슬로 Coleslaw",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/coleslaw.jpeg?raw=true",
+        "basePrice": 2000,
+        "storeId": "store2",
+        "categoryId": "category6",
+        "categoryName": "스낵 Snack"
+    },
+    {
+        "id": "food40",
+        "foodName": "후렌치후라이 French Fries",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/frenchFries.jpeg?raw=true",
+        "basePrice": 2000,
+        "storeId": "store2",
+        "categoryId": "category6",
+        "categoryName": "스낵 Snack"
+    },
+    {
+        "id": "food41",
+        "foodName": "스프라이트 Sprite",
+        "foodDescription": "스프라이트(L)",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/sprite.jpeg?raw=true",
+        "basePrice": 2300,
+        "storeId": "store2",
+        "categoryId": "category7",
+        "categoryName": "음료 Beverage"
+    },
+    {
+        "id": "food42",
+        "foodName": "코카콜라 Coke",
+        "foodDescription": "코카콜라(L)",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/coke.jpeg?raw=true",
+        "basePrice": 2300,
+        "storeId": "store2",
+        "categoryId": "category7",
+        "categoryName": "음료 Beverage"
+    },
+    {
+        "id": "food43",
+        "foodName": "환타오렌지 Fanta Orange",
+        "foodDescription": "환타오렌지(L)",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/fantaOrange.jpeg?raw=true",
+        "basePrice": 2300,
+        "storeId": "store2",
+        "categoryId": "category7",
+        "categoryName": "음료 Beverage"
+    },
+    {
+        "id": "food44",
+        "foodName": "오렌지주스 Orange Juice",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/orangeJuice.jpeg?raw=true",
+        "basePrice": 2200,
+        "storeId": "store2",
+        "categoryId": "category7",
+        "categoryName": "음료 Beverage"
+    },
+    {
+        "id": "food1",
+        "foodName": "치즈 떡볶이 Cheese Tteokbboki",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/shinjeonTteokbboki/cheeseTteokbboki.jpeg?raw=true",
+        "basePrice": 4500,
+        "storeId": "store3",
+        "categoryId": "category1",
+        "categoryName": "나를 위한 추천 메뉴"
+    },
+    {
+        "id": "food2",
+        "foodName": "떡볶이 Tteokbboki",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/shinjeonTteokbboki/tteokbboki.jpeg?raw=true",
+        "basePrice": 3500,
+        "storeId": "store3",
+        "categoryId": "category1",
+        "categoryName": "나를 위한 추천 메뉴"
+    },
+    {
+        "id": "food3",
+        "foodName": "기본세트 1 Basic Set 1",
+        "foodDescription": "떡볶이 1인분, 오뎅튀김 6개, 만두 5개, 잡채말이 3개, 김말이 3개, 쿨피스가 제공됩니다",
+        "foodImageURL": "",
+        "basePrice": 13000,
+        "storeId": "store3",
+        "categoryId": "category1",
+        "categoryName": "나를 위한 추천 메뉴"
+    },
+    {
+        "id": "food4",
+        "foodName": "순대 떡볶이 Korean Blood Sausage Tteokbboki",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "basePrice": 4500,
+        "storeId": "store3",
+        "categoryId": "category1",
+        "categoryName": "나를 위한 추천 메뉴"
+    },
+    {
+        "id": "food5",
+        "foodName": "치킨마요컵밥",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "basePrice": 4000,
+        "storeId": "store3",
+        "categoryId": "category1",
+        "categoryName": "나를 위한 추천 메뉴"
+    },
+    {
+        "id": "food6",
+        "foodName": "기본세트 1 Basic Set 1",
+        "foodDescription": "떡볶이 1인분, 오뎅튀김 6개, 만두 5개, 잡채말이 3개, 김말이 3개, 쿨피스가 제공됩니다",
+        "foodImageURL": "",
+        "basePrice": 13000,
+        "storeId": "store3",
+        "categoryId": "category2",
+        "categoryName": "기본 세트 Basic Set"
+    },
+    {
+        "id": "food7",
+        "foodName": "기본세트 2 Basic Set 2",
+        "foodDescription": "떡볶이 2인분, 오뎅튀김 12개, 만두 5개, 잡채말이 3개, 김말이 3개, 쿨피스가 제공됩니다",
+        "foodImageURL": "",
+        "basePrice": 18500,
+        "storeId": "store3",
+        "categoryId": "category2",
+        "categoryName": "기본 세트 Basic Set"
+    },
+    {
+        "id": "food8",
+        "foodName": "기본세트 3 Basic Set 3",
+        "foodDescription": "떡볶이 2인분, 오뎅튀김 12개, 김말이 6개, 참치마요컵밥, 쿨피스가 제공됩니다",
+        "foodImageURL": "",
+        "basePrice": 20500,
+        "storeId": "store3",
+        "categoryId": "category2",
+        "categoryName": "기본 세트 Basic Set"
+    },
+    {
+        "id": "food9",
+        "foodName": "기본세트 4 Basic Set 4",
+        "foodDescription": "떡볶이 2인분, 오뎅튀김 12개, 만두 10개, 잡채말이 6개, 김말이 6개, 쿨피스가 제공됩니다",
+        "foodImageURL": "",
+        "basePrice": 24500,
+        "storeId": "store3",
+        "categoryId": "category2",
+        "categoryName": "기본 세트 Basic Set"
+    },
+    {
+        "id": "food10",
+        "foodName": "패밀리 세트 A Family Set A",
+        "foodDescription": "떡볶이 2인분, 오뎅튀김 18개, 만두 10개, 잡채말이 6개, 김말이 6개, 참치마요컵밥, 쿨피스가 제공됩니다",
+        "foodImageURL": "",
+        "basePrice": 30500,
+        "storeId": "store3",
+        "categoryId": "category3",
+        "categoryName": "패밀리 세트 Family Set"
+    },
+    {
+        "id": "food11",
+        "foodName": "패밀리 세트 B Family Set B",
+        "foodDescription": "떡볶이 3인분, 오뎅튀김 18개, 만두 15개, 잡채말이 6개, 김말이 6개, 참치마요컵밥, 쿨피스가 제공됩니다",
+        "foodImageURL": "",
+        "basePrice": 36000,
+        "storeId": "store3",
+        "categoryId": "category3",
+        "categoryName": "패밀리 세트 Family Set"
+    },
+    {
+        "id": "food12",
+        "foodName": "치즈 떡볶이 Cheese Tteokbboki",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/shinjeonTteokbboki/cheeseTteokbboki.jpeg?raw=true",
+        "basePrice": 4500,
+        "storeId": "store3",
+        "categoryId": "category4",
+        "categoryName": "떡볶이 Tteokbboki"
+    },
+    {
+        "id": "food13",
+        "foodName": "떡볶이 Tteokbboki",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/shinjeonTteokbboki/tteokbboki.jpeg?raw=true",
+        "basePrice": 3500,
+        "storeId": "store3",
+        "categoryId": "category4",
+        "categoryName": "떡볶이 Tteokbboki"
+    },
+    {
+        "id": "food14",
+        "foodName": "순대 떡볶이 Korean Blood Sausage Tteokbboki",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "basePrice": 4500,
+        "storeId": "store3",
+        "categoryId": "category4",
+        "categoryName": "떡볶이 Tteokbboki"
+    },
+    {
+        "id": "food15",
+        "foodName": "참치 샐러드 컵밥 Tuna salad Cup Rice",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/shinjeonTteokbboki/tunaSalad.jpeg?raw=true",
+        "basePrice": 3000,
+        "storeId": "store3",
+        "categoryId": "category5",
+        "categoryName": "컵밥 Cup Rice"
+    },
+    {
+        "id": "food16",
+        "foodName": "참치 김치 컵밥 Tuna Kimchi Cup Rice",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/shinjeonTteokbboki/tunaKimchi.jpeg?raw=true",
+        "basePrice": 3000,
+        "storeId": "store3",
+        "categoryId": "category5",
+        "categoryName": "컵밥 Cup Rice"
+    },
+    {
+        "id": "food17",
+        "foodName": "신전 치즈 컵밥 Shinjeon Cheese Cup Rice",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/shinjeonTteokbboki/shinjeonCheese.jpeg?raw=true",
+        "basePrice": 4000,
+        "storeId": "store3",
+        "categoryId": "category5",
+        "categoryName": "컵밥 Cup Rice"
+    },
+    {
+        "id": "food18",
+        "foodName": "스팸마요 컵밥 Spam Mayo Cup Rice",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/shinjeonTteokbboki/spamMayo.jpeg?raw=true",
+        "basePrice": 4000,
+        "storeId": "store3",
+        "categoryId": "category5",
+        "categoryName": "컵밥 Cup Rice"
+    },
+    {
+        "id": "food19",
+        "foodName": "순대 Korean Blood Sausage",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/shinjeonTteokbboki/koreanBloodSausage.jpeg?raw=true",
+        "basePrice": 4000,
+        "storeId": "store3",
+        "categoryId": "category6",
+        "categoryName": "순대 Korean Blood Sausage"
+    },
+    {
+        "id": "food20",
+        "foodName": "오징어튀김 3pcs Deep-fried Squid",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "basePrice": 3000,
+        "storeId": "store3",
+        "categoryId": "category7",
+        "categoryName": "튀김 Fried Snack"
+    },
+    {
+        "id": "food21",
+        "foodName": "치킨 링 10pcs Chicken Rings 10pcs",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "basePrice": 2000,
+        "storeId": "store3",
+        "categoryId": "category7",
+        "categoryName": "튀김 Fried Snack"
+    },
+    {
+        "id": "food8",
         "foodName": "갈비만두 Galbi Dumplings",
         "foodDescription": "",
         "foodImageURL": "",
         "basePrice": 4500,
-        "storeId": "store2",
+        "storeId": "store4",
         "categoryId": "category2",
         "categoryName": "푸드 Food"
     },
     {
-        "id": "food1",
+        "id": "food9",
         "foodName": "쫄면 Spicy Cold Chewy Noodles",
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 5500,
-        "storeId": "store2",
+        "storeId": "store4",
         "categoryId": "category3",
         "categoryName": "푸드 Food"
     },
     {
-        "id": "food2",
+        "id": "food10",
         "foodName": "만두칼국수 Dumplings Noodle Soup",
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store2",
+        "storeId": "store4",
         "categoryId": "category3",
         "categoryName": "푸드 Food"
     },
@@ -315,7 +935,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6000,
-        "storeId": "store2",
+        "storeId": "store4",
         "categoryId": "category3",
         "categoryName": "푸드 Food"
     },
@@ -325,7 +945,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6000,
-        "storeId": "store2",
+        "storeId": "store4",
         "categoryId": "category3",
         "categoryName": "푸드 Food"
     },
@@ -335,7 +955,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 5500,
-        "storeId": "store2",
+        "storeId": "store4",
         "categoryId": "category3",
         "categoryName": "푸드 Food"
     },
@@ -345,7 +965,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 7000,
-        "storeId": "store2",
+        "storeId": "store4",
         "categoryId": "category3",
         "categoryName": "푸드 Food"
     },
@@ -355,7 +975,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store2",
+        "storeId": "store4",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -365,7 +985,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store2",
+        "storeId": "store4",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -375,7 +995,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store3",
+        "storeId": "store5",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -385,7 +1005,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store3",
+        "storeId": "store5",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -395,7 +1015,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store3",
+        "storeId": "store5",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -405,7 +1025,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store3",
+        "storeId": "store5",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -415,7 +1035,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store4",
+        "storeId": "store5",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -425,7 +1045,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store4",
+        "storeId": "store5",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -435,7 +1055,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store4",
+        "storeId": "store5",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -445,7 +1065,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store4",
+        "storeId": "store5",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -455,7 +1075,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store4",
+        "storeId": "store6",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -465,7 +1085,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store5",
+        "storeId": "store6",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -475,7 +1095,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store5",
+        "storeId": "store6",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -485,7 +1105,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store5",
+        "storeId": "store6",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -495,7 +1115,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store5",
+        "storeId": "store6",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -505,7 +1125,7 @@
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
-        "storeId": "store5",
+        "storeId": "store6",
         "categoryId": "category4",
         "categoryName": "푸드 Food"
     },
@@ -550,3 +1170,4 @@
         "categoryName": "푸드 Food"
     }
 ]
+
