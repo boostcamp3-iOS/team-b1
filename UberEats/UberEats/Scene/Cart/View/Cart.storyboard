@@ -125,22 +125,22 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 1 1 6 - 1 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="fDH-7X-FrE" userLabel="detailedAddress">
-                                                            <rect key="frame" x="152.33333333333334" y="20.666666666666671" width="72.333333333333343" height="20.333333333333329"/>
+                                                            <rect key="frame" x="152.33333333333337" y="20.666666666666671" width="251.66666666666663" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="9f0-Qv-7Q5">
-                                                            <rect key="frame" x="147.33333333333334" y="51" width="191.00000000000003" height="59"/>
+                                                            <rect key="frame" x="147.33333333333334" y="51" width="256.66666666666663" height="59"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서울특별시 송파구 방이동 116 - 11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nf7-Af-M74" userLabel="address">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="191" height="17"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서울특별시 송파구 방이동 116 - 11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nf7-Af-M74" userLabel="address">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="256.66666666666669" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="문 앞까지 배달, 303호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jmQ-jQ-hTA" userLabel="deliveryMethod">
-                                                                    <rect key="frame" x="0.0" y="21" width="125.33333333333333" height="17"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmQ-jQ-hTA" userLabel="deliveryMethod">
+                                                                    <rect key="frame" x="0.0" y="21" width="256.66666666666669" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -154,6 +154,10 @@
                                                                     </state>
                                                                 </button>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="jmQ-jQ-hTA" secondAttribute="trailing" id="5Dv-xm-aTr"/>
+                                                                <constraint firstAttribute="trailing" secondItem="nf7-Af-M74" secondAttribute="trailing" id="ngb-uO-5Ve"/>
+                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -164,8 +168,10 @@
                                                         <constraint firstAttribute="height" constant="120" id="EUm-Zu-EGe"/>
                                                         <constraint firstItem="NvZ-rg-iow" firstAttribute="leading" secondItem="2lo-47-diq" secondAttribute="leading" constant="24" id="SLo-P0-9DK"/>
                                                         <constraint firstAttribute="bottom" secondItem="9f0-Qv-7Q5" secondAttribute="bottom" constant="10" id="SVC-MS-wHT"/>
+                                                        <constraint firstAttribute="trailing" secondItem="fDH-7X-FrE" secondAttribute="trailing" constant="10" id="T33-rR-8el"/>
                                                         <constraint firstItem="fDH-7X-FrE" firstAttribute="leading" secondItem="nf7-Af-M74" secondAttribute="leading" constant="5" id="byy-MS-D1G"/>
                                                         <constraint firstItem="NvZ-rg-iow" firstAttribute="top" secondItem="2lo-47-diq" secondAttribute="top" id="cWj-kA-4I0"/>
+                                                        <constraint firstAttribute="trailing" secondItem="9f0-Qv-7Q5" secondAttribute="trailing" constant="10" id="hiC-IO-mUI"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Twj-YH-VdH" userLabel="TimeMethodView">
