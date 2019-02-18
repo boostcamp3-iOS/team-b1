@@ -19,7 +19,7 @@ class CartViewController: UIViewController {
     var cartModel: CartModel = CartModel.empty() {
         didSet {
             setUpCartModel()
-            tableView.reloadData()
+            tableView?.reloadData()
         }
     }
 
@@ -27,13 +27,14 @@ class CartViewController: UIViewController {
         didSet {
             setUpOrderInfo(orderInfoModels)
             setUpPriceInfo(orderInfoModels)
-            tableView.reloadData()
+            tableView?.reloadData()
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         orderButton.orderButtonClickable = self
+        tableView.reloadData()
     }
 
     @IBAction func clickedExitButton(_ sender: Any) {
@@ -89,7 +90,7 @@ class CartViewController: UIViewController {
             CartItemModelType.priceInfo(PriceInfoModel(orderInfoModels))
         )
     }
-    
+
 }
 
 extension CartViewController: OrderButtonClickable {

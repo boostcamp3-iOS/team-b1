@@ -21,6 +21,7 @@ internal class FoodMarketServiceImp: FoodMarketService {
     
     func requestFoodMarket(completionHandler: @escaping (DataResponse<BusinessFoodMarket>) -> Void) {
         let requestURL = URL(string: "www.uberEats.com/foodMarket")!
+        
         network.request(with: requestURL) { ( data, response, _) in
             if response?.httpStatusCode == .ok {
                 

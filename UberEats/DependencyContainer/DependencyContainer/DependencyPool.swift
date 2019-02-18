@@ -28,7 +28,6 @@ class DependencyPool {
         }
         
         guard dependency is T else {
-            
             throw DependencyPoolError.downcastingFailureError(key: key)
         }
         

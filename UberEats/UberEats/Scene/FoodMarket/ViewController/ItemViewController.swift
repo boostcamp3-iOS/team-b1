@@ -136,16 +136,16 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
                     return
                 }
 
-//                guard let nearestRest = dataResponse.value?.nearestRest else {
-//                    return
-//                }
+                guard let nearestRest = dataResponse.value?.nearestRest else {
+                    return
+                }
 
                 guard let bannerImagesURL = dataResponse.value?.bannerImages else {
                     return
                 }
 
                 self?.recommendFood = recommendFood
-//                self?.nearestRests = nearestRest
+                self?.nearestRests = nearestRest
                 self?.bannerImagesURL = bannerImagesURL
 
             } else {

@@ -28,6 +28,14 @@ public class DependencyContainer {
         
         register(key: .foodMarketService, value: foodMarketService)
         
+        let storeService = ServiceFactory.createStoreService(network: mockServer)
+        
+        register(key: .storeService, value: storeService)
+        
+        let foodsService = ServiceFactory.createFoodsService(network: mockServer)
+        
+        register(key: .foodsService, value: foodsService)
+        
     }
     
     private func createUberEatsApplication() -> Application {
@@ -48,7 +56,7 @@ public class DependencyContainer {
     
     private func register<T>(key: DependencyKey, value: T) {
         do {
-            try dependencyPool.register(key: .foodMarketService, value: value)
+            try dependencyPool.register(key: key, value: value)
         } catch DependencyPoolError.keyAlreadyExistsError {
             fatalError("keyAlreadyExistsError \(key)")
         } catch DependencyPoolError.downcastingFailureError {
@@ -75,4 +83,5 @@ public class DependencyContainer {
 public enum DependencyKey {
     case foodMarketService
     case storeService
+    case foodsService
 }

@@ -19,6 +19,7 @@ public struct Store: Codable {
     public let location: Location
     public let rate: Rate
     public let isNewStore: Bool
+    public let numberOfCategory: Int
 }
 
 public struct Location: Codable {

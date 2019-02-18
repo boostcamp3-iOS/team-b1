@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Common
 
 class StoreTitleView: UIView {
     struct Metrix {
@@ -25,7 +26,7 @@ class StoreTitleView: UIView {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "버거킹 차병원 사거리 Burger King Cha Hospitaldkfjalsd"
+//        label.text = "버거킹 차병원 사거리 Burger King Cha Hospitaldkfjalsd"
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 22)
         return label
@@ -36,7 +37,7 @@ class StoreTitleView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 15)
         label.textColor = .darkGray
-        label.text = "버거﹒패스트푸드﹒₩₩₩"
+//        label.text = "버거﹒패스트푸드﹒₩₩₩"
         return label
     }()
 
@@ -45,7 +46,7 @@ class StoreTitleView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 15)
         label.textColor = .darkGray
-        label.text = "15-25분 4.5"
+//        label.text = "15-25분 4.5"
         return label
     }()
 
@@ -54,6 +55,18 @@ class StoreTitleView: UIView {
     private var storeViewTopConstraint = NSLayoutConstraint()
     private var storeViewWidthConstraint = NSLayoutConstraint()
     private var storeViewHeightConstraint = NSLayoutConstraint()
+
+    var store: Store? {
+        didSet {
+            guard let store = store else {
+                return
+            }
+
+            titleLabel.text = store.name
+            detailLabel.text = store.category
+            timeAndGradeLabel.text = store.deliveryTime
+        }
+    }
 
     convenience init(parentView: UIView) {
         self.init(frame: CGRect.zero)

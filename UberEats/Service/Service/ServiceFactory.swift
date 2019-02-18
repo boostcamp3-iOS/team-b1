@@ -14,4 +14,11 @@ public enum ServiceFactory {
         return FoodMarketServiceImp(network: network)
     }
     
+    public static func createStoreService(network: Network) -> StoreService {
+        return StoreServiceImp(network: network)
+    }
+    
+    public static func createFoodsService(network: Network) -> FoodsService {
+        return FoodsServiceImp(network: network)
+    }
 }
