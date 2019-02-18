@@ -16,6 +16,16 @@ class OrderButton: UIView {
 
     @IBOutlet var orderButtonVIew: UIView!
 
+    @IBOutlet weak var amountLabel: UILabel!
+
+    var orderInfos: [OrderInfoModel] = [OrderInfoModel]() {
+        didSet {
+            let amount = orderInfos.map({ $0.price })
+            .reduce(0) { $0 + $1 }
+            amountLabel.text = "$\(amount)"
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         initNib()
@@ -34,6 +44,7 @@ class OrderButton: UIView {
         Bundle.main.loadNibNamed(xibName, owner: self, options: nil)
         orderButtonVIew.fixInView(self)
     }
+
 }
 
 protocol OrderButtonClickable {

@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderButton" customModule="UberEats" customModuleProvider="target">
             <connections>
+                <outlet property="amountLabel" destination="cZA-E7-E8O" id="Wsa-e5-vWL"/>
                 <outlet property="orderButtonVIew" destination="ZuW-vi-yNd" id="AgD-6j-CLa"/>
             </connections>
         </placeholder>
@@ -23,6 +24,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fq6-B3-n3A" userLabel="orderButton">
                     <rect key="frame" x="0.0" y="0.0" width="334" height="44"/>
                     <color key="backgroundColor" red="0.3411764706" green="0.58823529409999997" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="주문하기">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -30,12 +32,20 @@
                         <action selector="clickedOrderButton:" destination="-1" eventType="touchUpInside" id="nUb-iq-vo4"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$20,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZA-E7-E8O" userLabel="amountLabel">
+                    <rect key="frame" x="252.5" y="11.5" width="65.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Fq6-B3-n3A" firstAttribute="top" secondItem="wxm-j0-880" secondAttribute="top" id="7dk-k4-w9d"/>
                 <constraint firstItem="Fq6-B3-n3A" firstAttribute="leading" secondItem="wxm-j0-880" secondAttribute="leading" id="Gme-58-1QT"/>
+                <constraint firstAttribute="trailing" secondItem="cZA-E7-E8O" secondAttribute="trailing" constant="16" id="bMt-nQ-hvu"/>
                 <constraint firstItem="wxm-j0-880" firstAttribute="bottom" secondItem="Fq6-B3-n3A" secondAttribute="bottom" id="cU0-px-RJY"/>
+                <constraint firstItem="cZA-E7-E8O" firstAttribute="centerY" secondItem="Fq6-B3-n3A" secondAttribute="centerY" id="gkH-m5-40o"/>
                 <constraint firstItem="wxm-j0-880" firstAttribute="trailing" secondItem="Fq6-B3-n3A" secondAttribute="trailing" id="rAu-kr-fef"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
