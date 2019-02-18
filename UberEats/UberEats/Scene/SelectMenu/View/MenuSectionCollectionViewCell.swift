@@ -1,14 +1,14 @@
 //
-//  SmallMenuHeaderView.swift
-//  OberEatsPractice
+//  MenuSectionCollectionViewCell.swift
+//  UberEats
 //
-//  Created by 이혜주 on 22/01/2019.
-//  Copyright © 2019 leehyeju. All rights reserved.
+//  Created by 이혜주 on 18/02/2019.
+//  Copyright © 2019 team-b1. All rights reserved.
 //
 
 import UIKit
 
-class MenuSectionView: UICollectionReusableView {
+class MenuSectionCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var menuLabel: UILabel!
 
@@ -25,4 +25,5 @@ class MenuSectionView: UICollectionReusableView {
     override func prepareForReuse() {
         menuLabel.text = nil
     }
+
 }

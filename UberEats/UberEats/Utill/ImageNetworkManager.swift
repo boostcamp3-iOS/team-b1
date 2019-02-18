@@ -27,19 +27,14 @@ class ImageNetworkManager {
         session.dataTask(with: imageURL) { (data, _, error) in
             if error != nil {
                 //실패시 기본 이미지로 처리.
-                print("네트워크 에러")
-            }
-
-            guard let data = data else {
-                print("데이터 변환 에러")
                 return
             }
 
-            print("image: \(imageURL)")
-            print("imagedata: \(data)")
+            guard let data = data else {
+                return
+            }
 
             guard let image: UIImage = UIImage(data: data) else {
-                print("이미지 변환 에러")
                 return
             }
 
@@ -48,7 +43,7 @@ class ImageNetworkManager {
             DispatchQueue.main.async {
                 complection(image, nil)
             }
-            }.resume()
+        }.resume()
     }
 
     func getImageByCache(imageURL: URL, complection: @escaping (UIImage?, Error?) -> Void) {

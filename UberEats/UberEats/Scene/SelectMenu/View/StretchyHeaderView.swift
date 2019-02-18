@@ -24,7 +24,8 @@ class StretchyHeaderView: UICollectionReusableView {
     }()
 
     let headerImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "image"))
+        let imageView = UIImageView()
+        imageView.backgroundColor = .lightGray
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true

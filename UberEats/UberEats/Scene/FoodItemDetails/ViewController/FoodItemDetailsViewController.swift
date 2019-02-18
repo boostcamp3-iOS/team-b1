@@ -63,7 +63,7 @@ class FoodItemDetailsViewController: UIViewController {
     @IBAction func clickedCartButton(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Cart", bundle: nil)
         let cartViewController = storyboard.instantiateViewController(withIdentifier: "CartVC") as! CartViewController
-        self.present(cartViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(cartViewController, animated: true)
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

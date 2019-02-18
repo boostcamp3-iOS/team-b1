@@ -16,6 +16,9 @@ class CartViewController: UIViewController {
     fileprivate var cartItems: [[CartItemModelType]] =
         [[CartItemModelType]](repeating: [], count: CartSection.allCases.count)
 
+    var foodId: String?
+    var storeId: String?
+
     var cartModel: CartModel = CartModel.empty() {
         didSet {
             setUpCartModel()
@@ -89,7 +92,7 @@ class CartViewController: UIViewController {
             CartItemModelType.priceInfo(PriceInfoModel(orderInfoModels))
         )
     }
-    
+
 }
 
 extension CartViewController: OrderButtonClickable {

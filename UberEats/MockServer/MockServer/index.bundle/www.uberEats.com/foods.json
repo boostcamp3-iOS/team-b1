@@ -90,7 +90,7 @@
         "categoryName": "커피 Coffee"
     },
     {
-        "id": "food1",
+        "id": "food10",
         "foodName": "블루베리 요거트 Blueberry Yogurt",
         "foodDescription": "",
         "foodImageURL": "",
@@ -100,7 +100,7 @@
         "categoryName": "요거트 Yogurt"
     },
     {
-        "id": "food2",
+        "id": "food11",
         "foodName": "스트로베리 요거트 Strawberry Yogurt",
         "foodDescription": "",
         "foodImageURL": "",
@@ -110,7 +110,7 @@
         "categoryName": "요거트 Yogurt"
     },
     {
-        "id": "food1",
+        "id": "food12",
         "foodName": "유자 에이드 Citron Ade",
         "foodDescription": "",
         "foodImageURL": "",
@@ -120,7 +120,7 @@
         "categoryName": "스파클링 Sparkling"
     },
     {
-        "id": "food2",
+        "id": "food13",
         "foodName": "자몽 에이드 Grapefruit Ade",
         "foodDescription": "",
         "foodImageURL": "",
@@ -130,7 +130,7 @@
         "categoryName": "스파클링 Sparkling"
     },
     {
-        "id": "food3",
+        "id": "food14",
         "foodName": "딸기 레몬 에이드 Strawberry Lemon Ade",
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/strawberryLemonAde.jpeg?raw=true",
@@ -140,7 +140,7 @@
         "categoryName": "스파클링 Sparkling"
     },
     {
-        "id": "food4",
+        "id": "food15",
         "foodName": "블루베리 레몬 에이드 Blueberry Lemon Ade",
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/blueberryLemonAde.jpeg?raw=true",
@@ -150,7 +150,7 @@
         "categoryName": "스파클링 Sparkling"
     },
     {
-        "id": "food1",
+        "id": "food16",
         "foodName": "세이지 Sage",
         "foodDescription": "",
         "foodImageURL": "",
@@ -160,7 +160,7 @@
         "categoryName": "티 Tea"
     },
     {
-        "id": "food2",
+        "id": "food17",
         "foodName": "캐모마일 Chamomile",
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/chamomile.jpeg?raw=true",
@@ -170,7 +170,7 @@
         "categoryName": "티 Tea"
     },
     {
-        "id": "food3",
+        "id": "food18",
         "foodName": "라벤더 Lavender",
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/lavender.jpeg?raw=true",
@@ -180,7 +180,7 @@
         "categoryName": "티 Tea"
     },
     {
-        "id": "food4",
+        "id": "food19",
         "foodName": "얼그레이 Earl Grey",
         "foodDescription": "",
         "foodImageURL": "",
@@ -190,7 +190,7 @@
         "categoryName": "티 Tea"
     },
     {
-        "id": "food5",
+        "id": "food20",
         "foodName": "밀크 티 Milk Tea",
         "foodDescription": "",
         "foodImageURL": "",
@@ -200,7 +200,7 @@
         "categoryName": "티 Tea"
     },
     {
-        "id": "food6",
+        "id": "food21",
         "foodName": "유자 차 Citron Tea",
         "foodDescription": "",
         "foodImageURL": "",
@@ -210,7 +210,7 @@
         "categoryName": "티 Tea"
     },
     {
-        "id": "food1",
+        "id": "food22",
         "foodName": "토마토 떡볶이 Tomato Tteokbokki for 2 ppl",
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/tomatoTteokbokki.jpeg?raw=true",
@@ -220,7 +220,7 @@
         "categoryName": "푸드 Food"
     },
     {
-        "id": "food2",
+        "id": "food23",
         "foodName": "토마토 샐러드 Tomato Salad",
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/tomatoSalad.jpeg?raw=true",
@@ -230,7 +230,7 @@
         "categoryName": "푸드 Food"
     },
     {
-        "id": "food3",
+        "id": "food24",
         "foodName": "토마토 잼 토스트 Toast with Tomato Jam",
         "foodDescription": "",
         "foodImageURL": "",
@@ -240,7 +240,7 @@
         "categoryName": "푸드 Food"
     },
     {
-        "id": "food4",
+        "id": "food25",
         "foodName": "피자 바게트 Pizza Baguette",
         "foodDescription": "",
         "foodImageURL": "",
@@ -256,7 +256,8 @@
         "foodImageURL": "",
         "basePrice": 4000,
         "storeId": "store2",
-        "categoryId": "category2"
+        "categoryId": "category2",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food3",
@@ -265,7 +266,8 @@
         "foodImageURL": "",
         "basePrice": 7000,
         "storeId": "store2",
-        "categoryId": "category2"
+        "categoryId": "category2",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food4",
@@ -274,7 +276,8 @@
         "foodImageURL": "",
         "basePrice": 7000,
         "storeId": "store2",
-        "categoryId": "category2"
+        "categoryId": "category2",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food5",
@@ -283,7 +286,8 @@
         "foodImageURL": "",
         "basePrice": 4500,
         "storeId": "store2",
-        "categoryId": "category2"
+        "categoryId": "category2",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food1",
@@ -292,7 +296,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 5500,
         "storeId": "store2",
-        "categoryId": "category3"
+        "categoryId": "category3",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food2",
@@ -301,7 +306,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store2",
-        "categoryId": "category3"
+        "categoryId": "category3",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food3",
@@ -310,7 +316,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6000,
         "storeId": "store2",
-        "categoryId": "category3"
+        "categoryId": "category3",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food4",
@@ -319,7 +326,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6000,
         "storeId": "store2",
-        "categoryId": "category3"
+        "categoryId": "category3",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food5",
@@ -328,7 +336,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 5500,
         "storeId": "store2",
-        "categoryId": "category3"
+        "categoryId": "category3",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food6",
@@ -337,7 +346,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 7000,
         "storeId": "store2",
-        "categoryId": "category3"
+        "categoryId": "category3",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food1",
@@ -346,7 +356,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store2",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food2",
@@ -355,7 +366,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store2",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food1",
@@ -364,7 +376,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store3",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food2",
@@ -373,7 +386,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store3",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food3",
@@ -382,7 +396,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store3",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food4",
@@ -391,7 +406,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store3",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food1",
@@ -400,7 +416,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store4",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food2",
@@ -409,7 +426,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store4",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food3",
@@ -418,7 +436,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store4",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food4",
@@ -427,7 +446,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store4",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food5",
@@ -436,7 +456,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store4",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food1",
@@ -445,7 +466,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store5",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food2",
@@ -454,7 +476,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store5",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food3",
@@ -463,7 +486,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store5",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food4",
@@ -472,7 +496,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store5",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food5",
@@ -481,7 +506,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store5",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food6",
@@ -490,7 +516,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store5",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food1",
@@ -499,7 +526,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store6",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food2",
@@ -508,7 +536,8 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store6",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     },
     {
         "id": "food3",
@@ -517,6 +546,7 @@
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/recommandFood1.jpg",
         "basePrice": 6500,
         "storeId": "store6",
-        "categoryId": "category4"
+        "categoryId": "category4",
+        "categoryName": "푸드 Food"
     }
 ]

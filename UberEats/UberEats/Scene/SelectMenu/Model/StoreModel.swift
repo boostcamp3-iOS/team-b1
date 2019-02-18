@@ -26,7 +26,7 @@ enum CellId: String {
 enum XibName: String {
     case timeAndLocation = "TimeAndLocationCollectionViewCell"
     case search = "SearchCollectionViewCell"
-    case menuSection = "MenuSectionView"
+    case menuSection = "MenuSectionCollectionViewCell"
     case menuCategory = "MenuCategoryCollectionViewCell"
 }
 

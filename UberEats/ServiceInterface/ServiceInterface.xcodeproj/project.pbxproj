@@ -10,6 +10,8 @@
 		8443049C22154E7100FCFADB /* BusinessFoodMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443049B22154E7100FCFADB /* BusinessFoodMarket.swift */; };
 		99F5792F220C5A7C002D792A /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F5792E220C5A7C002D792A /* Common.framework */; };
 		99F57933220C5AB4002D792A /* FoodMarketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F57932220C5AB4002D792A /* FoodMarketService.swift */; };
+		D1906ED22219731700210DF4 /* FoodsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1906ED12219731700210DF4 /* FoodsService.swift */; };
+		D1906ED42219732400210DF4 /* BusinessFoods.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1906ED32219732400210DF4 /* BusinessFoods.swift */; };
 		D1D5F3A92216AA9600370784 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F3A82216AA9600370784 /* StoreService.swift */; };
 		D1D5F3AB2216AAB000370784 /* BusinessStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F3AA2216AAB000370784 /* BusinessStore.swift */; };
 /* End PBXBuildFile section */
@@ -20,6 +22,8 @@
 		99F57926220C5A34002D792A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99F5792E220C5A7C002D792A /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F57932220C5AB4002D792A /* FoodMarketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMarketService.swift; sourceTree = "<group>"; };
+		D1906ED12219731700210DF4 /* FoodsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodsService.swift; sourceTree = "<group>"; };
+		D1906ED32219732400210DF4 /* BusinessFoods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessFoods.swift; sourceTree = "<group>"; };
 		D1D5F3A82216AA9600370784 /* StoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreService.swift; sourceTree = "<group>"; };
 		D1D5F3AA2216AAB000370784 /* BusinessStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +65,8 @@
 				8443049B22154E7100FCFADB /* BusinessFoodMarket.swift */,
 				D1D5F3A82216AA9600370784 /* StoreService.swift */,
 				D1D5F3AA2216AAB000370784 /* BusinessStore.swift */,
+				D1906ED12219731700210DF4 /* FoodsService.swift */,
+				D1906ED32219732400210DF4 /* BusinessFoods.swift */,
 			);
 			path = ServiceInterface;
 			sourceTree = "<group>";
@@ -152,9 +158,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				99F57933220C5AB4002D792A /* FoodMarketService.swift in Sources */,
+				D1906ED42219732400210DF4 /* BusinessFoods.swift in Sources */,
 				8443049C22154E7100FCFADB /* BusinessFoodMarket.swift in Sources */,
 				D1D5F3AB2216AAB000370784 /* BusinessStore.swift in Sources */,
 				D1D5F3A92216AA9600370784 /* StoreService.swift in Sources */,
+				D1906ED22219731700210DF4 /* FoodsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

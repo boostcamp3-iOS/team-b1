@@ -55,20 +55,63 @@ public class MockServer {
                     foodMarket.recommandFoods.append(randomFood)
                 }
             } catch {
-                fatalError()
+                fatalError("decoding Error")
             }
 
             guard let result = try? JSONEncoder().encode(foodMarket) else {
-                return ""
+                fatalError("encoding Error")
             }
 
             return String(decoding: result, as: UTF8.self)
         })
 
-        try router.get("menu", writtenResponse: { (request) -> Response in
-            let result = try ResourceController.resourceWithString(path: request.path, root: type(of: self))
+        try router.get("stores", writtenResponse: { (request) -> Response in
+            let storesData = try ResourceController.resourceWithData(path: request.path, root: type(of: self))
 
-            return result
+            var store: Store?
+
+            do {
+                let stores = try JSONDecoder().decode([Store].self, from: storesData)
+
+                stores.forEach {
+                    if $0.id == request.component.query {
+                        store = $0
+                    }
+                }
+
+            } catch {
+                fatalError("decoding Error")
+            }
+
+            guard let result = try? JSONEncoder().encode(store) else {
+                fatalError("encoding Error")
+            }
+
+            return String(decoding: result, as: UTF8.self)
+        })
+
+        try router.get("foods", writtenResponse: { (request) -> Response in
+            let allFoodsData = try ResourceController.resourceWithData(path: request.path, root: type(of: self))
+
+            var foodsOfStore: [Food] = []
+
+            do {
+                let allFoods = try JSONDecoder().decode([Food].self, from: allFoodsData)
+
+                allFoods.forEach {
+                    if $0.storeId == request.component.query {
+                        foodsOfStore.append($0)
+                    }
+                }
+            } catch {
+                fatalError("decoding Error")
+            }
+
+            guard let result = try? JSONEncoder().encode(foodsOfStore) else {
+                fatalError("encoding Error")
+            }
+
+            return String(decoding: result, as: UTF8.self)
         })
     }
 

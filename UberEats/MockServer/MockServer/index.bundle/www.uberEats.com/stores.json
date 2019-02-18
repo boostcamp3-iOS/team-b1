@@ -17,7 +17,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": true
+    "isNewStore": true,
+    "numberOfCategory": 5
 },
 {
     "id": "store2",
@@ -38,7 +39,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": true
+    "isNewStore": true,
+    "numberOfCategory": 5
 },
 {
     "id": "store3",
@@ -59,7 +61,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": true
+    "isNewStore": true,
+    "numberOfCategory": 5
 },
 {
     "id" : "store4",
@@ -80,7 +83,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": true
+    "isNewStore": true,
+    "numberOfCategory": 5
 },
 {
     "id" : "store5",
@@ -101,7 +105,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": true
+    "isNewStore": true,
+    "numberOfCategory": 5
 },
 {
     "id" : "store6",
@@ -122,7 +127,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store7",
@@ -143,7 +149,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store8",
@@ -164,7 +171,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store9",
@@ -185,7 +193,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store10",
@@ -206,7 +215,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store11",
@@ -227,7 +237,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store12",
@@ -248,7 +259,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store13",
@@ -269,7 +281,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store14",
@@ -290,7 +303,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store15",
@@ -311,7 +325,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store16",
@@ -332,7 +347,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store17",
@@ -353,7 +369,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store18",
@@ -374,7 +391,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store19",
@@ -395,7 +413,8 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 },
 {
     "id" : "store20",
@@ -416,5 +435,6 @@
         "score": 4.5,
         "numberOfRater": 120
     },
-    "isNewStore": false
+    "isNewStore": false,
+    "numberOfCategory": 5
 }]

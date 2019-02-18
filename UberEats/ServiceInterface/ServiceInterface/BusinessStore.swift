@@ -10,9 +10,9 @@ import Foundation
 import Common
 
 public struct BusinessStore {
-    public let stores: [Store]
+    public let store: Store
 
-    public init(_ stores: [Store]) {
-        self.stores = stores
+    public init(_ store: Store) {
+        self.store = store
     }
 }

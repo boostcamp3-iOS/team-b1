@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import Common
 
 class FoodCollectionViewCell: UICollectionViewCell {
+
+    var priceLabelBottomConstraint = NSLayoutConstraint()
+    var foodImageViewWidthConstraint = NSLayoutConstraint()
 
     let foodNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18)
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         return label
     }()
 
@@ -22,7 +26,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 15)
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.textColor = .gray
         return label
     }()
@@ -37,19 +41,18 @@ class FoodCollectionViewCell: UICollectionViewCell {
     let foodImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
         return imageView
     }()
 
-    var food: FoodFood? {
+    var food: Food? {
         didSet {
             guard let food = food else {
                 return
             }
 
             foodNameLabel.text = food.foodName
-            foodContentsLabel.text = food.foodContents
-            priceLabel.text = food.price
+            foodContentsLabel.text = food.foodDescription
+            priceLabel.text = "￦" + String(food.basePrice)
         }
     }
 
@@ -59,10 +62,16 @@ class FoodCollectionViewCell: UICollectionViewCell {
     }
 
     func setupLayout() {
+        backgroundColor = .white
         addSubview(foodNameLabel)
         addSubview(foodContentsLabel)
         addSubview(priceLabel)
         addSubview(foodImageView)
+
+        priceLabelBottomConstraint = NSLayoutConstraint(item: priceLabel, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -10)
+        priceLabelBottomConstraint.isActive = true
+
+        foodImageViewWidthConstraint = foodImageView.widthAnchor.constraint(equalToConstant: 100)
 
         NSLayoutConstraint.activate([
             foodNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
@@ -76,17 +85,22 @@ class FoodCollectionViewCell: UICollectionViewCell {
             priceLabel.topAnchor.constraint(equalTo: foodContentsLabel.bottomAnchor, constant: 10),
             priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             priceLabel.trailingAnchor.constraint(equalTo: foodImageView.leadingAnchor, constant: -10),
-            priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
 
             foodImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             foodImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            foodImageView.widthAnchor.constraint(equalToConstant: 100),
             foodImageView.heightAnchor.constraint(equalToConstant: 100)
             ])
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func prepareForReuse() {
+        foodNameLabel.text = ""
+        foodContentsLabel.text = ""
+        priceLabel.text = ""
+        foodImageView.image = nil
     }
 
 }

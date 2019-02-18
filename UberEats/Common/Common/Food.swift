@@ -13,4 +13,5 @@ public struct Food: Codable {
     public let basePrice: Int
     public let storeId: String
     public let categoryId: String
+    public let categoryName: String
 }

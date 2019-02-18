@@ -14,16 +14,6 @@ class SearchCollectionViewCell: UICollectionViewCell {
 
     weak var searchBarDelegate: SearchBarDelegate?
 
-    var title: String? {
-        didSet {
-            guard let title = self.title else {
-                return
-            }
-            titleLabel.text = title
-            searchButton.isHidden = true
-        }
-    }
-
     @IBAction func touchUpSearchButton(_ sender: Any) {
         searchBarDelegate?.showSeachBar()
     }
