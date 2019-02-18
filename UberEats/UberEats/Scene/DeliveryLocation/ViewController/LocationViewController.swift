@@ -30,8 +30,14 @@ class LocationViewController: UIViewController {
 
     private let deliveryStartView = DeliveryStartNoticeView()
     private var mapView: GMSMapView?
+    private let userWindow = UserLocationView()
+    private let storeWindow = StoreLocationView()
     private let locationManager = CLLocationManager()
     private var userLocation = CLLocationCoordinate2D(latitude: 37.49646975398706, longitude: 127.02905088660754)
+
+    private var userMarker = GMSMarker()
+    private var storeLocation = CLLocationCoordinate2D(latitude: 37.499862, longitude: 127.030378)
+    private var storeMarker = GMSMarker()
 
     private var isStartingDelivery: Bool = false
 
@@ -93,21 +99,21 @@ class LocationViewController: UIViewController {
         mapView?.delegate = self
         orderDetailCollectionView.backgroundView = mapView
 
-        let userMarker = GMSMarker(position: userLocation)
+        userMarker = GMSMarker(position: userLocation)
         userMarker.icon = UIImage(named: "icMarkUser")
         userMarker.map = mapView
 
-        let delivererLocation = CLLocationCoordinate2D(latitude: 37.499862, longitude: 127.030378)
-        let delivererMarker = GMSMarker(position: delivererLocation)
-        delivererMarker.icon = UIImage(named: "icMarkDelivery")
-        delivererMarker.map = mapView
-
+        storeMarker = GMSMarker(position: storeLocation)
+        storeMarker.icon = UIImage(named: "icMarkDelivery")
+        storeMarker.map = mapView
     }
 
     private func setupLayout() {
         self.view.addSubview(orderDetailCollectionView)
         self.orderDetailCollectionView.backgroundView?.addSubview(moveCurrentLocationButton)
         self.orderDetailCollectionView.backgroundView?.addSubview(deliveryStartView)
+        self.orderDetailCollectionView.backgroundView?.addSubview(userWindow)
+        self.orderDetailCollectionView.backgroundView?.addSubview(storeWindow)
         self.orderDetailCollectionView.addSubview(backButton)
         self.orderDetailCollectionView.addSubview(contactButton)
         self.orderDetailCollectionView.addSubview(contactLabel)
@@ -235,23 +241,21 @@ class LocationViewController: UIViewController {
                                                 longitude: (userLocation.longitude + 127.030378) / 2,
                                                 zoom: 17))
     }
-
 }
 
 extension LocationViewController: GMSMapViewDelegate {
 
-    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-//        print("position: \(marker.position)")
-        let view = UserLocationView(frame: CGRect.init(x: 0, y: 0, width: 150, height: 70))
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        var userWindowPoint = mapView.projection.point(for: userMarker.position)
+        userWindowPoint.x = userWindowPoint.x + 9
+        userWindowPoint.y = userWindowPoint.y - 60
+        userWindow.frame = CGRect(x: userWindowPoint.x, y: userWindowPoint.y, width: 100, height: 40)
 
-        return view
-    }
+        var storeWindowPoint = mapView.projection.point(for: storeMarker.position)
+        storeWindowPoint.x = storeWindowPoint.x + 8
+        storeWindowPoint.y = storeWindowPoint.y + 2
+        storeWindow.frame = CGRect(x: storeWindowPoint.x, y: storeWindowPoint.y, width: 100, height: 50)
 
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        print("position: \(marker.infoWindowAnchor)")
-        // 정확히 어디가 기준인지 모르겠음 질문할것
-        marker.infoWindowAnchor = CGPoint(x: 3, y: 0.5)
-        return false
     }
 
 }
@@ -271,6 +275,7 @@ extension LocationViewController: UIScrollViewDelegate {
 
         mapView?.alpha = getMapViewAlpha(currentScroll)
         navigationController?.updateNavigationBarStatus(currentScroll, deliveryStartInfoHeight)
+
     }
 
 }

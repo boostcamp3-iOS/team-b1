@@ -18,22 +18,9 @@ class UserLocationView: UIView {
         return label
     }()
 
-    let backView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
-
-        view.layer.cornerRadius = 5
-        view.layer.masksToBounds = false
-        view.layer.shadowColor = UIColor.gray.cgColor
-        view.layer.shadowOpacity = 0.3
-        view.layer.shadowOffset = CGSize(width: 0, height: 5)
-        view.layer.shadowRadius = 10
-        return view
-    }()
-
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupContentView()
         setupLayout()
     }
 
@@ -42,18 +29,21 @@ class UserLocationView: UIView {
     }
 
     private func setupLayout() {
-        addSubview(backView)
-        backView.addSubview(locationLabel)
+        backgroundColor = .white
+        addSubview(locationLabel)
 
         NSLayoutConstraint.activate([
-            backView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            backView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            backView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            backView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-
-            locationLabel.centerXAnchor.constraint(equalTo: backView.centerXAnchor),
-            locationLabel.centerYAnchor.constraint(equalTo: backView.centerYAnchor)
+            locationLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            locationLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
             ])
     }
 
+    private func setupContentView() {
+        layer.cornerRadius = 5
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOpacity = 0.3
+        layer.shadowOffset = CGSize(width: 0, height: 5)
+        layer.shadowRadius = 10
+    }
 }
