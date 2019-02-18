@@ -1,6 +1,6 @@
 [{
     "id": "store1",
-    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/airInTheCafe.jpeg?raw=true",
+    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/airInTheCafe/airInTheCafe.jpeg?raw=true",
     "name": "에어 인 더 카페 Air in the Cafe",
     "category": "커피, 차﹒₩",
     "deliveryTime" : "30-40",
@@ -18,39 +18,41 @@
         "numberOfRater": 120
     },
     "isNewStore": true,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id": "store2",
-    "mainImage": "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/master/images/FoodMarket/Stores/Store1.jpg",
-    "name": "dontknow1",
-    "category": "일식 , 한식1",
-    "deliveryTime" : "30-401",
+    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/KFCGangnam.jpeg?raw=true",
+    "name": "케이에프씨 강남역 KFC Gangnam Station",
+    "category": "치킨﹒₩₩",
+    "deliveryTime" : "15-25",
     "openTime": {
-        "startTime": "11:12",
-        "endTime": "22:13"
+        "startTime": "10:30",
+        "endTime": "23:00"
     },
-    "favorites": true,
+    "favorites": false,
     "location": {
         "latitude": 124.5325,
         "longtitude": 54125.124
     },
     "rate": {
-        "score": 4.5,
-        "numberOfRater": 120
+        "score": 0,
+        "numberOfRater": 0
     },
-    "isNewStore": true,
-    "numberOfCategory": 5
+    "isNewStore": false,
+    "numberOfCategory": 7,
+    "promotion": ""
 },
 {
     "id": "store3",
-    "mainImage": "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/master/images/FoodMarket/Stores/Store1.jpg",
-    "name": "dontknow2",
-    "category": "일식 , 한식2",
-    "deliveryTime" : "30-402",
+    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/shinjeonTteokbboki/shinjeonTteokbboki.jpeg?raw=true",
+    "name": "신전떡볶이 압구정점 Shinjeon Tteokbokki",
+    "category": "한식﹒₩",
+    "deliveryTime" : "25-35",
     "openTime": {
-        "startTime": "11:12",
-        "endTime": "22:13"
+        "startTime": "11:00",
+        "endTime": "20:00"
     },
     "favorites": true,
     "location": {
@@ -58,11 +60,12 @@
         "longtitude": 54125.124
     },
     "rate": {
-        "score": 4.5,
+        "score": 4.7,
         "numberOfRater": 120
     },
     "isNewStore": true,
-    "numberOfCategory": 5
+    "numberOfCategory": 7,
+    "promotion": ""
 },
 {
     "id" : "store4",
@@ -84,7 +87,8 @@
         "numberOfRater": 120
     },
     "isNewStore": true,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store5",
@@ -106,7 +110,8 @@
         "numberOfRater": 120
     },
     "isNewStore": true,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store6",
@@ -128,7 +133,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store7",
@@ -150,7 +156,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store8",
@@ -172,7 +179,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store9",
@@ -194,7 +202,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store10",
@@ -216,7 +225,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store11",
@@ -238,7 +248,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store12",
@@ -260,7 +271,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store13",
@@ -282,7 +294,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store14",
@@ -304,7 +317,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store15",
@@ -326,7 +340,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store16",
@@ -348,7 +363,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store17",
@@ -370,7 +386,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store18",
@@ -392,7 +409,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store19",
@@ -414,7 +432,8 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 },
 {
     "id" : "store20",
@@ -436,5 +455,6 @@
         "numberOfRater": 120
     },
     "isNewStore": false,
-    "numberOfCategory": 5
+    "numberOfCategory": 5,
+    "promotion": ""
 }]
