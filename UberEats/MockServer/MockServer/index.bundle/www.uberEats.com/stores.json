@@ -1,6 +1,6 @@
 [{
     "id": "store1",
-    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/airInTheCafe/airInTheCafe.jpeg?raw=true",
+    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/airInTheCafe/airInTheCafe_low.jpeg?raw=true",
     "name": "에어 인 더 카페 Air in the Cafe",
     "category": "커피, 차﹒₩",
     "deliveryTime" : "30-40",
@@ -23,7 +23,7 @@
 },
 {
     "id": "store2",
-    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/KFCGangnam.jpeg?raw=true",
+    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/KFCGangnam/KFCGangnam_low.jpeg?raw=true",
     "name": "케이에프씨 강남역 KFC Gangnam Station",
     "category": "치킨﹒₩₩",
     "deliveryTime" : "15-25",
@@ -46,7 +46,7 @@
 },
 {
     "id": "store3",
-    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/shinjeonTteokbboki/shinjeonTteokbboki.jpeg?raw=true",
+    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/shinjeonTteokbboki/shinjeonTteokbboki_low.jpeg?raw=true",
     "name": "신전떡볶이 압구정점 Shinjeon Tteokbokki",
     "category": "한식﹒₩",
     "deliveryTime" : "25-35",
