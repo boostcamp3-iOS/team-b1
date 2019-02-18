@@ -15,7 +15,7 @@ class TabBarVC: UITabBarController {
 
         let itemStroyBoard = UIStoryboard(name: "ItemView", bundle: nil)
         let firstViewController = itemStroyBoard.instantiateViewController(withIdentifier: "NavigationVC")
-        firstViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"),
+        firstViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "btnTabbarHome"),
                                                       selectedImage: UIImage(named: "icons8-home-50"))
 
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
@@ -23,15 +23,15 @@ class TabBarVC: UITabBarController {
         let secondViewController = UIStoryboard(name: "LocationViewController", bundle: nil)
             .instantiateViewController(withIdentifier: "searchView")
 
-        secondViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"),
+        secondViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "btnTabbarSearchActive"),
                                                        selectedImage: UIImage(named: "icons8-home-50"))
 
         let thirdViewController = mainStoryBoard.instantiateViewController(withIdentifier: "orderHistory")
-        thirdViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"),
+        thirdViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "btnTabbarOrder"),
                                                       selectedImage: UIImage(named: "icons8-home-50"))
 
         let fourthViewController = mainStoryBoard.instantiateViewController(withIdentifier: "myPage")
-        fourthViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "icons8-home-50"),
+        fourthViewController.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "btnTabbarMypageActive"),
                                                        selectedImage: UIImage(named: "icons8-home-50"))
 
         let tabBarList = [firstViewController, secondViewController, thirdViewController, fourthViewController]
