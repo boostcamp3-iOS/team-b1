@@ -16,13 +16,10 @@ class CartViewController: UIViewController {
     fileprivate var cartItems: [[CartItemModelType]] =
         [[CartItemModelType]](repeating: [], count: CartSection.allCases.count)
 
-    var foodId: String?
-    var storeId: String?
-
     var cartModel: CartModel = CartModel.empty() {
         didSet {
             setUpCartModel()
-            tableView.reloadData()
+            tableView?.reloadData()
         }
     }
 
@@ -30,13 +27,14 @@ class CartViewController: UIViewController {
         didSet {
             setUpOrderInfo(orderInfoModels)
             setUpPriceInfo(orderInfoModels)
-            tableView.reloadData()
+            tableView?.reloadData()
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         orderButton.orderButtonClickable = self
+        tableView.reloadData()
     }
 
     @IBAction func clickedExitButton(_ sender: Any) {
