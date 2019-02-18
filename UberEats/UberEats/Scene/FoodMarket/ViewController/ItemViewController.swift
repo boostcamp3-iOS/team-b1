@@ -472,7 +472,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 print("recommend \(recommendFoodCell.bugerLabel)")
 
                 guard let imageURL = URL(string: recommendFood[indexPath.item].foodImageURL) else {
-                    return .init()
+                    return recommendFoodCell
                 }
                 ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (downloadImage, _) in
                     recommendFoodCell.image.image = downloadImage
@@ -490,7 +490,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 nearestRestCell.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: 1, height: -1), radius: 5.0, scale: true)
 
                 guard let imageURL = URL(string: nearestRests[indexPath.item].mainImage) else {
-                    return .init()
+                    return nearestRestCell
                 }
 
                 ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak self] (downloadImage, _) in
@@ -508,7 +508,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 exepectTimeRestCell.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: 1, height: -1), radius: 5.0, scale: true)
 
                 guard let imageURL = URL(string: expectTimeRests[indexPath.item].mainImage) else {
-                    return .init()
+                    return exepectTimeRestCell
                 }
 
                 ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak self] (image, _) in
@@ -525,7 +525,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 newRestCell.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: 1, height: -1), radius: 5.0, scale: true)
 
                 guard let imageURL = URL(string: newRests[indexPath.item].mainImage) else {
-                    return .init()
+                    return newRestCell
                 }
 
                 ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (downloadImage, _) in
