@@ -38,6 +38,7 @@ class StoreLocationView: UIView {
     }
 
     private func setupLayout() {
+        backgroundColor = .white
         addSubview(locationLabel)
         addSubview(orderNumberLabel)
 
@@ -51,9 +52,6 @@ class StoreLocationView: UIView {
     }
 
     private func setupContentView() {
-        translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .white
-
         layer.cornerRadius = 5
         layer.masksToBounds = false
         layer.shadowColor = UIColor.gray.cgColor

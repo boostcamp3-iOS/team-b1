@@ -44,7 +44,7 @@ class SaleCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupLayout() {
+    private func setupLayout() {
         backgroundColor = .white
 
         addSubview(saleTitleLabel)
