@@ -376,11 +376,11 @@ class StoreCollectionViewController: UICollectionViewController {
                 }
 
                 cell.priceLabelBottomConstraint.isActive = (food.foodDescription == "") ? false : true
-                cell.foodImageViewWidthConstraint.isActive = (food.foodImageURL == "") ? false : true
+                cell.foodImageViewWidthConstraint.isActive = (food.lowImageURL == "") ? false : true
 
                 cell.food = food
 
-                guard let imageURL = URL(string: food.foodImageURL) else {
+                guard let imageURL = URL(string: food.lowImageURL) else {
                     return cell
                 }
 

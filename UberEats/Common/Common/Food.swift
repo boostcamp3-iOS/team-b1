@@ -9,7 +9,7 @@
 import Foundation
 
 public struct Food: Codable {
-    public let id, foodName, foodDescription, foodImageURL: String
+    public let id, foodName, foodDescription, foodImageURL, lowImageURL: String
     public let basePrice: Int
     public let storeId: String
     public let categoryId: String

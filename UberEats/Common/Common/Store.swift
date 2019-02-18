@@ -11,6 +11,7 @@ import Foundation
 public struct Store: Codable {
     public let id: String
     public let mainImage: String
+    public let lowImageURL: String
     public let name: String
     public let category: String
     public let deliveryTime: String
