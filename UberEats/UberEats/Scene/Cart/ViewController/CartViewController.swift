@@ -96,7 +96,12 @@ class CartViewController: UIViewController {
 extension CartViewController: OrderButtonClickable {
 
     func onClickedOrderButton(_ sender: Any) {
-        // TO DO
+
+        let storyboard = UIStoryboard.init(name: "LocationViewController", bundle: nil)
+        let foodItemVC = storyboard.instantiateViewController(withIdentifier: "locationViewController")
+
+//        self.present(foodItemVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(foodItemVC, animated: true)
     }
 
 }

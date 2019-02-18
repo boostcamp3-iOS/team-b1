@@ -65,7 +65,6 @@ class LocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tabBarController?.tabBar.isHidden = true
         orderDetailCollectionView.delegate = self
         orderDetailCollectionView.dataSource = self
         setupMapView()
@@ -232,7 +231,6 @@ class LocationViewController: UIViewController {
     }
 
     @objc private func touchUpBackButton(_: UIButton) {
-        tabBarController?.tabBar.isHidden = false
         self.navigationController?.popViewController(animated: true)
     }
 

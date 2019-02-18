@@ -262,7 +262,8 @@ class StoreCollectionViewController: UICollectionViewController {
                                                                       orderName: "#12345",
                                                                       price: price)]
 
-            self.present(cartViewController, animated: true, completion: nil)
+            self.navigationController?.pushViewController(cartViewController, animated: true)
+//            self.present(cartViewController, animated: true, completion: nil)
         }
     }
 
