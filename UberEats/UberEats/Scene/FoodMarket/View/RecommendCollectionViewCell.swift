@@ -27,22 +27,19 @@ class RecommendCollectionViewCell: UICollectionViewCell {
             }
 
             label.text = recommendFood.foodName
+            commentLabel.text = recommendFood.foodDescription
 
-            guard let imageURL = URL(string: recommendFood.foodImageURL) else {
-                return
-            }
-
-            ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (downloadImage, _) in
-                self.image.image = downloadImage
-            }
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.layer.cornerRadius = 3
-        self.layer.masksToBounds = true
+        self.contentView.layer.cornerRadius = 5
+        self.contentView.layer.borderWidth = 1.0
+
+        self.contentView.layer.borderColor = UIColor.clear.cgColor
+        self.contentView.layer.masksToBounds = true
 
         image.layer.cornerRadius = 3
         image.layer.masksToBounds = true

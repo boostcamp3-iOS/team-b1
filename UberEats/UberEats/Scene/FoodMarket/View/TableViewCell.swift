@@ -15,7 +15,6 @@ class TableViewCell: UITableViewCell, UICollectionViewDelegate {
     public let recommendLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.adjustsFontSizeToFitWidth = true
         return label
     }()
 
@@ -42,6 +41,26 @@ class TableViewCell: UITableViewCell, UICollectionViewDelegate {
 
         recommendLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
         recommendLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
+        recommendLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        recommendLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate(
+            [
+                collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+                collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                collectionView.topAnchor.constraint(equalTo: recommendLabel.bottomAnchor)
+            ]
+        )
+
+        selectionStyle = .none
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .lightGray
+
+        collectionView.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

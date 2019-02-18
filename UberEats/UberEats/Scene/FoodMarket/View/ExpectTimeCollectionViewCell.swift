@@ -7,11 +7,43 @@
 //
 
 import UIKit
+import Common
 
 class ExpectTimeCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var mainImage: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var category: UILabel!
+    @IBOutlet weak var deliveryTime: UILabel!
+    @IBOutlet weak var rate: UILabel!
+    @IBOutlet weak var promotion: UILabel!
+
+    var expectTimeRest: Store? {
+        didSet {
+            guard let expectTimeRest = expectTimeRest else {
+                return
+            }
+
+            name.text = expectTimeRest.name
+            category.text = expectTimeRest.category
+            deliveryTime.text = expectTimeRest.deliveryTime
+            rate.text = "\(expectTimeRest.rate.numberOfRater)"
+            promotion.text = expectTimeRest.promotion
+
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        self.contentView.layer.cornerRadius = 5
+        self.contentView.layer.borderWidth = 1.0
+
+        self.contentView.layer.borderColor = UIColor.clear.cgColor
+        self.contentView.layer.masksToBounds = true
+
+        mainImage.layer.cornerRadius = 3
+        mainImage.layer.masksToBounds = true
     }
 
 }

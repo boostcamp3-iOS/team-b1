@@ -64,6 +64,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="MqX-1v-HoT" secondAttribute="bottom" id="hV2-gb-SmR"/>
+                            <constraint firstItem="0fG-Cc-wT9" firstAttribute="top" secondItem="PTR-ko-k91" secondAttribute="top" id="r9u-PK-AeR"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>

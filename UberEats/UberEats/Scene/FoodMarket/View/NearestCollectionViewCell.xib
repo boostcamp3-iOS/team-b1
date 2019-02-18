@@ -13,60 +13,67 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NearestCollectionViewCell" customModule="UberEats" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="311" height="270"/>
+            <rect key="frame" x="0.0" y="0.0" width="311" height="310"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="311" height="270"/>
+                <rect key="frame" x="0.0" y="0.0" width="311" height="310"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zsg-eV-HuY">
-                        <rect key="frame" x="0.0" y="0.0" width="311" height="270"/>
+                    <view contentMode="scaleToFill" restorationIdentifier="newrestCellView" translatesAutoresizingMaskIntoConstraints="NO" id="Zsg-eV-HuY">
+                        <rect key="frame" x="0.0" y="0.0" width="311" height="310"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zinger" translatesAutoresizingMaskIntoConstraints="NO" id="Rez-OW-kW8">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="newRestImage" translatesAutoresizingMaskIntoConstraints="NO" id="Rez-OW-kW8">
                                 <rect key="frame" x="9" y="9" width="293" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="rCG-dL-PQI"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Dn2-mQ-W59">
-                                <rect key="frame" x="12" y="164" width="287" height="94"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" axis="vertical" distribution="equalSpacing" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Dn2-mQ-W59">
+                                <rect key="frame" x="12" y="167" width="287" height="131"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="명인만두 명동점 Myungin Mandu MyeongDong" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="jaH-G4-9vE">
-                                        <rect key="frame" x="0.0" y="0.0" width="286" height="19"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="newRestName" text="명인만두 명동점 Myungin Mandu MyeongDong" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaH-G4-9vE">
+                                        <rect key="frame" x="0.0" y="0.0" width="287" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ * 분식" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hA-dM-PSu">
-                                        <rect key="frame" x="0.0" y="25" width="47.5" height="19"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="nearRestCategory" text="$ * 분식" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hA-dM-PSu">
+                                        <rect key="frame" x="0.0" y="41" width="34.5" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="s9U-Xf-9hB">
-                                        <rect key="frame" x="0.0" y="50" width="106" height="19"/>
+                                        <rect key="frame" x="0.0" y="72.5" width="118.5" height="19.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25~35분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKM-eM-D7b">
-                                                <rect key="frame" x="0.0" y="0.0" width="55" height="19"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="nearRestDelivery" text="25~35분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKM-eM-D7b">
+                                                <rect key="frame" x="0.0" y="0.0" width="62.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$7000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYe-gY-OCe">
-                                                <rect key="frame" x="63" y="0.0" width="43" height="19"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$7000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYe-gY-OCe">
+                                                <rect key="frame" x="70.5" y="0.0" width="48" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="케이에프씨 광화문 KFC Gwanghwa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xiv-rP-glh">
-                                        <rect key="frame" x="0.0" y="75" width="206" height="19"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="nearRestPromotion" text="케이에프씨 광화문 KFC Gwanghwa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xiv-rP-glh">
+                                        <rect key="frame" x="0.0" y="111.5" width="247" height="19.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="19.5" id="dAa-Cf-dF7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Xiv-rP-glh" secondAttribute="bottom" id="uPA-TJ-6MY"/>
+                                    <constraint firstItem="jaH-G4-9vE" firstAttribute="top" secondItem="Dn2-mQ-W59" secondAttribute="top" id="xn6-B3-EhR"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -75,7 +82,7 @@
                             <constraint firstItem="Rez-OW-kW8" firstAttribute="leading" secondItem="Zsg-eV-HuY" secondAttribute="leading" constant="9" id="OkQ-K3-5Zh"/>
                             <constraint firstAttribute="trailing" secondItem="Rez-OW-kW8" secondAttribute="trailing" constant="9" id="OtG-kX-pja"/>
                             <constraint firstItem="Rez-OW-kW8" firstAttribute="top" secondItem="Zsg-eV-HuY" secondAttribute="top" constant="9" id="ULi-kN-j9e"/>
-                            <constraint firstItem="Dn2-mQ-W59" firstAttribute="top" secondItem="Rez-OW-kW8" secondAttribute="bottom" constant="15" id="hyM-oK-IDu"/>
+                            <constraint firstItem="Dn2-mQ-W59" firstAttribute="top" secondItem="Rez-OW-kW8" secondAttribute="bottom" constant="18" id="hyM-oK-IDu"/>
                             <constraint firstItem="Dn2-mQ-W59" firstAttribute="leading" secondItem="Zsg-eV-HuY" secondAttribute="leading" constant="12" id="vvd-l3-F2V"/>
                             <constraint firstAttribute="bottom" secondItem="Dn2-mQ-W59" secondAttribute="bottom" constant="12" id="zAP-Vv-8y3"/>
                         </constraints>
@@ -89,7 +96,7 @@
                 <constraint firstAttribute="bottom" secondItem="Zsg-eV-HuY" secondAttribute="bottom" id="wII-vh-b36"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="189" height="215"/>
+            <size key="customSize" width="189" height="255"/>
             <connections>
                 <outlet property="category" destination="7hA-dM-PSu" id="Skb-sb-08q"/>
                 <outlet property="deliveryTime" destination="xKM-eM-D7b" id="HTu-lA-OS0"/>
@@ -97,10 +104,7 @@
                 <outlet property="name" destination="jaH-G4-9vE" id="beU-Xs-7hG"/>
                 <outlet property="promotion" destination="Xiv-rP-glh" id="Ey7-wI-kfs"/>
             </connections>
-            <point key="canvasLocation" x="248" y="204.19790104947529"/>
+            <point key="canvasLocation" x="247.19999999999999" y="222.1889055472264"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="zinger" width="500" height="400"/>
-    </resources>
 </document>

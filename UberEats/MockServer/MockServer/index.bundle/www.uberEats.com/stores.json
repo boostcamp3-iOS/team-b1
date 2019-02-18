@@ -19,7 +19,7 @@
     },
     "isNewStore": true,
     "numberOfCategory": 5,
-    "promotion": ""
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력"
 },
 {
     "id": "store2",
@@ -88,7 +88,7 @@
     },
     "isNewStore": true,
     "numberOfCategory": 5,
-    "promotion": ""
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력"
 },
 {
     "id" : "store5",
@@ -111,7 +111,7 @@
     },
     "isNewStore": true,
     "numberOfCategory": 5,
-    "promotion": ""
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력"
 },
 {
     "id" : "store6",
@@ -180,7 +180,7 @@
     },
     "isNewStore": false,
     "numberOfCategory": 5,
-    "promotion": ""
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력"
 },
 {
     "id" : "store9",
@@ -203,7 +203,7 @@
     },
     "isNewStore": false,
     "numberOfCategory": 5,
-    "promotion": ""
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력"
 },
 {
     "id" : "store10",
@@ -316,6 +316,7 @@
         "score": 4.5,
         "numberOfRater": 120
     },
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력",
     "isNewStore": false,
     "numberOfCategory": 5,
     "promotion": ""
@@ -339,6 +340,7 @@
         "score": 4.5,
         "numberOfRater": 120
     },
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력",
     "isNewStore": false,
     "numberOfCategory": 5,
     "promotion": ""
@@ -362,6 +364,7 @@
         "score": 4.5,
         "numberOfRater": 120
     },
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력",
     "isNewStore": false,
     "numberOfCategory": 5,
     "promotion": ""
@@ -385,6 +388,7 @@
         "score": 4.5,
         "numberOfRater": 120
     },
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력",
     "isNewStore": false,
     "numberOfCategory": 5,
     "promotion": ""
@@ -408,6 +412,7 @@
         "score": 4.5,
         "numberOfRater": 120
     },
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력",
     "isNewStore": false,
     "numberOfCategory": 5,
     "promotion": ""
@@ -431,6 +436,7 @@
         "score": 4.5,
         "numberOfRater": 120
     },
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력",
     "isNewStore": false,
     "numberOfCategory": 5,
     "promotion": ""

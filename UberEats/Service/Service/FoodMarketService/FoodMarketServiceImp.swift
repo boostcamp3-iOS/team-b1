@@ -21,39 +21,38 @@ internal class FoodMarketServiceImp: FoodMarketService {
     
     func requestFoodMarket(completionHandler: @escaping (DataResponse<BusinessFoodMarket>) -> Void) {
         let requestURL = URL(string: "www.uberEats.com/foodMarket")!
-        
         network.request(with: requestURL) { ( data, response, _) in
-            
             if response?.httpStatusCode == .ok {
-                
                 guard let data = data else {
                     return
                 }
-                
                 do {
-                    //completionHandler(DataResponse.success(foodMarket))
                     let foodMarket: FoodMarket = try JSONDecoder().decode(FoodMarket.self, from: data)
                     
                     let stores = foodMarket.stores
+                    
                     let banners: [AdvertisingBoard] = foodMarket.advertisingBoard
                     
-                    let nearestRest = caculateDistance(stores: stores)
+                    let nearestRest: [Store] = caculateDistance(stores: stores)
                     let recommendFood: [Food] = foodMarket.recommandFoods
-                    let bannerImageURL = getBannerImageURL(banners: banners)
+                    let bannerImageURL: [String] = getBannerImageURL(banners: banners)
+                    let expectTimeRest: [Store] = caculateExpectTime(stores: stores)
+                    let newRests: [Store] = foodMarket.newStores
                     
                     let caculatedFoodMarket = BusinessFoodMarket(neareRest: nearestRest,
-                                                                                     recommendFood: recommendFood,
-                                                                                     bannerImages: bannerImageURL)
-                    
+                                                                 recommendFood: recommendFood,
+                                                                 bannerImages: bannerImageURL,
+                                                                 expectTimeRest: expectTimeRest,
+                                                                 newRests: newRests
+                                                                 )
+
                     DispatchQueue.main.async {
                         completionHandler(DataResponse.success(caculatedFoodMarket))
                     }
-                    
                     //FIXME: - Service에서 비즈니스 로직 담당 -> nearestRest 반환하는 로직을 여기서 짜자.
                 } catch {
                     fatalError()
                 }
-        
             } else {
                 fatalError()
             }
@@ -64,6 +63,28 @@ internal class FoodMarketServiceImp: FoodMarketService {
         dispatchQueue?.async {
             self.requestFoodMarket(completionHandler: completionHandler)
         }
+    }
+    
+    private func caculateExpectTime(stores: [Store]) -> [Store] {
+        
+        var expectTimeStore: [Store] = []
+        var expectTimes: [String] = []
+        for store in stores {
+            expectTimes =  store.deliveryTime.components(separatedBy: "-")
+            
+            var expectTimeInt: [Double?] = []
+            expectTimeInt.append(Double(expectTimes[0]))
+            expectTimeInt.append(Double(expectTimes[1]))
+            
+            if let fastestTime = expectTimeInt[0], let latestTime = expectTimeInt[1] {
+                if fastestTime <= 30 && 30 <= latestTime {
+                    expectTimeStore.append(store)
+                }
+            }
+            
+        }
+        
+        return expectTimeStore
     }
     
     private func caculateDistance(stores: [Store]) -> [Store] {
@@ -93,4 +114,16 @@ internal class FoodMarketServiceImp: FoodMarketService {
         return bannerImagesURL
     }
     
+    /*
+    private func caculateNewRest(stores: [Store]) -> [Store] {
+        var newRests: [Store] = []
+        for store in stores {
+            if store.isNewStore {
+                newRests.append(store)
+            }
+        }
+        
+        return newRests
+    }
+     */
 }

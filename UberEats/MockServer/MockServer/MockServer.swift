@@ -44,6 +44,7 @@ public class MockServer {
 
                 for index in 1..<6 {
                     let storeId = "store" + String(index)
+
                     let foodsOfStore = foods.filter {
                         return $0.storeId == storeId
                     }

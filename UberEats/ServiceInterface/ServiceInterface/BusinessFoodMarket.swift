@@ -13,10 +13,14 @@ public struct BusinessFoodMarket {
     public let nearestRest: [Store]
     public let recommendFood: [Food]
     public let bannerImages: [String]
+    public let expectTimeRest: [Store]
+    public let newRests: [Store]
 
-    public init(neareRest: [Store], recommendFood: [Food], bannerImages: [String]) {
+    public init(neareRest: [Store], recommendFood: [Food], bannerImages: [String], expectTimeRest: [Store], newRests: [Store]) {
         self.nearestRest = neareRest
         self.recommendFood = recommendFood
         self.bannerImages = bannerImages
+        self.expectTimeRest = expectTimeRest
+        self.newRests = newRests
     }
 }

@@ -9,7 +9,7 @@ class ItemCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         if let attributes = super.layoutAttributesForElements(in: rect) {
             for (index, attribute) in attributes.enumerated() {
-                attribute.frame.origin.y = 0
+                attribute.frame.origin.y = 5
             }
             return attributes
         }
