@@ -13,7 +13,6 @@
         <!--Navigation Controller-->
         <scene sceneID="qqT-2e-RVv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zy4-QF-Oxv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="NavigationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hwt-0n-DLC" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BCB-2x-AbG">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -24,6 +23,7 @@
                         <segue destination="oTS-wt-uxH" kind="relationship" relationship="rootViewController" id="bql-YA-a6E"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zy4-QF-Oxv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2258" y="-189"/>
         </scene>
@@ -60,7 +60,7 @@
                     <navigationItem key="navigationItem" id="kOl-ey-Hdq">
                         <leftBarButtonItems>
                             <barButtonItem style="plain" id="Ldy-7f-dvR">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ahd-sr-bzp">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ahd-sr-bzp">
                                     <rect key="frame" x="16" y="7" width="172" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="차량에서 대기 → 메리츠 타워">
@@ -72,7 +72,7 @@
                                 </button>
                             </barButtonItem>
                             <barButtonItem style="plain" id="yTC-Md-WZ2">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="8Aw-hZ-83z">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="8Aw-hZ-83z">
                                     <rect key="frame" x="196" y="11" width="17" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="btnArrowRound"/>

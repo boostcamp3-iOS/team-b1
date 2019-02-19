@@ -21,11 +21,12 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - ScrollView
     @IBOutlet var scrollView: UIScrollView!
 
-    lazy var indicatorImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "splash812"))
-        imageView.frame = self.view.frame
-        imageView.center = self.view.center
-        return imageView
+     lazy var indicator: SplashIndicatorView = {
+        let view = SplashIndicatorView()
+        view.frame = self.view.frame
+        view.center = self.view.center
+        view.isHidden = true
+        return view
     }()
 
     private lazy var pageControl: UIPageControl = {
@@ -182,7 +183,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
 
-//        self.tabBarController?.view.addSubview(indicatorImageView)
+        self.tabBarController?.view.addSubview(indicator)
         tableView.addSubview(pageControl)
         tableView.bringSubviewToFront(pageControl)
         tableView.register(tableNIB, forCellReuseIdentifier: "TableViewCellId")
@@ -538,7 +539,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         let storboard = UIStoryboard.init(name: "Main", bundle: nil)
-        guard let collectionViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController") as? StoreCollectionViewController else {
+        guard let storeViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController") as? StoreCollectionViewController else {
             return
         }
 
@@ -546,15 +547,14 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
         switch section {
         case .recommendFood:
-            collectionViewController.passingData(status: SelectState.food(foodId: recommendFood[indexPath.item].id, storeId: recommendFood[indexPath.item].storeId))
+            storeViewController.passingData(status: SelectState.food(foodId: recommendFood[indexPath.item].id, storeId: recommendFood[indexPath.item].storeId))
         case .nearestRest:
-            collectionViewController.passingData(status: SelectState.store(nearestRests[indexPath.item].id))
+            storeViewController.passingData(status: SelectState.store(nearestRests[indexPath.item].id))
         default:
             break
         }
-        print("selected collectionview tag \(collectionView.tag)")
 
-        self.navigationController?.pushViewController(collectionViewController, animated: true)
+        self.navigationController?.pushViewController(storeViewController, animated: true)
     }
 }
 

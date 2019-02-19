@@ -53,7 +53,6 @@
 		9956F7F121F98468004E9854 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956F7F021F98468004E9854 /* AppDelegate.swift */; };
 		9956F7F821F98468004E9854 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9956F7F621F98468004E9854 /* Main.storyboard */; };
 		9956F7FA21F98468004E9854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9956F7F921F98468004E9854 /* Assets.xcassets */; };
-		9956F7FD21F98468004E9854 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9956F7FB21F98468004E9854 /* LaunchScreen.storyboard */; };
 		995B1C4622152BF100A41176 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B1C4522152BF100A41176 /* MemoCell.swift */; };
 		995B1C5B22192DC300A41176 /* UiView+UtillForCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B1C5A22192DC300A41176 /* UiView+UtillForCustomView.swift */; };
 		995B1C5E2219348700A41176 /* CartModels+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B1C5D2219348700A41176 /* CartModels+Empty.swift */; };
@@ -102,6 +101,10 @@
 		D11B04D8220583A100F20363 /* LocationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D11B04D7220583A100F20363 /* LocationViewController.storyboard */; };
 		D11B04DA2205847F00F20363 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B04D92205847F00F20363 /* LocationViewController.swift */; };
 		D1391FC4220AB2D90064FC37 /* SaleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1391FC3220AB2D90064FC37 /* SaleCollectionViewCell.swift */; };
+		D13B820B221BEE2A00100451 /* Formatter+withSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13B820A221BEE2A00100451 /* Formatter+withSeparator.swift */; };
+		D13B820D221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13B820C221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift */; };
+		D13B8211221C26A900100451 /* SplashIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13B8210221C26A900100451 /* SplashIndicatorView.swift */; };
+		D13B8213221C288500100451 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D13B8212221C288500100451 /* Images.xcassets */; };
 		D16DAEE3220888F200564823 /* TotalPriceCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16DAEE2220888F200564823 /* TotalPriceCollectionReusableView.swift */; };
 		D196FE9D220DB48100F522C8 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D196FE9C220DB48100F522C8 /* LocationModel.swift */; };
 		D199236222045BAB00C7C857 /* UIButton+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199236122045BAB00C7C857 /* UIButton+Init.swift */; };
@@ -205,7 +208,6 @@
 		9956F7F021F98468004E9854 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9956F7F721F98468004E9854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9956F7F921F98468004E9854 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9956F7FC21F98468004E9854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9956F7FE21F98468004E9854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		995B1C4522152BF100A41176 /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
 		995B1C5A22192DC300A41176 /* UiView+UtillForCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiView+UtillForCustomView.swift"; sourceTree = "<group>"; };
@@ -257,6 +259,10 @@
 		D11B04D7220583A100F20363 /* LocationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationViewController.storyboard; sourceTree = "<group>"; };
 		D11B04D92205847F00F20363 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		D1391FC3220AB2D90064FC37 /* SaleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCollectionViewCell.swift; sourceTree = "<group>"; };
+		D13B820A221BEE2A00100451 /* Formatter+withSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter+withSeparator.swift"; sourceTree = "<group>"; };
+		D13B820C221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+formattedWithSeparator.swift"; sourceTree = "<group>"; };
+		D13B8210221C26A900100451 /* SplashIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashIndicatorView.swift; sourceTree = "<group>"; };
+		D13B8212221C288500100451 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D16DAEE2220888F200564823 /* TotalPriceCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalPriceCollectionReusableView.swift; sourceTree = "<group>"; };
 		D196FE9C220DB48100F522C8 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		D199236122045BAB00C7C857 /* UIButton+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Init.swift"; sourceTree = "<group>"; };
@@ -415,6 +421,7 @@
 				99342CCB21FB12FE0029DB10 /* Utill */,
 				995D9028221002B200DCA964 /* SupportFiles */,
 				9956F7FE21F98468004E9854 /* Info.plist */,
+				D13B8212221C288500100451 /* Images.xcassets */,
 			);
 			path = UberEats;
 			sourceTree = "<group>";
@@ -445,6 +452,8 @@
 				996F6BCD221304B50052CC36 /* UITableViewCell+ViewOption.swift */,
 				D107D21C22150E1D00322379 /* UIImageView+Init.swift */,
 				995B1C5A22192DC300A41176 /* UiView+UtillForCustomView.swift */,
+				D13B820A221BEE2A00100451 /* Formatter+withSeparator.swift */,
+				D13B820C221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -537,6 +546,7 @@
 				84DC183F21F9A51D008EE6D3 /* NearestCollectionViewCell.xib */,
 				84DC184F21F9AD7C008EE6D3 /* ItemView.storyboard */,
 				99342CC221FB12CF0029DB10 /* UberEatsTests */,
+				D13B8210221C26A900100451 /* SplashIndicatorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -598,7 +608,6 @@
 				9956F7F021F98468004E9854 /* AppDelegate.swift */,
 				9956F7F621F98468004E9854 /* Main.storyboard */,
 				9956F7F921F98468004E9854 /* Assets.xcassets */,
-				9956F7FB21F98468004E9854 /* LaunchScreen.storyboard */,
 				995D90232210023B00DCA964 /* GoogleService-Info.plist */,
 				998A247521FF2B1500AF250D /* .swiftlint.yml */,
 			);
@@ -871,9 +880,9 @@
 				84DC184121F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib in Resources */,
 				D1CED1C022075039007626B4 /* OrderCheckingCollectionReusableView.xib in Resources */,
 				D115BBB821F9D66100C57809 /* TimeAndLocationCollectionViewCell.xib in Resources */,
-				9956F7FD21F98468004E9854 /* LaunchScreen.storyboard in Resources */,
 				9956F7FA21F98468004E9854 /* Assets.xcassets in Resources */,
 				D115BBB421F9D49E00C57809 /* SearchCollectionViewCell.xib in Resources */,
+				D13B8213221C288500100451 /* Images.xcassets in Resources */,
 				84333AC52202CDB5007372DE /* Chatting.storyboard in Resources */,
 				992EDCEB21FDB0A7006CC894 /* FoodItemDetails.storyboard in Resources */,
 				84DC184721F9A51D008EE6D3 /* NearestCollectionViewCell.xib in Resources */,
@@ -1026,6 +1035,7 @@
 				D1AF1EA521F9A5A6004CA3A5 /* FoodCollectionViewCell.swift in Sources */,
 				D107D22722153A8100322379 /* LocationCellModel.swift in Sources */,
 				995D903F2210609400DCA964 /* StoreInfoCell.swift in Sources */,
+				D13B820B221BEE2A00100451 /* Formatter+withSeparator.swift in Sources */,
 				992EDCEF21FDB11B006CC894 /* FoodItemDetailsCell.swift in Sources */,
 				84FB11AD2202994F002C5F46 /* SectionEnum.swift in Sources */,
 				995B1C622219465200A41176 /* PriceInfoCell.swift in Sources */,
@@ -1046,6 +1056,7 @@
 				D196FE9D220DB48100F522C8 /* LocationModel.swift in Sources */,
 				995D904422106DE800DCA964 /* DeliveryAddressCell.swift in Sources */,
 				D1391FC4220AB2D90064FC37 /* SaleCollectionViewCell.swift in Sources */,
+				D13B8211221C26A900100451 /* SplashIndicatorView.swift in Sources */,
 				D118B7D52213A7AE00E5A85E /* StoreLocationView.swift in Sources */,
 				995B1C5E2219348700A41176 /* CartModels+Empty.swift in Sources */,
 				D1391FC4220AB2D90064FC37 /* SaleCollectionViewCell.swift in Sources */,
@@ -1090,6 +1101,7 @@
 				D11B04DA2205847F00F20363 /* LocationViewController.swift in Sources */,
 				995B1C602219384100A41176 /* PaymentInfoCell.swift in Sources */,
 				D199236222045BAB00C7C857 /* UIButton+Init.swift in Sources */,
+				D13B820D221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift in Sources */,
 				D1F3A8F22212E606000448DD /* StoreModel.swift in Sources */,
 				D102A68A2208335E004B458C /* OrderNameCollectionReusableView.swift in Sources */,
 				992EDCED21FDB0C6006CC894 /* FoodItemDetailsViewController.swift in Sources */,
@@ -1123,14 +1135,6 @@
 				9956F7F721F98468004E9854 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9956F7FB21F98468004E9854 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9956F7FC21F98468004E9854 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

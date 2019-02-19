@@ -40,7 +40,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>get ur location for collecting data</string>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>ItemView</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Chatting</string>
 	<key>UIRequiredDeviceCapabilities</key>
