@@ -539,7 +539,8 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         let storboard = UIStoryboard.init(name: "Main", bundle: nil)
-        guard let storeViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController") as? StoreCollectionViewController else {
+        guard let storeViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController")
+            as? StoreCollectionViewController else {
             return
         }
 
@@ -547,7 +548,8 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
         switch section {
         case .recommendFood:
-            storeViewController.passingData(status: SelectState.food(foodId: recommendFood[indexPath.item].id, storeId: recommendFood[indexPath.item].storeId))
+            storeViewController.passingData(status: SelectState.food(foodId: recommendFood[indexPath.item].id,
+                                                                     storeId: recommendFood[indexPath.item].storeId))
         case .nearestRest:
             storeViewController.passingData(status: SelectState.store(nearestRests[indexPath.item].id))
         default:

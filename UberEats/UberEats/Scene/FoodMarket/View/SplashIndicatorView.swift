@@ -30,7 +30,11 @@ class SplashIndicatorView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        Timer.scheduledTimer(timeInterval: 0, target: self, selector: #selector(setupIndicatorAnimation(_:)), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 0,
+                             target: self,
+                             selector: #selector(setupIndicatorAnimation(_:)),
+                             userInfo: nil,
+                             repeats: false)
 
         setupLayout()
     }
@@ -58,16 +62,21 @@ class SplashIndicatorView: UIView {
 
     @objc private func setupIndicatorAnimation(_: Timer) {
         indicatorSlider.value = 1
-        UIView.animate(withDuration: 1, delay: 0, options: .repeat, animations: {
-            self.layoutIfNeeded()
-        }, completion: nil)
+        UIView.animate(withDuration: 1,
+                       delay: 0,
+                       options: .repeat,
+                       animations: {
+                            self.layoutIfNeeded()
+                        }, completion: nil)
     }
 }
 
 class IndicatorSlider: UISlider {
 
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
-        let customBounds = CGRect(origin: bounds.origin, size: CGSize(width: bounds.size.width, height: 5.0))
+        let customBounds = CGRect(origin: bounds.origin,
+                                  size: CGSize(width: bounds.size.width,
+                                               height: 5.0))
         super.trackRect(forBounds: customBounds)
         return customBounds
     }

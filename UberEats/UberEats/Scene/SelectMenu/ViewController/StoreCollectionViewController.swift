@@ -24,7 +24,7 @@ class StoreCollectionViewController: UICollectionViewController {
         }
     }
 
-    var storeImage: UIImage?
+    var store: Store?
     var storeId: String?
     var foodId: String?
 
