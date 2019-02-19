@@ -43,7 +43,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - Magic Number
     private lazy var heightOfScrollView: CGFloat = {
-         return self.view.frame.height * 0.3
+         return self.view.frame.height * 0.25
     }()
 
     private lazy var widthOfPageControl: CGFloat = {
@@ -68,6 +68,8 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     private let NearestCollectionViewCellNIB = UINib(nibName: "NearestCollectionViewCell", bundle: nil)
 
     private let seeMoreRestTableViewCellNIB = UINib(nibName: "SeeMoreRestTableViewCell", bundle: nil)
+
+    private let tableNIB = UINib(nibName: "TableViewCell", bundle: nil)
 
     // MARK: - Data
     private var foodMarketService: FoodMarketService = DependencyContainer.share.getDependency(key: .foodMarketService)
@@ -102,7 +104,11 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
-    private let tableNIB = UINib(nibName: "TableViewCell", bundle: nil)
+    private var moreRests: [Store] = [] {
+        didSet {
+
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +116,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         setupLocationAuthority()
 
         initFoodMarket()
+
         setupTableView()
 
         isScrolledByUser = false
@@ -163,15 +170,19 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
                     return
                 }
 
-                self?.nearestRests = nearestRest
-                //호출 순서가 이거보다 addbannerImage가 더 빠르다.
-                self?.bannerImagesURL = bannerImagesURL
+                guard let moreRests = dataResponse.value?.moreRests else {
+                    return
+                }
 
+                self?.nearestRests = nearestRest
+                self?.bannerImagesURL = bannerImagesURL
                 self?.expectTimeRests = exepectTimeRests
                 self?.recommendFood = recommendFood
                 self?.newRests = newRests
+                self?.moreRests = moreRests
 
                 self?.tableView.reloadData()
+
             } else {
                 fatalError()
             }
@@ -185,6 +196,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 //        self.tabBarController?.view.addSubview(indicatorImageView)
         tableView.addSubview(pageControl)
         tableView.bringSubviewToFront(pageControl)
+
         tableView.register(tableNIB, forCellReuseIdentifier: "TableViewCellId")
         tableView.register(seeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
     }
@@ -213,7 +225,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
             ImageNetworkManager.shared.getImageByCache(imageURL: imageURL, complection: { (downloadImage, _) in
                 bannerImage.image = downloadImage
             })
-
             scrollView.addSubview(bannerImage)
         }
 
@@ -246,12 +257,17 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        bannerTimer.invalidate()
+        if scrollView == self.scrollView {
+            bannerTimer.invalidate()
+        }
+
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self,
-                                           selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
+        if scrollView == self.scrollView {
+            bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self,
+                                               selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
+        }
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -259,12 +275,17 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
             let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
             pageControl.currentPage = pageIndex
         }
+
     }
 
 }
 
 // MARK: - TabelViewDelegate
 extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(indexPath)")
+    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return ItemViewController.numberOfSection
@@ -277,7 +298,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         case .bannerScroll, .recommendFood, .nearestRest, .expectedTime, .newRest, .discount, .searchAndSee:
             return section.numberOfSection
         case .moreRest:
-            return 10
+            return moreRests.count
         }
     }
 
@@ -293,8 +314,8 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = Section(rawValue: indexPath.section)!
 
+        let section = Section(rawValue: indexPath.section)!
         switch section {
         case .bannerScroll:
             let tablecell = setupTableViewCell(indexPath: indexPath)
@@ -316,10 +337,39 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             tablecell.collectionView.tag = indexPath.section
 
             tablecell.collectionView.register(RecommendCollectionViewCellNIB, forCellWithReuseIdentifier: "RecommendCollectionViewCellId")
+
             tablecell.setLabel(indexPath.section)
 
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
+
+            tablecell.collectionView.isHidden = false
+            tablecell.collectionView.reloadData()
+
+            tablecell.collectionView.isHidden = false
+            tablecell.collectionView.reloadData()
+
+            return tablecell
+
+        case .expectedTime:
+            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
+                                                                for: indexPath) as? TableViewCell else {
+                                                                    return .init()
+            }
+
+            tablecell.collectionView.tag = indexPath.section
+            tablecell.collectionView.register(ExpectTimeCollectionViewCellNIB, forCellWithReuseIdentifier: "ExpectTimeCollectionViewCellId")
+
+            tablecell.setLabel(indexPath.section)
+
+            tablecell.collectionView.delegate = self
+            tablecell.collectionView.dataSource = self
+
+            tablecell.collectionView.isHidden = false
+            tablecell.collectionView.reloadData()
+
+            tablecell.collectionView.isHidden = false
+            tablecell.collectionView.reloadData()
 
             return tablecell
         case .newRest:
@@ -330,32 +380,21 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
             tablecell.collectionView.tag = indexPath.section
             tablecell.collectionView.register(NewRestCollectionViewCellNIB, forCellWithReuseIdentifier: "NewRestCollectionViewCellId")
+
             tablecell.setLabel(indexPath.section)
 
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
 
+            tablecell.collectionView.isHidden = false
+            tablecell.collectionView.reloadData()
             return tablecell
-        case .expectedTime:
-            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
-                                                                for: indexPath) as? TableViewCell else {
-                                                                    return .init()
-            }
 
-            tablecell.collectionView.tag = indexPath.section
-            tablecell.collectionView.register(ExpectTimeCollectionViewCellNIB, forCellWithReuseIdentifier: "ExpectTimeCollectionViewCellId")
-            tablecell.setLabel(indexPath.section)
-
-            tablecell.collectionView.delegate = self
-            tablecell.collectionView.dataSource = self
-
-            return tablecell
         case .nearestRest:
             guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
                                                                 for: indexPath) as? TableViewCell else {
                                                                     return .init()
             }
-
             tablecell.collectionView.tag = indexPath.section
             tablecell.collectionView.register(NearestCollectionViewCellNIB, forCellWithReuseIdentifier: "NearestCollectionViewCellId")
 
@@ -363,9 +402,11 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
-            tablecell.collectionView.isHidden = false
 
+            tablecell.collectionView.isHidden = false
+            tablecell.collectionView.reloadData()
             return tablecell
+
         case .discount:
             guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
                                                                 for: indexPath) as? TableViewCell else {
@@ -373,23 +414,35 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             }
 
             tablecell.collectionView.tag = indexPath.section
+
             tablecell.recommendLabel.text = "주문시 5천원 할인 받기"
-            //tablecell.collectionView.removeFromSuperview()
             tablecell.collectionView.isHidden = true
 
             return tablecell
         case .moreRest:
             if indexPath.row != 0 {
-                guard let tablecellOfsixCell = tableView.dequeueReusableCell(
+                guard let moreRestTableViewCell = tableView.dequeueReusableCell(
                     withIdentifier: "SeeMoreRestTableViewCellId",
                     for: indexPath) as? SeeMoreRestTableViewCell else {
                         return .init()
                 }
-                return tablecellOfsixCell
+
+                if moreRests.count > indexPath.row {
+                    moreRestTableViewCell.moreRests = moreRests[indexPath.row]
+
+                    guard let imageURL = URL(string: moreRests[indexPath.item].mainImage) else {
+                        return moreRestTableViewCell
+                    }
+
+                    ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (downloadImage, _) in
+                        moreRestTableViewCell.mainImage.image = downloadImage
+                    }
+
+                }
+                return moreRestTableViewCell
             } else {
                 return .init()
             }
-
         case .searchAndSee:
             guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
                                                                 for: indexPath) as? TableViewCell else {
@@ -397,13 +450,11 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             }
 
             tablecell.collectionView.tag = indexPath.section
-            tablecell.recommendLabel.text = "주문시 5천원 할인 받기"
-            //tablecell.collectionView.removeFromSuperview()
+            tablecell.recommendLabel.text = "SearchAndSee"
             tablecell.collectionView.isHidden = true
+
             return tablecell
         }
-
-        return .init()
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -411,7 +462,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case .moreRest:
             if indexPath.row == 0 {
-                return 80
+                return 70
             } else {
                 return section.heightOfTableViewCell()
             }
@@ -423,12 +474,6 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return heightOfFooter
     }
-
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
-        print("redraw \(indexPath.section):\(indexPath.row)")
-    }
-
 }
 
 // MARK: - CollectionViewDelegate
@@ -457,15 +502,13 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let section = Section(rawValue: collectionView.tag)!
         switch section {
         case .recommendFood:
-            guard let recommendFoodCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? RecommendCollectionViewCell else {
+            guard let recommendFoodCell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecommendCollectionViewCellId", for: indexPath) as? RecommendCollectionViewCell else {
                 return .init()
             }
 
             if recommendFood.count > indexPath.item {
                 recommendFoodCell.recommendFood = recommendFood[indexPath.item]
                 recommendFoodCell.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: 1, height: -1), radius: 5.0, scale: true)
-
-                print("recommend \(recommendFoodCell.bugerLabel)")
 
                 guard let imageURL = URL(string: recommendFood[indexPath.item].foodImageURL) else {
                     return recommendFoodCell
@@ -474,31 +517,33 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     recommendFoodCell.image.image = downloadImage
                 }
             }
+
             return recommendFoodCell
         case .nearestRest:
-            guard let nearestRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? NearestCollectionViewCell else {
+            guard let nearestRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: "NearestCollectionViewCellId", for: indexPath) as? NearestCollectionViewCell else {
                 return .init()
             }
 
             if newRests.count > indexPath.item {
                 nearestRestCell.nearestRest = nearestRests[indexPath.item]
-                print("nearest \(nearestRestCell.name)")
+
                 nearestRestCell.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: 1, height: -1), radius: 5.0, scale: true)
 
                 guard let imageURL = URL(string: nearestRests[indexPath.item].mainImage) else {
                     return nearestRestCell
                 }
 
-                ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak self] (downloadImage, _) in
+                ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (downloadImage, _) in
                     nearestRestCell.mainImage.image = downloadImage
                 }
             }
 
             return nearestRestCell
         case .expectedTime:
-            guard let exepectTimeRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? ExpectTimeCollectionViewCell else {
+            guard let exepectTimeRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExpectTimeCollectionViewCellId", for: indexPath) as? ExpectTimeCollectionViewCell else {
                 return .init()
             }
+
             if expectTimeRests.count > indexPath.item {
                 exepectTimeRestCell.expectTimeRest = expectTimeRests[indexPath.item]
                 exepectTimeRestCell.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: 1, height: -1), radius: 5.0, scale: true)
@@ -507,15 +552,16 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     return exepectTimeRestCell
                 }
 
-                ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak self] (image, _) in
+                ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (image, _) in
                     exepectTimeRestCell.mainImage.image = image
                 }
             }
             return exepectTimeRestCell
         case .newRest:
-            guard let newRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? NewRestCollectionViewCell else {
+            guard let newRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewRestCollectionViewCellId", for: indexPath) as? NewRestCollectionViewCell else {
                 return .init()
             }
+
             if newRests.count > indexPath.item {
                 newRestCell.newRest = newRests[indexPath.item]
                 newRestCell.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: 1, height: -1), radius: 5.0, scale: true)
@@ -529,7 +575,11 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 }
             }
             return newRestCell
-        default:
+        case .searchAndSee, .discount:
+            return .init()
+        case .bannerScroll:
+            return .init()
+        case .moreRest:
             return .init()
         }
 
@@ -549,10 +599,13 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
             collectionViewController.passingData(status: SelectState.food(foodId: recommendFood[indexPath.item].id, storeId: recommendFood[indexPath.item].storeId))
         case .nearestRest:
             collectionViewController.passingData(status: SelectState.store(nearestRests[indexPath.item].id))
+        case .expectedTime:
+            collectionViewController.passingData(status: SelectState.store(expectTimeRests[indexPath.item].id))
+        case .newRest:
+            collectionViewController.passingData(status: SelectState.store(newRests[indexPath.item].id))
         default:
             break
         }
-        print("selected collectionview tag \(collectionView.tag)")
 
         self.navigationController?.pushViewController(collectionViewController, animated: true)
     }
@@ -582,7 +635,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
                 cellHeight = 280.46875
             }
 
-            return .init(width: view.frame.width * 0.8, height: cellHeight)
+            return .init(width: self.view.frame.width * 0.8, height: cellHeight)
         case .nearestRest:
             guard let nearestRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? NearestCollectionViewCell else {
                 return .init()
@@ -598,7 +651,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
                 nearestRestCell.promotion.isHidden = false
                 cellHeight = 280.46875
             }
-            return .init(width: view.frame.width * 0.8, height: cellHeight)
+            return .init(width: 300, height: cellHeight)
         case .expectedTime:
             guard let expectTimeCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? ExpectTimeCollectionViewCell else {
                 return .init()
@@ -613,7 +666,8 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
                 expectTimeCell.promotion.isHidden = false
                 cellHeight = 280.46875
             }
-            return .init(width: view.frame.width * 0.8, height: cellHeight)
+            return .init(width: 300, height: cellHeight)
+
         case .newRest:
             guard let newRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? NewRestCollectionViewCell else {
                 return .init()
@@ -629,8 +683,12 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
                 newRestCell.promotion.isHidden = false
                 cellHeight = 280.46875
             }
-            return .init(width: view.frame.width * 0.8, height: cellHeight)
+
+            return .init(width: 300, height: cellHeight)
+
         case .discount:
+            return .init(width: 5, height: 5)
+        case .moreRest:
             return .init(width: 0, height: 0)
         default:
             return .init(width: 400, height: 400)
@@ -642,6 +700,32 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         let section = Section(rawValue: collectionView.tag)!
         return section.getEdgeInset
+    }
+
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        print(scrollView.contentOffset.y)
+        if scrollView != self.scrollView && scrollView != self.tableView {
+            let pageWidth: Float = Float(view.frame.width * 0.8) + 10   //480 + 50
+            // width + space
+            let currentOffset: Float = Float(scrollView.contentOffset.x)
+
+            let targetOffset: Float = Float(targetContentOffset.pointee.x)
+
+            var newTargetOffset: Float = 0
+            if targetOffset > currentOffset {
+                newTargetOffset = ceilf(currentOffset / pageWidth) * pageWidth
+            } else {
+                newTargetOffset = floorf(currentOffset / pageWidth) * pageWidth
+            }
+            if newTargetOffset < 0 {
+                newTargetOffset = 0
+            } else if (newTargetOffset > Float(scrollView.contentSize.width)) {
+                newTargetOffset = Float(Float(scrollView.contentSize.width))
+            }
+
+            targetContentOffset.pointee.x = CGFloat(currentOffset)
+            scrollView.setContentOffset(CGPoint(x: CGFloat(newTargetOffset), y: scrollView.contentOffset.y), animated: true)
+        }
     }
 
 }
@@ -657,5 +741,13 @@ extension UICollectionViewCell {
         layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 2
+    }
+}
+
+extension NSLayoutConstraint {
+
+    override open var description: String {
+        let id = identifier ?? ""
+        return "id: \(id), constant: \(constant)" //you may print whatever you want here
     }
 }

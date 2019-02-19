@@ -12,88 +12,90 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NearestCollectionViewCell" customModule="UberEats" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="NearestCollectionViewCellId" id="gTV-IL-0wX" customClass="NearestCollectionViewCell" customModule="UberEats" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="311" height="310"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="311" height="310"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" restorationIdentifier="newrestCellView" translatesAutoresizingMaskIntoConstraints="NO" id="Zsg-eV-HuY">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zsg-eV-HuY">
                         <rect key="frame" x="0.0" y="0.0" width="311" height="310"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="newRestImage" translatesAutoresizingMaskIntoConstraints="NO" id="Rez-OW-kW8">
                                 <rect key="frame" x="9" y="9" width="293" height="140"/>
+                                <accessibility key="accessibilityConfiguration" identifier="nearestCollectionImage"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="rCG-dL-PQI"/>
+                                    <constraint firstAttribute="height" constant="140" identifier="NearestHeight" id="rCG-dL-PQI"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" axis="vertical" distribution="equalSpacing" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Dn2-mQ-W59">
-                                <rect key="frame" x="12" y="167" width="287" height="131"/>
+                                <rect key="frame" x="9" y="161" width="293" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="newRestName" text="명인만두 명동점 Myungin Mandu MyeongDong" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaH-G4-9vE">
-                                        <rect key="frame" x="0.0" y="0.0" width="287" height="21.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="293" height="20.5"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="NearestName"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="nearRestCategory" text="$ * 분식" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hA-dM-PSu">
-                                        <rect key="frame" x="0.0" y="41" width="34.5" height="12"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="0.0" y="29.5" width="44" height="16"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="NearestCategory"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="s9U-Xf-9hB">
-                                        <rect key="frame" x="0.0" y="72.5" width="118.5" height="19.5"/>
+                                        <rect key="frame" x="0.0" y="54" width="87" height="13.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="nearRestDelivery" text="25~35분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKM-eM-D7b">
-                                                <rect key="frame" x="0.0" y="0.0" width="62.5" height="19.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="44.5" height="13.5"/>
+                                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="NearestDelivery"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$7000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYe-gY-OCe">
-                                                <rect key="frame" x="70.5" y="0.0" width="48" height="19.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <rect key="frame" x="52.5" y="0.0" width="34.5" height="13.5"/>
+                                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="nearRestPromotion" text="케이에프씨 광화문 KFC Gwanghwa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xiv-rP-glh">
-                                        <rect key="frame" x="0.0" y="111.5" width="247" height="19.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="19.5" id="dAa-Cf-dF7"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" restorationIdentifier="nearRestPromotion" text="케이에프씨 광화문 KFC Gwanghwa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xiv-rP-glh">
+                                        <rect key="frame" x="0.0" y="76.5" width="164.5" height="13.5"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="NearestPromotion"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Xiv-rP-glh" secondAttribute="bottom" id="uPA-TJ-6MY"/>
-                                    <constraint firstItem="jaH-G4-9vE" firstAttribute="top" secondItem="Dn2-mQ-W59" secondAttribute="top" id="xn6-B3-EhR"/>
+                                    <constraint firstAttribute="height" constant="90" id="m7c-ln-Yxz"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Dn2-mQ-W59" secondAttribute="trailing" constant="12" id="NCb-h8-7pg"/>
-                            <constraint firstItem="Rez-OW-kW8" firstAttribute="leading" secondItem="Zsg-eV-HuY" secondAttribute="leading" constant="9" id="OkQ-K3-5Zh"/>
-                            <constraint firstAttribute="trailing" secondItem="Rez-OW-kW8" secondAttribute="trailing" constant="9" id="OtG-kX-pja"/>
-                            <constraint firstItem="Rez-OW-kW8" firstAttribute="top" secondItem="Zsg-eV-HuY" secondAttribute="top" constant="9" id="ULi-kN-j9e"/>
-                            <constraint firstItem="Dn2-mQ-W59" firstAttribute="top" secondItem="Rez-OW-kW8" secondAttribute="bottom" constant="18" id="hyM-oK-IDu"/>
-                            <constraint firstItem="Dn2-mQ-W59" firstAttribute="leading" secondItem="Zsg-eV-HuY" secondAttribute="leading" constant="12" id="vvd-l3-F2V"/>
-                            <constraint firstAttribute="bottom" secondItem="Dn2-mQ-W59" secondAttribute="bottom" constant="12" id="zAP-Vv-8y3"/>
+                            <constraint firstAttribute="trailing" secondItem="Dn2-mQ-W59" secondAttribute="trailing" priority="999" constant="9" identifier="NearestTrailingStackView" id="NCb-h8-7pg"/>
+                            <constraint firstItem="Rez-OW-kW8" firstAttribute="leading" secondItem="Zsg-eV-HuY" secondAttribute="leading" constant="9" identifier="NearestImageLeading" id="OkQ-K3-5Zh"/>
+                            <constraint firstItem="Rez-OW-kW8" firstAttribute="trailing" secondItem="Zsg-eV-HuY" secondAttribute="trailing" priority="999" constant="-9" identifier="NearestTrailing" id="OtG-kX-pja"/>
+                            <constraint firstItem="Rez-OW-kW8" firstAttribute="top" secondItem="Zsg-eV-HuY" secondAttribute="top" constant="9" identifier="NearestMainImageTop" id="ULi-kN-j9e"/>
+                            <constraint firstItem="Dn2-mQ-W59" firstAttribute="top" secondItem="Rez-OW-kW8" secondAttribute="bottom" constant="12" identifier="NearestStackViewTop" id="hyM-oK-IDu"/>
+                            <constraint firstItem="Dn2-mQ-W59" firstAttribute="leading" secondItem="Zsg-eV-HuY" secondAttribute="leading" constant="9" identifier="NearestStackViewLeading" id="vvd-l3-F2V"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="Zsg-eV-HuY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2gP-wi-V9I"/>
-                <constraint firstItem="Zsg-eV-HuY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="3cu-1S-hK7"/>
-                <constraint firstAttribute="trailing" secondItem="Zsg-eV-HuY" secondAttribute="trailing" id="V1f-0L-bjy"/>
-                <constraint firstAttribute="bottom" secondItem="Zsg-eV-HuY" secondAttribute="bottom" id="wII-vh-b36"/>
+                <constraint firstItem="Zsg-eV-HuY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" identifier="NearestViewLeading" id="2gP-wi-V9I"/>
+                <constraint firstItem="Zsg-eV-HuY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" identifier="NearestViewTop" id="3cu-1S-hK7"/>
+                <constraint firstAttribute="trailing" secondItem="Zsg-eV-HuY" secondAttribute="trailing" identifier="NearestViewTrailing" id="V1f-0L-bjy"/>
+                <constraint firstAttribute="bottom" secondItem="Zsg-eV-HuY" secondAttribute="bottom" identifier="NearestViewBottom" id="wII-vh-b36"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="189" height="255"/>

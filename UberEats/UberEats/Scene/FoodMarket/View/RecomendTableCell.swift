@@ -8,9 +8,13 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell, UICollectionViewDelegate {
+class RecomendTableCell: UITableViewCell, UICollectionViewDelegate {
 
-    @IBOutlet var collectionView: UICollectionView!
+    public let collectionView: UICollectionView = {
+        let collectionVIew = UICollectionView()
+        collectionVIew.translatesAutoresizingMaskIntoConstraints = false
+        return collectionVIew
+    }()
 
     public let recommendLabel: UILabel = {
         let label = UILabel()
@@ -38,6 +42,7 @@ class TableViewCell: UITableViewCell, UICollectionViewDelegate {
         super.awakeFromNib()
 
         self.addSubview(recommendLabel)
+        self.addSubview(collectionView)
 
         recommendLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
         recommendLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
