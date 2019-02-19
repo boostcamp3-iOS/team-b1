@@ -41,6 +41,7 @@ class NearestCollectionViewCell: UICollectionViewCell {
 
         mainImage.layer.cornerRadius = 3
         mainImage.layer.masksToBounds = true
+
     }
 
 }

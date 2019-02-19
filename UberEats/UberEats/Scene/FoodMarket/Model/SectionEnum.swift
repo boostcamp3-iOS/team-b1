@@ -79,7 +79,7 @@ enum Section: Int, CaseIterable {
 
     func heightByDevice(section: Section) -> CGFloat {
         switch self {
-        case .recommendFood, .newRest, .expectedTime, .moreRest, .nearestRest:
+        case .recommendFood, .newRest, .expectedTime, .nearestRest :
             switch UIScreen.main.nativeBounds.height {
             case 960://iPhones_4_4S
                 return 343
@@ -98,6 +98,25 @@ enum Section: Int, CaseIterable {
             default://unknown
                 return 300
             }
+        case .moreRest:
+            switch UIScreen.main.nativeBounds.height {
+            case 960://iPhones_4_4S
+                return 343
+            case 1136://iPhones_5_5s_5c_SE
+                return 343
+            case 1334://iPhones_6_6s_7_8
+                return 280
+            case 1792://iPhone_XR
+                return 380
+            case 1920, 2208://iPhones_6Plus_6sPlus_7Plus_8Plus
+                return 360
+            case 2436://iPhones_X_XS
+                return 280
+            case 2688://iPhone_XSMax
+                return 400
+            default://unknown
+                return 300
+            }
         default:
             return 400
         }
@@ -108,15 +127,15 @@ enum Section: Int, CaseIterable {
         case .bannerScroll:
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         case .recommendFood:
-            return UIEdgeInsets(top: 12, left: 24, bottom: 0, right: 24)
+            return UIEdgeInsets(top: 0, left: UIScreen.main.nativeBounds.width * 0.03, bottom: 0, right: UIScreen.main.nativeBounds.width * 0.03)
         case .nearestRest:
-            return UIEdgeInsets(top: 12, left: 24, bottom: 0, right: 24)
+            return UIEdgeInsets(top: 0, left: UIScreen.main.nativeBounds.width * 0.03, bottom: 0, right: UIScreen.main.nativeBounds.width * 0.03)
         case .expectedTime:
-            return UIEdgeInsets(top: 12, left: 24, bottom: 0, right: 24)
+            return UIEdgeInsets(top: 0, left: UIScreen.main.nativeBounds.width * 0.03, bottom: 0, right: UIScreen.main.nativeBounds.width * 0.03)
         case .newRest:
-            return UIEdgeInsets(top: 12, left: 24, bottom: 0, right: 24)
+            return UIEdgeInsets(top: 0, left: UIScreen.main.nativeBounds.width * 0.03, bottom: 0, right: UIScreen.main.nativeBounds.width * 0.03)
         default:
-            return UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
 
