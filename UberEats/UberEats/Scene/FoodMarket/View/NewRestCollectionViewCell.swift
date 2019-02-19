@@ -45,4 +45,10 @@ class NewRestCollectionViewCell: UICollectionViewCell {
         mainImage.layer.masksToBounds = true
     }
 
+    override func prepareForReuse() {
+        name.text = ""
+        category.text = ""
+        deliveryTime.text = ""
+        promotion.text = ""
+    }
 }

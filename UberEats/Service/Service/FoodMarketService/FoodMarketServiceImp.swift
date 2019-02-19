@@ -21,9 +21,16 @@ internal class FoodMarketServiceImp: FoodMarketService {
     
     func requestFoodMarket(completionHandler: @escaping (DataResponse<BusinessFoodMarket>) -> Void) {
         let requestURL = URL(string: "www.uberEats.com/foodMarket")!
-        network.request(with: requestURL) { ( data, response, _) in
+        network.request(with: requestURL) { ( data, response, requestError) in
+            
+            if let requestError = requestError {
+                completionHandler(DataResponse.failed(requestError))
+                return
+            }
+            
             if response?.httpStatusCode == .ok {
                 guard let data = data else {
+                    //completionHandler(DataResponse.failed(NetworkError.noDataReceived()))
                     return
                 }
                 do {
@@ -43,9 +50,10 @@ internal class FoodMarketServiceImp: FoodMarketService {
                                                                  recommendFood: recommendFood,
                                                                  bannerImages: bannerImageURL,
                                                                  expectTimeRest: expectTimeRest,
-                                                                 newRests: newRests
+                                                                 newRests: newRests,
+                                                                 moreRests: stores
                                                                  )
-
+                    
                     DispatchQueue.main.async {
                         completionHandler(DataResponse.success(caculatedFoodMarket))
                     }
@@ -69,6 +77,7 @@ internal class FoodMarketServiceImp: FoodMarketService {
         
         var expectTimeStore: [Store] = []
         var expectTimes: [String] = []
+        
         for store in stores {
             expectTimes =  store.deliveryTime.components(separatedBy: "-")
             
@@ -77,7 +86,7 @@ internal class FoodMarketServiceImp: FoodMarketService {
             expectTimeInt.append(Double(expectTimes[1]))
             
             if let fastestTime = expectTimeInt[0], let latestTime = expectTimeInt[1] {
-                if fastestTime <= 30 && 30 <= latestTime {
+                if fastestTime <= 30 {
                     expectTimeStore.append(store)
                 }
             }

@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NewRestCollectionViewCell" customModule="UberEats" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="NewRestCollectionViewCellId" id="gTV-IL-0wX" customClass="NewRestCollectionViewCell" customModule="UberEats" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="311" height="290"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -23,63 +23,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="311" height="290"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="image" translatesAutoresizingMaskIntoConstraints="NO" id="otV-fj-wF2">
-                                <rect key="frame" x="12" y="9" width="287" height="140"/>
+                                <rect key="frame" x="9" y="9" width="293" height="140"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="gpM-qK-dT6"/>
+                                    <constraint firstAttribute="height" constant="140" identifier="nearestImageHeight" id="gpM-qK-dT6"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Sqa-im-utD">
-                                <rect key="frame" x="12" y="161" width="287" height="117"/>
+                                <rect key="frame" x="12" y="164" width="287" height="90"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="label1" text="스쿨푸드 명동엠플라지점 School Food My" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lQU-t2-Cnm">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="label1" text="스쿨푸드 명동엠플라지점 School Food My" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lQU-t2-Cnm">
                                         <rect key="frame" x="0.0" y="0.0" width="287" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="label2" text="$한식" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3O-Sv-ASI">
-                                        <rect key="frame" x="0.0" y="36" width="24" height="12"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="label2" text="$한식" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3O-Sv-ASI">
+                                        <rect key="frame" x="0.0" y="28.5" width="24" height="12"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="label3" text="15-25분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qdj-ZI-L1U">
-                                        <rect key="frame" x="0.0" y="62.5" width="57" height="19.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="label3" text="15-25분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qdj-ZI-L1U">
+                                        <rect key="frame" x="0.0" y="47.5" width="57" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="label4" text="[하루종일] 신규회원 50% 할인코드 SEOUL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQS-O8-HlV">
-                                        <rect key="frame" x="0.0" y="96.5" width="287" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="label4" text="[하루종일] 신규회원 50% 할인코드 SEOUL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQS-O8-HlV">
+                                        <rect key="frame" x="0.0" y="74" width="287" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="lQU-t2-Cnm" firstAttribute="top" secondItem="Sqa-im-utD" secondAttribute="top" id="FZb-VR-rMQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="mQS-O8-HlV" secondAttribute="bottom" id="dir-cz-0si"/>
+                                    <constraint firstAttribute="height" constant="90" identifier="nearestStackHeigh" id="fPu-WV-BZV"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="otV-fj-wF2" secondAttribute="trailing" constant="12" id="4KB-2d-SzP"/>
-                            <constraint firstItem="otV-fj-wF2" firstAttribute="leading" secondItem="HkK-pq-1N0" secondAttribute="leading" constant="12" id="CS9-Gq-EW1"/>
-                            <constraint firstItem="otV-fj-wF2" firstAttribute="top" secondItem="HkK-pq-1N0" secondAttribute="top" constant="9" id="Hhc-CB-cuO"/>
-                            <constraint firstItem="Sqa-im-utD" firstAttribute="leading" secondItem="HkK-pq-1N0" secondAttribute="leading" constant="12" id="ZTD-C9-ZpQ"/>
-                            <constraint firstAttribute="trailing" secondItem="Sqa-im-utD" secondAttribute="trailing" constant="12" id="eoj-Pw-Jwc"/>
-                            <constraint firstItem="Sqa-im-utD" firstAttribute="top" secondItem="otV-fj-wF2" secondAttribute="bottom" constant="12" id="gOH-k4-6eA"/>
-                            <constraint firstAttribute="bottom" secondItem="Sqa-im-utD" secondAttribute="bottom" constant="12" id="xNf-5M-Aj3"/>
+                            <constraint firstAttribute="trailing" secondItem="otV-fj-wF2" secondAttribute="trailing" constant="9" identifier="nearestImageTrailing" id="4KB-2d-SzP"/>
+                            <constraint firstItem="otV-fj-wF2" firstAttribute="leading" secondItem="HkK-pq-1N0" secondAttribute="leading" priority="999" constant="9" identifier="nearestImageLeading" id="CS9-Gq-EW1"/>
+                            <constraint firstItem="otV-fj-wF2" firstAttribute="top" secondItem="HkK-pq-1N0" secondAttribute="top" constant="9" identifier="nearestImageTop" id="Hhc-CB-cuO"/>
+                            <constraint firstItem="Sqa-im-utD" firstAttribute="leading" secondItem="HkK-pq-1N0" secondAttribute="leading" priority="999" constant="12" identifier="nearestStackLeading" id="ZTD-C9-ZpQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Sqa-im-utD" secondAttribute="trailing" priority="999" constant="12" identifier="nearestStackTrailing" id="eoj-Pw-Jwc"/>
+                            <constraint firstItem="Sqa-im-utD" firstAttribute="top" secondItem="otV-fj-wF2" secondAttribute="bottom" constant="15" identifier="nearestStackTop" id="gOH-k4-6eA"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="HkK-pq-1N0" secondAttribute="bottom" id="3v0-vy-IQL"/>
-                <constraint firstAttribute="trailing" secondItem="HkK-pq-1N0" secondAttribute="trailing" id="JOj-7H-sfA"/>
-                <constraint firstItem="HkK-pq-1N0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Qd2-Z5-5zx"/>
-                <constraint firstItem="HkK-pq-1N0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="y3p-lv-TCs"/>
+                <constraint firstAttribute="bottom" secondItem="HkK-pq-1N0" secondAttribute="bottom" identifier="NearestViewBottom" id="3v0-vy-IQL"/>
+                <constraint firstAttribute="trailing" secondItem="HkK-pq-1N0" secondAttribute="trailing" identifier="NearestViewTrailing" id="JOj-7H-sfA"/>
+                <constraint firstItem="HkK-pq-1N0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" identifier="NearestViewLeading" id="Qd2-Z5-5zx"/>
+                <constraint firstItem="HkK-pq-1N0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" identifier="NearestViewTop" id="y3p-lv-TCs"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="117" height="204"/>
