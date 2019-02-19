@@ -37,7 +37,7 @@
         "foodName": "카푸치노 Cappucinno",
         "foodDescription": "",
         "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/airInTheCafe/cappucinno.jpeg?raw=true",
-        "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/airInTheCafe/americano_low.jpeg?raw=true",
+        "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/airInTheCafe/cappucinno_low.jpeg?raw=true",
         "basePrice": 4000,
         "storeId": "store1",
         "categoryId": "category1",

@@ -31,7 +31,23 @@ class StoreCollectionViewController: UICollectionViewController {
     private var foodsService: FoodsService = DependencyContainer.share.getDependency(key: .foodsService)
 
     private var store: Store?
-    private var foods: [Food] = []
+
+    private var foods: [Food] = [] {
+        didSet {
+            foods.forEach {
+                if let imageURL = URL(string: $0.lowImageURL) {
+                    ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (_, error) in
+                        if error != nil {
+                            return
+                        }
+
+                        self.dataIndicator.stopAnimating()
+                    }
+                }
+            }
+        }
+    }
+
     private var foodsOfCategory: [String: [Food]] = [:]
 
     private let padding: CGFloat = 5
@@ -52,6 +68,16 @@ class StoreCollectionViewController: UICollectionViewController {
     private let likeButton = UIButton().initButtonWithImage("like")
 
     private let floatingView = FloatingView()
+
+    lazy var dataIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.frame = self.view.frame
+        indicator.center = self.view.center
+        indicator.hidesWhenStopped = true
+        indicator.style = .gray
+        indicator.backgroundColor = .white
+        return indicator
+    }()
 
     lazy var menuBarCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -81,6 +107,8 @@ class StoreCollectionViewController: UICollectionViewController {
 
     // MARK: - Method
     private func setupData() {
+        dataIndicator.startAnimating()
+
         guard let storeId = storeId else {
             return
         }
@@ -117,6 +145,7 @@ class StoreCollectionViewController: UICollectionViewController {
             } else {
                 fatalError()
             }
+
         }
     }
 
@@ -129,6 +158,7 @@ class StoreCollectionViewController: UICollectionViewController {
         collectionView.addSubview(storeTitleView)
         view.addSubview(backButton)
         view.addSubview(likeButton)
+        view.addSubview(dataIndicator)
         menuBarCollectionView.addSubview(floatingView)
         view.addSubview(menuBarCollectionView)
 
@@ -231,6 +261,17 @@ class StoreCollectionViewController: UICollectionViewController {
             ])
     }
 
+    private func seperateCategory() {
+        foods.forEach {
+            if !foodsOfCategory.keys.contains($0.categoryId) {
+                foodsOfCategory.updateValue([], forKey: $0.categoryId)
+                categorys.append($0.categoryName)
+            }
+
+            foodsOfCategory[$0.categoryId]?.append($0)
+        }
+    }
+
     private func pushFoodDetail() {
         if foodId != nil {
             let storyboard = UIStoryboard(name: "Cart", bundle: nil)
@@ -265,18 +306,7 @@ class StoreCollectionViewController: UICollectionViewController {
                                                                       price: price)]
 
             self.navigationController?.pushViewController(cartViewController, animated: true)
-//            self.present(cartViewController, animated: true, completion: nil)
-        }
-    }
-
-    private func seperateCategory() {
-        foods.forEach {
-            if !foodsOfCategory.keys.contains($0.categoryId) {
-                foodsOfCategory.updateValue([], forKey: $0.categoryId)
-                categorys.append($0.categoryName)
-            }
-
-            foodsOfCategory[$0.categoryId]?.append($0)
+            //            self.present(cartViewController, animated: true, completion: nil)
         }
     }
 
