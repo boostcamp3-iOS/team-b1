@@ -27,7 +27,6 @@ public class MockServer {
         try router.get("foodMarket", writtenResponse: { (request) -> Response in
             let data = try ResourceController.resourceWithData(path: request.path, root: type(of: self))
 
-//            request.component.query
             let storesData = try ResourceController.resourceWithData(path: "www.uberEats.com/stores", root: type(of: self))
 
             let foodsData = try ResourceController.resourceWithData(path: "www.uberEats.com/foods", root: type(of: self))
@@ -46,7 +45,7 @@ public class MockServer {
                     let storeId = "store" + String(index)
 
                     let foodsOfStore = foods.filter {
-                        return $0.storeId == storeId
+                        return $0.storeId == storeId && $0.foodImageURL != ""
                     }
 
                     guard let randomFood = foodsOfStore.randomElement() else {
