@@ -72,8 +72,8 @@
 },
 {
     "id" : "store4",
-    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/Salady/salady?raw=true",
-    "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/Salady/salady_low?raw=true",
+    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/Salady/salady.jpeg?raw=true",
+    "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/Salady/salady_low.jpeg?raw=true",
     "name": "샐러디 강남점 Salady Gangnam Branch",
     "category": "샐러드﹒샌드위치﹒카페﹒₩",
     "deliveryTime" : "5-15",
@@ -96,8 +96,8 @@
 },
 {
     "id" : "store5",
-    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/102J/102J?raw=true",
-    "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/102J/102J_low?raw=true",
+    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/102J/102J.jpeg?raw=true",
+    "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/102J/102J_low.jpeg?raw=true",
     "name": "102J",
     "category": "이탈리안﹒₩₩",
     "deliveryTime" : "25-35",
@@ -120,8 +120,8 @@
 },
 {
     "id" : "store6",
-    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/namhae/namhae?raw=true",
-    "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/namhae/namhae_low?raw=true",
+    "mainImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/namhae/namhae.jpeg?raw=true",
+    "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/namhae/namhae_low.jpeg?raw=true",
     "name": "남해 분식 Namhae Bunsik",
     "category": "한식﹒₩",
     "deliveryTime" : "20-30",
