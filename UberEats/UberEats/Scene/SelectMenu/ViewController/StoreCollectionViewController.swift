@@ -518,7 +518,7 @@ class StoreCollectionViewController: UICollectionViewController {
                 return
             }
 
-            guard let price = foodsOfCategory["category" + String(indexPath.section - DistanceBetween.menuAndRest + 1)]?[indexPath.item - DistanceBetween.titleAndFoodCell].basePrice else {
+            guard let selectedFood = foodsOfCategory["category" + String(indexPath.section - DistanceBetween.menuAndRest + 1)]?[indexPath.item - DistanceBetween.titleAndFoodCell] else {
                 return
             }
 
@@ -533,18 +533,11 @@ class StoreCollectionViewController: UICollectionViewController {
 
             cartViewController.cartModel = cartModel
             cartViewController.orderInfoModels = [OrderInfoModel.init(amount: 1,
-                                                                      orderName: "#12345",
-                                                                      price: price)]
+                                                                      orderName: selectedFood.foodName,
+                                                                      price: selectedFood.basePrice)]
 
-            self.present(cartViewController, animated: true, completion: nil)
-
-//            let storyboard = UIStoryboard.init(name: "FoodItemDetails", bundle: nil)
-//            let foodItemVC = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
-//
-//            foodItemVC.foodId = foodsOfCategory["category" + String(indexPath.section - DistanceBetween.menuAndRest + 1)]?[indexPath.item - DistanceBetween.titleAndFoodCell].id
-//            foodItemVC.storeId = storeId
-
-//            self.navigationController?.pushViewController(foodItemVC, animated: true)
+//            self.present(cartViewController, animated: true, completion: nil)
+            self.navigationController?.pushViewController(cartViewController, animated: true)
         }
     }
 
