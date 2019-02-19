@@ -6,15 +6,12 @@
 //  Copyright © 2019 team-b1. All rights reserved.
 //
 import UIKit
-import CoreLocation
 import Service
 import DependencyContainer
 import ServiceInterface
 import Common
 
-class ItemViewController: UIViewController, UIScrollViewDelegate {
-
-    private let locationManager = CLLocationManager()
+class ItemViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
@@ -54,7 +51,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     private let heightOfPageControl: CGFloat = 37
 
-    private  lazy var heightOfFooter: CGFloat = {
+    private lazy var heightOfFooter: CGFloat = {
         return self.view.frame.height * (10 / 812)
     }()
 
@@ -62,12 +59,15 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     private static let numberOfSection = 8
 
+    private lazy var widthOfCollectionViewCell: CGFloat = {
+        return self.view.frame.width * 0.8
+    }()
+
     private let RecommendCollectionViewCellNIB = UINib(nibName: "RecommendCollectionViewCell", bundle: nil)
     private let ExpectTimeCollectionViewCellNIB = UINib(nibName: "ExpectTimeCollectionViewCell", bundle: nil)
     private let NewRestCollectionViewCellNIB = UINib(nibName: "NewRestCollectionViewCell", bundle: nil)
     private let NearestCollectionViewCellNIB = UINib(nibName: "NearestCollectionViewCell", bundle: nil)
-
-    private let seeMoreRestTableViewCellNIB = UINib(nibName: "SeeMoreRestTableViewCell", bundle: nil)
+    private let SeeMoreRestTableViewCellNIB = UINib(nibName: "SeeMoreRestTableViewCell", bundle: nil)
 
     private let tableNIB = UINib(nibName: "TableViewCell", bundle: nil)
 
@@ -113,8 +113,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupLocationAuthority()
-
         initFoodMarket()
 
         setupTableView()
@@ -128,12 +126,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     @IBAction func touchUpSettingLocation(_ sender: Any) {
         present(SettingLocationViewController(), animated: true, completion: nil)
-    }
-
-    private func setupLocationAuthority() {
-        // 위치 권한 요청
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.requestWhenInUseAuthorization()
     }
 
     private func setupDataInCollectionView(row: Int, section: Int) {
@@ -198,7 +190,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         tableView.bringSubviewToFront(pageControl)
 
         tableView.register(tableNIB, forCellReuseIdentifier: "TableViewCellId")
-        tableView.register(seeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
+        tableView.register(SeeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
     }
 
     @objc func scrolledBanner() {
@@ -250,11 +242,15 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @objc private func changePage() {
-        var frame = CGRect(origin: CGPoint.zero, size: CGSize.zero)
+        let frame = CGRect(origin: CGPoint.zero, size: CGSize.zero)
         let changedPageNumber = pageControl.currentPage
         scrollView.frame.origin = CGPoint(x: frame.size.width * CGFloat(changedPageNumber), y: 0)
         scrollView.scrollRectToVisible(scrollView.frame, animated: true)
     }
+
+}
+
+extension ItemViewController: UIScrollViewDelegate {
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if scrollView == self.scrollView {
@@ -275,16 +271,38 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
             let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
             pageControl.currentPage = pageIndex
         }
-
     }
 
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if scrollView != self.scrollView && scrollView != self.tableView {
+            let pageWidth: Float = Float(view.frame.width * 0.8) + 10//width+spacing
+
+            let currentOffset: Float = Float(scrollView.contentOffset.x)
+
+            let targetOffset: Float = Float(targetContentOffset.pointee.x)
+
+            var newTargetOffset: Float = 0
+
+            newTargetOffset = targetOffset > currentOffset ?
+                ceilf(currentOffset / pageWidth) * pageWidth :
+                floorf(currentOffset / pageWidth) * pageWidth
+
+            if newTargetOffset < 0 {
+                newTargetOffset = 0
+            } else if (newTargetOffset > Float(scrollView.contentSize.width)) {
+                newTargetOffset = Float(Float(scrollView.contentSize.width))
+            }
+            targetContentOffset.pointee.x = CGFloat(currentOffset)
+            scrollView.setContentOffset(CGPoint(x: CGFloat(newTargetOffset), y: scrollView.contentOffset.y), animated: true)
+        }
+    }
 }
 
 // MARK: - TabelViewDelegate
 extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath)")
+
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -335,9 +353,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             }
 
             tablecell.collectionView.tag = indexPath.section
-
             tablecell.collectionView.register(RecommendCollectionViewCellNIB, forCellWithReuseIdentifier: "RecommendCollectionViewCellId")
-
             tablecell.setLabel(indexPath.section)
 
             tablecell.collectionView.delegate = self
@@ -346,11 +362,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             tablecell.collectionView.isHidden = false
             tablecell.collectionView.reloadData()
 
-            tablecell.collectionView.isHidden = false
-            tablecell.collectionView.reloadData()
-
             return tablecell
-
         case .expectedTime:
             guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
                                                                 for: indexPath) as? TableViewCell else {
@@ -368,16 +380,12 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             tablecell.collectionView.isHidden = false
             tablecell.collectionView.reloadData()
 
-            tablecell.collectionView.isHidden = false
-            tablecell.collectionView.reloadData()
-
             return tablecell
         case .newRest:
             guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
                                                                 for: indexPath) as? TableViewCell else {
                                                                     return .init()
             }
-
             tablecell.collectionView.tag = indexPath.section
             tablecell.collectionView.register(NewRestCollectionViewCellNIB, forCellWithReuseIdentifier: "NewRestCollectionViewCellId")
 
@@ -386,10 +394,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             tablecell.collectionView.delegate = self
             tablecell.collectionView.dataSource = self
 
-            tablecell.collectionView.isHidden = false
-            tablecell.collectionView.reloadData()
             return tablecell
-
         case .nearestRest:
             guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
                                                                 for: indexPath) as? TableViewCell else {
@@ -406,7 +411,6 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             tablecell.collectionView.isHidden = false
             tablecell.collectionView.reloadData()
             return tablecell
-
         case .discount:
             guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
                                                                 for: indexPath) as? TableViewCell else {
@@ -575,11 +579,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 }
             }
             return newRestCell
-        case .searchAndSee, .discount:
-            return .init()
-        case .bannerScroll:
-            return .init()
-        case .moreRest:
+        case .searchAndSee, .discount, .bannerScroll, .moreRest:
             return .init()
         }
 
@@ -623,7 +623,6 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
             guard let recommendFoodCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? RecommendCollectionViewCell else {
                 return .init()
             }
-
             var cellHeight: CGFloat = 0
             recommendFoodCell.recommendFood = recommendFood[indexPath.item]
 
@@ -635,7 +634,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
                 cellHeight = 280.46875
             }
 
-            return .init(width: self.view.frame.width * 0.8, height: cellHeight)
+            return .init(width: widthOfCollectionViewCell, height: cellHeight)
         case .nearestRest:
             guard let nearestRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? NearestCollectionViewCell else {
                 return .init()
@@ -651,7 +650,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
                 nearestRestCell.promotion.isHidden = false
                 cellHeight = 280.46875
             }
-            return .init(width: 300, height: cellHeight)
+            return .init(width: widthOfCollectionViewCell, height: cellHeight)
         case .expectedTime:
             guard let expectTimeCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? ExpectTimeCollectionViewCell else {
                 return .init()
@@ -666,7 +665,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
                 expectTimeCell.promotion.isHidden = false
                 cellHeight = 280.46875
             }
-            return .init(width: 300, height: cellHeight)
+            return .init(width: widthOfCollectionViewCell, height: cellHeight)
 
         case .newRest:
             guard let newRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: section.identifier, for: indexPath) as? NewRestCollectionViewCell else {
@@ -684,8 +683,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
                 cellHeight = 280.46875
             }
 
-            return .init(width: 300, height: cellHeight)
-
+            return .init(width: widthOfCollectionViewCell, height: cellHeight)
         case .discount:
             return .init(width: 5, height: 5)
         case .moreRest:
@@ -701,33 +699,6 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         let section = Section(rawValue: collectionView.tag)!
         return section.getEdgeInset
     }
-
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        print(scrollView.contentOffset.y)
-        if scrollView != self.scrollView && scrollView != self.tableView {
-            let pageWidth: Float = Float(view.frame.width * 0.8) + 10   //480 + 50
-            // width + space
-            let currentOffset: Float = Float(scrollView.contentOffset.x)
-
-            let targetOffset: Float = Float(targetContentOffset.pointee.x)
-
-            var newTargetOffset: Float = 0
-            if targetOffset > currentOffset {
-                newTargetOffset = ceilf(currentOffset / pageWidth) * pageWidth
-            } else {
-                newTargetOffset = floorf(currentOffset / pageWidth) * pageWidth
-            }
-            if newTargetOffset < 0 {
-                newTargetOffset = 0
-            } else if (newTargetOffset > Float(scrollView.contentSize.width)) {
-                newTargetOffset = Float(Float(scrollView.contentSize.width))
-            }
-
-            targetContentOffset.pointee.x = CGFloat(currentOffset)
-            scrollView.setContentOffset(CGPoint(x: CGFloat(newTargetOffset), y: scrollView.contentOffset.y), animated: true)
-        }
-    }
-
 }
 
 extension UICollectionViewCell {
@@ -741,13 +712,5 @@ extension UICollectionViewCell {
         layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 2
-    }
-}
-
-extension NSLayoutConstraint {
-
-    override open var description: String {
-        let id = identifier ?? ""
-        return "id: \(id), constant: \(constant)" //you may print whatever you want here
     }
 }
