@@ -41,6 +41,9 @@ class FoodCollectionViewCell: UICollectionViewCell {
     let foodImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = #colorLiteral(red: 0.8979219198, green: 0.8925844431, blue: 0.9020249844, alpha: 1)
+        imageView.layer.borderColor = #colorLiteral(red: 0.8979219198, green: 0.8925844431, blue: 0.9020249844, alpha: 1)
+        imageView.layer.borderWidth = 0.5
         return imageView
     }()
 
@@ -52,7 +55,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
 
             foodNameLabel.text = food.foodName
             foodContentsLabel.text = food.foodDescription
-            priceLabel.text = "￦" + String(food.basePrice)
+            priceLabel.text = "￦" + food.basePrice.formattedWithSeparator
         }
     }
 

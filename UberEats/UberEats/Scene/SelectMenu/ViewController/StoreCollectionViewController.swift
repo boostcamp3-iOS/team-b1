@@ -24,13 +24,12 @@ class StoreCollectionViewController: UICollectionViewController {
         }
     }
 
+    var store: Store?
     var storeId: String?
     var foodId: String?
 
     private var storeService: StoreService = DependencyContainer.share.getDependency(key: .storeService)
     private var foodsService: FoodsService = DependencyContainer.share.getDependency(key: .foodsService)
-
-    private var store: Store?
 
     private var foods: [Food] = [] {
         didSet {
@@ -42,6 +41,7 @@ class StoreCollectionViewController: UICollectionViewController {
                         }
 
                         self.dataIndicator.stopAnimating()
+                        self.collectionView.isScrollEnabled = true
                     }
                 }
             }
@@ -71,8 +71,8 @@ class StoreCollectionViewController: UICollectionViewController {
 
     lazy var dataIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
-        indicator.frame = self.view.frame
-        indicator.center = self.view.center
+        indicator.frame = CGRect(x: 0, y: self.view.frame.maxY / 2,
+                                 width: self.view.frame.width, height: self.view.frame.height / 2)
         indicator.hidesWhenStopped = true
         indicator.style = .gray
         indicator.backgroundColor = .white
@@ -108,12 +108,13 @@ class StoreCollectionViewController: UICollectionViewController {
     // MARK: - Method
     private func setupData() {
         dataIndicator.startAnimating()
+        collectionView.isScrollEnabled = false
 
         guard let storeId = storeId else {
             return
         }
 
-        storeService.requestStore(query: storeId) { [weak self] (response) in
+        storeService.requestStore(query: storeId, dispatchQueue: DispatchQueue.global()) { [weak self] (response) in
             if response.isSuccess {
                 guard let store = response.value?.store else {
                     return
@@ -127,7 +128,7 @@ class StoreCollectionViewController: UICollectionViewController {
             }
         }
 
-        foodsService.requestFoods(query: storeId) { [weak self] (response) in
+        foodsService.requestFoods(query: storeId, dispatchQueue: DispatchQueue.global()) { [weak self] (response) in
             if response.isSuccess {
                 guard let foods = response.value?.foods else {
                     return
@@ -158,7 +159,7 @@ class StoreCollectionViewController: UICollectionViewController {
         collectionView.addSubview(storeTitleView)
         view.addSubview(backButton)
         view.addSubview(likeButton)
-        view.addSubview(dataIndicator)
+        collectionView.addSubview(dataIndicator)
         menuBarCollectionView.addSubview(floatingView)
         view.addSubview(menuBarCollectionView)
 
@@ -573,7 +574,7 @@ class StoreCollectionViewController: UICollectionViewController {
             if scrollView.contentOffset.y > AnimationValues.scrollLimit
                 && backButton.currentImage == UIImage(named: "arrow") {
 
-                self.collectionView.contentInset = UIEdgeInsets(top: storeTitleView.frame.height,
+                self.collectionView.contentInset = UIEdgeInsets(top: storeTitleView.frame.height - 30,
                                                                 left: ValuesForCollectionView.menuBarZeroInset,
                                                                 bottom: ValuesForCollectionView.menuBarZeroInset,
                                                                 right: ValuesForCollectionView.menuBarZeroInset)
