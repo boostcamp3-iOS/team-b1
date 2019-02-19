@@ -65,7 +65,6 @@ class LocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tabBarController?.tabBar.isHidden = true
         orderDetailCollectionView.delegate = self
         orderDetailCollectionView.dataSource = self
         setupMapView()
@@ -232,7 +231,6 @@ class LocationViewController: UIViewController {
     }
 
     @objc private func touchUpBackButton(_: UIButton) {
-        tabBarController?.tabBar.isHidden = false
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -247,13 +245,13 @@ extension LocationViewController: GMSMapViewDelegate {
 
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         var userWindowPoint = mapView.projection.point(for: userMarker.position)
-        userWindowPoint.x = userWindowPoint.x + 9
-        userWindowPoint.y = userWindowPoint.y - 60
+        userWindowPoint.x += 9
+        userWindowPoint.y -= 60
         userWindow.frame = CGRect(x: userWindowPoint.x, y: userWindowPoint.y, width: 100, height: 40)
 
         var storeWindowPoint = mapView.projection.point(for: storeMarker.position)
-        storeWindowPoint.x = storeWindowPoint.x + 8
-        storeWindowPoint.y = storeWindowPoint.y + 2
+        storeWindowPoint.x += 8
+        storeWindowPoint.y += 2
         storeWindow.frame = CGRect(x: storeWindowPoint.x, y: storeWindowPoint.y, width: 100, height: 50)
 
     }
@@ -270,8 +268,6 @@ extension LocationViewController: UIScrollViewDelegate {
         }
 
         let currentScroll = scrollView.contentOffset.y
-
-        print("currentScroll : \(currentScroll)")
 
         mapView?.alpha = getMapViewAlpha(currentScroll)
         navigationController?.updateNavigationBarStatus(currentScroll, deliveryStartInfoHeight)
@@ -463,10 +459,7 @@ extension LocationViewController: UICollectionViewDelegateFlowLayout {
 
 extension LocationViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("location")
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-//        self.userLocation = locValue
     }
 }
 

@@ -13,7 +13,7 @@
         <!--Location View Controller-->
         <scene sceneID="Dmt-05-K2Q">
             <objects>
-                <viewController id="M39-Jk-Y9m" customClass="LocationViewController" customModule="UberEats" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="locationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="M39-Jk-Y9m" customClass="LocationViewController" customModule="UberEats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="37s-1q-ZC6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,7 +60,7 @@
         <!--Navigation Controller-->
         <scene sceneID="0A6-A5-rqx">
             <objects>
-                <navigationController storyboardIdentifier="searchView" automaticallyAdjustsScrollViewInsets="NO" id="Jrp-Wy-mW2" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="searchView" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jrp-Wy-mW2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BLb-Cf-0Sx">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>

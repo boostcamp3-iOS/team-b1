@@ -38,7 +38,8 @@ class CartViewController: UIViewController {
     }
 
     @IBAction func clickedExitButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 
     private func setUpCartModel() {
@@ -96,7 +97,12 @@ class CartViewController: UIViewController {
 extension CartViewController: OrderButtonClickable {
 
     func onClickedOrderButton(_ sender: Any) {
-        // TO DO
+
+        let storyboard = UIStoryboard.init(name: "LocationViewController", bundle: nil)
+        let foodItemVC = storyboard.instantiateViewController(withIdentifier: "locationViewController")
+
+//        self.present(foodItemVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(foodItemVC, animated: true)
     }
 
 }

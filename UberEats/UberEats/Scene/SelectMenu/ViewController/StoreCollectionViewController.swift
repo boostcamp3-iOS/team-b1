@@ -241,10 +241,12 @@ class StoreCollectionViewController: UICollectionViewController {
             }
 
             var price: Int = 0
+            var foodName: String = ""
 
             foods.forEach {
                 if foodId == $0.id {
                     price = $0.basePrice
+                    foodName = $0.foodName
                 }
             }
 
@@ -259,10 +261,11 @@ class StoreCollectionViewController: UICollectionViewController {
 
             cartViewController.cartModel = cartModel
             cartViewController.orderInfoModels = [OrderInfoModel.init(amount: 1,
-                                                                      orderName: "#12345",
+                                                                      orderName: foodName,
                                                                       price: price)]
 
-            self.present(cartViewController, animated: true, completion: nil)
+            self.navigationController?.pushViewController(cartViewController, animated: true)
+//            self.present(cartViewController, animated: true, completion: nil)
         }
     }
 
