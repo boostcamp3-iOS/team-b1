@@ -24,6 +24,7 @@
 		847794A92214461C003EA68D /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84CCFCF4220B038600F4A4EF /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		847794AB22144621003EA68D /* Waltz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847794AA22144621003EA68D /* Waltz.framework */; };
 		847794AC22144621003EA68D /* Waltz.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 847794AA22144621003EA68D /* Waltz.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		847CB24E221BE5E1000298EC /* RecomendTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CB24D221BE5E1000298EC /* RecomendTableCell.swift */; };
 		84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */; };
 		84CA5ED722113487007E95FF /* ServiceInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57930220C5A90002D792A /* ServiceInterface.framework */; };
 		84CA5EDA2211348F007E95FF /* ServiceInterface.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57930220C5A90002D792A /* ServiceInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -178,6 +179,7 @@
 		847794A222144606003EA68D /* DependencyContainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DependencyContainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		847794A522144614003EA68D /* MockServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MockServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		847794AA22144621003EA68D /* Waltz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Waltz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		847CB24D221BE5E1000298EC /* RecomendTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendTableCell.swift; sourceTree = "<group>"; };
 		84ADDE2821FF1F7E004A286E /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		84CCFCF4220B038600F4A4EF /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DC183921F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpectTimeCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 				84DC184F21F9AD7C008EE6D3 /* ItemView.storyboard */,
 				99342CC221FB12CF0029DB10 /* UberEatsTests */,
 				D13B8210221C26A900100451 /* SplashIndicatorView.swift */,
+				847CB24D221BE5E1000298EC /* RecomendTableCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1066,6 +1069,7 @@
 				D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */,
 				D115BBB721F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift in Sources */,
 				D1135C302210114C0032F103 /* DeliveryStartNoticeView.swift in Sources */,
+				847CB24E221BE5E1000298EC /* RecomendTableCell.swift in Sources */,
 				D107D22D2215823000322379 /* ToolBarView.swift in Sources */,
 				84DC185421F9C426008EE6D3 /* TabBarVC.swift in Sources */,
 				D107D229221541A200322379 /* MomentHeaderView.swift in Sources */,
@@ -1302,13 +1306,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P55BH5C78Q;
+				DEVELOPMENT_TEAM = 6958JMS7R4;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1321,13 +1325,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P55BH5C78Q;
+				DEVELOPMENT_TEAM = 6958JMS7R4;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

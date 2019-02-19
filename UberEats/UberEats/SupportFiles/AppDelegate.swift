@@ -9,11 +9,14 @@
 import UIKit
 import GoogleMaps
 import Firebase
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    private let locationManager = CLLocationManager()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -26,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = TabBarVC()
 
         window?.makeKeyAndVisible()
+        
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
 
         return true
     }
