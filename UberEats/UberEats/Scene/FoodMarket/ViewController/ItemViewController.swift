@@ -21,6 +21,13 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - ScrollView
     @IBOutlet var scrollView: UIScrollView!
 
+    lazy var indicatorImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "splash812"))
+        imageView.frame = self.view.frame
+        imageView.center = self.view.center
+        return imageView
+    }()
+
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl(frame: CGRect(x: self.leftPaddingOfPageControl,
                                                       y: heightOfScrollView - heightOfPageControl,
@@ -67,12 +74,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     private var recommendFood: [Food] = [] {
         didSet {
-            let indexPath = IndexPath(row: 0, section: 1)
-            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
-                                                                for: indexPath) as? TableViewCell else {
-                                                                    return
-            }
-            tablecell.collectionView.reloadData()
+            setupDataInCollectionView(row: 0, section: 1)
         }
     }
 
@@ -84,35 +86,19 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
     private var nearestRests: [Store] = [] {
         didSet {
-            let indexPath = IndexPath(row: 0, section: 2)
-            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
-                                                                for: indexPath) as? TableViewCell else {
-                                                                    return
-            }
-            tablecell.collectionView.reloadData()
+            setupDataInCollectionView(row: 0, section: 2)
         }
     }
 
     private var expectTimeRests: [Store] = [] {
         didSet {
-            let indexPath = IndexPath(row: 0, section: 3)
-            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
-                                                                for: indexPath) as? TableViewCell else {
-                                                                    return
-            }
-
-            tablecell.collectionView.reloadData()
+            setupDataInCollectionView(row: 0, section: 3)
         }
     }
 
     private var newRests: [Store] = [] {
         didSet {
-            let indexPath = IndexPath(row: 0, section: 4)
-            guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
-                                                                for: indexPath) as? TableViewCell else {
-                                                                    return
-            }
-            tablecell.collectionView.reloadData()
+            setupDataInCollectionView(row: 0, section: 4)
         }
     }
 
@@ -125,7 +111,6 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
         initFoodMarket()
         setupTableView()
-        //setupScrollView()
 
         isScrolledByUser = false
 
@@ -142,6 +127,16 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         // 위치 권한 요청
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
+    }
+
+    private func setupDataInCollectionView(row: Int, section: Int) {
+        let indexPath = IndexPath(row: row, section: section)
+        guard let tablecell = tableView.dequeueReusableCell(withIdentifier: "TableViewCellId",
+                                                            for: indexPath) as? TableViewCell else {
+                                                                return
+        }
+
+        tablecell.collectionView.reloadData()
     }
 
     private func initFoodMarket() {
@@ -187,6 +182,7 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
 
+//        self.tabBarController?.view.addSubview(indicatorImageView)
         tableView.addSubview(pageControl)
         tableView.bringSubviewToFront(pageControl)
         tableView.register(tableNIB, forCellReuseIdentifier: "TableViewCellId")
