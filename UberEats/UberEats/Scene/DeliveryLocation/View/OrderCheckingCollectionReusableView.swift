@@ -28,8 +28,11 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
 
     private func setSliderAnimation() {
         currentProgressSlider.value = 3
-        sliderTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(actionAnimation(_:)), userInfo: nil, repeats: false)
-        print("changedValue")
+        sliderTimer = Timer.scheduledTimer(timeInterval: 0.5,
+                                           target: self,
+                                           selector: #selector(actionAnimation(_:)),
+                                           userInfo: nil,
+                                           repeats: false)
     }
 
     @objc private func actionAnimation(_: Timer) {
