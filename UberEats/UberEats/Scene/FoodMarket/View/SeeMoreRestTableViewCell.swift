@@ -18,6 +18,7 @@ class SeeMoreRestTableViewCell: UITableViewCell {
     @IBOutlet weak var promotion: UILabel!
 
     @IBOutlet weak var deliveryTime: UILabel!
+
     var moreRests: Store? {
         didSet {
 
@@ -28,6 +29,18 @@ class SeeMoreRestTableViewCell: UITableViewCell {
             name.text = moreRest.name
             category.text = moreRest.category
             deliveryTime.text = moreRest.deliveryTime
+        }
+    }
+
+    var moreFoods: Food? {
+        didSet {
+            guard let moreFood = moreFoods else {
+                return
+            }
+
+            name.text = moreFood.foodName
+            category.text = moreFood.categoryName
+            deliveryTime.text = moreFood.foodDescription
         }
     }
 

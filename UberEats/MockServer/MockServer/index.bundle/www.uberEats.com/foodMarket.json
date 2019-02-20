@@ -1,25 +1,25 @@
 {
     "advertisingBoard": [
         {
-            "bannerImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/banner/banner_1.png?raw=true"
+            "bannerImage": "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/85abdf5f0743dd00eb4c8b46e9e13a61d1e8b979/images/FoodMarket/banner/banner_1.png"
         },
         {
-            "bannerImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/banner/banner_2.png?raw=true"
+            "bannerImage": "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/85abdf5f0743dd00eb4c8b46e9e13a61d1e8b979/images/FoodMarket/banner/banner_2.png"
         },
         {
-            "bannerImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/banner/banner_3.png?raw=true"
+            "bannerImage": "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/85abdf5f0743dd00eb4c8b46e9e13a61d1e8b979/images/FoodMarket/banner/banner_3.png"
         },
         {
-            "bannerImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/banner/banner_4.png?raw=true"
+            "bannerImage": "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/85abdf5f0743dd00eb4c8b46e9e13a61d1e8b979/images/FoodMarket/banner/banner_4.png"
         },
         {
-            "bannerImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/banner/banner_5.png?raw=true"
+            "bannerImage": "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/85abdf5f0743dd00eb4c8b46e9e13a61d1e8b979/images/FoodMarket/banner/banner_5.png"
         },
         {
-            "bannerImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/banner/banner_6.png?raw=true"
+            "bannerImage": "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/85abdf5f0743dd00eb4c8b46e9e13a61d1e8b979/images/FoodMarket/banner/banner_6.png"
         },
         {
-            "bannerImage": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/banner/banner_7.png?raw=true"
+            "bannerImage": "https://raw.githubusercontent.com/boostcamp3-iOS/team-b1/85abdf5f0743dd00eb4c8b46e9e13a61d1e8b979/images/FoodMarket/banner/banner_7.png"
         }
     ],
     "recommandFoods" : [],
