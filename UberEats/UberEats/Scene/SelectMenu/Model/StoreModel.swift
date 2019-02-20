@@ -16,6 +16,7 @@ enum CellId: String {
     case temp = "tempId"
     case stretchyHeader = "stretchyHeaderId"
     case tempHeader = "tempHeaderId"
+    case tempFooter = "tempFooterId"
     case timeAndLocation = "timeAndLocationId"
     case menu = "menuId"
     case menuCategory = "menuCategoryId"

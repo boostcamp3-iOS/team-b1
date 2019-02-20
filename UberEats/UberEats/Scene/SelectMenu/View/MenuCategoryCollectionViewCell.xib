@@ -19,8 +19,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="159" height="54"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4O9-6f-CJ4">
-                        <rect key="frame" x="60" y="17.5" width="39.5" height="19.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="4O9-6f-CJ4">
+                        <rect key="frame" x="10" y="17.5" width="139" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -29,8 +29,10 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="4O9-6f-CJ4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="Fw0-a1-q1E"/>
                 <constraint firstItem="4O9-6f-CJ4" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="J8h-fW-cLi"/>
                 <constraint firstItem="4O9-6f-CJ4" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Rdj-hT-1HD"/>
+                <constraint firstAttribute="trailing" secondItem="4O9-6f-CJ4" secondAttribute="trailing" constant="10" id="eBl-Y8-XTB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="159" height="54"/>

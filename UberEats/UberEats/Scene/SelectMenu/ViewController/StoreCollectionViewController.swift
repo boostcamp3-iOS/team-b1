@@ -68,6 +68,9 @@ class StoreCollectionViewController: UICollectionViewController {
     private let backButton = UIButton().initButtonWithImage("arrow")
     private let likeButton = UIButton().initButtonWithImage("like")
 
+    private let sectionHeader = UICollectionView.elementKindSectionHeader
+    private let sectionFooter = UICollectionView.elementKindSectionFooter
+
     lazy var dataIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         indicator.frame = CGRect(x: 0,
@@ -204,16 +207,21 @@ class StoreCollectionViewController: UICollectionViewController {
 
         // header
         collectionView.register(StretchyHeaderView.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                forSupplementaryViewOfKind: sectionHeader,
                                 withReuseIdentifier: CellId.stretchyHeader.rawValue)
 
         collectionView.register(TempCollectionReusableView.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                forSupplementaryViewOfKind: sectionHeader,
                                 withReuseIdentifier: CellId.tempHeader.rawValue)
 
         menuBarCollectionView.register(TempCollectionReusableView.self,
-                                       forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                       forSupplementaryViewOfKind: sectionHeader,
                                        withReuseIdentifier: CellId.tempHeader.rawValue)
+
+        // footer
+        collectionView.register(TempCollectionReusableView.self,
+                                forSupplementaryViewOfKind: sectionFooter,
+                                withReuseIdentifier: CellId.tempFooter.rawValue)
 
         // cell
         collectionView.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: CellId.menuDetail.rawValue)
@@ -415,7 +423,7 @@ class StoreCollectionViewController: UICollectionViewController {
                 }
 
                 cell.priceLabelBottomConstraint.isActive = (food.foodDescription == "") ? false : true
-                cell.foodImageViewWidthConstraint.isActive = (food.lowImageURL == "") ? false : true
+                cell.foodImageViewWidthConstraint.constant = (food.lowImageURL == "") ? 0 : 100
 
                 cell.food = food
 
@@ -479,6 +487,18 @@ class StoreCollectionViewController: UICollectionViewController {
                                                                        withReuseIdentifier: CellId.tempHeader.rawValue,
                                                                        for: indexPath)
             }
+        } else {
+            if collectionView == self.collectionView {
+                guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                       withReuseIdentifier: CellId.tempFooter.rawValue,
+                                                                       for: indexPath) as? TempCollectionReusableView else {
+                    return .init()
+                }
+
+                footer.backgroundColor = #colorLiteral(red: 0.8638877273, green: 0.8587527871, blue: 0.8678352237, alpha: 1)
+
+                return footer
+            }
         }
 
         return collectionView.dequeueReusableSupplementaryView(ofKind: kind,
@@ -505,6 +525,17 @@ class StoreCollectionViewController: UICollectionViewController {
         }
     }
 
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForFooterInSection section: Int) -> CGSize {
+        if section > 2 {
+            return .init(width: self.view.frame.width,
+                         height: 0.5)
+        }
+
+        return .init(width: 0, height: 0)
+    }
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.menuBarCollectionView {
 
@@ -516,39 +547,51 @@ class StoreCollectionViewController: UICollectionViewController {
                 self.collectionView.selectItem(at: indexToMove, animated: true, scrollPosition: .top)
             }
         } else {
-            let storyboard = UIStoryboard(name: "Cart", bundle: nil)
-            guard let cartViewController = storyboard.instantiateViewController(withIdentifier: "CartVC")
-                                                                                as? CartViewController else {
+            switch indexPath.section {
+            case 0, 1, 2:
                 return
+            default:
+                if indexPath.item == 0 {
+                    return
+                }
+
+                let storyboard = UIStoryboard(name: "Cart", bundle: nil)
+                guard let cartViewController = storyboard.instantiateViewController(withIdentifier: "CartVC")
+                    as? CartViewController else {
+                        return
+                }
+
+                guard let store = store else {
+                    return
+                }
+
+                let categoryId: String = "category" + String(indexPath.section - DistanceBetween.menuAndRest + 1)
+                let foodIndex: Int = indexPath.item - DistanceBetween.titleAndFoodCell
+
+                guard let selectedFood = foodsOfCategory[categoryId]?[foodIndex] else {
+                    return
+                }
+
+                let storeInfo = StoreInfoModel.init(name: store.name,
+                                                    deliveryTime: store.deliveryTime)
+                let deliveryInfoModel = DeilveryInfoModel.init(locationImage: "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/airInTheCafe.jpeg?raw=true",
+                                                               detailedAddress: "메리츠 타워",
+                                                               address: "서울특별시 강남구 역삼1동 강남대로 382",
+                                                               deliveryMethod: .pickUpOutside,
+                                                               roomNumber: 101)
+
+                let cartModel = CartModel.init(storeInfo: storeInfo,
+                                               deilveryInfo: deliveryInfoModel,
+                                               foodOrderedInfo: nil)
+
+                cartViewController.cartModel = cartModel
+                cartViewController.orderInfoModels = [OrderInfoModel.init(amount: 1,
+                                                                          orderName: selectedFood.foodName,
+                                                                          price: selectedFood.basePrice)]
+
+                //            self.present(cartViewController, animated: true, completion: nil)
+                self.navigationController?.pushViewController(cartViewController, animated: true)
             }
-
-            guard let store = store else {
-                return
-            }
-
-            let categoryId: String = "category" + String(indexPath.section - DistanceBetween.menuAndRest + 1)
-            let foodIndex: Int = indexPath.item - DistanceBetween.titleAndFoodCell
-
-            guard let selectedFood = foodsOfCategory[categoryId]?[foodIndex] else {
-                return
-            }
-
-            let storeInfo = StoreInfoModel.init(name: store.name, deliveryTime: store.deliveryTime)
-            let deliveryInfoModel = DeilveryInfoModel.init(locationImage: "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/airInTheCafe.jpeg?raw=true",
-                                                           detailedAddress: "메리츠 타워",
-                                                           address: "서울특별시 강남구 역삼1동 강남대로 382",
-                                                           deliveryMethod: .pickUpOutside,
-                                                           roomNumber: 101)
-
-            let cartModel = CartModel.init(storeInfo: storeInfo, deilveryInfo: deliveryInfoModel, foodOrderedInfo: nil)
-
-            cartViewController.cartModel = cartModel
-            cartViewController.orderInfoModels = [OrderInfoModel.init(amount: 1,
-                                                                      orderName: selectedFood.foodName,
-                                                                      price: selectedFood.basePrice)]
-
-//            self.present(cartViewController, animated: true, completion: nil)
-            self.navigationController?.pushViewController(cartViewController, animated: true)
         }
     }
 

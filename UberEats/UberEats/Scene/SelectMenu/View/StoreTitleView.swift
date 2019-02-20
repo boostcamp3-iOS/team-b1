@@ -22,7 +22,7 @@ class StoreTitleView: UIView {
 
     let titleLabel: UILabel = {
         let label = UILabel().setupWithFontSize(22)
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         return label
     }()
 
@@ -101,7 +101,7 @@ class StoreTitleView: UIView {
         titleLabelTopConstraint.isActive = true
 
         NSLayoutConstraint.activate([
-            detailLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,
+            detailLabel.topAnchor.constraint(greaterThanOrEqualTo: titleLabel.bottomAnchor,
                                              constant: Metrix.labelTopMargin),
             detailLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                  constant: Metrix.labelLeadingAndTrailingMargin),
@@ -113,7 +113,9 @@ class StoreTitleView: UIView {
             timeAndGradeLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                        constant: Metrix.labelLeadingAndTrailingMargin),
             timeAndGradeLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
-                                                        constant: -Metrix.labelLeadingAndTrailingMargin)
+                                                        constant: -Metrix.labelLeadingAndTrailingMargin),
+            timeAndGradeLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                                      constant: -Metrix.timeAndGradeLabelBottomMargin)
             ])
     }
 
@@ -152,7 +154,17 @@ class StoreTitleView: UIView {
 
         storeViewTopConstraint.constant = Metrix.titleTopMargin - currentScroll
 
-        if currentScroll < Metrix.scrollLimit && currentScroll > 0 {
+        if currentScroll < 0 {
+            print("currentScroll : \(currentScroll)")
+
+            storeViewWidthConstraint.constant = 0
+            storeViewHeightConstraint.constant = 0
+
+            titleLabelTopConstraint.constant = Metrix.titleLabelTopMargin
+            titleLabelLeadingConstraint.constant = Metrix.titleLabelLeadingAndTrailingMargin
+            titleLabelTrailingConstraint.constant = -Metrix.titleLabelLeadingAndTrailingMargin
+
+        } else if currentScroll < Metrix.scrollLimit && currentScroll > 0 {
             storeViewWidthConstraint.constant = currentScroll * 0.2
             storeViewHeightConstraint.constant = -(currentScroll * 0.2)
             titleLabelTopConstraint.constant = (currentScroll * 0.2) + Metrix.titleLabelTopMargin
@@ -166,8 +178,8 @@ class StoreTitleView: UIView {
             storeViewTopConstraint.constant = 0
             storeViewWidthConstraint.constant = storeTitleView.frame.width * 0.1
             storeViewHeightConstraint.constant = -38
-            titleLabelTopConstraint.constant = Metrix.titleLabelTopMargin * 2.3
 
+            titleLabelTopConstraint.constant = Metrix.titleLabelTopMargin * 2.3
             titleLabelLeadingConstraint.constant = buttonSize + 20
             titleLabelTrailingConstraint.constant = -(buttonSize + 20)
         }
@@ -182,4 +194,5 @@ private struct Metrix {
     static let titleLabelLeadingAndTrailingMargin: CGFloat = 27
     static let labelTopMargin: CGFloat = 15
     static let labelLeadingAndTrailingMargin: CGFloat = 25
+    static let timeAndGradeLabelBottomMargin: CGFloat = 25
 }

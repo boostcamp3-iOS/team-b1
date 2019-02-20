@@ -72,6 +72,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
         priceLabelBottomConstraint.isActive = true
 
         foodImageViewWidthConstraint = foodImageView.widthAnchor.constraint(equalToConstant: Metrix.imageViewSize)
+        foodImageViewWidthConstraint.isActive = true
 
         NSLayoutConstraint.activate([
             foodNameLabel.topAnchor.constraint(equalTo: topAnchor,
