@@ -215,6 +215,8 @@ class StoreCollectionViewController: UICollectionViewController {
                                        forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                        withReuseIdentifier: CellId.tempHeader.rawValue)
 
+        // footer
+        
         // cell
         collectionView.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: CellId.menuDetail.rawValue)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: CellId.temp.rawValue)
