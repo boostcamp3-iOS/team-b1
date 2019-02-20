@@ -111,7 +111,6 @@ enum CartSection: Int, CaseIterable {
         case .empty:
             return "emptyCell"
         }
-
     }
 
 }

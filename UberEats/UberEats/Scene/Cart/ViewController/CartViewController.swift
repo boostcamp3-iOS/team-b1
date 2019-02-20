@@ -13,8 +13,8 @@ class CartViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var orderButton: OrderButton!
 
-    fileprivate var cartItems: [[CartItemModelType]] =
-        [[CartItemModelType]](repeating: [], count: CartSection.allCases.count)
+    fileprivate var cartItems = [[CartItemModelType]](repeating: [],
+                                                      count: CartSection.allCases.count)
 
     var cartModel: CartModel = CartModel.empty() {
         didSet {

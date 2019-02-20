@@ -58,6 +58,27 @@
                                             <outlet property="title" destination="bey-C4-rAe" id="snG-IV-uYp"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="131" id="UQW-Vo-qBB">
+                                        <rect key="frame" x="0.0" y="223" width="375" height="131"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UQW-Vo-qBB" id="Thg-yp-De3">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="130.66666666666666"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yrk-Py-b6x">
+                                                    <rect key="frame" x="0.0" y="33" width="375" height="97"/>
+                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Yrk-Py-b6x" firstAttribute="top" secondItem="Thg-yp-De3" secondAttribute="top" constant="33" id="3vH-fY-dr0"/>
+                                                <constraint firstAttribute="trailing" secondItem="Yrk-Py-b6x" secondAttribute="trailing" id="BAh-nJ-1PA"/>
+                                                <constraint firstItem="Yrk-Py-b6x" firstAttribute="leading" secondItem="Thg-yp-De3" secondAttribute="leading" id="OgV-dO-kuR"/>
+                                                <constraint firstAttribute="bottom" secondItem="Yrk-Py-b6x" secondAttribute="bottom" id="r3d-vo-sN9"/>
+                                                <constraint firstItem="Yrk-Py-b6x" firstAttribute="top" secondItem="Thg-yp-De3" secondAttribute="top" constant="33" id="sob-hb-Rqb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="AXi-XS-cxW" id="a8K-Hk-nsO"/>
@@ -207,7 +228,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2oL-9c-mWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-631" y="-258"/>
+            <point key="canvasLocation" x="-631.20000000000005" y="-258.62068965517244"/>
         </scene>
     </scenes>
     <resources>

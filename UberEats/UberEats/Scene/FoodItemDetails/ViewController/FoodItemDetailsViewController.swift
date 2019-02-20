@@ -24,36 +24,26 @@ class FoodItemDetailsViewController: UIViewController {
 
     @IBOutlet weak var orderButton: UIButton!
 
-    private static let cellIdebtifier = "foodItemDetailsCell"
-
-    private static let stretchableHeaderImageHeight: CGFloat = 170
-
-    private static let orderButtonCornerRadius: CGFloat = 4
-
-    private static let coveredToolbarAnimationInterval = 500
-
-    private lazy var stretchableHeaderMinumumHeight = {
-        return self.toolbar.frame.height
-    }
-
-    private lazy var stretchableHeaderMaximumHeight = {
-        return self.view.frame.height
-    }
-
     private var style: UIStatusBarStyle = .lightContent
+
+    fileprivate var foodOptionItemModels = [[FoodOptionItemModelType]](repeating: [],
+                                                              count: FoodOptionSection.allCases.count)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
-
     }
 
     private func initView() {
         self.coveredToolBarBottom.constant = -toolbar.frame.height
-        tableView.contentInset = UIEdgeInsets(top: FoodItemDetailsViewController.stretchableHeaderImageHeight, left: 0,
-                                              bottom: 0, right: 0)
+
+        tableView.contentInset = UIEdgeInsets(top: FoodDetailDimensions.stretchableHeaderImageHeight,
+                                              left: 0,
+                                              bottom: 0,
+                                              right: 0)
+
         tableView.rowHeight = UITableView.automaticDimension
-        orderButton.layer.cornerRadius = FoodItemDetailsViewController.orderButtonCornerRadius
+        orderButton.layer.cornerRadius = FoodDetailDimensions.orderButtonCornerRadius
     }
 
     @IBAction func clickedBackButton(_ sender: Any) {
@@ -66,80 +56,46 @@ class FoodItemDetailsViewController: UIViewController {
         self.navigationController?.pushViewController(cartViewController, animated: true)
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let stretchableHeaderY = -scrollView.contentOffset.y
-
-        let height = min(max(stretchableHeaderY, stretchableHeaderMinumumHeight()), stretchableHeaderMaximumHeight())
-        stretchableHeaderHeight.constant = height
-        changeStatusWithCoveredToolbar(height)
-    }
-
-    private func changeStatusWithCoveredToolbar(_ stretchableHeaderHeight: CGFloat) {
-
-        func coveredToolBarStatus() -> CoveredToolBarStatus {
-            if stretchableHeaderHeight <= stretchableHeaderMinumumHeight() {
-                return .covered
-            }
-            return .uncovered
-        }
-
-        func coveredToolBarHeight(status: CoveredToolBarStatus) -> CGFloat {
-            return coveredToolBarStatus() == .uncovered ? -self.toolbar.frame.height : 0
-        }
-
-        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
-            self.coveredToolBarBottom.constant = coveredToolBarHeight(status: coveredToolBarStatus())
-            self.setNeedsStatusBarAppearanceUpdate()
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
-
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return self.style
     }
-}
 
-public class GradientView: UIView {
-    override open class var layerClass: AnyClass {
-        return CAGradientLayer.classForCoder()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        guard let gradientLayer = layer as? CAGradientLayer else { return }
-
-        gradientLayer.colors = [
-            UIColor(red: 0, green: 0, blue: 0, alpha: 0.55).cgColor,
-            UIColor(red: 0, green: 0, blue: 0, alpha: 0.0).cgColor
-        ]
-    }
 }
 
 extension FoodItemDetailsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 40
+        let foodOptionSection = FoodOptionSection(rawValue: section) ?? .empty
+        return foodOptionItemModels[foodOptionSection.rawValue].count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: FoodItemDetailsViewController.cellIdebtifier,
-            for: indexPath
-            ) as? FoodItemDetailsCell else { return .init() }
 
-        return cell
+        let model = foodOptionItemModels[indexPath.section][indexPath.row]
+
+        switch model {
+        case .requiredOptions(let requiredOptionsModel):
+            break
+        case .additionalOptions(let additionalOptionModel):
+            break
+        case .specialRequests(let specialRequestsModel):
+            break
+        case .checkBox(let checkBoxModel):
+            break
+        case .radioButton(let radioButtonModel):
+            break
+        default:
+            return .init()
+        }
+
+        return .init()
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return FoodOptionSection.allCases.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-}
-
-private enum CoveredToolBarStatus {
-    case covered
-    case uncovered
 }
