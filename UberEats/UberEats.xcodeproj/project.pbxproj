@@ -15,6 +15,11 @@
 		843B051A220405540082FEFF /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B0519220405540082FEFF /* ChatMessageCell.swift */; };
 		8442E4152219143E00831099 /* ItemCollecionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442E4142219143E00831099 /* ItemCollecionViewFlowLayout.swift */; };
 		8443049A22154B2000FCFADB /* FoodMarketSelectState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443049922154B2000FCFADB /* FoodMarketSelectState.swift */; };
+		8445E2CE221CFD8F00965746 /* DiscountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445E2CD221CFD8F00965746 /* DiscountTableViewCell.swift */; };
+		8445E2D0221D0B9900965746 /* SearchAndSeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445E2CF221D0B9900965746 /* SearchAndSeeTableViewCell.swift */; };
+		8445E2D2221D114C00965746 /* MoreRestTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445E2D1221D114C00965746 /* MoreRestTitleTableViewCell.swift */; };
+		8445E2D4221D166300965746 /* RestaurtSeeMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445E2D3221D166300965746 /* RestaurtSeeMoreCollectionViewCell.swift */; };
+		8445E2D8221D2A0500965746 /* SeeMoreRestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8445E2D7221D2A0500965746 /* SeeMoreRestViewController.swift */; };
 		84604F212205928100212A00 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84604F202205928100212A00 /* Message.swift */; };
 		8477949F22142D3D003EA68D /* ImageNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477949E22142D3C003EA68D /* ImageNetworkManager.swift */; };
 		847794A322144606003EA68D /* DependencyContainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847794A222144606003EA68D /* DependencyContainer.framework */; };
@@ -175,6 +180,11 @@
 		843B0519220405540082FEFF /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		8442E4142219143E00831099 /* ItemCollecionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollecionViewFlowLayout.swift; sourceTree = "<group>"; };
 		8443049922154B2000FCFADB /* FoodMarketSelectState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMarketSelectState.swift; sourceTree = "<group>"; };
+		8445E2CD221CFD8F00965746 /* DiscountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountTableViewCell.swift; sourceTree = "<group>"; };
+		8445E2CF221D0B9900965746 /* SearchAndSeeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAndSeeTableViewCell.swift; sourceTree = "<group>"; };
+		8445E2D1221D114C00965746 /* MoreRestTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreRestTitleTableViewCell.swift; sourceTree = "<group>"; };
+		8445E2D3221D166300965746 /* RestaurtSeeMoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurtSeeMoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		8445E2D7221D2A0500965746 /* SeeMoreRestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeMoreRestViewController.swift; sourceTree = "<group>"; };
 		84604F202205928100212A00 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8477949E22142D3C003EA68D /* ImageNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetworkManager.swift; sourceTree = "<group>"; };
 		847794A222144606003EA68D /* DependencyContainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DependencyContainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -553,6 +563,10 @@
 				99342CC221FB12CF0029DB10 /* UberEatsTests */,
 				D13B8210221C26A900100451 /* SplashIndicatorView.swift */,
 				847CB24D221BE5E1000298EC /* RecomendTableCell.swift */,
+				8445E2CD221CFD8F00965746 /* DiscountTableViewCell.swift */,
+				8445E2CF221D0B9900965746 /* SearchAndSeeTableViewCell.swift */,
+				8445E2D1221D114C00965746 /* MoreRestTitleTableViewCell.swift */,
+				8445E2D3221D166300965746 /* RestaurtSeeMoreCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -561,6 +575,7 @@
 			isa = PBXGroup;
 			children = (
 				84DC184921F9ACE0008EE6D3 /* ItemViewController.swift */,
+				8445E2D7221D2A0500965746 /* SeeMoreRestViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1050,6 +1065,7 @@
 				84ADDE2921FF1F7E004A286E /* UIDevice+Extension.swift in Sources */,
 				8442E4152219143E00831099 /* ItemCollecionViewFlowLayout.swift in Sources */,
 				84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */,
+				8445E2D8221D2A0500965746 /* SeeMoreRestViewController.swift in Sources */,
 				84DC184A21F9ACE0008EE6D3 /* ItemViewController.swift in Sources */,
 				995D903D22104ECE00DCA964 /* CartViewController.swift in Sources */,
 				995D904622119D3600DCA964 /* FoodsOrderedByOthersCell.swift in Sources */,
@@ -1090,6 +1106,7 @@
 				84DC184D21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift in Sources */,
 				84604F212205928100212A00 /* Message.swift in Sources */,
 				843B05182203E6F40082FEFF /* ChatModel.swift in Sources */,
+				8445E2D2221D114C00965746 /* MoreRestTitleTableViewCell.swift in Sources */,
 				9956F7F121F98468004E9854 /* AppDelegate.swift in Sources */,
 				D107D22B22154DCD00322379 /* SettingLocationModel.swift in Sources */,
 				84FB11AA22017A90002C5F46 /* SeeMoreRestTableViewCell.swift in Sources */,
@@ -1098,6 +1115,7 @@
 				D17155BF221CE4D500BBC5DD /* UILabel+.swift in Sources */,
 				995D9042221062D300DCA964 /* CartModels.swift in Sources */,
 				D102A68E22083853004B458C /* SeparatorCollectionReusableView.swift in Sources */,
+				8445E2D4221D166300965746 /* RestaurtSeeMoreCollectionViewCell.swift in Sources */,
 				843B051A220405540082FEFF /* ChatMessageCell.swift in Sources */,
 				D16DAEE3220888F200564823 /* TotalPriceCollectionReusableView.swift in Sources */,
 				996F6BCE221304B50052CC36 /* UITableViewCell+ViewOption.swift in Sources */,
@@ -1106,12 +1124,14 @@
 				D1AF1E9E21F9A5A6004CA3A5 /* TempCollectionReusableView.swift in Sources */,
 				996F6BD822145D3B0052CC36 /* OrderCell.swift in Sources */,
 				99342CCE21FB13550029DB10 /* Throttler.swift in Sources */,
+				8445E2CE221CFD8F00965746 /* DiscountTableViewCell.swift in Sources */,
 				D11B04DA2205847F00F20363 /* LocationViewController.swift in Sources */,
 				995B1C602219384100A41176 /* PaymentInfoCell.swift in Sources */,
 				D199236222045BAB00C7C857 /* UIButton+initButtonWithImage.swift in Sources */,
 				D13B820D221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift in Sources */,
 				D1F3A8F22212E606000448DD /* StoreModel.swift in Sources */,
 				D102A68A2208335E004B458C /* OrderNameCollectionReusableView.swift in Sources */,
+				8445E2D0221D0B9900965746 /* SearchAndSeeTableViewCell.swift in Sources */,
 				992EDCED21FDB0C6006CC894 /* FoodItemDetailsViewController.swift in Sources */,
 				843B05122203D9240082FEFF /* FirebaseSingleton.swift in Sources */,
 				996F6BCC2212FFF00052CC36 /* OrderBookTitleCell.swift in Sources */,

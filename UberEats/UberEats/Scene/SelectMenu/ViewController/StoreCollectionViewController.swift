@@ -152,7 +152,6 @@ class StoreCollectionViewController: UICollectionViewController {
             } else {
                 fatalError()
             }
-
         }
     }
 

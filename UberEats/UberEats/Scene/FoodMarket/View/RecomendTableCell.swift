@@ -8,66 +8,61 @@
 
 import UIKit
 
-class RecomendTableCell: UITableViewCell, UICollectionViewDelegate {
+class RecomendTableCell: UITableViewCell {
 
-    public let collectionView: UICollectionView = {
-        let collectionVIew = UICollectionView()
+    private let RecommendCollectionViewCellNIB = UINib(nibName: "RecommendCollectionViewCell", bundle: nil)
+
+    public let collectionVIewCellId = "RecommendCollectionViewCellId"
+    public let colelctionVIewMoreRestCellId = "colelctionVIewMoreRestCellId"
+
+    public lazy var collectionView: UICollectionView = {
+        let layout = ItemCollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 100, height: 100)
+        layout.scrollDirection = .horizontal
+        let collectionVIew = UICollectionView(frame: self.frame, collectionViewLayout: layout)
+        collectionVIew.tag = 1
+        collectionVIew.register(RecommendCollectionViewCellNIB, forCellWithReuseIdentifier: collectionVIewCellId)
+        collectionVIew.register(RestaurtSeeMoreCollectionViewCell.self, forCellWithReuseIdentifier: colelctionVIewMoreRestCellId)
         collectionVIew.translatesAutoresizingMaskIntoConstraints = false
         return collectionVIew
     }()
 
     public let recommendLabel: UILabel = {
         let label = UILabel()
+        label.text = "추천 요리"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    func setLabel(_ section: Int) {
-        let section = Section(rawValue: section)!
-        switch section {
-        case .recommendFood:
-            recommendLabel.text = "추천 요리"
-        case .nearestRest:
-            recommendLabel.text = "가까운 인기 레스토랑"
-        case .expectedTime:
-            recommendLabel.text = "예상 시간 30분 이하"
-        case .newRest:
-            recommendLabel.text = "새로운 레스토랑"
-        default:
-            recommendLabel.text = ""
-        }
-    }
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        self.addSubview(recommendLabel)
-        self.addSubview(collectionView)
+        addSubview(recommendLabel)
+        addSubview(collectionView)
 
         recommendLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
         recommendLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
         recommendLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         recommendLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
 
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-
         NSLayoutConstraint.activate(
             [
-                collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+                collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
                 collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
                 collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
                 collectionView.topAnchor.constraint(equalTo: recommendLabel.bottomAnchor)
             ]
         )
 
-        selectionStyle = .none
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .lightGray
-
+        backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
         collectionView.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
 
-        backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
+        selectionStyle = .none
+        collectionView.showsHorizontalScrollIndicator = false
+    }
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
