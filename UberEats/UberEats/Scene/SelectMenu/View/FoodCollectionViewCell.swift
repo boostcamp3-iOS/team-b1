@@ -15,28 +15,19 @@ class FoodCollectionViewCell: UICollectionViewCell {
     var foodImageViewWidthConstraint = NSLayoutConstraint()
 
     let foodNameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18)
-        label.numberOfLines = 2
+        let label = UILabel().setupWithFontSize(Metrix.foodNameLabelFontSize)
+        label.numberOfLines = Metrix.labelNumberOfLine
         return label
     }()
 
     let foodContentsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 15)
-        label.numberOfLines = 2
+        let label = UILabel().setupWithFontSize(Metrix.foodContentsAndPriceLabelFontSize)
+        label.numberOfLines = Metrix.labelNumberOfLine
         label.textColor = .gray
         return label
     }()
 
-    let priceLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 15)
-        return label
-    }()
+    let priceLabel = UILabel().setupWithFontSize(Metrix.foodContentsAndPriceLabelFontSize)
 
     let foodImageView: UIImageView = {
         let imageView = UIImageView()
@@ -64,34 +55,51 @@ class FoodCollectionViewCell: UICollectionViewCell {
         setupLayout()
     }
 
-    func setupLayout() {
+    private func setupLayout() {
         backgroundColor = .white
         addSubview(foodNameLabel)
         addSubview(foodContentsLabel)
         addSubview(priceLabel)
         addSubview(foodImageView)
 
-        priceLabelBottomConstraint = NSLayoutConstraint(item: priceLabel, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -10)
+        priceLabelBottomConstraint = NSLayoutConstraint(item: priceLabel,
+                                                        attribute: .bottom,
+                                                        relatedBy: .equal,
+                                                        toItem: self,
+                                                        attribute: .bottom,
+                                                        multiplier: 1,
+                                                        constant: -10)
         priceLabelBottomConstraint.isActive = true
 
-        foodImageViewWidthConstraint = foodImageView.widthAnchor.constraint(equalToConstant: 100)
+        foodImageViewWidthConstraint = foodImageView.widthAnchor.constraint(equalToConstant: Metrix.imageViewSize)
 
         NSLayoutConstraint.activate([
-            foodNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            foodNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            foodNameLabel.trailingAnchor.constraint(equalTo: foodImageView.leadingAnchor, constant: -10),
+            foodNameLabel.topAnchor.constraint(equalTo: topAnchor,
+                                               constant: Metrix.topMargin),
+            foodNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                   constant: Metrix.leadingMargin),
+            foodNameLabel.trailingAnchor.constraint(equalTo: foodImageView.leadingAnchor,
+                                                    constant: -Metrix.trailingMargin),
 
-            foodContentsLabel.topAnchor.constraint(equalTo: foodNameLabel.bottomAnchor, constant: 10),
-            foodContentsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            foodContentsLabel.trailingAnchor.constraint(equalTo: foodImageView.leadingAnchor, constant: -10),
+            foodContentsLabel.topAnchor.constraint(equalTo: foodNameLabel.bottomAnchor,
+                                                   constant: Metrix.topMargin),
+            foodContentsLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                       constant: Metrix.leadingMargin),
+            foodContentsLabel.trailingAnchor.constraint(equalTo: foodImageView.leadingAnchor,
+                                                        constant: -Metrix.trailingMargin),
 
-            priceLabel.topAnchor.constraint(equalTo: foodContentsLabel.bottomAnchor, constant: 10),
-            priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            priceLabel.trailingAnchor.constraint(equalTo: foodImageView.leadingAnchor, constant: -10),
+            priceLabel.topAnchor.constraint(equalTo: foodContentsLabel.bottomAnchor,
+                                            constant: Metrix.topMargin),
+            priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                constant: Metrix.leadingMargin),
+            priceLabel.trailingAnchor.constraint(equalTo: foodImageView.leadingAnchor,
+                                                 constant: -Metrix.trailingMargin),
 
-            foodImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            foodImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            foodImageView.heightAnchor.constraint(equalToConstant: 100)
+            foodImageView.topAnchor.constraint(equalTo: topAnchor,
+                                               constant: Metrix.topMargin),
+            foodImageView.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                    constant: -Metrix.trailingMargin),
+            foodImageView.heightAnchor.constraint(equalToConstant: Metrix.imageViewSize)
             ])
     }
 
@@ -100,10 +108,21 @@ class FoodCollectionViewCell: UICollectionViewCell {
     }
 
     override func prepareForReuse() {
+        super.prepareForReuse()
         foodNameLabel.text = ""
         foodContentsLabel.text = ""
         priceLabel.text = ""
         foodImageView.image = nil
     }
 
+}
+
+private struct Metrix {
+    static let foodNameLabelFontSize: CGFloat = 18
+    static let foodContentsAndPriceLabelFontSize: CGFloat = 15
+    static let topMargin: CGFloat = 10
+    static let leadingMargin: CGFloat = 15
+    static let trailingMargin: CGFloat = 10
+    static let imageViewSize: CGFloat = 100
+    static let labelNumberOfLine: Int = 2
 }

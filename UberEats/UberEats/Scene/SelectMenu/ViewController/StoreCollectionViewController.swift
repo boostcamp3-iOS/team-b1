@@ -24,7 +24,7 @@ class StoreCollectionViewController: UICollectionViewController {
         }
     }
 
-    var store: Store?
+    private var store: Store?
     var storeId: String?
     var foodId: String?
 
@@ -50,29 +50,30 @@ class StoreCollectionViewController: UICollectionViewController {
 
     private var foodsOfCategory: [String: [Food]] = [:]
 
-    private let padding: CGFloat = 5
     private var statusBarStyle: UIStatusBarStyle = .lightContent
+    private var lastSection: Int = 3
+    private let padding: CGFloat = 5
+
     private var isLiked: Bool = false
     private var isScrolling: Bool = false
     private var isChangedSection: Bool = false
-    private var lastSection: Int = 3
 
     private var identifier = ""
-
-    private var storeTitleView = StoreTitleView()
 
     private var floatingViewLeadingConstraint = NSLayoutConstraint()
     private var floatingViewWidthConstraint = NSLayoutConstraint()
 
+    private let floatingView = FloatingView()
+    private var storeTitleView = StoreTitleView()
     private let backButton = UIButton().initButtonWithImage("arrow")
     private let likeButton = UIButton().initButtonWithImage("like")
 
-    private let floatingView = FloatingView()
-
     lazy var dataIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
-        indicator.frame = CGRect(x: 0, y: self.view.frame.maxY / 2,
-                                 width: self.view.frame.width, height: self.view.frame.height / 2)
+        indicator.frame = CGRect(x: 0,
+                                 y: self.view.frame.maxY / 2,
+                                 width: self.view.frame.width,
+                                 height: self.view.frame.height / 2)
         indicator.hidesWhenStopped = true
         indicator.style = .gray
         indicator.backgroundColor = .white
@@ -83,6 +84,7 @@ class StoreCollectionViewController: UICollectionViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = ValuesForCollectionView.menuBarMinSpacing
+
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -122,6 +124,7 @@ class StoreCollectionViewController: UICollectionViewController {
 
                 self?.storeTitleView.store = store
                 self?.store = store
+
                 self?.collectionView.reloadData()
             } else {
                 fatalError()
@@ -154,14 +157,14 @@ class StoreCollectionViewController: UICollectionViewController {
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = true
 
-        storeTitleView = StoreTitleView(parentView: view)
+        storeTitleView = StoreTitleView(view)
 
         collectionView.addSubview(storeTitleView)
+        collectionView.addSubview(dataIndicator)
         view.addSubview(backButton)
         view.addSubview(likeButton)
-        collectionView.addSubview(dataIndicator)
-        menuBarCollectionView.addSubview(floatingView)
         view.addSubview(menuBarCollectionView)
+        menuBarCollectionView.addSubview(floatingView)
 
         storeTitleView.setupConstraint()
 
@@ -199,8 +202,6 @@ class StoreCollectionViewController: UICollectionViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .white
 
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: CellId.temp.rawValue)
-
         // header
         collectionView.register(StretchyHeaderView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -216,6 +217,7 @@ class StoreCollectionViewController: UICollectionViewController {
 
         // cell
         collectionView.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: CellId.menuDetail.rawValue)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: CellId.temp.rawValue)
 
         let timeAndLocationNib = UINib(nibName: XibName.timeAndLocation.rawValue, bundle: nil)
         self.collectionView.register(timeAndLocationNib, forCellWithReuseIdentifier: CellId.timeAndLocation.rawValue)
@@ -228,6 +230,7 @@ class StoreCollectionViewController: UICollectionViewController {
 
         let menuSectionNib = UINib(nibName: XibName.menuSection.rawValue, bundle: nil)
         self.collectionView.register(menuSectionNib, forCellWithReuseIdentifier: CellId.menuSection.rawValue)
+
     }
 
     private func setupCollectionViewLayout() {
@@ -318,11 +321,9 @@ class StoreCollectionViewController: UICollectionViewController {
     }
 
     @objc private func touchUpLikeButton(_ sender: UIButton) {
-        if sender.currentImage == UIImage(named: "like") {
-            sender.setImage(UIImage(named: "selectLike"), for: .normal)
-        } else {
-            sender.setImage(UIImage(named: "like"), for: .normal)
-        }
+        let imageName = sender.currentImage == UIImage(named: "like") ? "selectLike" : "like"
+        sender.setImage(UIImage(named: imageName), for: .normal)
+
         isLiked = !isLiked
     }
 
@@ -351,7 +352,8 @@ class StoreCollectionViewController: UICollectionViewController {
         case 0, 1, 2:
             return basicNumberOfItems
         default:
-            guard let food = foodsOfCategory["category" + String(section - DistanceBetween.menuAndRest + 1)]?.count else {
+            let categoryId: String = "category" + String(section - DistanceBetween.menuAndRest + 1)
+            guard let food = foodsOfCategory[categoryId]?.count else {
                 return 0
             }
             return food + DistanceBetween.titleAndFoodCell
@@ -405,7 +407,10 @@ class StoreCollectionViewController: UICollectionViewController {
                                                                         return .init()
                 }
 
-                guard let food = foodsOfCategory["category" + String(indexPath.section - DistanceBetween.menuAndRest + 1)]?[indexPath.item - DistanceBetween.titleAndFoodCell] else {
+                let categoryId: String = "category" + String(indexPath.section - DistanceBetween.menuAndRest + 1)
+                let foodIndex: Int = indexPath.item - DistanceBetween.titleAndFoodCell
+
+                guard let food: Food = foodsOfCategory[categoryId]?[foodIndex] else {
                     return .init()
                 }
 
@@ -454,9 +459,7 @@ class StoreCollectionViewController: UICollectionViewController {
 
                 guard let imageURLString = store?.mainImage,
                     let imageURL = URL(string: imageURLString) else {
-                        return collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                               withReuseIdentifier: CellId.tempHeader.rawValue,
-                                                                               for: indexPath)
+                        return header
                 }
 
                 ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (image, error) in
@@ -472,7 +475,9 @@ class StoreCollectionViewController: UICollectionViewController {
             case 1, 2:
                 identifier = CellId.tempHeader.rawValue
             default:
-                return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CellId.tempHeader.rawValue, for: indexPath)
+                return collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                       withReuseIdentifier: CellId.tempHeader.rawValue,
+                                                                       for: indexPath)
             }
         }
 
@@ -487,7 +492,7 @@ class StoreCollectionViewController: UICollectionViewController {
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
 
         if collectionView == self.menuBarCollectionView {
-            return CGSize(width: 0, height: HeightsOfHeader.menuBarAndMenu)
+            return .init(width: 0, height: HeightsOfHeader.menuBarAndMenu)
         }
 
         switch section {
@@ -506,20 +511,25 @@ class StoreCollectionViewController: UICollectionViewController {
             movingFloatingView(collectionView, indexPath)
 
             if !isScrolling {
-
-                // 선택한 메뉴바의 카테고리에 대한 section목록으로 이동하는 부분
-                let indx = IndexPath(item: 0, section: indexPath.item + DistanceBetween.menuAndRest)
-                self.collectionView.selectItem(at: indx, animated: true, scrollPosition: .top)
+                let sectionIndex: Int = indexPath.item + DistanceBetween.menuAndRest
+                let indexToMove = IndexPath(item: 0, section: sectionIndex)
+                self.collectionView.selectItem(at: indexToMove, animated: true, scrollPosition: .top)
             }
         } else {
             let storyboard = UIStoryboard(name: "Cart", bundle: nil)
-            let cartViewController = storyboard.instantiateViewController(withIdentifier: "CartVC") as! CartViewController
+            guard let cartViewController = storyboard.instantiateViewController(withIdentifier: "CartVC")
+                                                                                as? CartViewController else {
+                return
+            }
 
             guard let store = store else {
                 return
             }
 
-            guard let selectedFood = foodsOfCategory["category" + String(indexPath.section - DistanceBetween.menuAndRest + 1)]?[indexPath.item - DistanceBetween.titleAndFoodCell] else {
+            let categoryId: String = "category" + String(indexPath.section - DistanceBetween.menuAndRest + 1)
+            let foodIndex: Int = indexPath.item - DistanceBetween.titleAndFoodCell
+
+            guard let selectedFood = foodsOfCategory[categoryId]?[foodIndex] else {
                 return
             }
 
@@ -569,7 +579,9 @@ class StoreCollectionViewController: UICollectionViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView != self.menuBarCollectionView {
 
-            self.likeButton.setImage(UIImage(named: getLikeButtonImageName(scrollView.contentOffset.y)), for: .normal)
+            let likeButtonImage = UIImage(named: getLikeButtonImageName(scrollView.contentOffset.y))
+
+            self.likeButton.setImage(likeButtonImage, for: .normal)
 
             if scrollView.contentOffset.y > AnimationValues.scrollLimit
                 && backButton.currentImage == UIImage(named: "arrow") {
@@ -588,6 +600,7 @@ class StoreCollectionViewController: UICollectionViewController {
                 }, completion: { _ in
                     self.statusBarStyle = .default
                 })
+
             } else if scrollView.contentOffset.y < AnimationValues.scrollLimit
                 && backButton.currentImage == UIImage(named: "blackArrow") {
 
@@ -633,6 +646,7 @@ class StoreCollectionViewController: UICollectionViewController {
                 lastSection = currentSection
             }
         }
+
     }
 
     func movingFloatingView(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
@@ -657,7 +671,6 @@ class StoreCollectionViewController: UICollectionViewController {
 
         cell.setColor(by: true)
 
-        // 메뉴바의 카테고리를 선택했을 때 왼쪽으로 붙이는 부분
         let sectionIndx = IndexPath(item: indexPath.item, section: 0)
         collectionView.selectItem(at: sectionIndx, animated: true, scrollPosition: .left)
 
