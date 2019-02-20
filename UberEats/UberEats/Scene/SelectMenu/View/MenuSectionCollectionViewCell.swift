@@ -23,6 +23,7 @@ class MenuSectionCollectionViewCell: UICollectionViewCell {
     }
 
     override func prepareForReuse() {
+        super.prepareForReuse()
         menuLabel.text = nil
     }
 
