@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="283.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kwu-rX-VpG">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="foodPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="Kwu-rX-VpG">
                         <rect key="frame" x="20" y="11" width="280" height="140"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -95,4 +95,7 @@
             <point key="canvasLocation" x="137.59999999999999" y="261.76911544227886"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="foodPlaceHolder" width="511.20001220703125" height="511.20001220703125"/>
+    </resources>
 </document>

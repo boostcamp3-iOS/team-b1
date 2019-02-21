@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t4N-eJ-2lX">
                         <rect key="frame" x="0.0" y="0.0" width="311" height="316"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2F1-AL-8F3">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="foodPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="2F1-AL-8F3">
                                 <rect key="frame" x="9" y="9" width="293" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="ck0-5X-PSa"/>
@@ -105,4 +105,7 @@
             <point key="canvasLocation" x="275.19999999999999" y="231.18440779610197"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="foodPlaceHolder" width="511.20001220703125" height="511.20001220703125"/>
+    </resources>
 </document>
