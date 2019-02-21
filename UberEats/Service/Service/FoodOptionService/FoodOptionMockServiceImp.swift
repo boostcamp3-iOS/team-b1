@@ -14,9 +14,7 @@ import Common
 
 internal class FoodOptionMockServiceImp: FoodOptionService {
     
-    init(network: Network) {
-        
-    }
+    init(network: Network) { }
     
     func requestFoodOptions(foodId: String, completionHandler: @escaping (DataResponse<FoodOptionsForView>) -> Void) {
         
@@ -51,5 +49,4 @@ internal class FoodOptionMockServiceImp: FoodOptionService {
             self.requestFoodOptions(foodId: foodId, completionHandler: completionHandler)
         }
     }
-    
 }

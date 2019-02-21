@@ -21,5 +21,4 @@ internal class FoodOptionServiceImp: FoodOptionService {
             self.requestFoodOptions(foodId: foodId, completionHandler: completionHandler)
         }
     }
-    
 }

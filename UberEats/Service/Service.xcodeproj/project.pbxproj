@@ -102,10 +102,10 @@
 		998A24C22203118D00AF250D /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				99E42A3D221E7B9E00A38D4F /* FoodOptionService */,
 				998A24C42203118D00AF250D /* Info.plist */,
 				998A25CD2207081700AF250D /* Network.swift */,
 				998A24ED2203199100AF250D /* ServiceFactory.swift */,
+				99E42A3D221E7B9E00A38D4F /* FoodOptionService */,
 				998A24E52203120400AF250D /* FoodMarketService */,
 				D1D5F3A32216902700370784 /* StoreService */,
 				D1906ED5221973C900210DF4 /* FoodsService */,
