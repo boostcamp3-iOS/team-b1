@@ -18,7 +18,7 @@ extension FoodItemDetailsViewController {
         return self.view.frame.height
     }
 
-    private func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let stretchableHeaderY = -scrollView.contentOffset.y
 
         let height = min(max(stretchableHeaderY, getStretchableHeaderMinumumHeight()), getStretchableHeaderMaximumHeight())

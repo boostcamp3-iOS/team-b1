@@ -14,6 +14,8 @@
 		998A24E92203129D00AF250D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 998A24E82203129D00AF250D /* .swiftlint.yml */; };
 		998A24EE2203199100AF250D /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A24ED2203199100AF250D /* ServiceFactory.swift */; };
 		998A25CE2207081700AF250D /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A25CD2207081700AF250D /* Network.swift */; };
+		99E42A3F221E7BB300A38D4F /* FoodOptionServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E42A3E221E7BB300A38D4F /* FoodOptionServiceImp.swift */; };
+		99E42A41221E7C6F00A38D4F /* FoodOptionMockServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E42A40221E7C6F00A38D4F /* FoodOptionMockServiceImp.swift */; };
 		99F57937220C5B4E002D792A /* ServiceInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57936220C5B4E002D792A /* ServiceInterface.framework */; };
 		D1906ED7221973F000210DF4 /* FoodsServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1906ED6221973F000210DF4 /* FoodsServiceImp.swift */; };
 		D1D5F3A52216905300370784 /* StoreServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F3A42216905300370784 /* StoreServiceImp.swift */; };
@@ -40,6 +42,8 @@
 		998A24E82203129D00AF250D /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		998A24ED2203199100AF250D /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		998A25CD2207081700AF250D /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		99E42A3E221E7BB300A38D4F /* FoodOptionServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodOptionServiceImp.swift; sourceTree = "<group>"; };
+		99E42A40221E7C6F00A38D4F /* FoodOptionMockServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodOptionMockServiceImp.swift; sourceTree = "<group>"; };
 		99F57936220C5B4E002D792A /* ServiceInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ServiceInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1906ED6221973F000210DF4 /* FoodsServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodsServiceImp.swift; sourceTree = "<group>"; };
 		D1D5F3A42216905300370784 /* StoreServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreServiceImp.swift; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 		998A24C22203118D00AF250D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				99E42A3D221E7B9E00A38D4F /* FoodOptionService */,
 				998A24C42203118D00AF250D /* Info.plist */,
 				998A25CD2207081700AF250D /* Network.swift */,
 				998A24ED2203199100AF250D /* ServiceFactory.swift */,
@@ -123,6 +128,15 @@
 				998A24E3220311BF00AF250D /* FoodMarketServiceImp.swift */,
 			);
 			path = FoodMarketService;
+			sourceTree = "<group>";
+		};
+		99E42A3D221E7B9E00A38D4F /* FoodOptionService */ = {
+			isa = PBXGroup;
+			children = (
+				99E42A3E221E7BB300A38D4F /* FoodOptionServiceImp.swift */,
+				99E42A40221E7C6F00A38D4F /* FoodOptionMockServiceImp.swift */,
+			);
+			path = FoodOptionService;
 			sourceTree = "<group>";
 		};
 		D1906ED5221973C900210DF4 /* FoodsService */ = {
@@ -254,6 +268,8 @@
 				998A24EE2203199100AF250D /* ServiceFactory.swift in Sources */,
 				998A25CE2207081700AF250D /* Network.swift in Sources */,
 				D1906ED7221973F000210DF4 /* FoodsServiceImp.swift in Sources */,
+				99E42A41221E7C6F00A38D4F /* FoodOptionMockServiceImp.swift in Sources */,
+				99E42A3F221E7BB300A38D4F /* FoodOptionServiceImp.swift in Sources */,
 				998A24E4220311BF00AF250D /* FoodMarketServiceImp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
