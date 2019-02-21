@@ -85,64 +85,65 @@ internal class FoodMarketServiceImp: FoodMarketService {
                 return
             }
             
-            if response?.httpStatusCode == .ok {
-                guard let data = data else {
-                    //completionHandler(DataResponse.failed(NetworkError.noDataReceived()))
-                    return
-                }
-                
-                do {
-                    let foodMarket: FoodMarketForView = try JSONDecoder().decode(FoodMarketForView.self, from: data)
-                    
-                    let banners: [AdvertisingBoard] = foodMarket.advertisingBoard
-                    
-                    let moreRestArray = foodMarket.stores
-                    let nearestRest: [StoreForView] = self.caculateDistance(stores: moreRestArray)
-                    let recommendFood: [FoodForView] = foodMarket.recommandFoods
-                    let bannerImageURL: [String] = self.getBannerImageURL(banners: banners)
-                    let expectTimeRest: [StoreForView] = self.caculateExpectTime(stores: moreRestArray)
-                    let newRests: [StoreForView] = foodMarket.newStores
-                    
-                    let nearestRestSlice = nearestRest.prefix(self.maximunImage)
-                    let nearestRestArray = Array(nearestRestSlice)
-                    
-                    let recommendFoodSlice = recommendFood.prefix(self.maximunImage)
-                    let recommendFoodArray = Array(recommendFoodSlice)
-                    
-                    let bannerImageSlice = bannerImageURL.prefix(self.maximunImage)
-                    let bannerImageArry = Array(bannerImageSlice)
-                    
-                    let expectRestSlice = expectTimeRest.prefix(self.maximunImage)
-                    let expectRestArray = Array(expectRestSlice)
-                    
-                    let newRestSlice = newRests.prefix(self.maximunImage)
-                    let newRestArray = Array(newRestSlice)
-                    
-                    self.storeImages(neareRest: nearestRestArray,
-                                recommendFood: recommendFoodArray,
-                                bannerImages: bannerImageArry,
-                                expectTimeRest: expectRestArray,
-                                newRests: newRestArray,
-                                moreRests: moreRestArray
-                    )
-                
-                    let caculatedFoodMarket = FoodMarketForNetwork(neareRest: nearestRestArray,
-                                                                 recommendFood: recommendFoodArray,
-                                                                 bannerImages: bannerImageArry,
-                                                                 expectTimeRest: expectRestArray,
-                                                                 newRests: newRestArray,
-                                                                 moreRests: moreRestArray
-                    )
-                    
-                    DispatchQueue.main.async {
-                        completionHandler(DataResponse.success(caculatedFoodMarket))
+            DispatchQueue.global().asyncAfter(deadline: .now() + 3.5) {
+                if response?.httpStatusCode == .ok {
+                    guard let data = data else {
+                        //completionHandler(DataResponse.failed(NetworkError.noDataReceived()))
+                        return
                     }
                     
-                } catch {
+                    do {
+                        let foodMarket: FoodMarketForView = try JSONDecoder().decode(FoodMarketForView.self, from: data)
+                        
+                        let banners: [AdvertisingBoard] = foodMarket.advertisingBoard
+                        
+                        let moreRestArray = foodMarket.stores
+                        let nearestRest: [StoreForView] = self.caculateDistance(stores: moreRestArray)
+                        let recommendFood: [FoodForView] = foodMarket.recommandFoods
+                        let bannerImageURL: [String] = self.getBannerImageURL(banners: banners)
+                        let expectTimeRest: [StoreForView] = self.caculateExpectTime(stores: moreRestArray)
+                        let newRests: [StoreForView] = foodMarket.newStores
+                        
+                        let nearestRestSlice = nearestRest.prefix(self.maximunImage)
+                        let nearestRestArray = Array(nearestRestSlice)
+                        
+                        let recommendFoodSlice = recommendFood.prefix(self.maximunImage)
+                        let recommendFoodArray = Array(recommendFoodSlice)
+                        
+                        let bannerImageSlice = bannerImageURL.prefix(self.maximunImage)
+                        let bannerImageArry = Array(bannerImageSlice)
+                        
+                        let expectRestSlice = expectTimeRest.prefix(self.maximunImage)
+                        let expectRestArray = Array(expectRestSlice)
+                        
+                        let newRestSlice = newRests.prefix(self.maximunImage)
+                        let newRestArray = Array(newRestSlice)
+                        
+                        self.storeImages(neareRest: nearestRestArray,
+                                    recommendFood: recommendFoodArray,
+                                    bannerImages: bannerImageArry,
+                                    expectTimeRest: expectRestArray,
+                                    newRests: newRestArray,
+                                    moreRests: moreRestArray
+                        )
+                    
+                        let caculatedFoodMarket = FoodMarketForNetwork(neareRest: nearestRestArray,
+                                                                     recommendFood: recommendFoodArray,
+                                                                     bannerImages: bannerImageArry,
+                                                                     expectTimeRest: expectRestArray,
+                                                                     newRests: newRestArray,
+                                                                     moreRests: moreRestArray
+                        )
+                        
+                        DispatchQueue.main.async {
+                            completionHandler(DataResponse.success(caculatedFoodMarket))
+                        }
+                    } catch {
+                        fatalError()
+                    }
+                } else {
                     fatalError()
                 }
-            } else {
-                fatalError()
             }
         }
     }
