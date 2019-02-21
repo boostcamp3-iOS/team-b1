@@ -25,5 +25,4 @@ public enum ServiceFactory {
     public static func createFoodOptionService(network: Network) -> FoodOptionService {
         return FoodOptionMockServiceImp(network: network)
     }
-    
 }
