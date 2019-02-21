@@ -31,8 +31,8 @@ class StoreCollectionViewController: UICollectionViewController {
     var foodId: String?
 
     var orderFoods: [OrderInfoModel] = []
-    private var store: Store?
-    private var foods: [Food] = [] {
+    private var store: StoreForView?
+    private var foods: [FoodForView] = [] {
         didSet {
             foods.forEach {
                 if let imageURL = URL(string: $0.lowImageURL) {
@@ -49,7 +49,7 @@ class StoreCollectionViewController: UICollectionViewController {
         }
     }
 
-    private var foodsOfCategory: [String: [Food]] = [:]
+    private var foodsOfCategory: [String: [FoodForView]] = [:]
 
     private var statusBarStyle: UIStatusBarStyle = .lightContent
     private var lastSection: Int = 3
@@ -120,39 +120,33 @@ class StoreCollectionViewController: UICollectionViewController {
             return
         }
 
-        storeService.requestStore(query: storeId, dispatchQueue: DispatchQueue.global()) { [weak self] (response) in
-            if response.isSuccess {
-                guard let store = response.value?.store else {
-                    return
-                }
-
-                self?.storeTitleView.store = store
-                self?.store = store
-
-                self?.collectionView.reloadData()
-            } else {
-                fatalError()
+        storeService.requestStore(storeId: storeId, dispatchQueue: .global()) { [weak self] (response) in
+            guard response.isSuccess,
+                let store = response.value?.store else {
+                return
             }
+
+            self?.storeTitleView.store = store
+            self?.store = store
+
+            self?.collectionView.reloadData()
         }
 
-        foodsService.requestFoods(query: storeId, dispatchQueue: DispatchQueue.global()) { [weak self] (response) in
-            if response.isSuccess {
-                guard let foods = response.value?.foods else {
-                    return
-                }
-
-                self?.foods = foods
-                self?.seperateCategory()
-
-                self?.collectionView.reloadData()
-                self?.menuBarCollectionView.reloadData()
-
-                self?.setupFloatingView()
-                self?.setupCollectionView()
-                self?.pushFoodDetail()
-            } else {
-                fatalError()
+        foodsService.requestFoods(storeId: storeId, dispatchQueue: .global()) { [weak self] (response) in
+            guard response.isSuccess,
+                let foods = response.value?.foods else {
+                return
             }
+
+            self?.foods = foods
+            self?.seperateCategory()
+
+            self?.collectionView.reloadData()
+            self?.menuBarCollectionView.reloadData()
+
+            self?.setupFloatingView()
+            self?.setupCollectionView()
+            self?.pushFoodDetail()
         }
     }
 
@@ -418,7 +412,7 @@ class StoreCollectionViewController: UICollectionViewController {
                 let categoryId: String = "category" + String(indexPath.section - DistanceBetween.menuAndRest + 1)
                 let foodIndex: Int = indexPath.item - DistanceBetween.titleAndFoodCell
 
-                guard let food: Food = foodsOfCategory[categoryId]?[foodIndex] else {
+                guard let food: FoodForView = foodsOfCategory[categoryId]?[foodIndex] else {
                     return .init()
                 }
 
@@ -727,7 +721,6 @@ extension StoreCollectionViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.menuBarCollectionView {
             let estimatedForm = self.categorys[indexPath.item].estimateCGRect
-            print("estimate : \(self.categorys[indexPath.item]), \(estimatedForm.width)")
 
             return .init(width: estimatedForm.width + ValuesForFloatingView.widthPadding + 20,
                          height: HeightsOfCell.menuBarAndMenu)

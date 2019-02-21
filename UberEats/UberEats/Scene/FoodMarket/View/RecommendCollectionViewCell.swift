@@ -20,7 +20,7 @@ class RecommendCollectionViewCell: UICollectionViewCell {
     @IBOutlet var gradeLabel: UILabel!
     @IBOutlet var commentLabel: UILabel!
 
-    var recommendFood: Food? {
+    var recommendFood: FoodForView? {
         didSet {
             guard let recommendFood = recommendFood else {
                 return

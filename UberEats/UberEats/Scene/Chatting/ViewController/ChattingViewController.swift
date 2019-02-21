@@ -34,7 +34,6 @@ class ChattingViewController: UIViewController, UITextFieldDelegate {
     private func observeMessages() {
         let messageFromGroup = Database.database().reference().child("groups").child("-LXbWKQsskziJ50aw8qN")
         messageFromGroup.observe(.childAdded) { (snapshot) in
-            //print(snapshot.key)
             let messageRef = Database.database().reference().child("message").child(snapshot.key)
             messageRef.observe(.value, with: { (messageSnapshot) in
                 if let dictionary = messageSnapshot.value as? [String: Any] {
@@ -157,7 +156,6 @@ class ChattingViewController: UIViewController, UITextFieldDelegate {
         
         messageRef.updateChildValues(data) { (error, ref) in 
             guard error == nil else {
-                print(error as Any)
                 return
             }
             

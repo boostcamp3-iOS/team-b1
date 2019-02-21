@@ -18,8 +18,8 @@ class FoodsServiceImp: FoodsService {
         self.network = network
     }
     
-    func requestFoods(query: String, completionHandler: @escaping (DataResponse<BusinessFoods>) -> Void) {
-        guard let requestURL = URL(string: "www.uberEats.com/foods?" + query) else {
+    func requestFoods(storeId: String, completionHandler: @escaping (DataResponse<FoodsForNetwork>) -> Void) {
+        guard let requestURL = URL(string: "www.uberEats.com/foods?" + storeId) else {
             fatalError("URL conversion error")
         }
         
@@ -31,9 +31,9 @@ class FoodsServiceImp: FoodsService {
                 }
                 
                 do {
-                    let foods: [Food] = try JSONDecoder().decode([Food].self, from: data)
+                    let foods: [FoodForView] = try JSONDecoder().decode([FoodForView].self, from: data)
                     
-                    let caculatedFoods = BusinessFoods(foods)
+                    let caculatedFoods = FoodsForNetwork(foods)
                     
                     DispatchQueue.main.async {
                         completionHandler(DataResponse.success(caculatedFoods))
@@ -47,9 +47,9 @@ class FoodsServiceImp: FoodsService {
         }
     }
     
-    func requestFoods(query: String, dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<BusinessFoods>) -> Void) {
+    func requestFoods(storeId: String, dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<FoodsForNetwork>) -> Void) {
         dispatchQueue?.async {
-            self.requestFoods(query: query, completionHandler: completionHandler)
+            self.requestFoods(storeId: storeId, completionHandler: completionHandler)
         }
     }
     

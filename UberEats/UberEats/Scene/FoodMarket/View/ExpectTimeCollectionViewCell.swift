@@ -18,7 +18,7 @@ class ExpectTimeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var rate: UILabel!
     @IBOutlet weak var promotion: UILabel!
 
-    var expectTimeRest: Store? {
+    var expectTimeRest: StoreForView? {
         didSet {
             guard let expectTimeRest = expectTimeRest else {
                 return

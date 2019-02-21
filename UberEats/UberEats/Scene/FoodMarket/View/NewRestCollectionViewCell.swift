@@ -18,7 +18,7 @@ class NewRestCollectionViewCell: UICollectionViewCell {
     //rate
     @IBOutlet weak var promotion: UILabel!
 
-    var newRest: Store? {
+    var newRest: StoreForView? {
         didSet {
             guard let newRest = newRest else {
                 return

@@ -109,7 +109,7 @@ class ItemViewController: UIViewController {
 
     private var restaurtSeeMoreCollectionViewCell = RestaurtSeeMoreCollectionViewCell()
 
-    private var recommendFood: [Food] = [] {
+    private var recommendFood: [FoodForView] = [] {
         didSet {
             recommendFoodStaticTableCell.collectionView.delegate = self
             recommendFoodStaticTableCell.collectionView.dataSource = self
@@ -118,20 +118,20 @@ class ItemViewController: UIViewController {
         }
     }
 
-    private var nearestRests: [Store] = [] {
+    private var nearestRests: [StoreForView] = [] {
         didSet {
             //필요 없을거 같은데 없으면 collectionviewcell이 나타나지 않음
             _ = setupDataInCollectionView(row: 0, section: 2)
         }
     }
 
-    private var expectTimeRests: [Store] = [] {
+    private var expectTimeRests: [StoreForView] = [] {
         didSet {
             _ = setupDataInCollectionView(row: 0, section: 3)
         }
     }
 
-    private var newRests: [Store] = [] {
+    private var newRests: [StoreForView] = [] {
         didSet {
              _ = setupDataInCollectionView(row: 0, section: 4)
         }
@@ -143,7 +143,7 @@ class ItemViewController: UIViewController {
         }
     }
 
-    private var moreRests: [Store] = []
+    private var moreRests: [StoreForView] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
