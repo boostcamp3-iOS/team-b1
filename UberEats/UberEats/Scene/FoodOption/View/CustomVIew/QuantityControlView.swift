@@ -10,7 +10,7 @@ import UIKit
 
 class QuantityControlView: UIView, QuantityValueChanged {
 
-    private let xibName = "QuantityControlView"
+    private static let xibName = "QuantityControlView"
 
     @IBOutlet var quantityControlContantVIew: UIView!
 
@@ -48,7 +48,7 @@ class QuantityControlView: UIView, QuantityValueChanged {
     }
 
     private func initNib() {
-        Bundle.main.loadNibNamed(xibName, owner: self, options: nil)
+        Bundle.main.loadNibNamed(QuantityControlView.xibName, owner: self, options: nil)
         quantityControlContantVIew.fixInView(self)
         quantity.quantitychanged = self
     }
@@ -70,7 +70,7 @@ private class Quantity {
         }
     }
 
-    var quantitychanged: QuantityValueChanged?
+    weak var quantitychanged: QuantityValueChanged?
 
     func plus() {
         if(value <= Quantity.maximum) {
