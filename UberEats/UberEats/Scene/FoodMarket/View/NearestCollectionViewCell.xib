@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zsg-eV-HuY">
                         <rect key="frame" x="0.0" y="0.0" width="311" height="310"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="newRestImage" translatesAutoresizingMaskIntoConstraints="NO" id="Rez-OW-kW8">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="newRestImage" image="foodPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="Rez-OW-kW8">
                                 <rect key="frame" x="9" y="9" width="293" height="140"/>
                                 <accessibility key="accessibilityConfiguration" identifier="nearestCollectionImage"/>
                                 <constraints>
@@ -109,4 +109,7 @@
             <point key="canvasLocation" x="247.19999999999999" y="222.1889055472264"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="foodPlaceHolder" width="511.20001220703125" height="511.20001220703125"/>
+    </resources>
 </document>

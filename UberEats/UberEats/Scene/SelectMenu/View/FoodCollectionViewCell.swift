@@ -32,7 +32,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
     let foodImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = #colorLiteral(red: 0.8979219198, green: 0.8925844431, blue: 0.9020249844, alpha: 1)
+        imageView.image = UIImage(named: "foodPlaceHolder")
         imageView.layer.borderColor = #colorLiteral(red: 0.8979219198, green: 0.8925844431, blue: 0.9020249844, alpha: 1)
         imageView.layer.borderWidth = 0.5
         return imageView
@@ -71,7 +71,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
                                                         constant: -10)
         priceLabelBottomConstraint.isActive = true
 
-        foodImageViewWidthConstraint = foodImageView.widthAnchor.constraint(equalToConstant: Metrix.imageViewSize)
+        foodImageViewWidthConstraint = foodImageView.widthAnchor.constraint(equalToConstant: Metrix.imageViewWidth)
         foodImageViewWidthConstraint.isActive = true
 
         NSLayoutConstraint.activate([
@@ -100,7 +100,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
                                                constant: Metrix.topMargin),
             foodImageView.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                     constant: -Metrix.trailingMargin),
-            foodImageView.heightAnchor.constraint(equalToConstant: Metrix.imageViewSize)
+            foodImageView.heightAnchor.constraint(equalToConstant: Metrix.imageViewHeight)
             ])
     }
 
@@ -124,6 +124,7 @@ private struct Metrix {
     static let topMargin: CGFloat = 10
     static let leadingMargin: CGFloat = 15
     static let trailingMargin: CGFloat = 10
-    static let imageViewSize: CGFloat = 100
+    static let imageViewWidth: CGFloat = 100
+    static let imageViewHeight: CGFloat = 90
     static let labelNumberOfLine: Int = 2
 }
