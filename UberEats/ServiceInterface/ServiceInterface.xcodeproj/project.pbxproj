@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8443049C22154E7100FCFADB /* BusinessFoodMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443049B22154E7100FCFADB /* BusinessFoodMarket.swift */; };
+		99E42A39221E76CB00A38D4F /* FoodOptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E42A38221E76CB00A38D4F /* FoodOptionService.swift */; };
 		99F5792F220C5A7C002D792A /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F5792E220C5A7C002D792A /* Common.framework */; };
 		99F57933220C5AB4002D792A /* FoodMarketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F57932220C5AB4002D792A /* FoodMarketService.swift */; };
 		D1906ED22219731700210DF4 /* FoodsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1906ED12219731700210DF4 /* FoodsService.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		8443049B22154E7100FCFADB /* BusinessFoodMarket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessFoodMarket.swift; sourceTree = "<group>"; };
+		99E42A38221E76CB00A38D4F /* FoodOptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodOptionService.swift; sourceTree = "<group>"; };
 		99F57922220C5A34002D792A /* ServiceInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ServiceInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F57926220C5A34002D792A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99F5792E220C5A7C002D792A /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +69,7 @@
 				D1D5F3AA2216AAB000370784 /* BusinessStore.swift */,
 				D1906ED12219731700210DF4 /* FoodsService.swift */,
 				D1906ED32219732400210DF4 /* BusinessFoods.swift */,
+				99E42A38221E76CB00A38D4F /* FoodOptionService.swift */,
 			);
 			path = ServiceInterface;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				D1906ED42219732400210DF4 /* BusinessFoods.swift in Sources */,
 				8443049C22154E7100FCFADB /* BusinessFoodMarket.swift in Sources */,
 				D1D5F3AB2216AAB000370784 /* BusinessStore.swift in Sources */,
+				99E42A39221E76CB00A38D4F /* FoodOptionService.swift in Sources */,
 				D1D5F3A92216AA9600370784 /* StoreService.swift in Sources */,
 				D1906ED22219731700210DF4 /* FoodsService.swift in Sources */,
 			);

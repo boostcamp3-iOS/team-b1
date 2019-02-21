@@ -286,39 +286,38 @@ class StoreCollectionViewController: UICollectionViewController {
 
     private func pushFoodDetail() {
         if foodId != nil {
-            let storyboard = UIStoryboard(name: "Cart", bundle: nil)
-            let cartViewController = storyboard.instantiateViewController(withIdentifier: "CartVC") as! CartViewController
+            let storyboard = UIStoryboard(name: "FoodItemDetails", bundle: nil)
+            let foodDetailsViewController = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC") as! FoodItemDetailsViewController
 
-            guard let store = store else {
-                return
-            }
+//            guard let store = store else {
+//                return
+//            }
+//
+//            var price: Int = 0
+//            var foodName: String = ""
+//
+//            foods.forEach {
+//                if foodId == $0.id {
+//                    price = $0.basePrice
+//                    foodName = $0.foodName
+//                }
+//            }
+//
+//            let storeInfo = StoreInfoModel.init(name: store.name, deliveryTime: store.deliveryTime)
+//            let deliveryInfoModel = DeilveryInfoModel.init(locationImage: "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/airInTheCafe.jpeg?raw=true",
+//                                                           detailedAddress: "서울특별시 강남구 역삼1동 강남대로 382",
+//                                                           address: "메리츠 타워",
+//                                                           deliveryMethod: .pickUpOutside,
+//                                                           roomNumber: 101)
+//
+//            let cartModel = CartModel.init(storeInfo: storeInfo, deilveryInfo: deliveryInfoModel, foodOrderedInfo: nil)
+//
+//            cartViewController.cartModel = cartModel
+//            cartViewController.orderInfoModels = [OrderInfoModel.init(amount: 1,
+//                                                                      orderName: foodName,
+//                                                                      price: price)]
 
-            var price: Int = 0
-            var foodName: String = ""
-
-            foods.forEach {
-                if foodId == $0.id {
-                    price = $0.basePrice
-                    foodName = $0.foodName
-                }
-            }
-
-            let storeInfo = StoreInfoModel.init(name: store.name, deliveryTime: store.deliveryTime)
-            let deliveryInfoModel = DeilveryInfoModel.init(locationImage: "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/airInTheCafe.jpeg?raw=true",
-                                                           detailedAddress: "서울특별시 강남구 역삼1동 강남대로 382",
-                                                           address: "메리츠 타워",
-                                                           deliveryMethod: .pickUpOutside,
-                                                           roomNumber: 101,
-                                                           deliveryTime: store.deliveryTime)
-
-            let cartModel = CartModel.init(storeInfo: storeInfo, deilveryInfo: deliveryInfoModel, foodOrderedInfo: nil)
-
-            cartViewController.cartModel = cartModel
-            cartViewController.orderInfoModels = [OrderInfoModel.init(amount: 1,
-                                                                      orderName: foodName,
-                                                                      price: price)]
-
-            self.navigationController?.pushViewController(cartViewController, animated: true)
+            self.navigationController?.pushViewController(foodDetailsViewController, animated: true)
             //            self.present(cartViewController, animated: true, completion: nil)
         }
     }

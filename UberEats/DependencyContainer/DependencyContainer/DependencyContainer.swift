@@ -36,6 +36,10 @@ public class DependencyContainer {
         
         register(key: .foodsService, value: foodsService)
         
+        let foodOptionService = ServiceFactory.createFoodOptionService(network: mockServer)
+        
+        register(key: .foodOptionService, value: foodOptionService)
+        
     }
     
     private func createUberEatsApplication() -> Application {
@@ -84,4 +88,5 @@ public enum DependencyKey {
     case foodMarketService
     case storeService
     case foodsService
+    case foodOptionService
 }
