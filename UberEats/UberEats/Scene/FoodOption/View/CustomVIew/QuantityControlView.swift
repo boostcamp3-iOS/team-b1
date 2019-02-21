@@ -59,31 +59,26 @@ private class Quantity {
 
     private static let maximum = 99
     private static let minimum = 1
-
-    private var value_: Int = Quantity.minimum
-    private (set) var value: Int {
-        get {
-            return value_
-        }
-        set(newVal) {
-            value_ = newVal
-        }
-    }
+    private (set) var value = Quantity.minimum
 
     weak var quantitychanged: QuantityValueChanged?
 
     func plus() {
-        if(value <= Quantity.maximum) {
-            value += 1
-            quantitychanged?.quantityValueChanged(newQuantity: value)
+        guard value <= Quantity.maximum else {
+            return
         }
+
+        value += 1
+        quantitychanged?.quantityValueChanged(newQuantity: value)
     }
 
     func minus() {
-        if(value > Quantity.minimum) {
-            value -= 1
-            quantitychanged?.quantityValueChanged(newQuantity: value)
+        guard value > Quantity.minimum else {
+            return
         }
+
+        value -= 1
+        quantitychanged?.quantityValueChanged(newQuantity: value)
     }
 
 }
