@@ -63,6 +63,8 @@ public class MockServer {
                 fatalError("encoding Error")
             }
 
+            Thread.sleep(forTimeInterval: 3)
+
             return String(decoding: result, as: UTF8.self)
         })
 

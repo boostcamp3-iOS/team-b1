@@ -58,7 +58,7 @@ class SeeMoreRestTableViewCell: UITableViewCell {
     }
 
     override func prepareForReuse() {
-        mainImage.image = nil
+        mainImage.image = UIImage(named: "foodPlaceHolder")
     }
 
 }
