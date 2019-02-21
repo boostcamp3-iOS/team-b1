@@ -28,15 +28,15 @@ class StoreTitleView: UIView {
 
     let detailLabel: UILabel = {
         let label = UILabel().setupWithFontSize(15)
-        label.textColor = .darkGray
         return label
     }()
 
     let timeAndGradeLabel: UILabel = {
         let label = UILabel().setupWithFontSize(15)
-        label.textColor = .darkGray
         return label
     }()
+
+    let clockImageView = UIImageView().initImageView("icClock")
 
     var store: Store? {
         didSet {
@@ -46,7 +46,12 @@ class StoreTitleView: UIView {
 
             titleLabel.text = store.name
             detailLabel.text = store.category
-            timeAndGradeLabel.text = store.deliveryTime
+            timeAndGradeLabel.text = store.deliveryTime + "분"
+            if store.rate.score != 0 {
+                timeAndGradeLabel.text?.append(" " + String(store.rate.score) + " ★ ("
+                                                + String(store.rate.numberOfRater) + ")")
+            }
+
         }
     }
 
@@ -85,6 +90,7 @@ class StoreTitleView: UIView {
         addSubview(titleLabel)
         addSubview(detailLabel)
         addSubview(timeAndGradeLabel)
+        addSubview(clockImageView)
 
         titleLabelLeadingConstraint = titleLabel.leadingAnchor
                                                 .constraint(equalTo: self.leadingAnchor,
@@ -108,10 +114,15 @@ class StoreTitleView: UIView {
             detailLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                   constant: -Metrix.labelLeadingAndTrailingMargin),
 
+            clockImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrix.labelLeadingAndTrailingMargin),
+            clockImageView.centerYAnchor.constraint(equalTo: timeAndGradeLabel.centerYAnchor),
+            clockImageView.widthAnchor.constraint(equalToConstant: 15),
+            clockImageView.heightAnchor.constraint(equalToConstant: 15),
+
             timeAndGradeLabel.topAnchor.constraint(equalTo: detailLabel.bottomAnchor,
                                                    constant: Metrix.labelTopMargin),
-            timeAndGradeLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                                       constant: Metrix.labelLeadingAndTrailingMargin),
+            timeAndGradeLabel.leadingAnchor.constraint(equalTo: clockImageView.trailingAnchor,
+                                                       constant: 3),
             timeAndGradeLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                         constant: -Metrix.labelLeadingAndTrailingMargin),
             timeAndGradeLabel.bottomAnchor.constraint(equalTo: bottomAnchor,
@@ -170,6 +181,7 @@ class StoreTitleView: UIView {
             titleLabelTopConstraint.constant = (currentScroll * 0.2) + Metrix.titleLabelTopMargin
             detailLabel.alpha = 1 - currentScroll / Metrix.scrollLimit
             timeAndGradeLabel.alpha = 0.8 - currentScroll / Metrix.scrollLimit
+            clockImageView.alpha = 0.8 - currentScroll / Metrix.scrollLimit
 
             titleLabelLeadingConstraint.constant = currentScroll * 0.1 + Metrix.titleLabelLeadingAndTrailingMargin
             titleLabelTrailingConstraint.constant = -(currentScroll * 0.1 + Metrix.titleLabelLeadingAndTrailingMargin)
