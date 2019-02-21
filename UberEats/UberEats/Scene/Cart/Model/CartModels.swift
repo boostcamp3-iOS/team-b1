@@ -25,6 +25,7 @@ struct DeilveryInfoModel {
     let address: String
     let deliveryMethod: DeliveryMethod
     let roomNumber: Int
+    let deliveryTime: String
 }
 
 struct PriceInfoModel {

@@ -21,6 +21,25 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
 
     var delegate: ChangeScrollDelegate?
 
+    var titleName: String? {
+        didSet {
+            guard let titleName = titleName else {
+                return
+            }
+            storeNameLabel.text = titleName
+        }
+    }
+
+    var arrivalTime: String? {
+        didSet {
+            guard let arrivalTime = arrivalTime else {
+                return
+            }
+
+            arrivalTimeLabel.text = arrivalTime
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setSliderAnimation()

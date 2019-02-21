@@ -18,7 +18,8 @@ extension CartModel {
                                              detailedAddress: "",
                                              address: "",
                                              deliveryMethod: .pickUpOutside,
-                                             roomNumber: 0)
+                                             roomNumber: 0,
+                                             deliveryTime: "")
 
         return CartModel(storeInfo: storeInfo,
                              deilveryInfo: deilveryInfo,

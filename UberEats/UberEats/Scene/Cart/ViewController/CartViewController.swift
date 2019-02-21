@@ -99,10 +99,19 @@ extension CartViewController: OrderButtonClickable {
     func onClickedOrderButton(_ sender: Any) {
 
         let storyboard = UIStoryboard.init(name: "LocationViewController", bundle: nil)
-        let foodItemVC = storyboard.instantiateViewController(withIdentifier: "locationViewController")
+        guard let deliveryStartVC = storyboard.instantiateViewController(withIdentifier: "locationViewController")
+            as? LocationViewController else {
+            return
+        }
+
+        deliveryStartVC.storeName = cartModel.storeInfo.name
+        let deliveryTimes = cartModel.deilveryInfo.deliveryTime.components(separatedBy: "-")
+
+        deliveryStartVC.storeDeliveryTime = Double(deliveryTimes[1])
+        deliveryStartVC.orders = orderInfoModels
 
 //        self.present(foodItemVC, animated: true, completion: nil)
-        self.navigationController?.pushViewController(foodItemVC, animated: true)
+        self.navigationController?.pushViewController(deliveryStartVC, animated: true)
     }
 
 }

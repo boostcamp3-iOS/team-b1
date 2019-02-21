@@ -16,14 +16,16 @@ class LocationViewController: UIViewController {
     private var deliveryStartInfoHeight: CGFloat = 0
 
     @IBOutlet weak var coveredBackButton: UIButton!
+    @IBOutlet weak var coveredContactButton: UIButton!
+
     private let backButton = UIButton().initButtonWithImage("blackArrow")
     private let moveCurrentLocationButton = UIButton().initButtonWithImage("btCurrentlocation")
     private let contactButton = UIButton().initButtonWithImage("btInquiry")
-    @IBOutlet weak var coveredContactButton: UIButton!
 
-    private let orders = ["초콜렛 밀크티 (아이스, 라지) Chocolate Milk Tea (Iced, Large)",
-                          "아메리카노 (아이스, 라지) Americano (Iced, Large)",
-                          "블랙 밀크티+펄(아이스, 라지) Black Milk Tea+Pearl(Iced, Large)"]
+    var orders: [OrderInfoModel]?
+
+    var storeName: String?
+    var storeDeliveryTime: Double?
 
     private let sectionHeader = UICollectionView.elementKindSectionHeader
     private let sectionFooter = UICollectionView.elementKindSectionFooter
@@ -57,7 +59,10 @@ class LocationViewController: UIViewController {
                                               collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = #colorLiteral(red: 0.9525781274, green: 0.9469152093, blue: 0.9569309354, alpha: 1)
-        collectionView.contentInset = UIEdgeInsets(top: self.view.frame.height * 0.4 + deliveryStartInfoHeight - 30, left: 10, bottom: 0, right: 10)
+        collectionView.contentInset = UIEdgeInsets(top: self.view.frame.height * 0.4 + deliveryStartInfoHeight - 30,
+                                                   left: 10,
+                                                   bottom: self.view.frame.height * 0.2,
+                                                   right: 10)
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -65,21 +70,27 @@ class LocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        storeWindow.storeName = storeName
+
         orderDetailCollectionView.delegate = self
         orderDetailCollectionView.dataSource = self
         setupMapView()
         setupLayout()
         setupCollectionView()
 
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//            self.backButton.setImage(UIImage(named: "btnClose"), for: .normal)
-//            self.deliveryStartView.isHidden = false
-//            self.deliveryStartInfoHeight = 130
-//            self.orderDetailCollectionView.contentInset = UIEdgeInsets(top: self.view.frame.height * 0.4 + self.deliveryStartInfoHeight - 30, left: 10, bottom: 0, right: 10)
-//
-//            self.orderDetailCollectionView.contentOffset.y = self.orderDetailCollectionView.contentOffset.y - 130
-//            self.view.layoutIfNeeded()
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+            self.backButton.setImage(UIImage(named: "btnClose"), for: .normal)
+            self.deliveryStartView.isHidden = false
+            self.deliveryStartInfoHeight = 130
+            self.orderDetailCollectionView.contentInset = UIEdgeInsets(top: self.view.frame.height * 0.4
+                                                                            + self.deliveryStartInfoHeight - 30,
+                                                                       left: 10,
+                                                                       bottom: 0,
+                                                                       right: 10)
+
+            self.orderDetailCollectionView.contentOffset.y = self.orderDetailCollectionView.contentOffset.y - 130
+            self.view.layoutIfNeeded()
+        }
     }
 
     private func setupMapView() {
@@ -91,7 +102,7 @@ class LocationViewController: UIViewController {
 
         let camera = GMSCameraPosition(latitude: (userLocation.latitude + 37.499862) / 2,
                                        longitude: (userLocation.longitude + 127.030378) / 2,
-                                       zoom: 17)
+                                       zoom: 16)
 
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView?.padding = UIEdgeInsets(top: 0, left: 10, bottom: self.view.frame.height - (self.view.frame.height * 0.4 + 130 - deliveryStartInfoHeight), right: 0)
@@ -230,6 +241,11 @@ class LocationViewController: UIViewController {
 
     }
 
+    @IBAction func touchUpCoveredBackButton(_ sender: UIButton) {
+        touchUpBackButton(sender)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+
     @objc private func touchUpBackButton(_: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -247,12 +263,12 @@ extension LocationViewController: GMSMapViewDelegate {
         var userWindowPoint = mapView.projection.point(for: userMarker.position)
         userWindowPoint.x += 9
         userWindowPoint.y -= 60
-        userWindow.frame = CGRect(x: userWindowPoint.x, y: userWindowPoint.y, width: 100, height: 40)
+        userWindow.frame = CGRect(x: userWindowPoint.x, y: userWindowPoint.y, width: 150, height: 40)
 
         var storeWindowPoint = mapView.projection.point(for: storeMarker.position)
         storeWindowPoint.x += 8
         storeWindowPoint.y += 2
-        storeWindow.frame = CGRect(x: storeWindowPoint.x, y: storeWindowPoint.y, width: 100, height: 50)
+        storeWindow.frame = CGRect(x: storeWindowPoint.x, y: storeWindowPoint.y, width: 150, height: 50)
 
     }
 
@@ -291,7 +307,7 @@ extension LocationViewController: UICollectionViewDataSource {
         case .deliveryManInfo, .timeDetail, .sale:
             return 1
         case .orders:
-            return orders.count
+            return orders?.count ?? 0
         }
     }
 
@@ -312,9 +328,9 @@ extension LocationViewController: UICollectionViewDataSource {
             cell.cancelLabel.text = "연락처"
             cell.isHidden = true
 
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//                cell.isHidden = false
-//            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+                cell.isHidden = false
+            }
 
             return cell
         case .timeDetail:
@@ -326,7 +342,13 @@ extension LocationViewController: UICollectionViewDataSource {
                                                                 for: indexPath) as? OrderedMenuCollectionViewCell else {
                 return .init()
             }
-            cell.orderMenuLabel.text = orders[indexPath.item]
+
+            guard let order = orders?[indexPath.item] else {
+                return cell
+            }
+
+            cell.foodName = order.orderName
+            cell.numberOfFood = order.amount
 
             return cell
         case .sale:
@@ -354,9 +376,10 @@ extension LocationViewController: UICollectionViewDataSource {
                     return .init()
                 }
 
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//                    header.isHidden = false
-//                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+                    header.isHidden = false
+                }
+
                 header.delegate = self
 
                 return header
@@ -366,6 +389,26 @@ extension LocationViewController: UICollectionViewDataSource {
                                                                              for: indexPath) as? OrderCheckingCollectionReusableView else {
                     return .init()
                 }
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                    header.currentProgressLabel.text = "음식 준비중"
+                }
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+                    header.currentProgressLabel.text = "음식을 배달중입니다."
+                }
+
+                guard let deliveryTime = storeDeliveryTime else {
+                    return header
+                }
+
+                let currentTime = NSDate().addingTimeInterval(deliveryTime * 60)
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "hh:mm"
+                dateFormatter.locale = NSLocale(localeIdentifier: "ko_KR") as Locale
+                header.arrivalTime = dateFormatter.string(from: currentTime as Date)
+                header.storeNameLabel.text = storeName
+
                 header.delegate = self
 
                 return header
@@ -394,10 +437,14 @@ extension LocationViewController: UICollectionViewDataSource {
 extension LocationViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyBoard = UIStoryboard.init(name: "Chatting", bundle: nil)
-        let chattingVC = storyBoard.instantiateViewController(withIdentifier: "ChattingViewController")
+        if indexPath == IndexPath(row: 0, section: 0) {
+            let storyBoard = UIStoryboard.init(name: "Chatting", bundle: nil)
+            let chattingVC = storyBoard.instantiateViewController(withIdentifier: "ChattingViewController")
 
-        present(chattingVC, animated: true, completion: nil)
+            present(chattingVC, animated: true, completion: nil)
+        } else if indexPath == IndexPath(row: 0, section: 1) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView,

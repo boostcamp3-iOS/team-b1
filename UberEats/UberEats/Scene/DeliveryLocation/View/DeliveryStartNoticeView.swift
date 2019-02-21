@@ -40,6 +40,7 @@ class DeliveryStartNoticeView: UIView {
         backgroundColor = .black
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 5
+        layer.zPosition = .greatestFiniteMagnitude
 
         addSubview(deliveryStartLabel)
         addSubview(carImageView)
