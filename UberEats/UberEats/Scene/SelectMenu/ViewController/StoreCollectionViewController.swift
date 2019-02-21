@@ -24,13 +24,14 @@ class StoreCollectionViewController: UICollectionViewController {
         }
     }
 
-    private var store: Store?
-    var storeId: String?
-    var foodId: String?
-
     private var storeService: StoreService = DependencyContainer.share.getDependency(key: .storeService)
     private var foodsService: FoodsService = DependencyContainer.share.getDependency(key: .foodsService)
 
+    var storeId: String?
+    var foodId: String?
+
+    var orderFoods: [OrderInfoModel] = []
+    private var store: Store?
     private var foods: [Food] = [] {
         didSet {
             foods.forEach {
@@ -254,7 +255,7 @@ class StoreCollectionViewController: UICollectionViewController {
                                                             attribute: .width,
                                                             multiplier: ValuesForFloatingView.fullMultiplier,
                                                             constant: categorys[0].estimateCGRect.width
-                                                                + ValuesForFloatingView.widthPadding)
+                                                                + ValuesForFloatingView.widthPadding + 20)
         floatingViewWidthConstraint.isActive = true
 
         floatingViewLeadingConstraint = NSLayoutConstraint(item: floatingView,
@@ -307,7 +308,8 @@ class StoreCollectionViewController: UICollectionViewController {
                                                            detailedAddress: "서울특별시 강남구 역삼1동 강남대로 382",
                                                            address: "메리츠 타워",
                                                            deliveryMethod: .pickUpOutside,
-                                                           roomNumber: 101)
+                                                           roomNumber: 101,
+                                                           deliveryTime: store.deliveryTime)
 
             let cartModel = CartModel.init(storeInfo: storeInfo, deilveryInfo: deliveryInfoModel, foodOrderedInfo: nil)
 
@@ -577,7 +579,8 @@ class StoreCollectionViewController: UICollectionViewController {
                                                                detailedAddress: "메리츠 타워",
                                                                address: "서울특별시 강남구 역삼1동 강남대로 382",
                                                                deliveryMethod: .pickUpOutside,
-                                                               roomNumber: 101)
+                                                               roomNumber: 101,
+                                                               deliveryTime: store.deliveryTime)
 
                 let cartModel = CartModel.init(storeInfo: storeInfo,
                                                deilveryInfo: deliveryInfoModel,
@@ -700,7 +703,7 @@ class StoreCollectionViewController: UICollectionViewController {
 
         let estimatedForm = self.categorys[indexPath.item].estimateCGRect
 
-        floatingViewWidthConstraint.constant = estimatedForm.width + ValuesForFloatingView.widthPadding
+        floatingViewWidthConstraint.constant = estimatedForm.width + ValuesForFloatingView.widthPadding + 20
 
         floatingViewLeadingConstraint.constant = cell.frame.minX
 
@@ -725,8 +728,9 @@ extension StoreCollectionViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.menuBarCollectionView {
             let estimatedForm = self.categorys[indexPath.item].estimateCGRect
+            print("estimate : \(self.categorys[indexPath.item]), \(estimatedForm.width)")
 
-            return .init(width: estimatedForm.width + ValuesForFloatingView.widthPadding,
+            return .init(width: estimatedForm.width + ValuesForFloatingView.widthPadding + 20,
                          height: HeightsOfCell.menuBarAndMenu)
         }
 

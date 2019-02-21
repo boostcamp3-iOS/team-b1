@@ -24,7 +24,6 @@ class ItemViewController: UIViewController {
         let view = SplashIndicatorView()
         view.frame = self.view.frame
         view.center = self.view.center
-        view.isHidden = true
         return view
     }()
 
@@ -217,6 +216,7 @@ class ItemViewController: UIViewController {
             }
 
             self?.tableView.reloadData()
+            self?.indicator.isHidden = true
         }
     }
 
@@ -242,7 +242,7 @@ class ItemViewController: UIViewController {
         scrollView.setContentOffset(point, animated: true)
     }
 
-    private func  addBannerImageView() {
+    private func addBannerImageView() {
         var frame = CGRect(origin: CGPoint.zero, size: CGSize.zero)
 
         for index in 0..<bannerImagesURL.count {
@@ -688,17 +688,18 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
             switch collectionViewTag {
             case .recommendFood:
-                collectionViewController.passingData(status: SelectState.food(foodId: recommendFood[indexPath.item].id, storeId: recommendFood[indexPath.item].storeId))
+                storeViewController.passingData(status: SelectState.food(foodId: recommendFood[indexPath.item].id,
+                                                                         storeId: recommendFood[indexPath.item].storeId))
             case .nearestRest:
-                collectionViewController.passingData(status: SelectState.store(nearestRests[indexPath.item].id))
+                storeViewController.passingData(status: SelectState.store(nearestRests[indexPath.item].id))
             case .expectedTime:
-                collectionViewController.passingData(status: SelectState.store(expectTimeRests[indexPath.item].id))
+                storeViewController.passingData(status: SelectState.store(expectTimeRests[indexPath.item].id))
             case .newRest:
-                collectionViewController.passingData(status: SelectState.store(newRests[indexPath.item].id))
+                storeViewController.passingData(status: SelectState.store(newRests[indexPath.item].id))
             default:
                 break
             }
-            self.navigationController?.pushViewController(collectionViewController, animated: true)
+            self.navigationController?.pushViewController(storeViewController, animated: true)
         } else {
             let SeeMoreRestVC = SeeMoreRestViewController()
             SeeMoreRestVC.section = collectionViewTag

@@ -11,21 +11,27 @@ import UIKit
 class StoreLocationView: UIView {
 
     let locationLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "공차"
-        label.font = .systemFont(ofSize: 15)
+        let label = UILabel().setupWithFontSize(15)
+        label.textAlignment = .center
         return label
     }()
 
     let orderNumberLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel().setupWithFontSize(10)
         label.text = "#123973 주문"
-        label.font = .systemFont(ofSize: 10)
         label.textColor = .lightGray
         return label
     }()
+
+    var storeName: String? {
+        didSet {
+            guard let storeName = storeName else {
+                return
+            }
+
+            locationLabel.text = storeName
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,8 +49,9 @@ class StoreLocationView: UIView {
         addSubview(orderNumberLabel)
 
         NSLayoutConstraint.activate([
-            locationLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             locationLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            locationLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            locationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
 
             orderNumberLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor),
             orderNumberLabel.centerXAnchor.constraint(equalTo: centerXAnchor)

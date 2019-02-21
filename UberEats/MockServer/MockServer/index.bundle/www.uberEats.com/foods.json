@@ -1053,7 +1053,7 @@
         "basePrice": 6600,
         "storeId": "store4",
         "categoryId": "category2",
-        "categoryName": "시그니처 샐러디 Signature Salady"
+        "categoryName": "시그니처 Signature"
     },
     {
         "id": "food7",
@@ -1064,7 +1064,7 @@
         "basePrice": 6600,
         "storeId": "store4",
         "categoryId": "category2",
-        "categoryName": "시그니처 샐러디 Signature Salady"
+        "categoryName": "시그니처 Signature"
     },
     {
         "id": "food8",
@@ -1075,7 +1075,7 @@
         "basePrice": 6800,
         "storeId": "store4",
         "categoryId": "category2",
-        "categoryName": "시그니처 샐러디 Signature Salady"
+        "categoryName": "시그니처 Signature"
     },
     {
         "id": "food9",
@@ -1086,7 +1086,7 @@
         "basePrice": 7900,
         "storeId": "store4",
         "categoryId": "category2",
-        "categoryName": "시그니처 샐러디 Signature Salady"
+        "categoryName": "시그니처 Signature"
     },
     {
         "id": "food10",
@@ -1097,7 +1097,7 @@
         "basePrice": 7900,
         "storeId": "store4",
         "categoryId": "category2",
-        "categoryName": "시그니처 샐러디 Signature Salady"
+        "categoryName": "시그니처 Signature"
     },
     {
         "id": "food11",
@@ -1108,7 +1108,7 @@
         "basePrice": 6800,
         "storeId": "store4",
         "categoryId": "category2",
-        "categoryName": "시그니처 샐러디 Signature Salady"
+        "categoryName": "시그니처 Signature"
     },
     {
         "id": "food12",
@@ -1119,7 +1119,7 @@
         "basePrice": 8300,
         "storeId": "store4",
         "categoryId": "category2",
-        "categoryName": "시그니처 샐러디 Signature Salady"
+        "categoryName": "시그니처 Signature"
     },
     {
         "id": "food13",
@@ -1130,7 +1130,7 @@
         "basePrice": 8300,
         "storeId": "store4",
         "categoryId": "category2",
-        "categoryName": "시그니처 샐러디 Signature Salady"
+        "categoryName": "시그니처 Signature"
     },
     {
         "id": "food14",

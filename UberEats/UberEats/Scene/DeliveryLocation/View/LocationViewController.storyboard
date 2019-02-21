@@ -26,6 +26,9 @@
                                 <rect key="frame" x="16" y="9.6666666666666643" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="blackArrow"/>
+                                <connections>
+                                    <action selector="touchUpCoveredBackButton:" destination="M39-Jk-Y9m" eventType="touchUpInside" id="bqv-Ae-9K4"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <rightBarButtonItems>

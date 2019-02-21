@@ -30,3 +30,11 @@ struct Identifiers {
     static let orderMenuCellId: String = "orderedMenu"
     static let saleCellId: String = "saleCell"
 }
+
+struct DelivererInfo {
+    let name: String
+    let rate: Int
+    let imageURL: String
+    let phoneNumber: String
+    let vehicle: String
+}

@@ -43,6 +43,26 @@ class OrderedMenuCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
+    var numberOfFood: Int? {
+        didSet {
+            guard let numberOfFood = numberOfFood else {
+                return
+            }
+
+            numberOfFoodLabel.text = String(numberOfFood)
+        }
+    }
+
+    var foodName: String? {
+        didSet {
+            guard let foodName = foodName else {
+                return
+            }
+
+            orderMenuLabel.text = foodName
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
