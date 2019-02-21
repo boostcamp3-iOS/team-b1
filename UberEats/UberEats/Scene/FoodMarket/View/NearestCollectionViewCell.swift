@@ -30,6 +30,19 @@ class NearestCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    func isExistPromotion() -> CGFloat {
+        guard let nearestRest = nearestRest else {
+            return 260
+        }
+        if nearestRest.promotion == "" {
+            promotion.isHidden = true
+            return 260
+        } else {
+            promotion.isHidden = false
+            return 280.46875
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
 

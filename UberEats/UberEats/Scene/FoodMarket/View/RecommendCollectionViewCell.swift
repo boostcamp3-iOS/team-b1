@@ -32,6 +32,19 @@ class RecommendCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    func isExistFoodDescription() -> CGFloat {
+        guard let recommendFood = recommendFood else {
+            return 260
+        }
+        if recommendFood.foodDescription == "" {
+            commentLabel.isHidden = true
+            return 260
+        } else {
+            commentLabel.isHidden = false
+            return 280.46875
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
 

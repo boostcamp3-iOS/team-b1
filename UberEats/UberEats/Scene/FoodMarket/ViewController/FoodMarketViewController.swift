@@ -11,7 +11,7 @@ import DependencyContainer
 import ServiceInterface
 import Common
 
-class FoodMarketViewController: UIViewController {
+class ItemViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
@@ -156,7 +156,7 @@ class FoodMarketViewController: UIViewController {
 
         isScrolledByUser = false
 
-        bannerTimer = Timer.scheduledTimer(timeInterval: FoodMarketViewController.bannerTimeInterval, target: self,
+        bannerTimer = Timer.scheduledTimer(timeInterval: ItemViewController.bannerTimeInterval, target: self,
                                            selector: #selector(autoScrolledBanner), userInfo: nil, repeats: true)
     }
 
@@ -289,7 +289,7 @@ class FoodMarketViewController: UIViewController {
 }
 
 // MARK: - ScrollViewDelegate
-extension FoodMarketViewController: UIScrollViewDelegate {
+extension ItemViewController: UIScrollViewDelegate {
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if scrollView == self.scrollView {
@@ -338,7 +338,7 @@ extension FoodMarketViewController: UIScrollViewDelegate {
 }
 
 // MARK: - TabelViewDelegate
-extension FoodMarketViewController: UITableViewDelegate, UITableViewDataSource {
+extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == mustSelectSection && indexPath.row != mustNotSelectRow {
@@ -354,7 +354,7 @@ extension FoodMarketViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return FoodMarketViewController.numberOfSection
+        return ItemViewController.numberOfSection
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -499,7 +499,7 @@ extension FoodMarketViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: - CollectionViewDelegate
-extension FoodMarketViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
         guard let tableViewSection = TableViewSection(rawValue: collectionView.tag) else {
@@ -700,7 +700,7 @@ extension FoodMarketViewController: UICollectionViewDelegate, UICollectionViewDa
     }
 }
 
-extension FoodMarketViewController: UICollectionViewDelegateFlowLayout {
+extension ItemViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -28,7 +28,6 @@ class NewRestCollectionViewCell: UICollectionViewCell {
             category.text = newRest.category
             deliveryTime.text = newRest.deliveryTime
             promotion.text = newRest.promotion
-
         }
     }
 
@@ -43,6 +42,19 @@ class NewRestCollectionViewCell: UICollectionViewCell {
 
         mainImage.layer.cornerRadius = 3
         mainImage.layer.masksToBounds = true
+    }
+
+    func isExistPromotion() -> CGFloat {
+        guard let newRest = newRest else {
+            return 260
+        }
+        if newRest.promotion == "" {
+            promotion.isHidden = true
+            return 260
+        } else {
+            promotion.isHidden = false
+            return 280.46875
+        }
     }
 
     override func prepareForReuse() {

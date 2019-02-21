@@ -31,10 +31,10 @@
                     </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="5ad-hW-cXn" secondAttribute="bottom" id="OCs-19-NSA"/>
-                    <constraint firstItem="5ad-hW-cXn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YbF-cL-5QT"/>
-                    <constraint firstItem="5ad-hW-cXn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="j2M-hc-wns"/>
-                    <constraint firstAttribute="trailing" secondItem="5ad-hW-cXn" secondAttribute="trailing" id="mwf-6s-uRx"/>
+                    <constraint firstAttribute="bottom" secondItem="5ad-hW-cXn" secondAttribute="bottom" identifier="CollectionViewBottom" id="OCs-19-NSA"/>
+                    <constraint firstItem="5ad-hW-cXn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" identifier="CollectionViewLeading" id="YbF-cL-5QT"/>
+                    <constraint firstItem="5ad-hW-cXn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" priority="999" identifier="CollectionViewTop" id="j2M-hc-wns"/>
+                    <constraint firstAttribute="trailing" secondItem="5ad-hW-cXn" secondAttribute="trailing" identifier="CollectionViewTrailing" id="mwf-6s-uRx"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

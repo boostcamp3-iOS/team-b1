@@ -24,7 +24,7 @@ class SeeMoreRestViewController: UIViewController {
 
     private var stores: [Store]?
 
-    public var section: Section?
+    public var section: TableViewSection?
 
     private var foodMarketService: FoodMarketService = DependencyContainer.share.getDependency(key: .foodMarketService)
 
@@ -49,7 +49,7 @@ class SeeMoreRestViewController: UIViewController {
         tableView.register(SeeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
     }
 
-    private func initFoodMarket(section: Section) {
+    private func initFoodMarket(section: TableViewSection) {
         switch section {
         case .recommendFood:
             reloadTableViewFoodsData()
@@ -61,7 +61,7 @@ class SeeMoreRestViewController: UIViewController {
     }
 
     private func reloadTableViewFoodsData() {
-        foodMarketService.requestFoodMarket(dispatchQueue: DispatchQueue.global()) { [weak self] (dataResponse) in
+        foodMarketService.requestFoodMarketMore(dispatchQueue: DispatchQueue.global()) { [weak self] (dataResponse) in
             if dataResponse.isSuccess {
                 guard let foods = dataResponse.value?.recommendFood else {
                     return
@@ -75,8 +75,8 @@ class SeeMoreRestViewController: UIViewController {
         }
     }
 
-    private func reloadTableViewStoreData(section: Section) {
-        foodMarketService.requestFoodMarket(dispatchQueue: DispatchQueue.global()) { [weak self] (dataResponse) in
+    private func reloadTableViewStoreData(section: TableViewSection) {
+        foodMarketService.requestFoodMarketMore(dispatchQueue: DispatchQueue.global()) { [weak self] (dataResponse) in
             if dataResponse.isSuccess {
                 switch section {
                 case .expectedTime:

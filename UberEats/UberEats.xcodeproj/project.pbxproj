@@ -42,7 +42,7 @@
 		84DC184621F9A51D008EE6D3 /* RecommendCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC183E21F9A51D008EE6D3 /* RecommendCollectionViewCell.xib */; };
 		84DC184721F9A51D008EE6D3 /* NearestCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC183F21F9A51D008EE6D3 /* NearestCollectionViewCell.xib */; };
 		84DC184821F9A51D008EE6D3 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC184021F9A51D008EE6D3 /* TableViewCell.xib */; };
-		84DC184A21F9ACE0008EE6D3 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC184921F9ACE0008EE6D3 /* ItemViewController.swift */; };
+		84DC184A21F9ACE0008EE6D3 /* FoodMarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC184921F9ACE0008EE6D3 /* FoodMarketViewController.swift */; };
 		84DC184D21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC184B21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift */; };
 		84DC184E21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC184C21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib */; };
 		84DC185021F9AD7C008EE6D3 /* ItemView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84DC184F21F9AD7C008EE6D3 /* ItemView.storyboard */; };
@@ -201,7 +201,7 @@
 		84DC183E21F9A51D008EE6D3 /* RecommendCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendCollectionViewCell.xib; sourceTree = "<group>"; };
 		84DC183F21F9A51D008EE6D3 /* NearestCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearestCollectionViewCell.xib; sourceTree = "<group>"; };
 		84DC184021F9A51D008EE6D3 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
-		84DC184921F9ACE0008EE6D3 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
+		84DC184921F9ACE0008EE6D3 /* FoodMarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMarketViewController.swift; sourceTree = "<group>"; };
 		84DC184B21F9AD3D008EE6D3 /* NewRestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRestCollectionViewCell.swift; sourceTree = "<group>"; };
 		84DC184C21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewRestCollectionViewCell.xib; sourceTree = "<group>"; };
 		84DC184F21F9AD7C008EE6D3 /* ItemView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ItemView.storyboard; sourceTree = "<group>"; };
@@ -574,7 +574,7 @@
 		995D90202210004000DCA964 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				84DC184921F9ACE0008EE6D3 /* ItemViewController.swift */,
+				84DC184921F9ACE0008EE6D3 /* FoodMarketViewController.swift */,
 				8445E2D7221D2A0500965746 /* SeeMoreRestViewController.swift */,
 			);
 			path = ViewController;
@@ -1066,7 +1066,7 @@
 				8442E4152219143E00831099 /* ItemCollecionViewFlowLayout.swift in Sources */,
 				84DC184321F9A51D008EE6D3 /* ExpectTimeCollectionViewCell.swift in Sources */,
 				8445E2D8221D2A0500965746 /* SeeMoreRestViewController.swift in Sources */,
-				84DC184A21F9ACE0008EE6D3 /* ItemViewController.swift in Sources */,
+				84DC184A21F9ACE0008EE6D3 /* FoodMarketViewController.swift in Sources */,
 				995D903D22104ECE00DCA964 /* CartViewController.swift in Sources */,
 				995D904622119D3600DCA964 /* FoodsOrderedByOthersCell.swift in Sources */,
 				8477949F22142D3D003EA68D /* ImageNetworkManager.swift in Sources */,
@@ -1330,13 +1330,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P55BH5C78Q;
+				DEVELOPMENT_TEAM = 6958JMS7R4;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1349,13 +1349,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P55BH5C78Q;
+				DEVELOPMENT_TEAM = 6958JMS7R4;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
