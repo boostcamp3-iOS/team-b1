@@ -7,7 +7,7 @@
 //
 import UIKit
 
-enum TableViewSection: Int, CaseIterable {
+public enum Sections: Int, CaseIterable {
     case bannerScroll = 0
     case recommendFood = 1
     case nearestRest = 2
@@ -16,26 +16,6 @@ enum TableViewSection: Int, CaseIterable {
     case discount = 5
     case moreRest = 6
     case searchAndSee = 7
-
-    var numberOfCollectionViewSection: Int {
-        switch self {
-        case .bannerScroll:
-            return 0
-        case .recommendFood, .nearestRest, .expectedTime, .newRest:
-            return 2
-        case .discount, .moreRest, .searchAndSee:
-            return 0
-        }
-    }
-
-    var moreRestCellId: String {
-        switch self {
-        case .recommendFood, .nearestRest, .newRest, .expectedTime:
-            return "colelctionVIewMoreRestCellId"
-        default:
-            return ""
-        }
-    }
 
     var identifier: String {
         switch self {
@@ -95,7 +75,7 @@ enum TableViewSection: Int, CaseIterable {
         }
     }
 
-    func heightByDevice(section: TableViewSection) -> CGFloat {
+    func heightByDevice(section: Sections) -> CGFloat {
         switch self {
         case .recommendFood, .newRest, .expectedTime, .nearestRest :
             switch UIScreen.main.nativeBounds.height {

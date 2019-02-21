@@ -18,8 +18,10 @@ class TableViewCell: UITableViewCell {
     }()
 
     func setLabel(_ section: Int) {
-        let section = Section(rawValue: section)!
-        switch section {
+        guard let tableViewSection = TableViewSection(rawValue: section) else {
+            return
+        }
+        switch tableViewSection {
         case .recommendFood:
             recommendLabel.text = "추천 요리"
         case .nearestRest:
@@ -40,14 +42,23 @@ class TableViewCell: UITableViewCell {
 
         addSubview(recommendLabel)
 
+        //layout 충돌 해결
+        var collectionViewBottonAnchor: NSLayoutConstraint?
+        collectionViewBottonAnchor = collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        collectionViewBottonAnchor?.priority = UILayoutPriority(rawValue: 999)
+
+        var recommendLabelTopAnchor: NSLayoutConstraint?
+        recommendLabelTopAnchor?.identifier = "recommendLabelTopAnchor"
+        recommendLabelTopAnchor = recommendLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15)
+
         NSLayoutConstraint.activate(
             [
                 recommendLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
-                recommendLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
+                recommendLabelTopAnchor ?? .init(),
                 recommendLabel.widthAnchor.constraint(equalToConstant: 200),
                 recommendLabel.heightAnchor.constraint(equalToConstant: 30),
 
-                collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+                collectionViewBottonAnchor ?? .init(),
                 collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
                 collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
                 collectionView.topAnchor.constraint(equalTo: recommendLabel.bottomAnchor)
@@ -60,5 +71,12 @@ class TableViewCell: UITableViewCell {
         collectionView.backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
         backgroundColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
 
+    }
+}
+
+extension NSLayoutConstraint {
+    override open var description: String {
+        let id = identifier ?? ""
+        return "id: \(id), constant: \(constant)" //you may print whatever you want here
     }
 }

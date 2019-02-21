@@ -54,6 +54,7 @@ public class MockServer {
 
                     foodMarket.recommandFoods.append(randomFood)
                 }
+
             } catch {
                 fatalError("decoding Error")
             }
@@ -103,6 +104,7 @@ public class MockServer {
                         foodsOfStore.append($0)
                     }
                 }
+
             } catch {
                 fatalError("decoding Error")
             }

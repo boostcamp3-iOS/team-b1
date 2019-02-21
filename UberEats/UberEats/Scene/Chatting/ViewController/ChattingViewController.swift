@@ -146,8 +146,8 @@ class ChattingViewController: UIViewController, UITextFieldDelegate {
     @IBAction private func sendMessages(_ sender: Any) {
         let messageRef = FirebaseDataService.instance.messageRef.childByAutoId()
         
-        let userUID = "9HOhFlNg8jhYLP8sW2cz9ecjABE2"
-        let deliveryUID = "yJI58ZZYyiZVaatNUrIMaBdNsL42"
+        //let userUID = "9HOhFlNg8jhYLP8sW2cz9ecjABE2"
+        //let deliveryUID = "yJI58ZZYyiZVaatNUrIMaBdNsL42"
         
         let data: Dictionary<String, AnyObject> = [
             "userEmail": "user@gmail.com" as AnyObject,

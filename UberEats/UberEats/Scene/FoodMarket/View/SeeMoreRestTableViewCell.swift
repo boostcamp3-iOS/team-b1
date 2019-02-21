@@ -57,4 +57,8 @@ class SeeMoreRestTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    override func prepareForReuse() {
+        mainImage.image = nil
+    }
+
 }

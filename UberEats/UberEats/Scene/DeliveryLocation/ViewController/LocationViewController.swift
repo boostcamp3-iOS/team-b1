@@ -506,7 +506,7 @@ extension LocationViewController: UICollectionViewDelegateFlowLayout {
 
 extension LocationViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        guard let _ : CLLocationCoordinate2D = manager.location?.coordinate else { return }
     }
 }
 

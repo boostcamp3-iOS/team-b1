@@ -16,7 +16,7 @@ class DiscountTableViewCell: UITableViewCell {
         return imageView
     }()
 
-    init(_ section: Section) {
+    init(_ section: TableViewSection) {
         switch section {
         case .moreRest:
             self.discountLabel.text = "레스토랑 더보기"

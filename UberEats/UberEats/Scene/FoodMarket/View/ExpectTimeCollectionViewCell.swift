@@ -33,6 +33,19 @@ class ExpectTimeCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    func isExistPromotion() -> CGFloat {
+        guard let expectTimeRest = expectTimeRest else {
+            return 260
+        }
+        if expectTimeRest.promotion == "" {
+            promotion.isHidden = true
+            return 260
+        } else {
+            promotion.isHidden = false
+            return 280.46875
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
