@@ -143,22 +143,17 @@ extension FoodItemDetailsViewController: UITableViewDelegate, UITableViewDataSou
         switch model {
         case .foodInfo(let model):
             setUpFoodOptionCategoryModel(cell, model)
-            break
         case .requiredOptions(let model):
             setUpFoodOptionCategoryModel(cell, model)
-            break
         case .additionalOptions(let model):
             setUpFoodOptionCategoryModel(cell, model)
-            break
         case .optionItem(let model):
             if let cell = cell as? HavingFoodOptionItem {
                 cell.foodOptionItemModel = model
             }
-            break
         default:
             return cell
         }
-
         return cell
     }
 
