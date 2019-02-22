@@ -46,10 +46,8 @@ class LocationViewController: UIViewController {
     private var isStartingDelivery: Bool = false
 
     let contactLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel().setupWithFontSize(11)
         label.text = "문의하기"
-        label.font = .systemFont(ofSize: 11)
         return label
     }()
 
@@ -80,7 +78,11 @@ class LocationViewController: UIViewController {
         setupLayout()
         setupCollectionView()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak self] in
+            guard let self = self else {
+                return
+            }
+
             self.backButton.setImage(UIImage(named: "btnClose"), for: .normal)
             self.deliveryStartView.isHidden = false
             self.deliveryStartInfoHeight = 130
@@ -99,15 +101,17 @@ class LocationViewController: UIViewController {
 
         locationManager.customInit(delegate: self)
 
-        // user와 deliverer의 중간 지점으로 설정할 것
-        //GMSCameraPosition.centor(37.499862)
-
         let camera = GMSCameraPosition(latitude: (userLocation.latitude + 37.499862) / 2,
                                        longitude: (userLocation.longitude + 127.030378) / 2,
                                        zoom: 16)
 
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        mapView?.padding = UIEdgeInsets(top: 0, left: 10, bottom: self.view.frame.height - (self.view.frame.height * 0.4 + 130 - deliveryStartInfoHeight), right: 0)
+        mapView?.padding = UIEdgeInsets(top: 0,
+                                        left: 10,
+                                        bottom: view.frame.height
+                                            - (view.frame.height * 0.4 + 130
+                                                - deliveryStartInfoHeight),
+                                        right: 0)
         mapView?.delegate = self
         orderDetailCollectionView.backgroundView = mapView
 
@@ -132,15 +136,20 @@ class LocationViewController: UIViewController {
         self.orderDetailCollectionView.addSubview(contactButton)
         self.orderDetailCollectionView.addSubview(contactLabel)
 
-        backButton.addTarget(self, action: #selector(touchUpBackButton(_:)),
+        backButton.addTarget(self,
+                             action: #selector(touchUpBackButton(_:)),
                              for: .touchUpInside)
 
         moveCurrentLocationButton.addTarget(self,
                                             action: #selector(touchUpMoveCurrentLocationButton(_:)),
                                             for: .touchUpInside)
 
-        backButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
-        coveredContactButton.addTarget(self, action: #selector(touchUpBackButton(_:)), for: .touchUpInside)
+        backButton.addTarget(self,
+                             action: #selector(touchUpBackButton(_:)),
+                             for: .touchUpInside)
+        coveredContactButton.addTarget(self,
+                                       action: #selector(touchUpBackButton(_:)),
+                                       for: .touchUpInside)
 
         let buttonTopConstant = getButtonTopConstraint(UIScreen.main.nativeBounds.height)
 
@@ -172,7 +181,7 @@ class LocationViewController: UIViewController {
             moveCurrentLocationButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
                                                                 constant: -15),
             moveCurrentLocationButton.bottomAnchor.constraint(equalTo: view.topAnchor,
-                                                              constant: self.view.frame.height * 0.4 + 130 - deliveryStartInfoHeight - 10),
+                                                              constant: view.frame.height * 0.4 + 130 - deliveryStartInfoHeight - 10),
             moveCurrentLocationButton.widthAnchor.constraint(equalToConstant: 32),
             moveCurrentLocationButton.heightAnchor.constraint(equalToConstant: 32),
 
@@ -247,11 +256,11 @@ class LocationViewController: UIViewController {
 
     @IBAction func touchUpCoveredBackButton(_ sender: UIButton) {
         touchUpBackButton(sender)
-        self.navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
     }
 
     @objc private func touchUpBackButton(_: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 
     @objc private func touchUpMoveCurrentLocationButton(_: UIButton) {
@@ -326,14 +335,14 @@ extension LocationViewController: UICollectionViewDataSource {
         case .deliveryManInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.orderCancelCellId,
                                                                 for: indexPath) as? OrderCancelCollectionViewCell else {
-                                                                    return .init()
+                return .init()
             }
 
             cell.cancelLabel.text = "연락처"
             cell.isHidden = true
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-                cell.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak cell] in
+                cell?.isHidden = false
             }
 
             return cell
@@ -380,8 +389,8 @@ extension LocationViewController: UICollectionViewDataSource {
                     return .init()
                 }
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-                    header.isHidden = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak header] in
+                    header?.isHidden = false
                 }
 
                 header.delivererInfo = delivererInfo
@@ -395,12 +404,12 @@ extension LocationViewController: UICollectionViewDataSource {
                     return .init()
                 }
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                    header.progressStatus = .preparingFood
+                DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak header] in
+                    header?.progressStatus = .preparingFood
                 }
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-                    header.progressStatus = .delivering
+                DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak header] in
+                    header?.progressStatus = .delivering
                 }
 
                 guard let deliveryTime = storeDeliveryTime else {
@@ -450,7 +459,7 @@ extension LocationViewController: UICollectionViewDelegate {
 
             present(chattingVC, animated: true, completion: nil)
         } else if indexPath == IndexPath(row: 0, section: 1) {
-            self.navigationController?.popViewController(animated: true)
+            navigationController?.popViewController(animated: true)
         }
     }
 
@@ -513,7 +522,9 @@ extension LocationViewController: UICollectionViewDelegateFlowLayout {
 
 extension LocationViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let _ : CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        guard let _ : CLLocationCoordinate2D = manager.location?.coordinate else {
+            return
+        }
     }
 }
 

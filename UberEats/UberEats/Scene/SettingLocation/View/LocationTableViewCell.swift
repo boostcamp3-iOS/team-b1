@@ -27,19 +27,15 @@ class LocationTableViewCell: UITableViewCell {
     }()
 
     let addressLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel().setupWithFontSize(addressAndOptionLabelFontSize)
         label.adjustsFontSizeToFitWidth = true
         label.textColor = .gray
-        label.font = .systemFont(ofSize: addressAndOptionLabelFontSize)
         return label
     }()
 
     let deliveryOptionLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel().setupWithFontSize(addressAndOptionLabelFontSize)
         label.textColor = .gray
-        label.font = .systemFont(ofSize: addressAndOptionLabelFontSize)
         return label
     }()
 
@@ -51,8 +47,12 @@ class LocationTableViewCell: UITableViewCell {
         return stackView
     }()
 
-    var locationInfo: LocationCellModel! {
+    var locationInfo: LocationCellModel? {
         didSet {
+            guard let locationInfo = locationInfo else {
+                return
+            }
+
             leftImageView.image = UIImage(named: locationInfo.imageName)
             titleLabel.text = locationInfo.title
             addressLabel.text = locationInfo.address
@@ -83,7 +83,8 @@ class LocationTableViewCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             leftImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            leftImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: ConstraintOfSettingLocation.paddingAtSettingLocation),
+            leftImageView.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                   constant: ConstraintOfSettingLocation.paddingAtSettingLocation),
             leftImageView.widthAnchor.constraint(equalToConstant: ConstraintOfSettingLocation.buttonSizeAtSettingLocation),
             leftImageView.heightAnchor.constraint(equalToConstant: ConstraintOfSettingLocation.buttonSizeAtSettingLocation),
 
@@ -97,7 +98,8 @@ class LocationTableViewCell: UITableViewCell {
                                                                    constant: -ConstraintOfSettingLocation.trailingOfMainLabel),
 
             selectStatusImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            selectStatusImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -ConstraintOfSettingLocation.trailingOfselectStatus)
+            selectStatusImageView.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                                            constant: -ConstraintOfSettingLocation.trailingOfselectStatus)
             ])
     }
 

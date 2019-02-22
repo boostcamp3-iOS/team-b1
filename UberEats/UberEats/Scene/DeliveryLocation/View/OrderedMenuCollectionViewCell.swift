@@ -23,23 +23,19 @@ class OrderedMenuCollectionViewCell: UICollectionViewCell {
     }
 
     let numberOfFoodLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel().setupWithFontSize(NumberForCell.numberOfFoodLabelFontSize)
         label.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
         label.layer.borderWidth = NumberForCell.numberOfFoodBorderWidth
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: NumberForCell.numberOfFoodLabelFontSize)
         label.textColor = .darkGray
         label.text = "1"
         return label
     }()
 
     let orderMenuLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel().setupWithFontSize(NumberForCell.orderMenuLabelFontSize)
         label.numberOfLines = NumberForCell.orderMenuLabelNumberOfLines
         label.textColor = .darkGray
-        label.font = .systemFont(ofSize: NumberForCell.orderMenuLabelFontSize)
         return label
     }()
 
@@ -82,23 +78,18 @@ class OrderedMenuCollectionViewCell: UICollectionViewCell {
             numberOfFoodLabel
                 .leadingAnchor.constraint(equalTo: leadingAnchor,
                                           constant: NumberForCell.foodLabelLeadingAndTrailingMargin),
-
             numberOfFoodLabel.centerYAnchor
                 .constraint(equalTo: centerYAnchor),
-
             numberOfFoodLabel.widthAnchor
                 .constraint(equalToConstant: NumberForCell.numberOfFoodLabelSize),
-
             numberOfFoodLabel.heightAnchor
                 .constraint(equalToConstant: NumberForCell.numberOfFoodLabelSize),
 
             orderMenuLabel.leadingAnchor
                 .constraint(equalTo: numberOfFoodLabel.trailingAnchor,
                             constant: NumberForCell.orderMenuLabelLeadingMargin),
-
             orderMenuLabel.centerYAnchor
                 .constraint(equalTo: centerYAnchor),
-
             orderMenuLabel.trailingAnchor
                 .constraint(equalTo: trailingAnchor,
                             constant: -NumberForCell.foodLabelLeadingAndTrailingMargin)

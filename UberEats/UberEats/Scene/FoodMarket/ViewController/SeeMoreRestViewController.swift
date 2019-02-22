@@ -28,24 +28,30 @@ class SeeMoreRestViewController: UIViewController {
 
     private var foodMarketService: FoodMarketService = DependencyContainer.share.getDependency(key: .foodMarketService)
 
-    private let SeeMoreRestTableViewCellNIB = UINib(nibName: "SeeMoreRestTableViewCell", bundle: nil)
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.addSubview(tableView)
 
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
 
         guard let collectionViewTag = section else {
             return
         }
-        initFoodMarket(section: collectionViewTag)
 
+        initFoodMarket(section: collectionViewTag)
+        setupTableView()
+    }
+
+    private func setupTableView() {
         tableView.dataSource = self
+
+        let SeeMoreRestTableViewCellNIB = UINib(nibName: "SeeMoreRestTableViewCell", bundle: nil)
         tableView.register(SeeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
     }
 
@@ -62,15 +68,12 @@ class SeeMoreRestViewController: UIViewController {
 
     private func reloadTableViewFoodsData() {
         foodMarketService.requestFoodMarketMore(dispatchQueue: DispatchQueue.global()) { [weak self] (dataResponse) in
-            if dataResponse.isSuccess {
-                guard let foods = dataResponse.value?.recommendFood else {
-                    return
-                }
-                self?.foods = foods
-            } else {
-                fatalError()
+            guard dataResponse.isSuccess,
+                let foods = dataResponse.value?.recommendFood else {
+                return
             }
 
+            self?.foods = foods
             self?.tableView.reloadData()
         }
     }
@@ -135,8 +138,16 @@ extension SeeMoreRestViewController: UITableViewDataSource {
                     return moreRestTableViewCell
                 }
 
-                ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (downloadImage, _) in
-                    moreRestTableViewCell.mainImage.image = downloadImage
+                ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak moreRestTableViewCell] (downloadImage, error) in
+                    if error != nil {
+                        return
+                    }
+
+                    guard moreRestTableViewCell?.moreRests?.mainImage == imageURL.absoluteString else {
+                        return
+                    }
+
+                    moreRestTableViewCell?.mainImage.image = downloadImage
                 }
             }
         }
@@ -149,8 +160,16 @@ extension SeeMoreRestViewController: UITableViewDataSource {
                     return moreRestTableViewCell
                 }
 
-                ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (downloadImage, _) in
-                    moreRestTableViewCell.mainImage.image = downloadImage
+                ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak moreRestTableViewCell] (downloadImage, error) in
+                    if error != nil {
+                        return
+                    }
+
+                    guard moreRestTableViewCell?.moreFoods?.foodImageURL == imageURL.absoluteString else {
+                        return
+                    }
+
+                    moreRestTableViewCell?.mainImage.image = downloadImage
                 }
             }
         }

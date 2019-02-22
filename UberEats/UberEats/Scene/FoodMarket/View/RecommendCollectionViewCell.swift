@@ -11,9 +11,9 @@ import Common
 
 class RecommendCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet var label: UILabel!
-    @IBOutlet var image: UIImageView!
-    @IBOutlet var view: UIView!
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var view: UIView!
 
     @IBOutlet var categoryLabel: UILabel!
     @IBOutlet var minuteLabel: UILabel!

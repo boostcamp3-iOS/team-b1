@@ -11,12 +11,7 @@ import Common
 
 class RestaurtSeeMoreCollectionViewCell: UICollectionViewCell {
 
-    public let discountImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "rightArrow")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    public let discountImageView = UIImageView().initImageView("rightArrow")
 
     public let discountLabel: UILabel = {
         let label = UILabel()
@@ -35,13 +30,16 @@ class RestaurtSeeMoreCollectionViewCell: UICollectionViewCell {
         addSubview(discountImageView)
         addSubview(discountLabel)
 
-        discountImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        discountImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        discountImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        discountImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        NSLayoutConstraint.activate([
+            discountImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            discountImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            discountImageView.heightAnchor.constraint(equalToConstant: 50),
+            discountImageView.widthAnchor.constraint(equalToConstant: 50),
 
-        discountLabel.topAnchor.constraint(equalTo: discountImageView.bottomAnchor, constant: 15).isActive = true
-        discountLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+            discountLabel.topAnchor.constraint(equalTo: discountImageView.bottomAnchor, constant: 15),
+            discountLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+
+            ])
 
         discountImageView.layer.cornerRadius = 25
         discountImageView.layer.masksToBounds = true

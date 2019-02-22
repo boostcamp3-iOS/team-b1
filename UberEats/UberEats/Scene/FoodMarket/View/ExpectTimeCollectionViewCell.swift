@@ -59,4 +59,8 @@ class ExpectTimeCollectionViewCell: UICollectionViewCell {
         mainImage.layer.masksToBounds = true
     }
 
+    override func prepareForReuse() {
+        mainImage.image = UIImage(named: "foodPlaceHolder")
+    }
+
 }

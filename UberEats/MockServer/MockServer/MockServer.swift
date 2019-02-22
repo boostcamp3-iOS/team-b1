@@ -28,7 +28,6 @@ public class MockServer {
             let data = try ResourceController.resourceWithData(path: request.path, root: type(of: self))
 
             let storesData = try ResourceController.resourceWithData(path: "www.uberEats.com/stores", root: type(of: self))
-
             let foodsData = try ResourceController.resourceWithData(path: "www.uberEats.com/foods", root: type(of: self))
 
             var foodMarket: FoodMarketForView = try JSONDecoder().decode(FoodMarketForView.self, from: data)

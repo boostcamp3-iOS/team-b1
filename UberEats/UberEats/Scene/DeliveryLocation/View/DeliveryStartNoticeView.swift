@@ -10,10 +10,8 @@ import UIKit
 
 class DeliveryStartNoticeView: UIView {
     let deliveryStartLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel().setupWithFontSize(15)
         label.textColor = .white
-        label.font = .systemFont(ofSize: 15)
         label.textAlignment = .center
         return label
     }()

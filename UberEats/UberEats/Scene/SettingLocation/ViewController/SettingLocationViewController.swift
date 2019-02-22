@@ -68,9 +68,12 @@ class SettingLocationViewController: UIViewController {
         deliveryDetailTableView.delegate = self
 
         //cells
-        deliveryDetailTableView.register(NewAddressTableViewCell.self, forCellReuseIdentifier: SettingLocationCellId.newAddress.rawValue)
-        deliveryDetailTableView.register(LocationTableViewCell.self, forCellReuseIdentifier: SettingLocationCellId.location.rawValue)
-        deliveryDetailTableView.register(MomentTableViewCell.self, forCellReuseIdentifier: SettingLocationCellId.moment.rawValue)
+        deliveryDetailTableView.register(NewAddressTableViewCell.self,
+                                         forCellReuseIdentifier: SettingLocationCellId.newAddress.rawValue)
+        deliveryDetailTableView.register(LocationTableViewCell.self,
+                                         forCellReuseIdentifier: SettingLocationCellId.location.rawValue)
+        deliveryDetailTableView.register(MomentTableViewCell.self,
+                                         forCellReuseIdentifier: SettingLocationCellId.moment.rawValue)
     }
 
     private func setupLayout() {
@@ -101,7 +104,7 @@ class SettingLocationViewController: UIViewController {
     }
 
     @objc private func touchUpCompleteButton(_: UIButton) {
-
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -186,7 +189,9 @@ extension SettingLocationViewController: UITableViewDataSource {
                 cell.selectStatusImageView.isHidden = false
             }
 
-            if !cell.selectStatusImageView.isHidden && !anotherCell.selectStatusImageView.isHidden {
+            let isCellsNotSelected = !cell.selectStatusImageView.isHidden && !anotherCell.selectStatusImageView.isHidden
+
+            if isCellsNotSelected {
                 anotherCell.selectStatusImageView.isHidden = anotherCell.selectStatusImageView.isHidden ? false : true
             }
 

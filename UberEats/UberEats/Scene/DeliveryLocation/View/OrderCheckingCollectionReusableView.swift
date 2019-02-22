@@ -20,7 +20,7 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
 
     var sliderTimer = Timer()
 
-    var delegate: ChangeScrollDelegate?
+    weak var delegate: ChangeScrollDelegate?
 
     var titleName: String? {
         didSet {

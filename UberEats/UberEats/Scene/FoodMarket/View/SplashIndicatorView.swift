@@ -21,8 +21,7 @@ class SplashIndicatorView: UIView {
     }()
 
     let uberEatsImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "splash812"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        let imageView = UIImageView().initImageView("splash812")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -75,8 +74,7 @@ class IndicatorSlider: UISlider {
 
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
         let customBounds = CGRect(origin: bounds.origin,
-                                  size: CGSize(width: bounds.size.width,
-                                               height: 5.0))
+                                  size: CGSize(width: bounds.size.width, height: 5.0))
         super.trackRect(forBounds: customBounds)
         return customBounds
     }

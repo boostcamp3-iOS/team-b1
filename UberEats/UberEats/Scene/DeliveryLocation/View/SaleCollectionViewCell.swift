@@ -11,27 +11,21 @@ import UIKit
 class SaleCollectionViewCell: UICollectionViewCell {
 
     let saleTitleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel().setupWithFontSize(14)
         label.text = "친구 초대"
         label.textColor = .gray
-        label.font = .systemFont(ofSize: 14)
         return label
     }()
 
     let saleContentsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel().setupWithFontSize(15)
         label.text = "주문 시 ₩5,000 할인받기"
-        label.font = .systemFont(ofSize: 15)
         return label
     }()
 
     let burgerImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        let imageView = UIImageView().initImageView("sale")
         imageView.backgroundColor = .lightGray
-        imageView.image = UIImage(named: "sale")
         return imageView
     }()
 

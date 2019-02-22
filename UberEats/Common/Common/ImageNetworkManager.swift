@@ -24,24 +24,25 @@ public class ImageNetworkManager {
     }
 
     private func downloadImage(imageURL: URL, complection: @escaping (UIImage?, Error?) -> Void) {
-        session.dataTask(with: imageURL) { (data, _, error) in
+        session.dataTask(with: imageURL) { [weak self] (data, _, error) in
             if error != nil {
-                print("네트워크 에러")
+                return
             }
+
             guard let data = data else {
-                print("데이터 변환 에러")
                 return
             }
+
             guard let image: UIImage = UIImage(data: data) else {
-                print("이미지 변환 에러")
                 return
             }
-            self.cache.setObject(image, forKey: imageURL.absoluteString as NSString)
+
+            self?.cache.setObject(image, forKey: imageURL.absoluteString as NSString)
 
             DispatchQueue.main.async {
                 complection(image, nil)
             }
-            }.resume()
+        }.resume()
     }
 
     public func getImageByCache(imageURL: URL, complection: @escaping (UIImage?, Error?) -> Void) {

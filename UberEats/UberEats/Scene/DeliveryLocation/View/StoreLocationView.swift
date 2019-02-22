@@ -45,6 +45,7 @@ class StoreLocationView: UIView {
 
     private func setupLayout() {
         backgroundColor = .white
+
         addSubview(locationLabel)
         addSubview(orderNumberLabel)
 

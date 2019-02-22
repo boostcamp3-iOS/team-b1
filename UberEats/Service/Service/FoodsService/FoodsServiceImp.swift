@@ -24,32 +24,28 @@ class FoodsServiceImp: FoodsService {
         }
         
         network.request(with: requestURL) { (data, response, _) in
-            if response?.httpStatusCode == .ok {
+            guard response?.httpStatusCode == .ok,
+            let data = data else {
+                return
+            }
                 
-                guard let data = data else {
-                    return
-                }
+            do {
+                let foods: [FoodForView] = try JSONDecoder().decode([FoodForView].self, from: data)
                 
-                do {
-                    let foods: [FoodForView] = try JSONDecoder().decode([FoodForView].self, from: data)
-                    
-                    let caculatedFoods = FoodsForNetwork(foods)
-                    
-                    DispatchQueue.main.async {
-                        completionHandler(DataResponse.success(caculatedFoods))
-                    }
-                } catch {
-                    fatalError("decoding Error")
+                let caculatedFoods = FoodsForNetwork(foods)
+                
+                DispatchQueue.main.async {
+                    completionHandler(DataResponse.success(caculatedFoods))
                 }
-            } else {
-                fatalError()
+            } catch {
+                fatalError("decoding Error")
             }
         }
     }
     
     func requestFoods(storeId: String, dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<FoodsForNetwork>) -> Void) {
-        dispatchQueue?.async {
-            self.requestFoods(storeId: storeId, completionHandler: completionHandler)
+        dispatchQueue?.async { [weak self] in
+            self?.requestFoods(storeId: storeId, completionHandler: completionHandler)
         }
     }
     

@@ -12,13 +12,16 @@ import Common
 
 internal class FoodOptionServiceImp: FoodOptionService {
     
-    func requestFoodOptions(foodId: String, completionHandler: @escaping (DataResponse<FoodOptionsForView>) -> Void) {
+    func requestFoodOptions(foodId: String,
+                            completionHandler: @escaping (DataResponse<FoodOptionsForView>) -> Void) {
         
     }
     
-    func requestFoodOptions(foodId: String, dispatchQueue: DispatchQueue, completionHandler: @escaping (DataResponse<FoodOptionsForView>) -> Void) {
-        dispatchQueue.async {
-            self.requestFoodOptions(foodId: foodId, completionHandler: completionHandler)
+    func requestFoodOptions(foodId: String,
+                            dispatchQueue: DispatchQueue,
+                            completionHandler: @escaping (DataResponse<FoodOptionsForView>) -> Void) {
+        dispatchQueue.async { [weak self] in
+            self?.requestFoodOptions(foodId: foodId, completionHandler: completionHandler)
         }
     }
 }

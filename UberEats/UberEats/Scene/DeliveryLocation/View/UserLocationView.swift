@@ -11,10 +11,8 @@ import UIKit
 class UserLocationView: UIView {
 
     let locationLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel().setupWithFontSize(15)
         label.text = "메리츠타워"
-        label.font = .systemFont(ofSize: 15)
         return label
     }()
 

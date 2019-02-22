@@ -24,8 +24,12 @@ class MomentTableViewCell: UITableViewCell {
         return label
     }()
 
-    var moment: MomentCellModel! {
+    var moment: MomentCellModel? {
         didSet {
+            guard let moment = moment else {
+                return
+            }
+
             leftImageView.image = UIImage(named: moment.imageName)
             titleLabel.text = moment.title
 

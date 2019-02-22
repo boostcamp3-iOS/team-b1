@@ -10,8 +10,6 @@ import UIKit
 
 class RecomendTableCell: UITableViewCell {
 
-    private let RecommendCollectionViewCellNIB = UINib(nibName: "RecommendCollectionViewCell", bundle: nil)
-
     public let collectionVIewCellId = "RecommendCollectionViewCellId"
     public let colelctionVIewMoreRestCellId = "colelctionVIewMoreRestCellId"
 
@@ -19,8 +17,11 @@ class RecomendTableCell: UITableViewCell {
         let layout = ItemCollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 100)
         layout.scrollDirection = .horizontal
+
         let collectionVIew = UICollectionView(frame: self.frame, collectionViewLayout: layout)
         collectionVIew.tag = 1
+
+        let RecommendCollectionViewCellNIB = UINib(nibName: "RecommendCollectionViewCell", bundle: nil)
         collectionVIew.register(RecommendCollectionViewCellNIB, forCellWithReuseIdentifier: collectionVIewCellId)
         collectionVIew.register(RestaurtSeeMoreCollectionViewCell.self, forCellWithReuseIdentifier: colelctionVIewMoreRestCellId)
         collectionVIew.translatesAutoresizingMaskIntoConstraints = false
@@ -36,6 +37,10 @@ class RecomendTableCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupLayout()
+    }
+
+    private func setupLayout() {
 
         addSubview(recommendLabel)
         addSubview(collectionView)
