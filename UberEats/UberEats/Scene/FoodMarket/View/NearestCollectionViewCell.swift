@@ -56,5 +56,7 @@ class NearestCollectionViewCell: UICollectionViewCell {
         mainImage.layer.masksToBounds = true
 
     }
-
+    override func prepareForReuse() {
+        url = nil
+    }
 }

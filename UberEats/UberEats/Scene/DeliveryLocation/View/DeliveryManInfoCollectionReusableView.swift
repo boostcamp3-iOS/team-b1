@@ -16,6 +16,18 @@ class DeliveryManInfoCollectionReusableView: UICollectionReusableView {
 
     var delegate: ChangeScrollDelegate?
 
+    var delivererInfo: DelivererInfo? {
+        didSet {
+            guard let delivererInfo = delivererInfo else {
+                return
+            }
+
+            deliveryManImageView.image = delivererInfo.image
+            deliveryManNameLabel.text = delivererInfo.name
+            vehicleLabel.text = delivererInfo.vehicle
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setupLayout()
@@ -23,8 +35,6 @@ class DeliveryManInfoCollectionReusableView: UICollectionReusableView {
 
     private func setupLayout() {
         deliveryManImageView.layer.cornerRadius = 25
-        deliveryManNameLabel.text = "수근 (99% 👍🏻)"
-        vehicleLabel.text = "우버 Moterbike"
         isHidden = true
     }
 

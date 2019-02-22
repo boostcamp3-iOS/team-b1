@@ -6,7 +6,7 @@
 //  Copyright © 2019 team-b1. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum SectionName: Int {
     case deliveryManInfo = 0
@@ -34,7 +34,6 @@ struct Identifiers {
 struct DelivererInfo {
     let name: String
     let rate: Int
-    let imageURL: String
-    let phoneNumber: String
+    let image: UIImage?
     let vehicle: String
 }
