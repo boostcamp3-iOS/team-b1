@@ -561,6 +561,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
                 if recommendFood.count > indexPath.item {
                     recommendCollectionViewCell.recommendFood = recommendFood[indexPath.item]
+//                    recommendCollectionViewCell.storeInfo = recommendFood[indexPath.item].st
                     recommendCollectionViewCell.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: 1, height: -1), radius: 5.0, scale: true)
 
                     guard let imageURL = URL(string: recommendFood[indexPath.item].foodImageURL) else {

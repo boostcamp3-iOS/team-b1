@@ -25,7 +25,7 @@ class OrderButton: UIView {
         didSet {
             let amount = orderInfos.map({ $0.price })
             .reduce(0) { $0 + $1 }
-            amountLabel.text = "$\(amount)"
+            amountLabel.text = "￦\(amount.formattedWithSeparator)"
         }
     }
 
