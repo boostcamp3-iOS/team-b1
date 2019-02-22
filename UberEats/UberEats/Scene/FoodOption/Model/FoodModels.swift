@@ -16,6 +16,7 @@ enum FoodOptionItemModelType {
     case specialRequests()
     case optionItem(FoodOptionItem)
     case memo()
+    case quantityControl()
     case empty()
 
     var identifier: String {
@@ -32,6 +33,8 @@ enum FoodOptionItemModelType {
             return "checkBoxCell"
         case .memo:
             return "memoCell"
+        case .quantityControl:
+            return "quantityControlCell"
         case .empty:
             return "emptyCell"
         }

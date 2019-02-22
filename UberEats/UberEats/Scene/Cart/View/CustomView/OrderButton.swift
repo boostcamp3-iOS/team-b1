@@ -10,19 +10,31 @@ import UIKit
 
 class OrderButton: UIView {
 
-    private let xibName = "OrderButton"
+    private static let xibName = "OrderButton"
+    private static let orderButtonDefaultText = "카트에 1 추가"
 
     var orderButtonClickable: OrderButtonClickable?
 
-    @IBOutlet var orderButtonVIew: UIView!
+    @IBOutlet var orderButtonView: UIView!
 
     @IBOutlet weak var amountLabel: UILabel!
+
+    @IBOutlet weak var orderButton: UIButton!
 
     var orderInfos: [OrderInfoModel] = [OrderInfoModel]() {
         didSet {
             let amount = orderInfos.map({ $0.price })
             .reduce(0) { $0 + $1 }
             amountLabel.text = "$\(amount)"
+        }
+    }
+
+    var orderButtonText: String? {
+        get {
+            return orderButton?.currentTitle
+        }
+        set {
+            orderButton?.setTitle(newValue, for: .normal)
         }
     }
 
@@ -41,8 +53,9 @@ class OrderButton: UIView {
     }
 
     private func initNib() {
-        Bundle.main.loadNibNamed(xibName, owner: self, options: nil)
-        orderButtonVIew.fixInView(self)
+        Bundle.main.loadNibNamed(OrderButton.xibName, owner: self, options: nil)
+        orderButtonView.fixInView(self)
+        orderButtonText = OrderButton.orderButtonDefaultText
     }
 
 }
