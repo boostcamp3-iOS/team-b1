@@ -75,7 +75,7 @@ struct ValuesForButton {
 
 struct ValuesForFloatingView {
     static let fullMultiplier: CGFloat = 1
-    static let widthPadding: CGFloat = 10
+    static let widthPadding: CGFloat = 30
     static let leadingConstant: CGFloat = 0
     static let heightConstant: CGFloat = 35
 }

@@ -18,8 +18,8 @@ class StoreServiceImp: StoreService {
         self.network = network
     }
     
-    func requestStore(query: String, completionHandler: @escaping (DataResponse<BusinessStore>) -> Void) {
-        guard let requestURL = URL(string: "www.uberEats.com/stores?" + query) else {
+    func requestStore(storeId: String, completionHandler: @escaping (DataResponse<StoreForNetwork>) -> Void) {
+        guard let requestURL = URL(string: "www.uberEats.com/stores?" + storeId) else {
             fatalError("URL conversion error")
         }
         
@@ -31,9 +31,9 @@ class StoreServiceImp: StoreService {
                 }
                 
                 do {
-                    let store: Store = try JSONDecoder().decode(Store.self, from: data)
+                    let store: StoreForView = try JSONDecoder().decode(StoreForView.self, from: data)
                     
-                    let caculatedStore = BusinessStore(store)
+                    let caculatedStore = StoreForNetwork(store)
                     
                     DispatchQueue.main.async {
                         completionHandler(DataResponse.success(caculatedStore))
@@ -48,9 +48,9 @@ class StoreServiceImp: StoreService {
         }
     }
     
-    func requestStore(query: String, dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<BusinessStore>) -> Void) {
+    func requestStore(storeId: String, dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<StoreForNetwork>) -> Void) {
         dispatchQueue?.async {
-            self.requestStore(query: query, completionHandler: completionHandler)
+            self.requestStore(storeId: storeId, completionHandler: completionHandler)
         }
     }
     

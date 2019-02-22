@@ -40,7 +40,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
 
-    var food: Food? {
+    var food: FoodForView? {
         didSet {
             guard let food = food else {
                 return

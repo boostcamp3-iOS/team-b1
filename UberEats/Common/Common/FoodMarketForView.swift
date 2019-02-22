@@ -1,9 +1,9 @@
 import Foundation
 
-public struct FoodMarket: Codable {
+public struct FoodMarketForView: Codable {
     public let advertisingBoard: [AdvertisingBoard]
-    public var recommandFoods: [Food]
-    public var newStores, stores: [Store]
+    public var recommandFoods: [FoodForView]
+    public var newStores, stores: [StoreForView]
 }
 
 public struct AdvertisingBoard: Codable {

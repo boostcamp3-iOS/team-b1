@@ -15,12 +15,26 @@ class RecommendCollectionViewCell: UICollectionViewCell {
     @IBOutlet var image: UIImageView!
     @IBOutlet var view: UIView!
 
-    @IBOutlet var bugerLabel: UILabel!
+    @IBOutlet var categoryLabel: UILabel!
     @IBOutlet var minuteLabel: UILabel!
     @IBOutlet var gradeLabel: UILabel!
     @IBOutlet var commentLabel: UILabel!
 
-    var recommendFood: Food? {
+    var storeInfo: StoreForView? {
+        didSet {
+            guard let storeInfo = storeInfo else {
+                return
+            }
+
+            categoryLabel.text = storeInfo.category
+            minuteLabel.text = storeInfo.deliveryTime + "분"
+
+            gradeLabel.text = String(storeInfo.rate.score)
+                                + " ★ " + String(storeInfo.rate.numberOfRater)
+        }
+    }
+
+    var recommendFood: FoodForView? {
         didSet {
             guard let recommendFood = recommendFood else {
                 return

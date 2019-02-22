@@ -85,6 +85,10 @@
 		99E42A33221D812100A38D4F /* RequiredOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E42A32221D812100A38D4F /* RequiredOptionsCell.swift */; };
 		99E42A35221D81BA00A38D4F /* CheckBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E42A34221D81BA00A38D4F /* CheckBoxCell.swift */; };
 		99E42A37221D8AAF00A38D4F /* FoodOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E42A36221D8AAF00A38D4F /* FoodOptionCell.swift */; };
+		99E42A43221E886700A38D4F /* QuantityControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E42A42221E886700A38D4F /* QuantityControlView.swift */; };
+		99E42A45221E889300A38D4F /* QuantityControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99E42A44221E889300A38D4F /* QuantityControlView.xib */; };
+		99E42A47221E954A00A38D4F /* UIButton+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E42A46221E954A00A38D4F /* UIButton+Border.swift */; };
+		99E42A49221ECB1400A38D4F /* QuantityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E42A48221ECB1400A38D4F /* QuantityCell.swift */; };
 		BAADD13A736367A4AF0735E9 /* Pods_UberEats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6506E59626E3060BF7CD65 /* Pods_UberEats.framework */; };
 		D102A68A2208335E004B458C /* OrderNameCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102A6892208335E004B458C /* OrderNameCollectionReusableView.swift */; };
 		D102A68E22083853004B458C /* SeparatorCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102A68D22083853004B458C /* SeparatorCollectionReusableView.swift */; };
@@ -112,6 +116,7 @@
 		D118B7D722143D3F00E5A85E /* ChangeScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D118B7D622143D3F00E5A85E /* ChangeScrollDelegate.swift */; };
 		D11B04D8220583A100F20363 /* LocationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D11B04D7220583A100F20363 /* LocationViewController.storyboard */; };
 		D11B04DA2205847F00F20363 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B04D92205847F00F20363 /* LocationViewController.swift */; };
+		D1279E65221FC20C00BDD4B5 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1279E64221FC20C00BDD4B5 /* CheckBox.swift */; };
 		D1391FC4220AB2D90064FC37 /* SaleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1391FC3220AB2D90064FC37 /* SaleCollectionViewCell.swift */; };
 		D13B820B221BEE2A00100451 /* Formatter+withSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13B820A221BEE2A00100451 /* Formatter+withSeparator.swift */; };
 		D13B820D221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13B820C221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift */; };
@@ -255,6 +260,10 @@
 		99E42A32221D812100A38D4F /* RequiredOptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredOptionsCell.swift; sourceTree = "<group>"; };
 		99E42A34221D81BA00A38D4F /* CheckBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxCell.swift; sourceTree = "<group>"; };
 		99E42A36221D8AAF00A38D4F /* FoodOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodOptionCell.swift; sourceTree = "<group>"; };
+		99E42A42221E886700A38D4F /* QuantityControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityControlView.swift; sourceTree = "<group>"; };
+		99E42A44221E889300A38D4F /* QuantityControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuantityControlView.xib; sourceTree = "<group>"; };
+		99E42A46221E954A00A38D4F /* UIButton+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Border.swift"; sourceTree = "<group>"; };
+		99E42A48221ECB1400A38D4F /* QuantityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityCell.swift; sourceTree = "<group>"; };
 		99F57914220AD07F002D792A /* Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Service.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F57930220C5A90002D792A /* ServiceInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ServiceInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C3D32B8615DFA8A8B5DDD6 /* Pods-UberEatsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEatsTests.debug.xcconfig"; path = "Target Support Files/Pods-UberEatsTests/Pods-UberEatsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -284,6 +293,7 @@
 		D118B7D622143D3F00E5A85E /* ChangeScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeScrollDelegate.swift; sourceTree = "<group>"; };
 		D11B04D7220583A100F20363 /* LocationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationViewController.storyboard; sourceTree = "<group>"; };
 		D11B04D92205847F00F20363 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		D1279E64221FC20C00BDD4B5 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		D1391FC3220AB2D90064FC37 /* SaleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCollectionViewCell.swift; sourceTree = "<group>"; };
 		D13B820A221BEE2A00100451 /* Formatter+withSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter+withSeparator.swift"; sourceTree = "<group>"; };
 		D13B820C221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+formattedWithSeparator.swift"; sourceTree = "<group>"; };
@@ -484,6 +494,7 @@
 				D13B820A221BEE2A00100451 /* Formatter+withSeparator.swift */,
 				D13B820C221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift */,
 				D17155BE221CE4D500BBC5DD /* UILabel+.swift */,
+				99E42A46221E954A00A38D4F /* UIButton+Border.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -534,7 +545,7 @@
 				995D902A221002FA00DCA964 /* Main */,
 				D107D214221505F200322379 /* SettingLocation */,
 				84333AC12202CD38007372DE /* Chatting */,
-				D1AF1E8F21F9A5A6004CA3A5 /* SelectMenu */,
+				D1AF1E8F21F9A5A6004CA3A5 /* Store */,
 				992EDCE921FDB07D006CC894 /* FoodOption */,
 				D11B04D62205836900F20363 /* DeliveryLocation */,
 				84DC183821F9A51D008EE6D3 /* FoodMarket */,
@@ -551,6 +562,8 @@
 				99E42A32221D812100A38D4F /* RequiredOptionsCell.swift */,
 				99E42A34221D81BA00A38D4F /* CheckBoxCell.swift */,
 				99E42A36221D8AAF00A38D4F /* FoodOptionCell.swift */,
+				99E42A48221ECB1400A38D4F /* QuantityCell.swift */,
+				D1279E64221FC20C00BDD4B5 /* CheckBox.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -720,6 +733,8 @@
 			isa = PBXGroup;
 			children = (
 				99E42A2C221D4C0100A38D4F /* GradientView.swift */,
+				99E42A42221E886700A38D4F /* QuantityControlView.swift */,
+				99E42A44221E889300A38D4F /* QuantityControlView.xib */,
 			);
 			path = CustomVIew;
 			sourceTree = "<group>";
@@ -786,7 +801,7 @@
 			path = DeliveryLocation;
 			sourceTree = "<group>";
 		};
-		D1AF1E8F21F9A5A6004CA3A5 /* SelectMenu */ = {
+		D1AF1E8F21F9A5A6004CA3A5 /* Store */ = {
 			isa = PBXGroup;
 			children = (
 				995D90222210007700DCA964 /* Extensions */,
@@ -794,6 +809,7 @@
 				D1F96EFE21FE8CEB00D79396 /* ViewController */,
 				D1F96EFF21FE8CF200D79396 /* Model */,
 			);
+			name = Store;
 			path = SelectMenu;
 			sourceTree = "<group>";
 		};
@@ -951,6 +967,7 @@
 				D1146C9E221A493300F24F6D /* MenuSectionCollectionViewCell.xib in Resources */,
 				9956F7F821F98468004E9854 /* Main.storyboard in Resources */,
 				84DC185021F9AD7C008EE6D3 /* ItemView.storyboard in Resources */,
+				99E42A45221E889300A38D4F /* QuantityControlView.xib in Resources */,
 				84DC184E21F9AD3D008EE6D3 /* NewRestCollectionViewCell.xib in Resources */,
 				995D90242210023C00DCA964 /* GoogleService-Info.plist in Resources */,
 				84FB11AB22017A90002C5F46 /* SeeMoreRestTableViewCell.xib in Resources */,
@@ -1094,6 +1111,7 @@
 				D107D22722153A8100322379 /* LocationCellModel.swift in Sources */,
 				995D903F2210609400DCA964 /* StoreInfoCell.swift in Sources */,
 				D13B820B221BEE2A00100451 /* Formatter+withSeparator.swift in Sources */,
+				D1279E65221FC20C00BDD4B5 /* CheckBox.swift in Sources */,
 				84FB11AD2202994F002C5F46 /* SectionEnum.swift in Sources */,
 				995B1C622219465200A41176 /* PriceInfoCell.swift in Sources */,
 				D107D22122152AA100322379 /* NewAddressTableViewCell.swift in Sources */,
@@ -1115,6 +1133,7 @@
 				D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */,
 				D196FE9D220DB48100F522C8 /* LocationModel.swift in Sources */,
 				995D904422106DE800DCA964 /* DeliveryAddressCell.swift in Sources */,
+				99E42A47221E954A00A38D4F /* UIButton+Border.swift in Sources */,
 				99E42A2F221D778800A38D4F /* FoodItemDetailsViewController+Header.swift in Sources */,
 				D1391FC4220AB2D90064FC37 /* SaleCollectionViewCell.swift in Sources */,
 				D13B8211221C26A900100451 /* SplashIndicatorView.swift in Sources */,
@@ -1141,6 +1160,7 @@
 				D1EA630221FA9B1D0024CD68 /* SearchBarDelegate.swift in Sources */,
 				99E42A2D221D4C0100A38D4F /* GradientView.swift in Sources */,
 				995B1C4622152BF100A41176 /* MemoCell.swift in Sources */,
+				99E42A49221ECB1400A38D4F /* QuantityCell.swift in Sources */,
 				995B1C5B22192DC300A41176 /* UiView+UtillForCustomView.swift in Sources */,
 				99E42A33221D812100A38D4F /* RequiredOptionsCell.swift in Sources */,
 				D1AF1E9F21F9A5A6004CA3A5 /* StoreTitleView.swift in Sources */,
@@ -1161,6 +1181,7 @@
 				843B051A220405540082FEFF /* ChatMessageCell.swift in Sources */,
 				D16DAEE3220888F200564823 /* TotalPriceCollectionReusableView.swift in Sources */,
 				996F6BCE221304B50052CC36 /* UITableViewCell+ViewOption.swift in Sources */,
+				99E42A43221E886700A38D4F /* QuantityControlView.swift in Sources */,
 				D107D2192215064300322379 /* SettingLocationViewController.swift in Sources */,
 				D1135C3322102C0A0032F103 /* DeliveryManInfoCollectionReusableView.swift in Sources */,
 				D1AF1E9E21F9A5A6004CA3A5 /* TempCollectionReusableView.swift in Sources */,

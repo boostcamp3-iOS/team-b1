@@ -10,7 +10,10 @@ import Foundation
 import Common
 
 public protocol StoreService: class {
-    func requestStore(query: String, completionHandler: @escaping (DataResponse<BusinessStore>) -> Void)
+    func requestStore(storeId: String,
+                      completionHandler: @escaping (DataResponse<StoreForNetwork>) -> Void)
 
-    func requestStore(query: String, dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<BusinessStore>) -> Void)
+    func requestStore(storeId: String,
+                      dispatchQueue: DispatchQueue?,
+                      completionHandler: @escaping (DataResponse<StoreForNetwork>) -> Void)
 }

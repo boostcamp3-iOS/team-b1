@@ -11,7 +11,7 @@ import DependencyContainer
 import ServiceInterface
 import Common
 
-class FoodItemDetailsViewController: UIViewController {
+class FoodItemDetailsViewController: UIViewController, QuantityValueChanged {
 
     @IBOutlet weak var toolbar: UIView!
 
@@ -24,6 +24,8 @@ class FoodItemDetailsViewController: UIViewController {
     @IBOutlet weak var coveredToolBarBottom: NSLayoutConstraint!
 
     private var style: UIStatusBarStyle = .lightContent
+
+    @IBOutlet weak var toolbarTitleLabel: UILabel!
 
     @IBOutlet weak var orderButton: OrderButton!
 
@@ -77,12 +79,18 @@ class FoodItemDetailsViewController: UIViewController {
 
             self?.foodInfo = value.foodInfoModel
             self?.requiredOptions = value.requiredOptionsModel
+
             self?.foodOptionItemModels.append([FoodOptionItemModelType.specialRequests()])
             self?.foodOptionItemModels.append([FoodOptionItemModelType.memo()])
+            self?.foodOptionItemModels.append([FoodOptionItemModelType.quantityControl()])
             self?.foodOptionItemModels.append([FoodOptionItemModelType.empty()])
 
             self?.tableView.reloadData()
         }
+    }
+
+    func quantityValueChanged(newQuantity: Int) {
+        orderButton?.orderButtonText = "카트에 \(newQuantity) 추가"
     }
 
     @IBAction func clickedBackButton(_ sender: Any) {
@@ -121,6 +129,7 @@ extension FoodItemDetailsViewController: UITableViewDelegate, UITableViewDataSou
         var foodOptions = [FoodOptionItemModelType]()
         foodOptions.append(FoodOptionItemModelType.foodInfo(foodInfo))
         foodOptionItemModels.append(foodOptions)
+        toolbarTitleLabel.text = foodInfo.name
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -143,14 +152,24 @@ extension FoodItemDetailsViewController: UITableViewDelegate, UITableViewDataSou
         switch model {
         case .foodInfo(let model):
             setUpFoodOptionCategoryModel(cell, model)
+
         case .requiredOptions(let model):
             setUpFoodOptionCategoryModel(cell, model)
+
         case .additionalOptions(let model):
             setUpFoodOptionCategoryModel(cell, model)
+
         case .optionItem(let model):
-            if let cell = cell as? HavingFoodOptionItem {
-                cell.foodOptionItemModel = model
+            guard let cell = cell as? HavingFoodOptionItem else {
+                preconditionFailure("casting failed : HavingFoodOptionItem")
             }
+            cell.foodOptionItemModel = model
+        case .quantityControl:
+            guard let cell = cell as? QuantityCell else {
+                preconditionFailure("casting failed : QuantityCell")
+            }
+
+            cell.quantitychanged = self
         default:
             return cell
         }
