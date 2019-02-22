@@ -42,17 +42,6 @@
                         </label>
                     </subviews>
                 </stackView>
-                <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="9U7-XT-JQf">
-                    <rect key="frame" x="13" y="114" width="458" height="73.5"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <color key="tintColor" red="0.19677559622538618" green="0.29780685903401016" blue="0.084590601475071692" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <color key="thumbTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </slider>
-                <slider opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="vtn-oW-1O1">
-                    <rect key="frame" x="13" y="114" width="458" height="73.5"/>
-                    <color key="tintColor" red="0.3989361421" green="0.60376348349999998" blue="0.1714961045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <color key="thumbTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </slider>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레스토랑 주문 확인 중" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLZ-sW-0ZL">
                     <rect key="frame" x="15" y="206.5" width="454" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
@@ -67,37 +56,46 @@
                         <constraint firstAttribute="height" constant="1" id="Aj7-2Y-Ke9"/>
                     </constraints>
                 </view>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xmk-yz-tSI">
+                    <rect key="frame" x="15" y="174.5" width="454" height="2"/>
+                    <color key="progressTintColor" red="0.34096097949999998" green="0.58740127090000005" blue="0.2116653621" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="trackTintColor" red="0.90389038705583757" green="0.90389038705583757" blue="0.90389038705583757" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </progressView>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eca-jK-COk">
+                    <rect key="frame" x="15" y="174.5" width="454" height="2"/>
+                    <color key="progressTintColor" red="0.19677559620000001" green="0.29780685899999998" blue="0.084590601479999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="trackTintColor" red="0.34096097949999998" green="0.58740127090000005" blue="0.2116653621" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </progressView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="rlE-gF-uhH" secondAttribute="trailing" constant="15" id="522-uI-sVs"/>
+                <constraint firstAttribute="trailing" secondItem="eca-jK-COk" secondAttribute="trailing" constant="15" id="5JJ-qL-22V"/>
+                <constraint firstItem="xmk-yz-tSI" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="15" id="7TN-iI-xVb"/>
+                <constraint firstItem="eca-jK-COk" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="15" id="C0l-M4-dNI"/>
                 <constraint firstItem="rlE-gF-uhH" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="C1O-an-gjb"/>
-                <constraint firstItem="vtn-oW-1O1" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="C2q-pS-dQA"/>
                 <constraint firstAttribute="trailing" secondItem="jLZ-sW-0ZL" secondAttribute="trailing" constant="15" id="CIM-7r-Q1e"/>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="jLZ-sW-0ZL" secondAttribute="bottom" constant="25" id="KCi-7k-Du4"/>
-                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="vtn-oW-1O1" secondAttribute="trailing" constant="15" id="PkM-er-6lj"/>
-                <constraint firstItem="jLZ-sW-0ZL" firstAttribute="top" secondItem="9U7-XT-JQf" secondAttribute="bottom" constant="20" id="SQL-ci-Qo3"/>
+                <constraint firstItem="jLZ-sW-0ZL" firstAttribute="top" secondItem="eca-jK-COk" secondAttribute="bottom" constant="30" id="PfN-KZ-TnQ"/>
                 <constraint firstItem="Wiz-G7-MAf" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="T5J-BD-W3r"/>
                 <constraint firstItem="Gt9-qA-nBy" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="WiM-tI-vTR"/>
+                <constraint firstAttribute="trailing" secondItem="xmk-yz-tSI" secondAttribute="trailing" constant="15" id="YCL-rd-ytj"/>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="Gt9-qA-nBy" secondAttribute="trailing" constant="15" id="d58-nm-8MQ"/>
-                <constraint firstItem="9U7-XT-JQf" firstAttribute="top" secondItem="rlE-gF-uhH" secondAttribute="bottom" constant="5" id="eWS-nb-r3Q"/>
+                <constraint firstItem="jLZ-sW-0ZL" firstAttribute="top" secondItem="xmk-yz-tSI" secondAttribute="bottom" constant="30" id="dFL-8b-u31"/>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="Wiz-G7-MAf" secondAttribute="trailing" id="iaO-Fu-red"/>
                 <constraint firstItem="jLZ-sW-0ZL" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="jDs-C8-GXc"/>
                 <constraint firstAttribute="bottom" secondItem="Wiz-G7-MAf" secondAttribute="bottom" id="jmN-2n-5CK"/>
-                <constraint firstItem="vtn-oW-1O1" firstAttribute="top" secondItem="rlE-gF-uhH" secondAttribute="bottom" constant="5" id="pGt-p1-IcR"/>
-                <constraint firstAttribute="trailing" secondItem="9U7-XT-JQf" secondAttribute="trailing" constant="15" id="phj-EA-4Ik"/>
-                <constraint firstItem="9U7-XT-JQf" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="pqX-Fh-ZAU"/>
                 <constraint firstItem="rlE-gF-uhH" firstAttribute="top" secondItem="Gt9-qA-nBy" secondAttribute="bottom" constant="30" id="sSQ-uJ-KzX"/>
                 <constraint firstItem="Gt9-qA-nBy" firstAttribute="top" secondItem="VXr-Tz-HHm" secondAttribute="top" constant="25" id="t8q-5v-zuU"/>
-                <constraint firstItem="jLZ-sW-0ZL" firstAttribute="top" secondItem="vtn-oW-1O1" secondAttribute="bottom" constant="20" id="zgW-Xe-KE4"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <connections>
-                <outlet property="animationSlider" destination="9U7-XT-JQf" id="diD-kL-iqh"/>
                 <outlet property="arrivalTimeLabel" destination="8Sh-jU-lQh" id="M9U-9r-6gD"/>
                 <outlet property="arrivalTimeTitleLabel" destination="vvZ-bT-JYt" id="hrd-Ic-4Ij"/>
+                <outlet property="backgroundProgressBar" destination="xmk-yz-tSI" id="pbp-30-cc0"/>
                 <outlet property="currentProgressLabel" destination="jLZ-sW-0ZL" id="AOH-R2-7DI"/>
-                <outlet property="currentProgressSlider" destination="vtn-oW-1O1" id="ZIj-kF-Apw"/>
+                <outlet property="orderProgressBar" destination="eca-jK-COk" id="8sD-Kb-BVr"/>
+                <outlet property="orderProgressTrailingConstraint" destination="5JJ-qL-22V" id="PIS-vc-snS"/>
                 <outlet property="storeNameLabel" destination="Gt9-qA-nBy" id="a8G-sF-SZQ"/>
             </connections>
             <point key="canvasLocation" x="-188.80000000000001" y="98.050974512743636"/>

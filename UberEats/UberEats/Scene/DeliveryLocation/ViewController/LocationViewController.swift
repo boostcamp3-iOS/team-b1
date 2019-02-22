@@ -22,6 +22,8 @@ class LocationViewController: UIViewController {
     private let moveCurrentLocationButton = UIButton().initButtonWithImage("btCurrentlocation")
     private let contactButton = UIButton().initButtonWithImage("btInquiry")
 
+    private let delivererInfo = DelivererInfo.init(name: "중현", rate: 100, image: UIImage(named: "deliverer"), vehicle: "motorbike")
+
     var orders: [OrderInfoModel]?
 
     var storeName: String?
@@ -119,6 +121,8 @@ class LocationViewController: UIViewController {
     }
 
     private func setupLayout() {
+        deliveryStartView.delivererName = delivererInfo.name
+
         self.view.addSubview(orderDetailCollectionView)
         self.orderDetailCollectionView.backgroundView?.addSubview(moveCurrentLocationButton)
         self.orderDetailCollectionView.backgroundView?.addSubview(deliveryStartView)
@@ -380,6 +384,7 @@ extension LocationViewController: UICollectionViewDataSource {
                     header.isHidden = false
                 }
 
+                header.delivererInfo = delivererInfo
                 header.delegate = self
 
                 return header
@@ -391,11 +396,11 @@ extension LocationViewController: UICollectionViewDataSource {
                 }
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                    header.currentProgressLabel.text = "음식 준비중"
+                    header.progressStatus = .preparingFood
                 }
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-                    header.currentProgressLabel.text = "음식을 배달중입니다."
+                    header.progressStatus = .delivering
                 }
 
                 guard let deliveryTime = storeDeliveryTime else {
@@ -408,6 +413,8 @@ extension LocationViewController: UICollectionViewDataSource {
                 dateFormatter.locale = NSLocale(localeIdentifier: "ko_KR") as Locale
                 header.arrivalTime = dateFormatter.string(from: currentTime as Date)
                 header.storeNameLabel.text = storeName
+
+                header.progressStatus = .verifyingOrder
 
                 header.delegate = self
 

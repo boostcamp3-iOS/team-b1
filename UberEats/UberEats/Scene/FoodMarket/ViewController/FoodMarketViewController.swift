@@ -592,9 +592,10 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     guard let imageURL = URL(string: nearestRests[indexPath.item].mainImage) else {
                         return nearestRestCell
                     }
-
-                    ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (downloadImage, _) in
-                        nearestRestCell.mainImage.image = downloadImage
+                    nearestRestCell.url = imageURL
+                    ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak nearestRestCell] (downloadImage, _) in
+                        guard nearestRestCell?.url?.absoluteString == imageURL.absoluteString else { return }
+                        nearestRestCell?.mainImage.image = downloadImage
                     }
                 }
 

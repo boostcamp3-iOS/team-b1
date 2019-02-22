@@ -11,6 +11,8 @@ import Common
 
 class FoodCollectionViewCell: UICollectionViewCell {
 
+    private static let holderImage = UIImage(named: "foodPlaceHolder")
+
     var priceLabelBottomConstraint = NSLayoutConstraint()
     var foodImageViewWidthConstraint = NSLayoutConstraint()
 
@@ -113,7 +115,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
         foodNameLabel.text = ""
         foodContentsLabel.text = ""
         priceLabel.text = ""
-        foodImageView.image = nil
+        foodImageView.image = FoodCollectionViewCell.holderImage
     }
 
 }

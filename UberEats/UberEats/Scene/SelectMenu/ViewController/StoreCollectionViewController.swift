@@ -40,9 +40,6 @@ class StoreCollectionViewController: UICollectionViewController {
                         if error != nil {
                             return
                         }
-
-                        self.dataIndicator.stopAnimating()
-                        self.collectionView.isScrollEnabled = true
                     }
                 }
             }
@@ -150,6 +147,8 @@ class StoreCollectionViewController: UICollectionViewController {
                 self?.setupFloatingView()
                 self?.setupCollectionView()
                 self?.pushFoodDetail()
+                self?.dataIndicator.stopAnimating()
+                self?.collectionView.isScrollEnabled = true
             } else {
                 fatalError()
             }
@@ -431,12 +430,16 @@ class StoreCollectionViewController: UICollectionViewController {
                     return cell
                 }
 
-                ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { (image, error) in
+                ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak cell] (image, error) in
                     if error != nil {
                         return
                     }
 
-                    cell.foodImageView.image = image
+                    guard cell?.food?.lowImageURL == imageURL.absoluteString else {
+                        return
+                    }
+
+                    cell?.foodImageView.image = image
                 }
 
                 return cell

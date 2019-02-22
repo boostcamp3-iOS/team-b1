@@ -12,7 +12,6 @@ class DeliveryStartNoticeView: UIView {
     let deliveryStartLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "밖에서 **님을 만날 준비를 하세요."
         label.textColor = .white
         label.font = .systemFont(ofSize: 15)
         label.textAlignment = .center
@@ -20,11 +19,20 @@ class DeliveryStartNoticeView: UIView {
     }()
 
     let carImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "car")
+        let imageView = UIImageView().initImageView("car")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
+
+    var delivererName: String? {
+        didSet {
+            guard let delivererName = delivererName else {
+                return
+            }
+
+            deliveryStartLabel.text = "밖에서 " + delivererName + "님을 만날 준비를 하세요."
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
