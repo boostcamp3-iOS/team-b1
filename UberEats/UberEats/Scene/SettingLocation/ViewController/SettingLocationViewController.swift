@@ -30,7 +30,7 @@ class SettingLocationViewController: UIViewController {
                                           "문 앞까지 배달"),
                         LocationCellModel("icClock",
                                           "메리츠 타워",
-                                          "대한민국 서울특별시 강남구 역삼1동 어쩌구저쩌구",
+                                          "대한민국 서울특별시 강남구 역삼동 강남대로 382",
                                           "차량에서 대기")]
 
     let moment: [MomentCellModel] = [.init(imageName: "icStopwatch", title: "최대한 빨리"),

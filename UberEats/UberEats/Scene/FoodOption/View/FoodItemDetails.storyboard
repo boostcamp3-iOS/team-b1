@@ -136,14 +136,13 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Asj-SI-BA1">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="73.666666666666671"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ye3-BJ-NST" userLabel="CheckBox">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rq8-EC-ScF" customClass="CheckBox" customModule="UberEats" customModuleProvider="target">
                                                             <rect key="frame" x="24" y="16" width="24" height="24"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="24" id="16r-2B-3Y7"/>
-                                                                <constraint firstAttribute="height" constant="24" id="efq-U7-XPI"/>
+                                                                <constraint firstAttribute="width" constant="24" id="X1J-93-E5v"/>
+                                                                <constraint firstAttribute="height" constant="24" id="Yue-JF-2Nv"/>
                                                             </constraints>
-                                                        </view>
+                                                        </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="+₩2,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulY-51-kir" userLabel="price">
                                                             <rect key="frame" x="288.33333333333331" y="18" width="62.666666666666686" height="19.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -161,12 +160,12 @@
                                                     <constraints>
                                                         <constraint firstItem="ulY-51-kir" firstAttribute="top" secondItem="ZIC-tn-dUe" secondAttribute="top" id="3xm-9Z-y55"/>
                                                         <constraint firstItem="ulY-51-kir" firstAttribute="leading" secondItem="ZIC-tn-dUe" secondAttribute="trailing" constant="20" id="Hrx-AI-Jh4"/>
-                                                        <constraint firstItem="ye3-BJ-NST" firstAttribute="top" secondItem="Asj-SI-BA1" secondAttribute="top" constant="16" id="JS0-bR-DXx"/>
                                                         <constraint firstAttribute="height" constant="73.670000000000002" id="WWa-aE-mDW"/>
-                                                        <constraint firstItem="ZIC-tn-dUe" firstAttribute="leading" secondItem="ye3-BJ-NST" secondAttribute="trailing" constant="16" id="daw-av-IRc"/>
+                                                        <constraint firstItem="rq8-EC-ScF" firstAttribute="leading" secondItem="Asj-SI-BA1" secondAttribute="leading" constant="24" id="dHC-Ej-uOr"/>
+                                                        <constraint firstItem="ZIC-tn-dUe" firstAttribute="leading" secondItem="rq8-EC-ScF" secondAttribute="trailing" constant="16" id="daw-av-IRc"/>
+                                                        <constraint firstItem="rq8-EC-ScF" firstAttribute="top" secondItem="Asj-SI-BA1" secondAttribute="top" constant="16" id="jDC-0o-KEQ"/>
                                                         <constraint firstAttribute="trailing" secondItem="ulY-51-kir" secondAttribute="trailing" constant="24" id="ngJ-P4-elg"/>
-                                                        <constraint firstItem="ye3-BJ-NST" firstAttribute="leading" secondItem="Asj-SI-BA1" secondAttribute="leading" constant="24" id="wvF-OH-EXS"/>
-                                                        <constraint firstItem="ZIC-tn-dUe" firstAttribute="top" secondItem="ye3-BJ-NST" secondAttribute="top" constant="2" id="ya5-Eb-92o"/>
+                                                        <constraint firstItem="ZIC-tn-dUe" firstAttribute="top" secondItem="rq8-EC-ScF" secondAttribute="top" constant="2" id="ya5-Eb-92o"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -354,7 +353,7 @@
                                             <constraint firstAttribute="width" constant="20" id="z3G-eq-cMx"/>
                                             <constraint firstAttribute="height" constant="20" id="zaT-oA-ViL"/>
                                         </constraints>
-                                        <state key="normal" image="back_black3x"/>
+                                        <state key="normal" image="blackArrow"/>
                                         <connections>
                                             <action selector="clickedBackButton:" destination="AXi-XS-cxW" eventType="touchUpInside" id="gTC-jn-QKF"/>
                                         </connections>
@@ -431,7 +430,7 @@
     </scenes>
     <resources>
         <image name="back3x" width="384" height="384"/>
-        <image name="back_black3x" width="384" height="384"/>
+        <image name="blackArrow" width="384" height="384"/>
         <image name="donut" width="715" height="600"/>
         <image name="share3x" width="384" height="384"/>
         <image name="share_black3x" width="384" height="384"/>

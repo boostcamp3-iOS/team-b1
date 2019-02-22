@@ -116,6 +116,7 @@
 		D118B7D722143D3F00E5A85E /* ChangeScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D118B7D622143D3F00E5A85E /* ChangeScrollDelegate.swift */; };
 		D11B04D8220583A100F20363 /* LocationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D11B04D7220583A100F20363 /* LocationViewController.storyboard */; };
 		D11B04DA2205847F00F20363 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B04D92205847F00F20363 /* LocationViewController.swift */; };
+		D1279E65221FC20C00BDD4B5 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1279E64221FC20C00BDD4B5 /* CheckBox.swift */; };
 		D1391FC4220AB2D90064FC37 /* SaleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1391FC3220AB2D90064FC37 /* SaleCollectionViewCell.swift */; };
 		D13B820B221BEE2A00100451 /* Formatter+withSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13B820A221BEE2A00100451 /* Formatter+withSeparator.swift */; };
 		D13B820D221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13B820C221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift */; };
@@ -291,6 +292,7 @@
 		D118B7D622143D3F00E5A85E /* ChangeScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeScrollDelegate.swift; sourceTree = "<group>"; };
 		D11B04D7220583A100F20363 /* LocationViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationViewController.storyboard; sourceTree = "<group>"; };
 		D11B04D92205847F00F20363 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		D1279E64221FC20C00BDD4B5 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		D1391FC3220AB2D90064FC37 /* SaleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCollectionViewCell.swift; sourceTree = "<group>"; };
 		D13B820A221BEE2A00100451 /* Formatter+withSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter+withSeparator.swift"; sourceTree = "<group>"; };
 		D13B820C221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+formattedWithSeparator.swift"; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 				99E42A34221D81BA00A38D4F /* CheckBoxCell.swift */,
 				99E42A36221D8AAF00A38D4F /* FoodOptionCell.swift */,
 				99E42A48221ECB1400A38D4F /* QuantityCell.swift */,
+				D1279E64221FC20C00BDD4B5 /* CheckBox.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1104,6 +1107,7 @@
 				D107D22722153A8100322379 /* LocationCellModel.swift in Sources */,
 				995D903F2210609400DCA964 /* StoreInfoCell.swift in Sources */,
 				D13B820B221BEE2A00100451 /* Formatter+withSeparator.swift in Sources */,
+				D1279E65221FC20C00BDD4B5 /* CheckBox.swift in Sources */,
 				84FB11AD2202994F002C5F46 /* SectionEnum.swift in Sources */,
 				995B1C622219465200A41176 /* PriceInfoCell.swift in Sources */,
 				D107D22122152AA100322379 /* NewAddressTableViewCell.swift in Sources */,
