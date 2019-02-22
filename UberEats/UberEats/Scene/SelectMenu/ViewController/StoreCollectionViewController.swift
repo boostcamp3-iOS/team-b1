@@ -249,7 +249,7 @@ class StoreCollectionViewController: UICollectionViewController {
                                                             attribute: .width,
                                                             multiplier: ValuesForFloatingView.fullMultiplier,
                                                             constant: categorys[0].estimateCGRect.width
-                                                                + ValuesForFloatingView.widthPadding + 20)
+                                                                + ValuesForFloatingView.widthPadding)
         floatingViewWidthConstraint.isActive = true
 
         floatingViewLeadingConstraint = NSLayoutConstraint(item: floatingView,
@@ -688,15 +688,18 @@ class StoreCollectionViewController: UICollectionViewController {
     }
 
     func movingFloatingView(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
+
         guard let cell = collectionView.cellForItem(at: indexPath) as? MenuCategoryCollectionViewCell else {
             return
         }
 
+        // 위에 검은 뷰가 셀을 가리기 때문에 글씨가 보이지 않게 되는 문제를 해결하기 위해
+        // cell을 가장 상위로 이동시킨다.
         collectionView.bringSubviewToFront(cell)
 
         let estimatedForm = self.categorys[indexPath.item].estimateCGRect
 
-        floatingViewWidthConstraint.constant = estimatedForm.width + ValuesForFloatingView.widthPadding + 20
+        floatingViewWidthConstraint.constant = estimatedForm.width + ValuesForFloatingView.widthPadding
 
         floatingViewLeadingConstraint.constant = cell.frame.minX
 
@@ -709,6 +712,7 @@ class StoreCollectionViewController: UICollectionViewController {
 
         cell.setColor(by: true)
 
+        // 선택한 셀을 가장 왼쪽으로 붙게 설정
         let sectionIndx = IndexPath(item: indexPath.item, section: 0)
         collectionView.selectItem(at: sectionIndx, animated: true, scrollPosition: .left)
 
@@ -722,7 +726,7 @@ extension StoreCollectionViewController: UICollectionViewDelegateFlowLayout {
         if collectionView == self.menuBarCollectionView {
             let estimatedForm = self.categorys[indexPath.item].estimateCGRect
 
-            return .init(width: estimatedForm.width + ValuesForFloatingView.widthPadding + 20,
+            return .init(width: estimatedForm.width + ValuesForFloatingView.widthPadding,
                          height: HeightsOfCell.menuBarAndMenu)
         }
 
