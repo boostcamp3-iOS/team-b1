@@ -104,7 +104,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="223" height="231"/>
             <connections>
-                <outlet property="bugerLabel" destination="Saz-5z-Sdd" id="F1Z-7x-yO8"/>
+                <outlet property="categoryLabel" destination="Saz-5z-Sdd" id="F1Z-7x-yO8"/>
                 <outlet property="commentLabel" destination="ieC-xR-Grw" id="f3K-Oe-AI9"/>
                 <outlet property="gradeLabel" destination="a8f-IF-hCA" id="UqG-lG-PPO"/>
                 <outlet property="image" destination="5jX-Jq-NAO" id="0rM-mT-lQW"/>

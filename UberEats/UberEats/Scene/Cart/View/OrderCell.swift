@@ -18,7 +18,7 @@ class OrderCell: UITableViewCell {
         didSet {
             amountLable.text = String(order.amount)
             orderNameLabel.text = order.orderName
-            priceLabel.text = "$\(order.price)"
+            priceLabel.text = "￦\(order.price.formattedWithSeparator)"
         }
     }
 

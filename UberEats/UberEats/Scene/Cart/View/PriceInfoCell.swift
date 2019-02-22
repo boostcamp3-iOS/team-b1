@@ -15,8 +15,8 @@ class PriceInfoCell: UITableViewCell {
 
     var priceInfo: PriceInfoModel! {
         didSet {
-            priceLable.text = "$\(priceInfo.price)"
-            subPriceLable.text = "$\(priceInfo.subPrice)"
+            priceLable.text = "￦\(priceInfo.price.formattedWithSeparator)"
+            subPriceLable.text = "￦\(priceInfo.subPrice.formattedWithSeparator)"
         }
     }
 
