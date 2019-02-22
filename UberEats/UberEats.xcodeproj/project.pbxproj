@@ -542,7 +542,7 @@
 				995D902A221002FA00DCA964 /* Main */,
 				D107D214221505F200322379 /* SettingLocation */,
 				84333AC12202CD38007372DE /* Chatting */,
-				D1AF1E8F21F9A5A6004CA3A5 /* SelectMenu */,
+				D1AF1E8F21F9A5A6004CA3A5 /* Store */,
 				992EDCE921FDB07D006CC894 /* FoodOption */,
 				D11B04D62205836900F20363 /* DeliveryLocation */,
 				84DC183821F9A51D008EE6D3 /* FoodMarket */,
@@ -798,7 +798,7 @@
 			path = DeliveryLocation;
 			sourceTree = "<group>";
 		};
-		D1AF1E8F21F9A5A6004CA3A5 /* SelectMenu */ = {
+		D1AF1E8F21F9A5A6004CA3A5 /* Store */ = {
 			isa = PBXGroup;
 			children = (
 				995D90222210007700DCA964 /* Extensions */,
@@ -806,6 +806,7 @@
 				D1F96EFE21FE8CEB00D79396 /* ViewController */,
 				D1F96EFF21FE8CF200D79396 /* Model */,
 			);
+			name = Store;
 			path = SelectMenu;
 			sourceTree = "<group>";
 		};
@@ -1390,13 +1391,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6958JMS7R4;
+				DEVELOPMENT_TEAM = P55BH5C78Q;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1409,13 +1410,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6958JMS7R4;
+				DEVELOPMENT_TEAM = P55BH5C78Q;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

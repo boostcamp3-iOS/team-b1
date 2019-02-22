@@ -38,7 +38,7 @@ class StoreTitleView: UIView {
 
     let clockImageView = UIImageView().initImageView("icClock")
 
-    var store: Store? {
+    var store: StoreForView? {
         didSet {
             guard let store = store else {
                 return
@@ -166,7 +166,6 @@ class StoreTitleView: UIView {
         storeViewTopConstraint.constant = Metrix.titleTopMargin - currentScroll
 
         if currentScroll < 0 {
-            print("currentScroll : \(currentScroll)")
 
             storeViewWidthConstraint.constant = 0
             storeViewHeightConstraint.constant = 0

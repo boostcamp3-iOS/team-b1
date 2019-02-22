@@ -10,12 +10,15 @@ import Foundation
 import Common
 
 public protocol FoodMarketService: class {
-    func requestFoodMarket(completionHandler: @escaping (DataResponse<BusinessFoodMarket>) -> Void)
 
-    func requestFoodMarket(dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<BusinessFoodMarket>) -> Void)
+    func requestFoodMarket(completionHandler: @escaping (DataResponse<FoodMarketForNetwork>) -> Void)
 
-    func requestFoodMarketMore(completionHandler: @escaping (DataResponse<BusinessFoodMarket>) -> Void)
+    func requestFoodMarket(dispatchQueue: DispatchQueue?,
+                           completionHandler: @escaping (DataResponse<FoodMarketForNetwork>) -> Void)
 
-    func requestFoodMarketMore(dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<BusinessFoodMarket>) -> Void)
+    func requestFoodMarketMore(completionHandler: @escaping (DataResponse<FoodMarketForNetwork>) -> Void)
+
+    func requestFoodMarketMore(dispatchQueue: DispatchQueue?,
+                               completionHandler: @escaping (DataResponse<FoodMarketForNetwork>) -> Void)
 
 }

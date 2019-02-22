@@ -20,9 +20,9 @@ class SeeMoreRestViewController: UIViewController {
         return tableView
     }()
 
-    private var foods: [Food]?
+    private var foods: [FoodForView]?
 
-    private var stores: [Store]?
+    private var stores: [StoreForView]?
 
     public var section: TableViewSection?
 

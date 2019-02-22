@@ -1,15 +1,14 @@
 //
-//  CaculatedFoodMarket.swift
+//  BusinessFoodMarket.swift
 //  Common
 //
-//  Created by admin on 13/02/2019.
+//  Created by 이혜주 on 21/02/2019.
 //  Copyright © 2019 team-b1. All rights reserved.
 //
 
-import UIKit
-import Common
+import Foundation
 
-public struct BusinessFoodMarket {
+public struct FoodMarketForNetwork {
     public let nearestRest: [Store]
     public let recommendFood: [Food]
     public let bannerImages: [String]
@@ -17,7 +16,12 @@ public struct BusinessFoodMarket {
     public let newRests: [Store]
     public let moreRests: [Store]
 
-    public init(neareRest: [Store], recommendFood: [Food], bannerImages: [String], expectTimeRest: [Store], newRests: [Store], moreRests: [Store]) {
+    public init(neareRest: [Store],
+                recommendFood: [Food],
+                bannerImages: [String],
+                expectTimeRest: [Store],
+                newRests: [Store],
+                moreRests: [Store]) {
         self.nearestRest = neareRest
         self.recommendFood = recommendFood
         self.bannerImages = bannerImages

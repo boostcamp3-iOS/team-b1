@@ -19,7 +19,7 @@ class SeeMoreRestTableViewCell: UITableViewCell {
 
     @IBOutlet weak var deliveryTime: UILabel!
 
-    var moreRests: Store? {
+    var moreRests: StoreForView? {
         didSet {
 
             guard let moreRest = moreRests else {
@@ -32,7 +32,7 @@ class SeeMoreRestTableViewCell: UITableViewCell {
         }
     }
 
-    var moreFoods: Food? {
+    var moreFoods: FoodForView? {
         didSet {
             guard let moreFood = moreFoods else {
                 return
@@ -58,7 +58,7 @@ class SeeMoreRestTableViewCell: UITableViewCell {
     }
 
     override func prepareForReuse() {
-        mainImage.image = nil
+        mainImage.image = UIImage(named: "foodPlaceHolder")
     }
 
 }

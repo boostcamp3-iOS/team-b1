@@ -17,7 +17,7 @@ class NearestCollectionViewCell: UICollectionViewCell {
     @IBOutlet var deliveryTime: UILabel!
     @IBOutlet var promotion: UILabel!
 
-    var nearestRest: Store? {
+    var nearestRest: StoreForView? {
         didSet {
             guard let restaurant = nearestRest else {
                 return

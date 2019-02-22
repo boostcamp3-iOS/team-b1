@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Store: Codable {
+public struct StoreForView: Codable {
     public let id: String
     public let mainImage: String
     public let lowImageURL: String
