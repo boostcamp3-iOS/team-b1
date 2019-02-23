@@ -26,15 +26,9 @@ class StoreTitleView: UIView {
         return label
     }()
 
-    let detailLabel: UILabel = {
-        let label = UILabel().setupWithFontSize(15)
-        return label
-    }()
+    let detailLabel = UILabel().setupWithFontSize(15)
 
-    let timeAndGradeLabel: UILabel = {
-        let label = UILabel().setupWithFontSize(15)
-        return label
-    }()
+    let timeAndGradeLabel = UILabel().setupWithFontSize(15)
 
     let clockImageView = UIImageView().initImageView("icClock")
 

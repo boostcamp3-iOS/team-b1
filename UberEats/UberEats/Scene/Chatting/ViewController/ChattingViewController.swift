@@ -11,6 +11,7 @@ import Firebase
 // swiftlint:disable all
 // 채팅방에서 delivertUID를 알고 있고 서로 1대일 채팅 한다는 가정을 하자.
 class ChattingViewController: UIViewController, UITextFieldDelegate {
+    
     @IBOutlet private weak var deliveryInfoVIew: UIView!
     @IBOutlet private weak var chattingCollecionView: UICollectionView!
     @IBOutlet private weak var messageTextField: UITextField!
@@ -33,7 +34,8 @@ class ChattingViewController: UIViewController, UITextFieldDelegate {
     
     private func observeMessages() {
         let messageFromGroup = Database.database().reference().child("groups").child("-LXbWKQsskziJ50aw8qN")
-        messageFromGroup.observe(.childAdded) { (snapshot) in
+        
+        messageFromGroup.observe(.childAdded) { [weak self] (snapshot) in
             let messageRef = Database.database().reference().child("message").child(snapshot.key)
             messageRef.observe(.value, with: { (messageSnapshot) in
                 if let dictionary = messageSnapshot.value as? [String: Any] {
@@ -47,11 +49,11 @@ class ChattingViewController: UIViewController, UITextFieldDelegate {
                     //guard let timestamp = dictionary["timestamp"] as? String else {return}
                     
                     let messageInstance = Message(text: text, userEmail: userEmail)
-                    self.messages.append(messageInstance)
-                    self.chattingCollecionView.reloadData()
+                    self?.messages.append(messageInstance)
+                    self?.chattingCollecionView.reloadData()
                     
-                    self.scrollToBottom()
-                    self.chattingCollecionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
+                    self?.scrollToBottom()
+                    self?.chattingCollecionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
                 }
             })
             
@@ -88,20 +90,29 @@ class ChattingViewController: UIViewController, UITextFieldDelegate {
     }
     
     func adjustingHeight(show:Bool, notification:NSNotification) {
-        // 1
-        var userInfo = notification.userInfo!
-        // 2
-        let keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        // 3
-        let animationDurarion = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
-        // 4
+        
+        guard let notificationUserInfo = notification.userInfo else {
+            return
+        }
+        
+        var userInfo = notificationUserInfo
+        
+        guard let userInfokeyboardFrame = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else {
+            return
+        }
+        
+        let keyboardFrame: CGRect = userInfokeyboardFrame.cgRectValue
+        
+        guard let animationDurarion = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {
+            return
+        }
+        
         var changeInHeight = (keyboardFrame.height) * (show ? -1 : 1)
         
         if changeInHeight > 0 {
            changeInHeight -= 5
         }
         
-        //5
         UIView.animate(withDuration: animationDurarion, animations: { () -> Void in
             //self.bottomConstraint.constant += changeInHeight
             self.view.frame.origin.y += changeInHeight
@@ -118,7 +129,7 @@ class ChattingViewController: UIViewController, UITextFieldDelegate {
         chattingCollecionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         
         chattingCollecionView.alwaysBounceVertical = true
-        let indexPathOfMessage = IndexPath(item: self.messages.count - 1, section: 0)
+        let indexPathOfMessage = IndexPath(item: messages.count - 1, section: 0)
         
         chattingCollecionView.scrollToItem(at: indexPathOfMessage, at: .bottom, animated: true)
         chattingCollecionView.reloadData()
@@ -136,7 +147,11 @@ class ChattingViewController: UIViewController, UITextFieldDelegate {
     }
     
     func scrollToBottom() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
             let lastIndex = IndexPath(item: self.messages.count - 1, section: 0)
             self.chattingCollecionView.scrollToItem(at: lastIndex, at: .bottom, animated: false)
         }
@@ -190,15 +205,23 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
         }
         
         let message = messages[indexPath.item]
+        
         guard let fromEmail = message.userEmail else {
-            return .init()
+            return cell
         }
         
         if let text = messages[indexPath.item].text {
             cell.bubbleViewWidhAnchor?.constant = text.estimateCGRect.width + 32
         }
+        
         cell.fromEmail(userEmail: fromEmail)
-        cell.messageLabel.text = message.text!
+        
+        guard let messageText = message.text else {
+            return cell
+        }
+        
+        cell.messageLabel.text = messageText
+        
         return cell
     }
     
@@ -238,16 +261,6 @@ extension UITextField {
         layer.shouldRasterize = true
     }
     
-    func dropShadow2(scale: Bool = true) {
-        layer.masksToBounds = false
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.5
-        layer.shadowOffset = CGSize(width: -0.0, height: -3.0)
-        layer.shadowRadius = 1
-        
-        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
-        layer.shouldRasterize = true
-    }
 }
 
 extension UITextField {

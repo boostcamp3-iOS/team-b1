@@ -16,7 +16,6 @@ class SeeMoreRestTableViewCell: UITableViewCell {
     @IBOutlet weak var category: UILabel!
     @IBOutlet weak var rate: UILabel!
     @IBOutlet weak var promotion: UILabel!
-
     @IBOutlet weak var deliveryTime: UILabel!
 
     var moreRests: StoreForView? {
@@ -58,6 +57,11 @@ class SeeMoreRestTableViewCell: UITableViewCell {
     }
 
     override func prepareForReuse() {
+        name.text = ""
+        category.text = ""
+        rate.text = ""
+        promotion.text = ""
+        deliveryTime.text = ""
         mainImage.image = UIImage(named: "foodPlaceHolder")
     }
 

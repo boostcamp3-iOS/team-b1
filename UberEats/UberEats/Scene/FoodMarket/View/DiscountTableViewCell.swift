@@ -9,12 +9,7 @@ class DiscountTableViewCell: UITableViewCell {
         return label
     }()
 
-    public let discountImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "discountImage")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    public let discountImageView = UIImageView().initImageView("discountImage")
 
     init(_ section: TableViewSection) {
         switch section {
@@ -34,15 +29,17 @@ class DiscountTableViewCell: UITableViewCell {
         addSubview(discountLabel)
         addSubview(discountImageView)
 
-        discountImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
-        discountImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        discountImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        discountImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        NSLayoutConstraint.activate([
+            discountImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            discountImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            discountImageView.heightAnchor.constraint(equalToConstant: 60),
+            discountImageView.widthAnchor.constraint(equalToConstant: 50),
 
-        discountLabel.leadingAnchor.constraint(equalTo: discountImageView.trailingAnchor, constant: 15).isActive = true
-        discountLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        discountLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        discountLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+            discountLabel.leadingAnchor.constraint(equalTo: discountImageView.trailingAnchor, constant: 15),
+            discountLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            discountLabel.widthAnchor.constraint(equalToConstant: 200),
+            discountLabel.heightAnchor.constraint(equalToConstant: 30)
+            ])
 
         selectionStyle = .none
     }

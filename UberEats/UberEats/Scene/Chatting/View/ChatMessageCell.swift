@@ -3,10 +3,8 @@ import UIKit
 class ChatMesageCell: UICollectionViewCell {
 
     let messageLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        let label = UILabel().setupWithFontSize(16)
         label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -35,9 +33,6 @@ class ChatMesageCell: UICollectionViewCell {
         addSubview(chatBubbleView)
         addSubview(messageLabel)
 
-        chatBubbleView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        chatBubbleView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
-
         bubbleViewWidhAnchor = chatBubbleView.widthAnchor.constraint(equalToConstant: 300)
         bubbleViewLeadingAnchor = chatBubbleView.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                                           constant: 3)
@@ -50,12 +45,17 @@ class ChatMesageCell: UICollectionViewCell {
         bubbleViewTrailingAnchor?.isActive = true
         bubbleViewHeightAnchor?.isActive = true
 
-        messageLabel.leadingAnchor.constraint(equalTo: chatBubbleView.leadingAnchor,
-                                               constant: 10).isActive = true
-        messageLabel.trailingAnchor.constraint(equalTo: chatBubbleView.trailingAnchor,
-                                                constant: -8).isActive = true
-        messageLabel.topAnchor.constraint(equalTo: chatBubbleView.topAnchor).isActive = true
-        messageLabel.bottomAnchor.constraint(equalTo: chatBubbleView.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            chatBubbleView.topAnchor.constraint(equalTo: topAnchor),
+            chatBubbleView.heightAnchor.constraint(equalTo: heightAnchor),
+
+            messageLabel.leadingAnchor.constraint(equalTo: chatBubbleView.leadingAnchor,
+                                                  constant: 10),
+            messageLabel.trailingAnchor.constraint(equalTo: chatBubbleView.trailingAnchor,
+                                                   constant: -8),
+            messageLabel.topAnchor.constraint(equalTo: chatBubbleView.topAnchor),
+            messageLabel.bottomAnchor.constraint(equalTo: chatBubbleView.bottomAnchor)
+            ])
 
     }
 

@@ -23,34 +23,29 @@ class StoreServiceImp: StoreService {
             fatalError("URL conversion error")
         }
         
-        network.request(with: requestURL) { ( data, response, _) in
-            if response?.httpStatusCode == .ok {
+        network.request(with: requestURL) { (data, response, _) in
+            guard response?.httpStatusCode == .ok,
+            let data = data else {
+                return
+            }
                 
-                guard let data = data else {
-                    return
+            do {
+                let store: StoreForView = try JSONDecoder().decode(StoreForView.self, from: data)
+                
+                let caculatedStore = StoreForNetwork(store)
+                
+                DispatchQueue.main.async {
+                    completionHandler(DataResponse.success(caculatedStore))
                 }
-                
-                do {
-                    let store: StoreForView = try JSONDecoder().decode(StoreForView.self, from: data)
-                    
-                    let caculatedStore = StoreForNetwork(store)
-                    
-                    DispatchQueue.main.async {
-                        completionHandler(DataResponse.success(caculatedStore))
-                    }
-                } catch {
-                    fatalError()
-                }
-                
-            } else {
+            } catch {
                 fatalError()
             }
         }
     }
     
     func requestStore(storeId: String, dispatchQueue: DispatchQueue?, completionHandler: @escaping (DataResponse<StoreForNetwork>) -> Void) {
-        dispatchQueue?.async {
-            self.requestStore(storeId: storeId, completionHandler: completionHandler)
+        dispatchQueue?.async { [weak self] in
+            self?.requestStore(storeId: storeId, completionHandler: completionHandler)
         }
     }
     

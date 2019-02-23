@@ -11,11 +11,11 @@ import Common
 
 class NearestCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet var mainImage: UIImageView!
-    @IBOutlet var name: UILabel!
-    @IBOutlet var category: UILabel!
-    @IBOutlet var deliveryTime: UILabel!
-    @IBOutlet var promotion: UILabel!
+    @IBOutlet weak var mainImage: UIImageView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var category: UILabel!
+    @IBOutlet weak var deliveryTime: UILabel!
+    @IBOutlet weak var promotion: UILabel!
 
     var nearestRest: StoreForView? {
         didSet {
@@ -56,7 +56,12 @@ class NearestCollectionViewCell: UICollectionViewCell {
         mainImage.layer.masksToBounds = true
 
     }
+
     override func prepareForReuse() {
-        url = nil
+        name.text = ""
+        category.text = ""
+        deliveryTime.text = ""
+        promotion.text = ""
+        mainImage.image = UIImage(named: "foodPlaceHolder")
     }
 }

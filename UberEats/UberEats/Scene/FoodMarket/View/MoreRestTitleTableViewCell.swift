@@ -14,10 +14,12 @@ class MoreRestTitleTableViewCell: UITableViewCell {
 
         addSubview(discountLabel)
 
-        discountLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
-        discountLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        discountLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        discountLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        NSLayoutConstraint.activate([
+            discountLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            discountLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            discountLabel.widthAnchor.constraint(equalToConstant: 200),
+            discountLabel.heightAnchor.constraint(equalToConstant: 30)
+            ])
 
         selectionStyle = .none
     }

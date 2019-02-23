@@ -34,7 +34,8 @@ class MomentHeaderView: UIView {
 
         NSLayoutConstraint.activate([
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: ConstraintOfSettingLocation.paddingAtSettingLocation)
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                constant: ConstraintOfSettingLocation.paddingAtSettingLocation)
             ])
 
     }

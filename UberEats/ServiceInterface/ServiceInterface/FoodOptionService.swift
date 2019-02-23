@@ -10,7 +10,10 @@ import Foundation
 import Common
 
 public protocol FoodOptionService: class {
-    func requestFoodOptions(foodId: String, completionHandler: @escaping (DataResponse<FoodOptionsForView>) -> Void)
+    func requestFoodOptions(foodId: String,
+                            completionHandler: @escaping (DataResponse<FoodOptionsForView>) -> Void)
 
-    func requestFoodOptions(foodId: String, dispatchQueue: DispatchQueue, completionHandler: @escaping (DataResponse<FoodOptionsForView>) -> Void)
+    func requestFoodOptions(foodId: String,
+                            dispatchQueue: DispatchQueue,
+                            completionHandler: @escaping (DataResponse<FoodOptionsForView>) -> Void)
 }

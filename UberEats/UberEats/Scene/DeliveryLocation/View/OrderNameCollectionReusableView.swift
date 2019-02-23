@@ -17,11 +17,9 @@ class OrderNameCollectionReusableView: UICollectionReusableView {
     }
 
     let orderNameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = UILabel().setupWithFontSize(numberForLabel.orderNameLabelFontSize)
         label.text = "#46F45 주문"
         label.textColor = .gray
-        label.font = .systemFont(ofSize: numberForLabel.orderNameLabelFontSize)
         return label
     }()
 

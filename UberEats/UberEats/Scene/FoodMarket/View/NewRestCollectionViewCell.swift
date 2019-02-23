@@ -15,7 +15,6 @@ class NewRestCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var category: UILabel!
     @IBOutlet weak var deliveryTime: UILabel!
-    //rate
     @IBOutlet weak var promotion: UILabel!
 
     var newRest: StoreForView? {
@@ -62,5 +61,6 @@ class NewRestCollectionViewCell: UICollectionViewCell {
         category.text = ""
         deliveryTime.text = ""
         promotion.text = ""
+        mainImage.image = UIImage(named: "foodPlaceHolder")
     }
 }
