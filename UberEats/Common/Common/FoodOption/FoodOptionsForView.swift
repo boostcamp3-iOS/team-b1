@@ -18,7 +18,7 @@ public struct FoodOptionsForView {
     }
 
     public init(requiredOptionsModel: [RequiredOptionsModel]) {
-        self.init(foodInfoModel: FoodInfoModel(name: "", supportingExplanation: "", price: 0),
+        self.init(foodInfoModel: FoodInfoModel(name: "", supportingExplanation: "", price: 0, imageURL: ""),
                   requiredOptionsModel: requiredOptionsModel)
     }
 }
@@ -41,11 +41,13 @@ public struct FoodInfoModel: FoodOptionsCategory {
     public var name: String
     public var supportingExplanation: String
     public let price: Int
+    public let imageURL: String
 
-    public init(name: String, supportingExplanation: String, price: Int) {
+    public init(name: String, supportingExplanation: String, price: Int, imageURL: String) {
         self.name = name
         self.supportingExplanation = supportingExplanation
         self.price = price
+        self.imageURL = imageURL
     }
 }
 

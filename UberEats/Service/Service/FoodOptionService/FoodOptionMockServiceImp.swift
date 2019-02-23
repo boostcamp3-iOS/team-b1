@@ -23,20 +23,21 @@ internal class FoodOptionMockServiceImp: FoodOptionService {
         
         for _ in 1..<5 {
             var foodOptionItems = [FoodOptionItem]()
-            foodOptionItems.append(CheckBoxModel(name: "소고기", price: 1200))
-            foodOptionItems.append(CheckBoxModel(name: "비둘비둘", price: 5000))
-            foodOptionItems.append(CheckBoxModel(name: "양고기", price: 9000))
+            foodOptionItems.append(CheckBoxModel(name: "", price: 1200))
+            foodOptionItems.append(CheckBoxModel(name: "", price: 5000))
+            foodOptionItems.append(CheckBoxModel(name: "", price: 9000))
             
             requiredOptionsModels.append(
                 RequiredOptionsModel(foodOptionItems: foodOptionItems,
-                                     name: "패티 선택",
-                                     supportingExplanation: "1까지 선택")
+                                     name: "",
+                                     supportingExplanation: " d")
             )
         }
         
-        let foodInfo = FoodInfoModel(name: "치즈 와퍼 주니어 세트 Cheese Whopper Jr Meal", supportingExplanation: "불에 직접 구운 순 쇠고기 패티가 들어간 와퍼주니어에 고소한 치즈 추기!", price: 4000)
-        
-        let result = FoodOptionsForView(foodInfoModel: foodInfo,
+        let result = FoodOptionsForView(foodInfoModel: FoodInfoModel(name: "",
+                                                                     supportingExplanation: "",
+                                                                     price: 0,
+                                                                     imageURL: ""),
                                         requiredOptionsModel: requiredOptionsModels)
         
         DispatchQueue.main.async {

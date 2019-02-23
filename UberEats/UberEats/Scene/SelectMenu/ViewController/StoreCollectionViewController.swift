@@ -281,13 +281,30 @@ class StoreCollectionViewController: UICollectionViewController {
 
     private func pushFoodDetail() {
         if foodId != nil {
-            let storyboard = UIStoryboard(name: "FoodItemDetails", bundle: nil)
-            guard let foodDetailsViewController = storyboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
+            let foodOptionStoryboard = UIStoryboard(name: "FoodItemDetails", bundle: nil)
+            guard let foodOptionViewController = foodOptionStoryboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
                 as? FoodItemDetailsViewController else {
                     return
             }
 
-            navigationController?.pushViewController(foodDetailsViewController, animated: true)
+            var selectedFood: FoodForView?
+
+            foods.forEach {
+                if foodId == $0.id {
+                    selectedFood = $0
+                }
+            }
+
+            guard let food = selectedFood else {
+                return
+            }
+
+            foodOptionViewController.foodInfo = FoodInfoModel(name: food.foodName,
+                                                              supportingExplanation: food.foodDescription,
+                                                              price: food.basePrice,
+                                                              imageURL: food.foodImageURL)
+
+            navigationController?.pushViewController(foodOptionViewController, animated: true)
         }
     }
 
@@ -535,7 +552,7 @@ class StoreCollectionViewController: UICollectionViewController {
                 }
 
                 let food = foods[indexPath.item - 1]
-                foodOptionViewController.foodInfo = FoodInfoModel.init(name: food.foodName, supportingExplanation: food.foodDescription, price: 5000)
+                foodOptionViewController.foodInfo = FoodInfoModel.init(name: food.foodName, supportingExplanation: food.foodDescription, price: 5000, imageURL: food.foodImageURL)
 
                 navigationController?.pushViewController(foodOptionViewController, animated: true)
             }
