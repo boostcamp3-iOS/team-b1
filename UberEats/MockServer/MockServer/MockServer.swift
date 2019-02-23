@@ -116,6 +116,10 @@ public class MockServer {
 
             return String(decoding: result, as: UTF8.self)
         })
+
+        try router.get("option") { (request) -> Response in
+            return try ResourceController.resourceWithString(path: request.path, root: type(of: self))
+        }
     }
 
 }

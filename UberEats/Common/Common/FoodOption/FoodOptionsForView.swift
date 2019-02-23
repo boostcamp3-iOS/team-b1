@@ -16,6 +16,11 @@ public struct FoodOptionsForView {
         self.foodInfoModel = foodInfoModel
         self.requiredOptionsModel = requiredOptionsModel
     }
+
+    public init(requiredOptionsModel: [RequiredOptionsModel]) {
+        self.init(foodInfoModel: FoodInfoModel(name: "", supportingExplanation: ""),
+                  requiredOptionsModel: requiredOptionsModel)
+    }
 }
 
 public protocol HavingFoodOptionItems {

@@ -16,6 +16,7 @@
 		998A25CE2207081700AF250D /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998A25CD2207081700AF250D /* Network.swift */; };
 		99E42A3F221E7BB300A38D4F /* FoodOptionServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E42A3E221E7BB300A38D4F /* FoodOptionServiceImp.swift */; };
 		99E42A41221E7C6F00A38D4F /* FoodOptionMockServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E42A40221E7C6F00A38D4F /* FoodOptionMockServiceImp.swift */; };
+		99E42A4D22214EDE00A38D4F /* FoodOptionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E42A4C22214EDE00A38D4F /* FoodOptionMapper.swift */; };
 		99F57937220C5B4E002D792A /* ServiceInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F57936220C5B4E002D792A /* ServiceInterface.framework */; };
 		D1906ED7221973F000210DF4 /* FoodsServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1906ED6221973F000210DF4 /* FoodsServiceImp.swift */; };
 		D1D5F3A52216905300370784 /* StoreServiceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F3A42216905300370784 /* StoreServiceImp.swift */; };
@@ -44,6 +45,7 @@
 		998A25CD2207081700AF250D /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		99E42A3E221E7BB300A38D4F /* FoodOptionServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodOptionServiceImp.swift; sourceTree = "<group>"; };
 		99E42A40221E7C6F00A38D4F /* FoodOptionMockServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodOptionMockServiceImp.swift; sourceTree = "<group>"; };
+		99E42A4C22214EDE00A38D4F /* FoodOptionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodOptionMapper.swift; sourceTree = "<group>"; };
 		99F57936220C5B4E002D792A /* ServiceInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ServiceInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1906ED6221973F000210DF4 /* FoodsServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodsServiceImp.swift; sourceTree = "<group>"; };
 		D1D5F3A42216905300370784 /* StoreServiceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreServiceImp.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				99E42A3E221E7BB300A38D4F /* FoodOptionServiceImp.swift */,
 				99E42A40221E7C6F00A38D4F /* FoodOptionMockServiceImp.swift */,
+				99E42A4C22214EDE00A38D4F /* FoodOptionMapper.swift */,
 			);
 			path = FoodOptionService;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				99E42A41221E7C6F00A38D4F /* FoodOptionMockServiceImp.swift in Sources */,
 				99E42A3F221E7BB300A38D4F /* FoodOptionServiceImp.swift in Sources */,
 				998A24E4220311BF00AF250D /* FoodMarketServiceImp.swift in Sources */,
+				99E42A4D22214EDE00A38D4F /* FoodOptionMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
