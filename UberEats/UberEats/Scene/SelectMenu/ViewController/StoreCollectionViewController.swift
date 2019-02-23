@@ -535,7 +535,7 @@ class StoreCollectionViewController: UICollectionViewController {
                 }
 
                 let food = foods[indexPath.item - 1]
-                foodOptionViewController.foodInfo = FoodInfoModel.init(name: food.foodName, supportingExplanation: food.foodDescription)
+                foodOptionViewController.foodInfo = FoodInfoModel.init(name: food.foodName, supportingExplanation: food.foodDescription, price: 5000)
 
                 navigationController?.pushViewController(foodOptionViewController, animated: true)
             }

@@ -34,7 +34,7 @@ internal class FoodOptionMockServiceImp: FoodOptionService {
             )
         }
         
-        let foodInfo = FoodInfoModel(name: "치즈 와퍼 주니어 세트 Cheese Whopper Jr Meal", supportingExplanation: "불에 직접 구운 순 쇠고기 패티가 들어간 와퍼주니어에 고소한 치즈 추기!")
+        let foodInfo = FoodInfoModel(name: "치즈 와퍼 주니어 세트 Cheese Whopper Jr Meal", supportingExplanation: "불에 직접 구운 순 쇠고기 패티가 들어간 와퍼주니어에 고소한 치즈 추기!", price: 4000)
         
         let result = FoodOptionsForView(foodInfoModel: foodInfo,
                                         requiredOptionsModel: requiredOptionsModels)
