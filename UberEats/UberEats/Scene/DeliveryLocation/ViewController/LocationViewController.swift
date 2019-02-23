@@ -412,7 +412,7 @@ extension LocationViewController: UICollectionViewDataSource {
                     return .init()
                 }
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak header] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 15) { [weak header] in
                     header?.progressStatus = .preparingFood
                 }
 

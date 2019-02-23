@@ -14,9 +14,7 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var arrivalTimeLabel: UILabel!
     @IBOutlet weak var arrivalTimeTitleLabel: UILabel!
     @IBOutlet weak var currentProgressLabel: UILabel!
-    @IBOutlet weak var orderProgressBar: UIProgressView!
-    @IBOutlet weak var orderProgressTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var backgroundProgressBar: UIProgressView!
+    @IBOutlet weak var deliveryProgressSlider: UISlider!
 
     var sliderTimer = Timer()
 
@@ -56,19 +54,29 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
             case .delivering:
                 currentProgressLabel.text = "음식을 배달중입니다."
             }
-            setSliderAnimation()
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        setSliderAnimation()
     }
 
     private func setSliderAnimation() {
-        self.orderProgressBar.setProgress(1, animated: true)
-        UIView.animate(withDuration: 30) { [weak self] in
-            self?.layoutIfNeeded()
-        }
+        Timer.scheduledTimer(timeInterval: 0,
+                             target: self,
+                             selector: #selector(setupSliderAnimation(_:)),
+                             userInfo: nil,
+                             repeats: false)
+    }
+
+    @objc private func setupSliderAnimation(_: Timer) {
+        deliveryProgressSlider.value = 10
+
+        UIView.animate(withDuration: 80,
+                       animations: { [weak self] in
+                        self?.layoutIfNeeded()
+        }, completion: nil)
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

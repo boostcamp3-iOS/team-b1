@@ -56,20 +56,20 @@
                         <constraint firstAttribute="height" constant="1" id="Aj7-2Y-Ke9"/>
                     </constraints>
                 </view>
-                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eca-jK-COk">
-                    <rect key="frame" x="15" y="174.5" width="454" height="2"/>
-                    <color key="progressTintColor" red="0.3411764706" green="0.58823529409999997" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                </progressView>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gcd-hM-jDF">
+                    <rect key="frame" x="13" y="161.5" width="458" height="31"/>
+                    <color key="minimumTrackTintColor" red="0.3411764706" green="0.58823529409999997" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="thumbTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </slider>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="rlE-gF-uhH" secondAttribute="trailing" constant="15" id="522-uI-sVs"/>
-                <constraint firstAttribute="trailing" secondItem="eca-jK-COk" secondAttribute="trailing" constant="15" id="5JJ-qL-22V"/>
-                <constraint firstItem="eca-jK-COk" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="15" id="C0l-M4-dNI"/>
                 <constraint firstItem="rlE-gF-uhH" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="C1O-an-gjb"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="Gcd-hM-jDF" secondAttribute="trailing" constant="15" id="C8g-FP-yVm"/>
                 <constraint firstAttribute="trailing" secondItem="jLZ-sW-0ZL" secondAttribute="trailing" constant="15" id="CIM-7r-Q1e"/>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="jLZ-sW-0ZL" secondAttribute="bottom" constant="25" id="KCi-7k-Du4"/>
-                <constraint firstItem="jLZ-sW-0ZL" firstAttribute="top" secondItem="eca-jK-COk" secondAttribute="bottom" constant="30" id="PfN-KZ-TnQ"/>
+                <constraint firstItem="Gcd-hM-jDF" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="QSF-5i-iOP"/>
                 <constraint firstItem="Wiz-G7-MAf" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="T5J-BD-W3r"/>
                 <constraint firstItem="Gt9-qA-nBy" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="15" id="WiM-tI-vTR"/>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="Gt9-qA-nBy" secondAttribute="trailing" constant="15" id="d58-nm-8MQ"/>
@@ -78,14 +78,14 @@
                 <constraint firstAttribute="bottom" secondItem="Wiz-G7-MAf" secondAttribute="bottom" id="jmN-2n-5CK"/>
                 <constraint firstItem="rlE-gF-uhH" firstAttribute="top" secondItem="Gt9-qA-nBy" secondAttribute="bottom" constant="30" id="sSQ-uJ-KzX"/>
                 <constraint firstItem="Gt9-qA-nBy" firstAttribute="top" secondItem="VXr-Tz-HHm" secondAttribute="top" constant="25" id="t8q-5v-zuU"/>
+                <constraint firstItem="jLZ-sW-0ZL" firstAttribute="top" secondItem="Gcd-hM-jDF" secondAttribute="bottom" constant="15" id="utR-zW-k3j"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <connections>
                 <outlet property="arrivalTimeLabel" destination="8Sh-jU-lQh" id="M9U-9r-6gD"/>
                 <outlet property="arrivalTimeTitleLabel" destination="vvZ-bT-JYt" id="hrd-Ic-4Ij"/>
                 <outlet property="currentProgressLabel" destination="jLZ-sW-0ZL" id="AOH-R2-7DI"/>
-                <outlet property="orderProgressBar" destination="eca-jK-COk" id="8sD-Kb-BVr"/>
-                <outlet property="orderProgressTrailingConstraint" destination="5JJ-qL-22V" id="PIS-vc-snS"/>
+                <outlet property="deliveryProgressSlider" destination="Gcd-hM-jDF" id="Qqp-KC-hhS"/>
                 <outlet property="storeNameLabel" destination="Gt9-qA-nBy" id="a8G-sF-SZQ"/>
             </connections>
             <point key="canvasLocation" x="-188.80000000000001" y="98.050974512743636"/>
