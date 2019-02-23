@@ -64,23 +64,12 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
         super.awakeFromNib()
     }
 
-    let MAX_TIME: CGFloat = 10.0
-    var currentTime: CGFloat = 0.0
-
     private func setSliderAnimation() {
-        currentTime += 1
-        self.orderProgressBar.setProgress(Float(currentTime/MAX_TIME), animated: true)
-//        self.orderProgressBar.setProgress(0, animated: true)
-//        sliderTimer = Timer.scheduledTimer(timeInterval: 0.5,
-//                                           target: self,
-//                                           selector: #selector(updateProgress),
-//                                           userInfo: nil,
-//                                           repeats: false)
+        self.orderProgressBar.setProgress(1, animated: true)
+        UIView.animate(withDuration: 30) { [weak self] in
+            self?.layoutIfNeeded()
+        }
     }
-
-//    @objc private func updateProgress() {
-//        self.orderProgressBar.setProgress(1, animated: true)
-//    }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         delegate?.scrollToTop()

@@ -780,12 +780,12 @@ extension StoreCollectionViewController: OrderButtonClickable {
             }
         }
 
-        let storeInfo = StoreInfoModel.init(name: store.name, deliveryTime: store.deliveryTime)
+        let storeInfo = StoreInfoModel.init(name: store.name, deliveryTime: store.deliveryTime, location: store.location)
         let deliveryInfoModel = DeilveryInfoModel.init(locationImage: "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/airInTheCafe.jpeg?raw=true",
                                                        detailedAddress: "서울특별시 강남구 역삼1동 강남대로 382",
                                                        address: "메리츠 타워",
                                                        deliveryMethod: .pickUpOutside,
-                                                       roomNumber: 101, deliveryTime: store.deliveryTime)
+                                                       roomNumber: 101)
 
         cartViewController.cartModel = CartModel.init(storeInfo: storeInfo, deilveryInfo: deliveryInfoModel, foodOrderedInfo: nil)
         cartViewController.orderInfoModels = [OrderInfoModel.init(amount: 1,

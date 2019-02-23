@@ -7,19 +7,20 @@
 //
 
 import UIKit
+import Common
 
 extension CartModel {
 
     static func empty() -> CartModel {
         let storeInfo = StoreInfoModel(name: "",
-                                       deliveryTime: "")
+                                       deliveryTime: "",
+                                       location: Location(latitude: 0.0, longtitude: 0.0))
 
         let deilveryInfo = DeilveryInfoModel(locationImage: "",
                                              detailedAddress: "",
                                              address: "",
                                              deliveryMethod: .pickUpOutside,
-                                             roomNumber: 0,
-                                             deliveryTime: "")
+                                             roomNumber: 0)
 
         return CartModel(storeInfo: storeInfo,
                              deilveryInfo: deilveryInfo,

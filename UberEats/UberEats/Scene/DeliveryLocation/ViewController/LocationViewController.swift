@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
+import Common
 
 class LocationViewController: UIViewController {
     private let topInset: CGFloat = 450
@@ -28,6 +29,8 @@ class LocationViewController: UIViewController {
 
     var storeName: String?
     var storeDeliveryTime: Double?
+    var storeLocationInfo: Location?
+    var storeLocation = CLLocationCoordinate2D(latitude: 0, longitude: 0)
 
     private let sectionHeader = UICollectionView.elementKindSectionHeader
     private let sectionFooter = UICollectionView.elementKindSectionFooter
@@ -40,7 +43,6 @@ class LocationViewController: UIViewController {
     private var userLocation = CLLocationCoordinate2D(latitude: 37.49646975398706, longitude: 127.02905088660754)
 
     private var userMarker = GMSMarker()
-    private var storeLocation = CLLocationCoordinate2D(latitude: 37.499862, longitude: 127.030378)
     private var storeMarker = GMSMarker()
 
     private var isStartingDelivery: Bool = false
@@ -98,11 +100,17 @@ class LocationViewController: UIViewController {
     }
 
     private func setupMapView() {
+        guard let locationInfo = storeLocationInfo else {
+            return
+        }
+
+        storeLocation = CLLocationCoordinate2D(latitude: locationInfo.latitude,
+                                                         longitude: locationInfo.longtitude)
 
         locationManager.customInit(delegate: self)
 
-        let camera = GMSCameraPosition(latitude: (userLocation.latitude + 37.499862) / 2,
-                                       longitude: (userLocation.longitude + 127.030378) / 2,
+        let camera = GMSCameraPosition(latitude: (userLocation.latitude + storeLocation.latitude) / 2,
+                                       longitude: (userLocation.longitude + storeLocation.longitude) / 2,
                                        zoom: 16)
 
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
@@ -264,8 +272,8 @@ class LocationViewController: UIViewController {
     }
 
     @objc private func touchUpMoveCurrentLocationButton(_: UIButton) {
-        mapView?.animate(to: GMSCameraPosition(latitude: (userLocation.latitude + 37.499862) / 2,
-                                                longitude: (userLocation.longitude + 127.030378) / 2,
+        mapView?.animate(to: GMSCameraPosition(latitude: (userLocation.latitude + storeLocation.latitude) / 2,
+                                                longitude: (userLocation.longitude + storeLocation.longitude) / 2,
                                                 zoom: 17))
     }
 }

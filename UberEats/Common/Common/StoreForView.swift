@@ -26,6 +26,11 @@ public struct StoreForView: Codable {
 
 public struct Location: Codable {
     public let latitude, longtitude: Double
+
+    public init(latitude: Double, longtitude: Double) {
+        self.latitude = latitude
+        self.longtitude = longtitude
+    }
 }
 
 public struct OpenTime: Codable {
