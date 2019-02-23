@@ -77,7 +77,6 @@ class FoodItemDetailsViewController: UIViewController, QuantityValueChanged {
                     return
                 }
 
-            self?.foodInfo = value.foodInfoModel
             self?.requiredOptions = value.requiredOptionsModel
 
             self?.foodOptionItemModels.append([FoodOptionItemModelType.specialRequests()])
@@ -129,7 +128,7 @@ extension FoodItemDetailsViewController: UITableViewDelegate, UITableViewDataSou
         var foodOptions = [FoodOptionItemModelType]()
         foodOptions.append(FoodOptionItemModelType.foodInfo(foodInfo))
         foodOptionItemModels.append(foodOptions)
-        toolbarTitleLabel.text = foodInfo.name
+        toolbarTitleLabel?.text = foodInfo.name
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
