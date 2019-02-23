@@ -112,7 +112,9 @@ class FoodItemDetailsViewController: UIViewController, QuantityValueChanged {
             self?.foodOptionItemModels.append([FoodOptionItemModelType.quantityControl()])
             self?.foodOptionItemModels.append([FoodOptionItemModelType.empty()])
 
-            self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         }
     }
 
