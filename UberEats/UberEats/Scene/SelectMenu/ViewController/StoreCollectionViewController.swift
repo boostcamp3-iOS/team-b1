@@ -146,9 +146,6 @@ class StoreCollectionViewController: UICollectionViewController {
     }
 
     private func setupLayout() {
-        navigationController?.navigationBar.isHidden = true
-        tabBarController?.tabBar.isHidden = true
-
         storeTitleView = StoreTitleView(view)
 
         collectionView.addSubview(storeTitleView)

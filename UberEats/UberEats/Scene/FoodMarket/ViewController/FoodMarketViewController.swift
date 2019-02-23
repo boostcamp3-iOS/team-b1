@@ -95,11 +95,6 @@ class ItemViewController: UIViewController {
     private var recommendFoodStaticTableCell = RecomendTableCell(frame: CGRect(origin: CGPoint.zero,
                                                                                size: CGSize.init()))
 
-    //private var discountTableViewCell = DiscountTableViewCell(frame: CGRect(origin: CGPoint.zero,
-                                                           //   size: CGSize.init()))
-   // private var searchAndSeeTableViewCell = SearchAndSeeTableViewCell(frame: CGRect(origin: CGPoint.zero,
-                                                              //        size: CGSize.init()))
-
     private var restaurtSeeMoreCollectionViewCell = RestaurtSeeMoreCollectionViewCell()
 
     private var recommendFood: [FoodForView] = [] {
@@ -157,7 +152,15 @@ class ItemViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = false
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     @IBAction func touchUpSettingLocation(_ sender: Any) {
