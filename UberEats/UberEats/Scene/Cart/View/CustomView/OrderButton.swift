@@ -52,6 +52,10 @@ class OrderButton: UIView {
         orderButtonClickable?.onClickedOrderButton(sender)
     }
 
+    func setAmount(quantity: Int, price: Int) {
+        amountLabel.text = "￦\(quantity * price)"
+    }
+
     private func initNib() {
         Bundle.main.loadNibNamed(OrderButton.xibName, owner: self, options: nil)
         orderButtonView.fixInView(self)

@@ -18,12 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="donut" translatesAutoresizingMaskIntoConstraints="NO" id="GKf-1d-ulH">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="W5Y-yd-USI"/>
-                                </constraints>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZX-wx-IA2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -305,6 +299,12 @@
                                     <outlet property="delegate" destination="AXi-XS-cxW" id="shz-5i-p8o"/>
                                 </connections>
                             </tableView>
+                            <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="foodPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="GKf-1d-ulH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="W5Y-yd-USI"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KI2-Nm-Axi" customClass="GradientView" customModule="UberEats" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="90.333333333333329"/>
                             </view>
@@ -341,8 +341,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BIv-p1-NLc" userLabel="CoverToolBar">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="81.333333333333329"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리얼 스트로베리 더즌 Real Strawberry Dozen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWD-Om-um2">
-                                        <rect key="frame" x="50" y="50.666666666666664" width="275" height="20.999999999999993"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWD-Om-um2">
+                                        <rect key="frame" x="50" y="61.333333333333336" width="275" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -415,12 +415,13 @@
                     </view>
                     <connections>
                         <outlet property="coverToolBar" destination="BIv-p1-NLc" id="QeK-c4-aDd"/>
+                        <outlet property="coverToolBarText" destination="AWD-Om-um2" id="BnL-fn-Ugf"/>
                         <outlet property="coveredToolBarBottom" destination="flB-v5-TJU" id="gfY-An-pHF"/>
+                        <outlet property="foodImage" destination="GKf-1d-ulH" id="gjV-EK-VzI"/>
                         <outlet property="orderButton" destination="X1F-bz-1bE" id="Rcy-8Q-3jq"/>
                         <outlet property="stretchableHeaderHeight" destination="W5Y-yd-USI" id="hau-iv-9cT"/>
                         <outlet property="tableView" destination="PZX-wx-IA2" id="7R6-Tt-H0P"/>
                         <outlet property="toolbar" destination="8zG-yT-rpx" id="9L4-bh-zSS"/>
-                        <outlet property="toolbarTitleLabel" destination="AWD-Om-um2" id="WVa-dc-qHg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2oL-9c-mWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -431,7 +432,7 @@
     <resources>
         <image name="back3x" width="384" height="384"/>
         <image name="blackArrow" width="384" height="384"/>
-        <image name="donut" width="715" height="600"/>
+        <image name="foodPlaceHolder" width="511.20001220703125" height="511.20001220703125"/>
         <image name="share3x" width="384" height="384"/>
         <image name="share_black3x" width="384" height="384"/>
     </resources>

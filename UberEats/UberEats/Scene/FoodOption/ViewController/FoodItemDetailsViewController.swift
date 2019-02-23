@@ -25,11 +25,13 @@ class FoodItemDetailsViewController: UIViewController, QuantityValueChanged {
 
     private var style: UIStatusBarStyle = .lightContent
 
-    @IBOutlet weak var toolbarTitleLabel: UILabel!
+    @IBOutlet weak var coverToolBarText: UILabel!
 
     @IBOutlet weak var orderButton: OrderButton!
 
     fileprivate var foodOptionItemModels = [[FoodOptionItemModelType]]()
+
+    @IBOutlet weak var foodImage: UIImageView!
 
     private let foodOptionService: FoodOptionService = DependencyContainer.share.getDependency(key: .foodOptionService)
 
@@ -60,7 +62,33 @@ class FoodItemDetailsViewController: UIViewController, QuantityValueChanged {
     private func initView() {
         self.coveredToolBarBottom.constant = -toolbar.frame.height
 
-        tableView.contentInset = UIEdgeInsets(top: FoodDetailDimensions.stretchableHeaderImageHeight,
+        // 리펙토링할 것 급한 이유로 우선 개발
+        func getHeaderHight() -> CGFloat {
+
+            if (foodInfo?.imageURL == "") {
+                foodImage.isHidden = true
+                return coverToolBar.frame.height / 2
+            } else {
+
+                guard let url = URL(string: foodInfo!.imageURL) else {
+                    return FoodDetailDimensions.stretchableHeaderImageHeight
+                }
+
+                ImageNetworkManager.shared.getImageByCache(imageURL: url) { (image, _) in
+
+                    guard let image = image  else {
+                        fatalError()
+                    }
+
+                    self.foodImage?.image = image
+
+                }
+                return FoodDetailDimensions.stretchableHeaderImageHeight
+            }
+
+        }
+
+        tableView.contentInset = UIEdgeInsets(top: getHeaderHight(),
                                               left: 0,
                                               bottom: 0,
                                               right: 0)
@@ -128,7 +156,7 @@ extension FoodItemDetailsViewController: UITableViewDelegate, UITableViewDataSou
         var foodOptions = [FoodOptionItemModelType]()
         foodOptions.append(FoodOptionItemModelType.foodInfo(foodInfo))
         foodOptionItemModels.append(foodOptions)
-        toolbarTitleLabel?.text = foodInfo.name
+        coverToolBarText?.text = foodInfo.name
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
