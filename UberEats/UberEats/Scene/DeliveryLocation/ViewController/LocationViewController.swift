@@ -28,7 +28,6 @@ class LocationViewController: UIViewController {
     var orders: [OrderInfoModel]?
 
     var storeName: String?
-    var storeDeliveryTime: Double?
     var storeLocationInfo: Location?
     var storeLocation = CLLocationCoordinate2D(latitude: 0, longitude: 0)
 
@@ -420,20 +419,16 @@ extension LocationViewController: UICollectionViewDataSource {
                     header?.progressStatus = .delivering
                 }
 
-                guard let deliveryTime = storeDeliveryTime else {
-                    return header
-                }
-
-                let currentTime = NSDate().addingTimeInterval(deliveryTime * 60)
+                let currentTime = NSDate().addingTimeInterval(60)
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "hh:mm"
-                dateFormatter.locale = NSLocale(localeIdentifier: "ko_KR") as Locale
+                dateFormatter.dateFormat = "hh:mm a"
                 header.arrivalTime = dateFormatter.string(from: currentTime as Date)
                 header.storeNameLabel.text = storeName
 
                 header.progressStatus = .verifyingOrder
 
-                header.delegate = self
+                header.changeScrollDelegate = self
+                header.deliveryCompleteDelegate = self
 
                 return header
             case .orders:
@@ -539,6 +534,13 @@ extension LocationViewController: CLLocationManagerDelegate {
 extension LocationViewController: ChangeScrollDelegate {
     func scrollToTop() {
         orderDetailCollectionView.setContentOffset(CGPoint(x: -10, y: 37 - deliveryStartInfoHeight), animated: true)
+    }
+}
+
+extension LocationViewController: DeliveryCompleteDelegate {
+    func moveToFoodMarket() {
+        // 여기서 배달완료 상태값 바꿔주면 될 것 같습니다.
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 

@@ -15,10 +15,10 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var arrivalTimeTitleLabel: UILabel!
     @IBOutlet weak var currentProgressLabel: UILabel!
     @IBOutlet weak var deliveryProgressSlider: UISlider!
-
     var sliderTimer = Timer()
 
-    weak var delegate: ChangeScrollDelegate?
+    weak var changeScrollDelegate: ChangeScrollDelegate?
+    weak var deliveryCompleteDelegate: DeliveryCompleteDelegate?
 
     var titleName: String? {
         didSet {
@@ -73,14 +73,16 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
     @objc private func setupSliderAnimation(_: Timer) {
         deliveryProgressSlider.value = 10
 
-        UIView.animate(withDuration: 80,
+        UIView.animate(withDuration: 60,
                        animations: { [weak self] in
                         self?.layoutIfNeeded()
-        }, completion: nil)
+            }, completion: { [weak self] _ in
+                self?.deliveryCompleteDelegate?.moveToFoodMarket()
+        })
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        delegate?.scrollToTop()
+        changeScrollDelegate?.scrollToTop()
     }
 }
 

@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol OrderStatusDelegate {
+protocol OrderStatusDelegate: class {
     func changeOrderStatus()
 }
