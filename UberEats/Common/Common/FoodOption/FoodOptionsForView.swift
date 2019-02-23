@@ -16,6 +16,11 @@ public struct FoodOptionsForView {
         self.foodInfoModel = foodInfoModel
         self.requiredOptionsModel = requiredOptionsModel
     }
+
+    public init(requiredOptionsModel: [RequiredOptionsModel]) {
+        self.init(foodInfoModel: FoodInfoModel(name: "", supportingExplanation: "", price: 0),
+                  requiredOptionsModel: requiredOptionsModel)
+    }
 }
 
 public protocol HavingFoodOptionItems {
@@ -35,10 +40,12 @@ public protocol FoodOptionItem {
 public struct FoodInfoModel: FoodOptionsCategory {
     public var name: String
     public var supportingExplanation: String
+    public let price: Int
 
-    public init(name: String, supportingExplanation: String) {
+    public init(name: String, supportingExplanation: String, price: Int) {
         self.name = name
         self.supportingExplanation = supportingExplanation
+        self.price = price
     }
 }
 

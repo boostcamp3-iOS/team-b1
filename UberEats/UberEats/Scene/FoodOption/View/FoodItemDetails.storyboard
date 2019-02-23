@@ -136,7 +136,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Asj-SI-BA1">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="73.666666666666671"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rq8-EC-ScF" customClass="CheckBox" customModule="UberEats" customModuleProvider="target">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rq8-EC-ScF" userLabel="CheckBox" customClass="CheckBox" customModule="UberEats" customModuleProvider="target">
                                                             <rect key="frame" x="24" y="16" width="24" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="X1J-93-E5v"/>

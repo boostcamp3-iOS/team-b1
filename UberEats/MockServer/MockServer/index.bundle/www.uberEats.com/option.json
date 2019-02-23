@@ -1,0 +1,43 @@
+{
+    "id": "food1",
+    "requiredOptions" : [
+        {
+            "name" : "추가 음료 선택",
+            "supportingExplanation": "주 메뉴 주문시 가능",
+            "optionItems" : [
+                {
+                    "name" : "사이다",
+                    "price" : 1500
+                },
+                {
+                    "name" : "콜라",
+                    "price" : 1500
+                },
+                {
+                    "name" : "레몬에이드",
+                    "price" : 2000
+                }
+            ]
+        },
+        {
+            "name" : "추가 주류 선택",
+            "supportingExplanation": "주 메뉴 주문시 가능",
+            "optionItems" : [
+                {
+                    "name" : "카스",
+                    "price" : 3000
+                },
+                {
+                    "name" : "블루문",
+                    "price" : 6000
+                },
+                {
+                    "name" : "인디카 IPA",
+                    "price" : 7000
+                }
+            ]
+        }
+
+    ]
+}
+
