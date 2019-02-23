@@ -73,7 +73,7 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
     @objc private func setupSliderAnimation(_: Timer) {
         deliveryProgressSlider.value = 10
 
-        UIView.animate(withDuration: 1,
+        UIView.animate(withDuration: 60,
                        animations: { [weak self] in
                         self?.layoutIfNeeded()
             }, completion: { [weak self] _ in
