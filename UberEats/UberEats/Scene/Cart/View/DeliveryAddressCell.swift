@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class DeliveryAddressCell: UITableViewCell {
 
-    @IBOutlet weak var locationUIImage: UIImageView!
+    @IBOutlet weak var locationMapView: GMSMapView!
 
     @IBOutlet weak var detailedAddressLabel: UILabel!
 
     @IBOutlet weak var addressLabel: UILabel!
 
     @IBOutlet weak var deliveryMethodAndRoomNumberLabel: UILabel!
+
+    private var userLocation = CLLocationCoordinate2D(latitude: 37.49646975398706, longitude: 127.02905088660754)
 
     var deilveryInfo: DeilveryInfoModel! {
         didSet {
@@ -31,9 +34,22 @@ class DeliveryAddressCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        setupMapView()
         layer.addBorder([.bottom], color: UIColor.black, width: 0.1)
     }
 
+    private func setupMapView() {
+        let camera = GMSCameraPosition(latitude: userLocation.latitude,
+                                       longitude: userLocation.longitude,
+                                       zoom: 16)
+
+        locationMapView.camera = camera
+
+        let userMarker = GMSMarker(position: userLocation)
+        userMarker.map = locationMapView
+
+        locationMapView.isUserInteractionEnabled = false
+    }
 }
 
 private extension String {
