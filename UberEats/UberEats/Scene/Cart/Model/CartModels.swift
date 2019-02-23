@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Common
 
 struct CartModel {
     let storeInfo: StoreInfoModel
@@ -17,6 +18,7 @@ struct CartModel {
 struct StoreInfoModel {
     let name: String
     let deliveryTime: String
+    let location: Location
 }
 
 struct DeilveryInfoModel {
@@ -25,7 +27,6 @@ struct DeilveryInfoModel {
     let address: String
     let deliveryMethod: DeliveryMethod
     let roomNumber: Int
-    let deliveryTime: String
 }
 
 struct PriceInfoModel {

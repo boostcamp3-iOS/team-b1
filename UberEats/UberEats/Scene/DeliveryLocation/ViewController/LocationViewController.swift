@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
+import Common
 
 class LocationViewController: UIViewController {
     private let topInset: CGFloat = 450
@@ -27,7 +28,8 @@ class LocationViewController: UIViewController {
     var orders: [OrderInfoModel]?
 
     var storeName: String?
-    var storeDeliveryTime: Double?
+    var storeLocationInfo: Location?
+    var storeLocation = CLLocationCoordinate2D(latitude: 0, longitude: 0)
 
     private let sectionHeader = UICollectionView.elementKindSectionHeader
     private let sectionFooter = UICollectionView.elementKindSectionFooter
@@ -40,7 +42,6 @@ class LocationViewController: UIViewController {
     private var userLocation = CLLocationCoordinate2D(latitude: 37.49646975398706, longitude: 127.02905088660754)
 
     private var userMarker = GMSMarker()
-    private var storeLocation = CLLocationCoordinate2D(latitude: 37.499862, longitude: 127.030378)
     private var storeMarker = GMSMarker()
 
     private var isStartingDelivery: Bool = false
@@ -98,11 +99,17 @@ class LocationViewController: UIViewController {
     }
 
     private func setupMapView() {
+        guard let locationInfo = storeLocationInfo else {
+            return
+        }
+
+        storeLocation = CLLocationCoordinate2D(latitude: locationInfo.latitude,
+                                                         longitude: locationInfo.longtitude)
 
         locationManager.customInit(delegate: self)
 
-        let camera = GMSCameraPosition(latitude: (userLocation.latitude + 37.499862) / 2,
-                                       longitude: (userLocation.longitude + 127.030378) / 2,
+        let camera = GMSCameraPosition(latitude: (userLocation.latitude + storeLocation.latitude) / 2,
+                                       longitude: (userLocation.longitude + storeLocation.longitude) / 2,
                                        zoom: 16)
 
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
@@ -264,8 +271,8 @@ class LocationViewController: UIViewController {
     }
 
     @objc private func touchUpMoveCurrentLocationButton(_: UIButton) {
-        mapView?.animate(to: GMSCameraPosition(latitude: (userLocation.latitude + 37.499862) / 2,
-                                                longitude: (userLocation.longitude + 127.030378) / 2,
+        mapView?.animate(to: GMSCameraPosition(latitude: (userLocation.latitude + storeLocation.latitude) / 2,
+                                                longitude: (userLocation.longitude + storeLocation.longitude) / 2,
                                                 zoom: 17))
     }
 }
@@ -404,7 +411,7 @@ extension LocationViewController: UICollectionViewDataSource {
                     return .init()
                 }
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak header] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 15) { [weak header] in
                     header?.progressStatus = .preparingFood
                 }
 
@@ -412,20 +419,16 @@ extension LocationViewController: UICollectionViewDataSource {
                     header?.progressStatus = .delivering
                 }
 
-                guard let deliveryTime = storeDeliveryTime else {
-                    return header
-                }
-
-                let currentTime = NSDate().addingTimeInterval(deliveryTime * 60)
+                let currentTime = NSDate().addingTimeInterval(60)
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "hh:mm"
-                dateFormatter.locale = NSLocale(localeIdentifier: "ko_KR") as Locale
+                dateFormatter.dateFormat = "hh:mm a"
                 header.arrivalTime = dateFormatter.string(from: currentTime as Date)
                 header.storeNameLabel.text = storeName
 
                 header.progressStatus = .verifyingOrder
 
-                header.delegate = self
+                header.changeScrollDelegate = self
+                header.deliveryCompleteDelegate = self
 
                 return header
             case .orders:
@@ -531,6 +534,13 @@ extension LocationViewController: CLLocationManagerDelegate {
 extension LocationViewController: ChangeScrollDelegate {
     func scrollToTop() {
         orderDetailCollectionView.setContentOffset(CGPoint(x: -10, y: 37 - deliveryStartInfoHeight), animated: true)
+    }
+}
+
+extension LocationViewController: DeliveryCompleteDelegate {
+    func moveToFoodMarket() {
+        // 여기서 배달완료 상태값 바꿔주면 될 것 같습니다.
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 

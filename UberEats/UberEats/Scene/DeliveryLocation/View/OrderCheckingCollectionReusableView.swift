@@ -14,13 +14,11 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var arrivalTimeLabel: UILabel!
     @IBOutlet weak var arrivalTimeTitleLabel: UILabel!
     @IBOutlet weak var currentProgressLabel: UILabel!
-    @IBOutlet weak var orderProgressBar: UIProgressView!
-    @IBOutlet weak var orderProgressTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var backgroundProgressBar: UIProgressView!
-
+    @IBOutlet weak var deliveryProgressSlider: UISlider!
     var sliderTimer = Timer()
 
-    weak var delegate: ChangeScrollDelegate?
+    weak var changeScrollDelegate: ChangeScrollDelegate?
+    weak var deliveryCompleteDelegate: DeliveryCompleteDelegate?
 
     var titleName: String? {
         didSet {
@@ -56,34 +54,35 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
             case .delivering:
                 currentProgressLabel.text = "음식을 배달중입니다."
             }
-            setSliderAnimation()
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        setSliderAnimation()
     }
-
-    let MAX_TIME: CGFloat = 10.0
-    var currentTime: CGFloat = 0.0
 
     private func setSliderAnimation() {
-        currentTime += 1
-        self.orderProgressBar.setProgress(Float(currentTime/MAX_TIME), animated: true)
-//        self.orderProgressBar.setProgress(0, animated: true)
-//        sliderTimer = Timer.scheduledTimer(timeInterval: 0.5,
-//                                           target: self,
-//                                           selector: #selector(updateProgress),
-//                                           userInfo: nil,
-//                                           repeats: false)
+        Timer.scheduledTimer(timeInterval: 0,
+                             target: self,
+                             selector: #selector(setupSliderAnimation(_:)),
+                             userInfo: nil,
+                             repeats: false)
     }
 
-//    @objc private func updateProgress() {
-//        self.orderProgressBar.setProgress(1, animated: true)
-//    }
+    @objc private func setupSliderAnimation(_: Timer) {
+        deliveryProgressSlider.value = 10
+
+        UIView.animate(withDuration: 60,
+                       animations: { [weak self] in
+                        self?.layoutIfNeeded()
+            }, completion: { [weak self] _ in
+                self?.deliveryCompleteDelegate?.moveToFoodMarket()
+        })
+    }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        delegate?.scrollToTop()
+        changeScrollDelegate?.scrollToTop()
     }
 }
 

@@ -105,12 +105,11 @@ extension CartViewController: OrderButtonClickable {
         }
 
         deliveryStartVC.storeName = cartModel.storeInfo.name
-        let deliveryTimes = cartModel.deilveryInfo.deliveryTime.components(separatedBy: "-")
+        let deliveryTimes = cartModel.storeInfo.deliveryTime.components(separatedBy: "-")
 
-        deliveryStartVC.storeDeliveryTime = Double(deliveryTimes[1])
+        deliveryStartVC.storeLocationInfo = cartModel.storeInfo.location
         deliveryStartVC.orders = orderInfoModels
 
-//        self.present(foodItemVC, animated: true, completion: nil)
         self.navigationController?.pushViewController(deliveryStartVC, animated: true)
     }
 
