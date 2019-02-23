@@ -340,7 +340,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
                 return
             }
 
-            collectionViewController.passingData(status: SelectState.store(moreRests[indexPath.row - 1].id))
+            collectionViewController.passingData(status: SelectState.store(moreRests[indexPath.row].id))
 
             navigationController?.pushViewController(collectionViewController,
                                                      animated: true)
