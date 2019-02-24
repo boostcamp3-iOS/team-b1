@@ -10,7 +10,6 @@
 		842CC7B921FEBC100045D084 /* StoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CC7B821FEBC100045D084 /* StoreCollectionViewController.swift */; };
 		84333AC32202CDA3007372DE /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84333AC22202CDA3007372DE /* ChattingViewController.swift */; };
 		84333AC52202CDB5007372DE /* Chatting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84333AC42202CDB5007372DE /* Chatting.storyboard */; };
-		8434817B2221417700C56E04 /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434817A2221417700C56E04 /* testViewController.swift */; };
 		8434817D2221775F00C56E04 /* DeliveryCompleteStaticTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434817C2221775F00C56E04 /* DeliveryCompleteStaticTableCell.swift */; };
 		843B05122203D9240082FEFF /* FirebaseSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B05112203D9240082FEFF /* FirebaseSingleton.swift */; };
 		843B05182203E6F40082FEFF /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B05172203E6F40082FEFF /* ChatModel.swift */; };
@@ -189,7 +188,6 @@
 		842CC7B821FEBC100045D084 /* StoreCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewController.swift; sourceTree = "<group>"; };
 		84333AC22202CDA3007372DE /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
 		84333AC42202CDB5007372DE /* Chatting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chatting.storyboard; sourceTree = "<group>"; };
-		8434817A2221417700C56E04 /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
 		8434817C2221775F00C56E04 /* DeliveryCompleteStaticTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryCompleteStaticTableCell.swift; sourceTree = "<group>"; };
 		843B05112203D9240082FEFF /* FirebaseSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSingleton.swift; sourceTree = "<group>"; };
 		843B05172203E6F40082FEFF /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
@@ -615,7 +613,6 @@
 			children = (
 				84DC184921F9ACE0008EE6D3 /* FoodMarketViewController.swift */,
 				8445E2D7221D2A0500965746 /* SeeMoreRestViewController.swift */,
-				8434817A2221417700C56E04 /* testViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1196,7 +1193,6 @@
 				99342CCE21FB13550029DB10 /* Throttler.swift in Sources */,
 				8445E2CE221CFD8F00965746 /* DiscountTableViewCell.swift in Sources */,
 				D11B04DA2205847F00F20363 /* LocationViewController.swift in Sources */,
-				8434817B2221417700C56E04 /* testViewController.swift in Sources */,
 				995B1C602219384100A41176 /* PaymentInfoCell.swift in Sources */,
 				D199236222045BAB00C7C857 /* UIButton+initButtonWithImage.swift in Sources */,
 				D13B820D221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift in Sources */,
