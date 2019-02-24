@@ -185,7 +185,6 @@ class ItemViewController: UIViewController {
     private func initFoodMarket() {
 
         foodMarketService.requestFoodMarket(dispatchQueue: DispatchQueue.global()) { [weak self] (dataResponse) in
-
             guard dataResponse.isSuccess,
                 let recommendFood = dataResponse.value?.recommendFood,
                 let nearestRest = dataResponse.value?.nearestRest,
@@ -325,7 +324,6 @@ extension ItemViewController: UIScrollViewDelegate {
                 } else if (newTargetOffset > Float(scrollView.contentSize.width)) {
                     newTargetOffset = Float(Float(scrollView.contentSize.width - 200))
                 }
-
                 targetContentOffset.pointee.x = CGFloat(currentOffset)
 
                 scrollView.setContentOffset(CGPoint(x: CGFloat(newTargetOffset), y: scrollView.contentOffset.y), animated: true)
@@ -544,7 +542,6 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let talbeViewSection = TableViewSection(rawValue: collectionView.tag) else {
             return 0
         }
-
         return talbeViewSection.numberOfCollectionViewSection
     }
 
@@ -574,7 +571,6 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                         recommendCollectionViewCell?.image.image = downloadImage
                     }
                 }
-
                 return recommendCollectionViewCell
         case .nearestRest:
             if indexPath.section == collectionViewDataSection {

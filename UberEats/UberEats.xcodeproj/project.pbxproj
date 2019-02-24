@@ -615,7 +615,6 @@
 			children = (
 				84DC184921F9ACE0008EE6D3 /* FoodMarketViewController.swift */,
 				8445E2D7221D2A0500965746 /* SeeMoreRestViewController.swift */,
-				8434817A2221417700C56E04 /* testViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1197,7 +1196,6 @@
 				99342CCE21FB13550029DB10 /* Throttler.swift in Sources */,
 				8445E2CE221CFD8F00965746 /* DiscountTableViewCell.swift in Sources */,
 				D11B04DA2205847F00F20363 /* LocationViewController.swift in Sources */,
-				8434817B2221417700C56E04 /* testViewController.swift in Sources */,
 				995B1C602219384100A41176 /* PaymentInfoCell.swift in Sources */,
 				D199236222045BAB00C7C857 /* UIButton+initButtonWithImage.swift in Sources */,
 				D13B820D221BEE8100100451 /* BinaryInteger+formattedWithSeparator.swift in Sources */,
