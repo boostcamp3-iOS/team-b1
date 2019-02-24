@@ -26,7 +26,7 @@ class ItemViewController: UIViewController {
     }()
 
     private lazy var pageControl: UIPageControl = {
-        let pageControl = UIPageControl(frame: CGRect(x: self.leftPaddingOfPageControl,
+        let pageControl = UIPageControl(frame: CGRect(x: UIDevice.current.pageControlX,
                                                       y: heightOfScrollView - heightOfPageControl,
                                                       width: widthOfPageControl,
                                                       height: heightOfPageControl))
@@ -40,14 +40,14 @@ class ItemViewController: UIViewController {
 
     // MARK: - Magic Number
     private lazy var heightOfScrollView: CGFloat = {
-         return self.view.frame.height * 0.25
+         return 176
     }()
 
     private lazy var widthOfPageControl: CGFloat = {
        return self.view.frame.width - 280
     }()
 
-    private let leftPaddingOfPageControl: CGFloat = 30
+    private let leftPaddingOfPageControl: CGFloat = 20
 
     private let heightOfPageControl: CGFloat = 37
 
@@ -97,6 +97,8 @@ class ItemViewController: UIViewController {
 
     private var restaurtSeeMoreCollectionViewCell = RestaurtSeeMoreCollectionViewCell()
 
+    private var deliveryCompleteStaticTableCell = DeliveryCompleteStaticTableCell()
+
     private var recommendFood: [FoodForView] = [] {
         didSet {
             recommendFoodStaticTableCell.collectionView.delegate = self
@@ -133,8 +135,12 @@ class ItemViewController: UIViewController {
 
     private var moreRests: [StoreForView] = []
 
+    private var completeState: (state: Bool, storeName: String, storeImageURL: String)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        completeState = (state: true, storeName: "", storeImageURL: "")
 
         tabBarController?.view.addSubview(indicator)
 
@@ -159,8 +165,7 @@ class ItemViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        tabBarController?.tabBar.isHidden = true
-        navigationController?.setNavigationBarHidden(true, animated: false)
+
     }
 
     @IBAction func touchUpSettingLocation(_ sender: Any) {
@@ -179,6 +184,7 @@ class ItemViewController: UIViewController {
 
     private func initFoodMarket() {
         foodMarketService.requestFoodMarket(dispatchQueue: DispatchQueue.global()) { [weak self] (dataResponse) in
+
             guard dataResponse.isSuccess,
                 let recommendFood = dataResponse.value?.recommendFood,
                 let nearestRest = dataResponse.value?.nearestRest,
@@ -209,11 +215,8 @@ class ItemViewController: UIViewController {
         tableView.addSubview(pageControl)
         tableView.bringSubviewToFront(pageControl)
 
-        let tableNIB = UINib(nibName: "TableViewCell", bundle: nil)
-        tableView.register(tableNIB, forCellReuseIdentifier: tableViewCellId)
-
-        let SeeMoreRestTableViewCellNIB = UINib(nibName: "SeeMoreRestTableViewCell", bundle: nil)
-        tableView.register(SeeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
+        tableView.register(UINib.TableViewCellNIB, forCellReuseIdentifier: tableViewCellId)
+        tableView.register(UINib.SeeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
     }
 
     @objc func autoScrolledBanner() {
@@ -245,7 +248,6 @@ class ItemViewController: UIViewController {
             })
             scrollView.addSubview(bannerImage)
         }
-
     }
 
     private func setupPageControl() {
@@ -270,6 +272,7 @@ class ItemViewController: UIViewController {
     @objc private func changePage() {
         let frame = CGRect(origin: CGPoint.zero, size: CGSize.zero)
         let changedPageNumber = pageControl.currentPage
+
         scrollView.frame.origin = CGPoint(x: frame.size.width * CGFloat(changedPageNumber), y: 0)
         scrollView.scrollRectToVisible(scrollView.frame, animated: true)
     }
@@ -304,8 +307,10 @@ extension ItemViewController: UIScrollViewDelegate {
 
     //FIXME: - 우버잇츠 처럼 자연스러운 드래깅
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if scrollView != self.scrollView && scrollView != tableView {
-                let pageWidth: Float = Float(widthOfCollectionViewCell) + 10//width+spacing
+
+        if scrollView != self.scrollView && scrollView != self.tableView {
+
+                let pageWidth: Float = Float(widthOfCollectionViewCell) + 15//width+spacing
 
                 let currentOffset: Float = Float(scrollView.contentOffset.x)
 
@@ -320,11 +325,12 @@ extension ItemViewController: UIScrollViewDelegate {
                 if newTargetOffset < 0 {
                     newTargetOffset = 0
                 } else if (newTargetOffset > Float(scrollView.contentSize.width)) {
-                    newTargetOffset = Float(Float(scrollView.contentSize.width))
+                    newTargetOffset = Float(Float(scrollView.contentSize.width - 200))
                 }
+
                 targetContentOffset.pointee.x = CGFloat(currentOffset)
-                scrollView.setContentOffset(CGPoint(x: CGFloat(newTargetOffset), y: scrollView.contentOffset.y),
-                                            animated: true)
+
+                scrollView.setContentOffset(CGPoint(x: CGFloat(newTargetOffset), y: scrollView.contentOffset.y), animated: true)
         }
     }
 }
@@ -334,16 +340,16 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == mustSelectSection && indexPath.row != mustNotSelectRow {
-            let storboard = UIStoryboard.init(name: "Main", bundle: nil)
-            guard let collectionViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController")
+            guard let collectionViewController = UIStoryboard.main.instantiateViewController(withIdentifier: "CollectionViewController")
                 as? StoreCollectionViewController else {
                 return
             }
 
             collectionViewController.passingData(status: SelectState.store(moreRests[indexPath.row].id))
 
-            navigationController?.pushViewController(collectionViewController,
-                                                     animated: true)
+            tabBarController?.tabBar.isHidden = true
+            navigationController?.setNavigationBarHidden(true, animated: false)
+            navigationController?.pushViewController(collectionViewController, animated: true)
         }
     }
 
@@ -358,11 +364,21 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         switch tableViewSection {
-        case .bannerScroll, .recommendFood, .nearestRest, .expectedTime, .newRest, .discount, .searchAndSee:
+        case .bannerScroll:
+            guard let completeState = completeState else {
+                return 0
+            }
+            if completeState.state {
+                return 1
+            } else {
+                return tableViewSection.numberOfSection
+            }
+        case .recommendFood, .nearestRest, .expectedTime, .newRest, .discount, .searchAndSee:
             return tableViewSection.numberOfSection
         case .moreRest:
             return moreRests.count
         }
+
     }
 
     func setupTableViewCell(indexPath: IndexPath) -> TableViewCell {
@@ -382,28 +398,16 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         guard let tableviewSection = TableViewSection(rawValue: indexPath.section) else {
             return .init()
         }
-
         switch tableviewSection {
         case .bannerScroll:
-            let tablecell = setupTableViewCell(indexPath: indexPath)
-
-            NSLayoutConstraint.activate(
-                [
-                    scrollView.bottomAnchor.constraint(equalTo: tablecell.bottomAnchor),
-                    scrollView.topAnchor.constraint(equalTo: tablecell.topAnchor),
-                    scrollView.leadingAnchor.constraint(equalTo: tablecell.leadingAnchor),
-                    scrollView.trailingAnchor.constraint(equalTo: tablecell.trailingAnchor)
-                ]
-            )
-
-            return tablecell
+            deliveryCompleteStaticTableCell.storeInfo = (state: true, storeName: "hihi", storeImageURL: "gogossing")
+            return deliveryCompleteStaticTableCell
         case .recommendFood:
             return recommendFoodStaticTableCell
         case .expectedTime:
             let tablecell = setupTableViewCell(indexPath: indexPath)
 
-            let ExpectTimeCollectionViewCellNIB = UINib(nibName: "ExpectTimeCollectionViewCell", bundle: nil)
-            tablecell.collectionView.register(ExpectTimeCollectionViewCellNIB, forCellWithReuseIdentifier: tableviewSection.identifier)
+            tablecell.collectionView.register(UINib.ExpectTimeCollectionViewCellNIB, forCellWithReuseIdentifier: tableviewSection.identifier)
 
             tablecell.collectionView.register(RestaurtSeeMoreCollectionViewCell.self, forCellWithReuseIdentifier: tableviewSection.moreRestCellId)
 
@@ -416,8 +420,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         case .newRest:
             let tablecell = setupTableViewCell(indexPath: indexPath)
 
-            let NewRestCollectionViewCellNIB = UINib(nibName: "NewRestCollectionViewCell", bundle: nil)
-            tablecell.collectionView.register(NewRestCollectionViewCellNIB, forCellWithReuseIdentifier: tableviewSection.identifier)
+            tablecell.collectionView.register(UINib.NewRestCollectionViewCellNIB, forCellWithReuseIdentifier: tableviewSection.identifier)
 
             tablecell.collectionView.register(RestaurtSeeMoreCollectionViewCell.self, forCellWithReuseIdentifier: tableviewSection.moreRestCellId)
 
@@ -431,8 +434,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         case .nearestRest:
             let tablecell = setupTableViewCell(indexPath: indexPath)
 
-            let NearestCollectionViewCellNIB = UINib(nibName: "NearestCollectionViewCell", bundle: nil)
-            tablecell.collectionView.register(NearestCollectionViewCellNIB, forCellWithReuseIdentifier: tableviewSection.identifier)
+            tablecell.collectionView.register(UINib.NearestCollectionViewCellNIB, forCellWithReuseIdentifier: tableviewSection.identifier)
             tablecell.collectionView.register(RestaurtSeeMoreCollectionViewCell.self, forCellWithReuseIdentifier: tableviewSection.moreRestCellId)
 
             tablecell.setLabel(indexPath.section)
@@ -455,6 +457,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
                 }
 
                 if moreRests.count > indexPath.row {
+
                     moreRestTableViewCell.moreRests = moreRests[indexPath.row]
 
                     guard let imageURL = URL(string: moreRests[indexPath.item].mainImage) else {
@@ -465,13 +468,12 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
                         if error != nil {
                             return
                         }
-
                         guard moreRestTableViewCell?.moreRests?.mainImage == imageURL.absoluteString else {
                             return
                         }
-
                         moreRestTableViewCell?.mainImage.image = downloadImage
                     }
+
                 }
                 return moreRestTableViewCell
             }
@@ -493,6 +495,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 return tableViewSection.heightOfTableViewCell()
             }
+
         default:
             return tableViewSection.heightOfTableViewCell()
         }
@@ -506,8 +509,12 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - CollectionViewDelegate
 extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 15
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
         guard let tableViewSection = TableViewSection(rawValue: collectionView.tag) else {
             return 0
@@ -528,7 +535,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
         } else {
             switch tableViewSection {
-            case .recommendFood, .nearestRest, .expectedTime, .newRest:
+            case .nearestRest, .expectedTime, .newRest:
                 return moreSeeData
             default:
                 return 0
@@ -540,6 +547,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let talbeViewSection = TableViewSection(rawValue: collectionView.tag) else {
             return 0
         }
+
         return talbeViewSection.numberOfCollectionViewSection
     }
 
@@ -552,7 +560,6 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
         switch tableViewSection {
         case .recommendFood:
-            if indexPath.section == collectionViewDataSection {
                 guard let recommendCollectionViewCell = recommendFoodStaticTableCell.collectionView.dequeueReusableCell(withReuseIdentifier: recommendFoodStaticTableCell.collectionVIewCellId, for: indexPath) as? RecommendCollectionViewCell else {
                     return .init()
                 }
@@ -569,25 +576,13 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                         return recommendCollectionViewCell
                     }
 
-                    ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak recommendCollectionViewCell] (downloadImage, error) in
-                        if error != nil {
-                            return
-                        }
-
-                        guard recommendCollectionViewCell?.recommendFood?.foodImageURL == imageURL.absoluteString else {
-                            return
-                        }
-
+                    ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak recommendCollectionViewCell] (downloadImage, _) in
+                        guard recommendCollectionViewCell?.confirmURL?.absoluteString == imageURL.absoluteString else {return }
                         recommendCollectionViewCell?.image.image = downloadImage
                     }
                 }
+
                 return recommendCollectionViewCell
-            } else { //더보기 등록
-                guard let recommendCollectionViewCell = recommendFoodStaticTableCell.collectionView.dequeueReusableCell(withReuseIdentifier: recommendFoodStaticTableCell.colelctionVIewMoreRestCellId, for: indexPath) as? RestaurtSeeMoreCollectionViewCell else {
-                    return .init()
-                }
-                return recommendCollectionViewCell
-            }
         case .nearestRest:
             if indexPath.section == collectionViewDataSection {
                 guard let nearestRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: tableViewSection.identifier, for: indexPath) as? NearestCollectionViewCell else {
@@ -607,14 +602,9 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                         return nearestRestCell
                     }
 
-                    ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak nearestRestCell] (downloadImage, error) in
-                        if error != nil {
-                            return
-                        }
-
-                        guard nearestRestCell?.nearestRest?.mainImage == imageURL.absoluteString else {
-                            return
-                        }
+                    //weak nearestRestCell 한것에 주의!
+                    ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak nearestRestCell] (downloadImage, _) in
+                        guard nearestRestCell?.confirmURL?.absoluteString == imageURL.absoluteString else {return }
                         nearestRestCell?.mainImage.image = downloadImage
                     }
                 }
@@ -644,16 +634,9 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                         return exepectTimeRestCell
                     }
 
-                    ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak exepectTimeRestCell] (downloadImage, error) in
-                        if error != nil {
-                            return
-                        }
-
-                        guard exepectTimeRestCell?.expectTimeRest?.mainImage != imageURL.absoluteString else {
-                            return
-                        }
-
-                        exepectTimeRestCell?.mainImage.image = downloadImage
+                    ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) {[weak exepectTimeRestCell] (image, _) in
+                        guard exepectTimeRestCell?.confirmURL?.absoluteString == imageURL.absoluteString else {return }
+                        exepectTimeRestCell?.mainImage.image = image
                     }
                 }
                 return exepectTimeRestCell
@@ -682,15 +665,8 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                         return newRestCell
                     }
 
-                    ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak newRestCell] (downloadImage, error) in
-                        if error != nil {
-                            return
-                        }
-
-                        guard newRestCell?.newRest?.mainImage != imageURL.absoluteString else {
-                            return
-                        }
-
+                    ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) {[weak newRestCell] (downloadImage, _) in
+                        guard newRestCell?.confirmURL?.absoluteString == imageURL.absoluteString else {return }
                         newRestCell?.mainImage.image = downloadImage
                     }
                 }
@@ -710,8 +686,7 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        let storboard = UIStoryboard.init(name: "Main", bundle: nil)
-        guard let storeViewController = storboard.instantiateViewController(withIdentifier: "CollectionViewController")
+        guard let storeViewController = UIStoryboard.main.instantiateViewController(withIdentifier: "CollectionViewController")
             as? StoreCollectionViewController else {
             return
         }
@@ -735,11 +710,15 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 break
             }
 
+            tabBarController?.tabBar.isHidden = true
+            navigationController?.setNavigationBarHidden(true, animated: false)
             navigationController?.pushViewController(storeViewController, animated: true)
-
         } else {
             let SeeMoreRestVC = SeeMoreRestViewController()
             SeeMoreRestVC.section = tableViewSection
+
+            tabBarController?.tabBar.isHidden = false
+            navigationController?.setNavigationBarHidden(false, animated: false)
             navigationController?.pushViewController(SeeMoreRestVC, animated: true)
         }
 
@@ -757,7 +736,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
 
         switch tableViewSection {
         case .recommendFood:
-            if indexPath.section == collectionViewDataSection {
+
                 guard let recommendFoodCell = collectionView.dequeueReusableCell(withReuseIdentifier: tableViewSection.identifier, for: indexPath) as? RecommendCollectionViewCell else {
                     return .init()
                 }
@@ -767,9 +746,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
                 let cellHeight = recommendFoodCell.isExistFoodDescription()
 
                 return .init(width: widthOfCollectionViewCell, height: cellHeight)
-            } else {
-                return .init(width: moreSeeCellWidth, height: moreSeeCellHeight)
-            }
+
         case .nearestRest:
             if indexPath.section == collectionViewDataSection {
                 guard let nearestRestCell = collectionView.dequeueReusableCell(withReuseIdentifier: tableViewSection.identifier, for: indexPath) as? NearestCollectionViewCell else {
@@ -835,5 +812,27 @@ extension UICollectionViewCell {
         layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 2
+    }
+}
+
+extension UINib {
+    static var TableViewCellNIB: UINib {
+        return UINib(nibName: "TableViewCell", bundle: nil)
+    }
+
+    static var SeeMoreRestTableViewCellNIB: UINib {
+        return UINib(nibName: "SeeMoreRestTableViewCell", bundle: nil)
+    }
+
+    static var ExpectTimeCollectionViewCellNIB: UINib {
+        return UINib(nibName: "ExpectTimeCollectionViewCell", bundle: nil)
+    }
+
+    static var NewRestCollectionViewCellNIB: UINib {
+        return UINib(nibName: "NewRestCollectionViewCell", bundle: nil)
+    }
+
+    static var NearestCollectionViewCellNIB: UINib {
+        return UINib(nibName: "NearestCollectionViewCell", bundle: nil)
     }
 }

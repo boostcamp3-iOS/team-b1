@@ -11,15 +11,20 @@ import UIKit
 class OrderButton: UIView {
 
     private static let xibName = "OrderButton"
-    private static let orderButtonDefaultText = "카트에 1 추가"
 
-    var orderButtonClickable: OrderButtonClickable?
+    weak var orderButtonClickable: OrderButtonClickable?
 
     @IBOutlet var orderButtonView: UIView!
 
     @IBOutlet weak var amountLabel: UILabel!
 
     @IBOutlet weak var orderButton: UIButton!
+
+    private (set) var amount: Int = 1 {
+        didSet {
+            amountLabel.text = "￦\(amount)"
+        }
+    }
 
     var orderInfos: [OrderInfoModel] = [OrderInfoModel]() {
         didSet {
@@ -53,17 +58,20 @@ class OrderButton: UIView {
     }
 
     func setAmount(quantity: Int, price: Int) {
-        amountLabel.text = "￦\(quantity * price)"
+        amount = quantity * price
+    }
+
+    func setAmount(price: Int) {
+        amount = price
     }
 
     private func initNib() {
         Bundle.main.loadNibNamed(OrderButton.xibName, owner: self, options: nil)
         orderButtonView.fixInView(self)
-        orderButtonText = OrderButton.orderButtonDefaultText
     }
 
 }
 
-protocol OrderButtonClickable {
+protocol OrderButtonClickable: class {
     func onClickedOrderButton(_ sender: Any)
 }

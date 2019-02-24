@@ -18,9 +18,15 @@ class ExpectTimeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var rate: UILabel!
     @IBOutlet weak var promotion: UILabel!
 
+    var confirmURL: URL?
+
     var expectTimeRest: StoreForView? {
         didSet {
             guard let expectTimeRest = expectTimeRest else {
+                return
+            }
+
+            guard let cellURL = URL(string: expectTimeRest.mainImage) else {
                 return
             }
 
@@ -29,6 +35,8 @@ class ExpectTimeCollectionViewCell: UICollectionViewCell {
             deliveryTime.text = expectTimeRest.deliveryTime
             rate.text = "\(expectTimeRest.rate.numberOfRater)"
             promotion.text = expectTimeRest.promotion
+
+            confirmURL = cellURL
 
         }
     }
@@ -42,7 +50,7 @@ class ExpectTimeCollectionViewCell: UICollectionViewCell {
             return 260
         } else {
             promotion.isHidden = false
-            return 280.46875
+            return 272
         }
     }
 

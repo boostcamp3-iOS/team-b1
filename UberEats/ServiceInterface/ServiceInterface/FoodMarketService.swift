@@ -16,9 +16,9 @@ public protocol FoodMarketService: class {
     func requestFoodMarket(dispatchQueue: DispatchQueue?,
                            completionHandler: @escaping (DataResponse<FoodMarketForNetwork>) -> Void)
 
-    func requestFoodMarketMore(completionHandler: @escaping (DataResponse<FoodMarketForNetwork>) -> Void)
+    func requestFoodMarketMore(section: TableViewSection, completionHandler: @escaping (DataResponse<[StoreForView]>) -> Void)
 
-    func requestFoodMarketMore(dispatchQueue: DispatchQueue?,
-                               completionHandler: @escaping (DataResponse<FoodMarketForNetwork>) -> Void)
+    func requestFoodMarketMore(dispatchQueue: DispatchQueue?, section: TableViewSection,
+                               completionHandler: @escaping (DataResponse<[StoreForView]>) -> Void)
 
 }

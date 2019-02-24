@@ -20,6 +20,18 @@ class SeeMoreRestViewController: UIViewController {
         return tableView
     }()
 
+    lazy var dataIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.frame = CGRect(x: 0,
+                                 y: 0,
+                                 width: self.view.frame.width,
+                                 height: self.view.frame.height)
+        indicator.hidesWhenStopped = true
+        indicator.style = .gray
+        indicator.backgroundColor = .white
+        return indicator
+    }()
+
     private var foods: [FoodForView]?
 
     private var stores: [StoreForView]?
@@ -32,6 +44,7 @@ class SeeMoreRestViewController: UIViewController {
         super.viewDidLoad()
 
         view.addSubview(tableView)
+        view.addSubview(dataIndicator)
 
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -46,6 +59,10 @@ class SeeMoreRestViewController: UIViewController {
 
         initFoodMarket(section: collectionViewTag)
         setupTableView()
+
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.navigationItem.backBarButtonItem?.title = ""
+        navigationController?.navigationItem.backBarButtonItem?.tintColor = UIColor.black
     }
 
     private func setupTableView() {
@@ -53,47 +70,52 @@ class SeeMoreRestViewController: UIViewController {
 
         let SeeMoreRestTableViewCellNIB = UINib(nibName: "SeeMoreRestTableViewCell", bundle: nil)
         tableView.register(SeeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
+
+        tabBarController?.tabBar.isHidden = true
     }
 
     private func initFoodMarket(section: TableViewSection) {
+        dataIndicator.startAnimating()
         switch section {
-        case .recommendFood:
-            reloadTableViewFoodsData()
         case .expectedTime, .nearestRest, .newRest:
             reloadTableViewStoreData(section: section)
+            self.title = setTitle(section: section)
         default:
             break
         }
     }
 
-    private func reloadTableViewFoodsData() {
-        foodMarketService.requestFoodMarketMore(dispatchQueue: DispatchQueue.global()) { [weak self] (dataResponse) in
-            guard dataResponse.isSuccess,
-                let foods = dataResponse.value?.recommendFood else {
-                return
-            }
-
-            self?.foods = foods
-            self?.tableView.reloadData()
+    private func setTitle(section: TableViewSection) -> String {
+        switch section {
+        case .expectedTime:
+            return "예상시간 30분 이하"
+        case .nearestRest:
+            return "가까운 인기 레스토랑"
+        case .newRest:
+            return "새로운 레스토랑"
+        case .recommendFood:
+            return "추천 요리"
+        default:
+            return ""
         }
     }
 
     private func reloadTableViewStoreData(section: TableViewSection) {
-        foodMarketService.requestFoodMarketMore(dispatchQueue: DispatchQueue.global()) { [weak self] (dataResponse) in
+        foodMarketService.requestFoodMarketMore(dispatchQueue: DispatchQueue.global(), section: section) { [weak self] (dataResponse) in
             if dataResponse.isSuccess {
                 switch section {
                 case .expectedTime:
-                    guard let expectTimeRest = dataResponse.value?.expectTimeRest else {
+                    guard let expectTimeRest = dataResponse.value else {
                         return
                     }
                     self?.stores = expectTimeRest
                 case .nearestRest:
-                    guard let nearestRest = dataResponse.value?.nearestRest else {
+                    guard let nearestRest = dataResponse.value else {
                         return
                     }
                     self?.stores = nearestRest
                 case .newRest:
-                    guard let newRest = dataResponse.value?.newRests else {
+                    guard let newRest = dataResponse.value else {
                         return
                     }
                     self?.stores = newRest
@@ -103,7 +125,9 @@ class SeeMoreRestViewController: UIViewController {
             } else {
                 fatalError()
             }
+
             self?.tableView.reloadData()
+            self?.dataIndicator.stopAnimating()
         }
     }
 

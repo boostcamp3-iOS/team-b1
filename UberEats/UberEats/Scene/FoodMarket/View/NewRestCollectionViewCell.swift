@@ -17,16 +17,24 @@ class NewRestCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var deliveryTime: UILabel!
     @IBOutlet weak var promotion: UILabel!
 
+    var confirmURL: URL?
+
     var newRest: StoreForView? {
         didSet {
-            guard let newRest = newRest else {
+            guard let newRests = newRest else {
                 return
             }
 
-            name.text = newRest.name
-            category.text = newRest.category
-            deliveryTime.text = newRest.deliveryTime
-            promotion.text = newRest.promotion
+            guard let cellURL = URL(string: newRests.mainImage) else {
+                return
+            }
+
+            name.text = newRests.name
+            category.text = newRests.category
+            deliveryTime.text = newRests.deliveryTime
+            promotion.text = newRests.promotion
+
+            confirmURL = cellURL
         }
     }
 
@@ -52,7 +60,7 @@ class NewRestCollectionViewCell: UICollectionViewCell {
             return 260
         } else {
             promotion.isHidden = false
-            return 280.46875
+            return 272
         }
     }
 

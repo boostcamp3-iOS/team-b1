@@ -7,7 +7,7 @@
 //
 import UIKit
 
-public enum Sections: Int, CaseIterable {
+public enum TableViewSection: Int, CaseIterable {
     case bannerScroll = 0
     case recommendFood = 1
     case nearestRest = 2
@@ -17,7 +17,29 @@ public enum Sections: Int, CaseIterable {
     case moreRest = 6
     case searchAndSee = 7
 
-    var identifier: String {
+    public var numberOfCollectionViewSection: Int {
+        switch self {
+        case .bannerScroll:
+            return 0
+        case .recommendFood:
+            return 1
+        case .nearestRest, .expectedTime, .newRest:
+            return 2
+        case .discount, .moreRest, .searchAndSee:
+            return 0
+        }
+    }
+
+    public var moreRestCellId: String {
+        switch self {
+        case .recommendFood, .nearestRest, .newRest, .expectedTime:
+            return "colelctionVIewMoreRestCellId"
+        default:
+            return ""
+        }
+    }
+
+    public var identifier: String {
         switch self {
         case .moreRest:
             return "SeeMoreRestTableViewCellId"
@@ -34,7 +56,7 @@ public enum Sections: Int, CaseIterable {
         }
     }
 
-    var nibName: String {
+    public var nibName: String {
         switch self {
         case .moreRest:
             return "SeeMoreRestTableViewCell"
@@ -51,7 +73,7 @@ public enum Sections: Int, CaseIterable {
         }
     }
 
-    var numberOfSection: Int {
+    public var numberOfSection: Int {
         switch self {
         case .recommendFood, .nearestRest, .expectedTime, .newRest, .discount, .searchAndSee:
             return 1
@@ -62,7 +84,7 @@ public enum Sections: Int, CaseIterable {
         }
     }
 
-    func heightOfTableViewCell() -> CGFloat {
+    public func heightOfTableViewCell() -> CGFloat {
         switch self {
         case .recommendFood, .nearestRest, .expectedTime, .newRest, .moreRest:
             return heightByDevice(section: self)
@@ -71,56 +93,22 @@ public enum Sections: Int, CaseIterable {
         case .searchAndSee:
             return 60
         case .bannerScroll:
-            return 0
+            return 200
         }
     }
 
-    func heightByDevice(section: Sections) -> CGFloat {
+    public func heightByDevice(section: TableViewSection) -> CGFloat {
         switch self {
         case .recommendFood, .newRest, .expectedTime, .nearestRest :
-            switch UIScreen.main.nativeBounds.height {
-            case 960://iPhones_4_4S
-                return 343
-            case 1136://iPhones_5_5s_5c_SE
-                return 343
-            case 1334://iPhones_6_6s_7_8
-                return 343
-            case 1792://iPhone_XR
-                return 380
-            case 1920, 2208://iPhones_6Plus_6sPlus_7Plus_8Plus
-                return 360
-            case 2436://iPhones_X_XS
-                return 343
-            case 2688://iPhone_XSMax
-                return 400
-            default://unknown
-                return 300
-            }
+            return 343
         case .moreRest:
-            switch UIScreen.main.nativeBounds.height {
-            case 960://iPhones_4_4S
-                return 343
-            case 1136://iPhones_5_5s_5c_SE
-                return 343
-            case 1334://iPhones_6_6s_7_8
-                return 280
-            case 1792://iPhone_XR
-                return 380
-            case 1920, 2208://iPhones_6Plus_6sPlus_7Plus_8Plus
-                return 360
-            case 2436://iPhones_X_XS
-                return 280
-            case 2688://iPhone_XSMax
-                return 400
-            default://unknown
-                return 300
-            }
+            return 267
         default:
             return 400
         }
     }
 
-    var getEdgeInset: UIEdgeInsets {
+    public var getEdgeInset: UIEdgeInsets {
         switch self {
         case .bannerScroll:
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -136,5 +124,27 @@ public enum Sections: Int, CaseIterable {
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
+}
 
+public extension UIDevice {
+    var pageControlX: CGFloat {
+        switch UIScreen.main.nativeBounds.height {
+        case 960://iPhones_4_4S
+            return 40
+        case 1136://iPhones_5_5s_5c_SE
+            return 40
+        case 1334://iPhones_6_6s_7_8
+            return 10
+        case 1792://iPhone_XR
+            return 5
+        case 1920, 2208://iPhones_6Plus_6sPlus_7Plus_8Plus
+            return 5
+        case 2436://iPhones_X_XS
+            return 0
+        case 2688://iPhone_XSMax
+            return 5
+        default://unknown
+            return 5
+        }
+    }
 }

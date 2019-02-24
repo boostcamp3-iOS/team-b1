@@ -83,6 +83,7 @@ class StoreCollectionViewController: UICollectionViewController {
         layout.minimumInteritemSpacing = ValuesForCollectionView.menuBarMinSpacing
 
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.decelerationRate = UIScrollView.DecelerationRate(rawValue: 0.9700)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .white
@@ -93,6 +94,7 @@ class StoreCollectionViewController: UICollectionViewController {
                                                    left: ValuesForCollectionView.menuBarLeftInset,
                                                    bottom: ValuesForCollectionView.menuBarZeroInset,
                                                    right: ValuesForCollectionView.menuBarRightInset)
+
         return collectionView
     }()
 
@@ -150,6 +152,11 @@ class StoreCollectionViewController: UICollectionViewController {
 
         collectionView.addSubview(storeTitleView)
         collectionView.addSubview(dataIndicator)
+        var scrollviewNormal = UIScrollView.DecelerationRate.normal.rawValue
+        var scrollviewFast = UIScrollView.DecelerationRate.fast.rawValue
+        collectionView.decelerationRate = UIScrollView.DecelerationRate(rawValue: 0.9700)
+
+        //UIScrollViewDecelerationRateNormal - (UIScrollViewDecelerationRateNormal - UIScrollViewDecelerationRateFast)/2.0
         view.addSubview(backButton)
         view.addSubview(likeButton)
         view.addSubview(menuBarCollectionView)
@@ -429,6 +436,7 @@ class StoreCollectionViewController: UICollectionViewController {
                 return cell
             }
         }
+
         return collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
     }
 
@@ -563,6 +571,7 @@ class StoreCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.cellForItem(at: indexPath) as? MenuCategoryCollectionViewCell else {
             return
         }
+
         cell.setColor(by: false)
     }
 
@@ -729,8 +738,7 @@ extension StoreCollectionViewController: UICollectionViewDelegateFlowLayout {
 
 extension StoreCollectionViewController: SearchBarDelegate {
     func showSeachBar() {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let searchVC = storyBoard.instantiateViewController(withIdentifier: "searchViewController")
+        let searchVC = UIStoryboard.main.instantiateViewController(withIdentifier: "searchViewController")
 
         addChild(searchVC)
         searchVC.view.frame = view.frame

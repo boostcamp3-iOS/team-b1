@@ -20,6 +20,8 @@ class RecommendCollectionViewCell: UICollectionViewCell {
     @IBOutlet var gradeLabel: UILabel!
     @IBOutlet var commentLabel: UILabel!
 
+    var confirmURL: URL?
+
     var storeInfo: StoreForView? {
         didSet {
             guard let storeInfo = storeInfo else {
@@ -42,6 +44,13 @@ class RecommendCollectionViewCell: UICollectionViewCell {
 
             label.text = recommendFood.foodName
             commentLabel.text = recommendFood.foodDescription
+            categoryLabel.text = recommendFood.categoryName
+
+            guard let cellURL = URL(string: recommendFood.foodImageURL) else {
+                return
+            }
+
+            confirmURL = cellURL
 
         }
     }
@@ -55,7 +64,7 @@ class RecommendCollectionViewCell: UICollectionViewCell {
             return 260
         } else {
             commentLabel.isHidden = false
-            return 280.46875
+            return 272
         }
     }
 

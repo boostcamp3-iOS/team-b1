@@ -71,13 +71,18 @@ public class MockServer {
             let storesData = try ResourceController.resourceWithData(path: request.path, root: type(of: self))
 
             var store: StoreForView?
+            var resStores: [StoreForView]?
 
             do {
-                let stores = try JSONDecoder().decode([StoreForView].self, from: storesData)
 
-                stores.forEach {
-                    if $0.id == request.component.query {
-                        store = $0
+                let stores = try JSONDecoder().decode([StoreForView].self, from: storesData)
+                resStores = stores
+
+                if request.component.query != nil {
+                    stores.forEach {
+                        if $0.id == request.component.query {
+                            store = $0
+                        }
                     }
                 }
 
@@ -85,11 +90,17 @@ public class MockServer {
                 fatalError("decoding Error")
             }
 
-            guard let result = try? JSONEncoder().encode(store) else {
-                fatalError("encoding Error")
+             if request.component.query != nil {
+                guard let result = try? JSONEncoder().encode(store) else {
+                    fatalError("encoding Error")
+                }
+                 return String(decoding: result, as: UTF8.self)
+             } else {
+                guard let result = try? JSONEncoder().encode(resStores) else {
+                    fatalError("encoding Error")
+                }
+                return String(decoding: result, as: UTF8.self)
             }
-
-            return String(decoding: result, as: UTF8.self)
         })
 
         try router.get("foods", writtenResponse: { (request) -> Response in
@@ -142,6 +153,7 @@ extension MockServer: Network {
         } catch let error {
             completionHandler(nil, nil, error)
         }
+
     }
 
 }
