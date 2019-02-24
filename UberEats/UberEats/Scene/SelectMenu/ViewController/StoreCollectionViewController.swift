@@ -124,27 +124,27 @@ class StoreCollectionViewController: UICollectionViewController {
             self?.storeTitleView.store = store
             self?.store = store
 
-            self?.collectionView.reloadData()
-        }
+            self?.foodsService.requestFoods(storeId: storeId, dispatchQueue: .global()) { [weak self] (response) in
+                guard response.isSuccess,
+                    let foods = response.value?.foods else {
+                        return
+                }
 
-        foodsService.requestFoods(storeId: storeId, dispatchQueue: .global()) { [weak self] (response) in
-            guard response.isSuccess,
-                let foods = response.value?.foods else {
-                return
+                self?.foods = foods
+                self?.seperateCategory()
+
+                self?.collectionView.reloadData()
+                self?.menuBarCollectionView.reloadData()
+
+                self?.setupFloatingView()
+                self?.setupCollectionView()
+                self?.pushFoodDetail()
+                self?.dataIndicator.stopAnimating()
+                self?.collectionView.isScrollEnabled = true
             }
 
-            self?.foods = foods
-            self?.seperateCategory()
-
-            self?.collectionView.reloadData()
-            self?.menuBarCollectionView.reloadData()
-
-            self?.setupFloatingView()
-            self?.setupCollectionView()
-            self?.pushFoodDetail()
-            self?.dataIndicator.stopAnimating()
-            self?.collectionView.isScrollEnabled = true
         }
+
     }
 
     private func setupLayout() {
@@ -798,6 +798,14 @@ extension StoreCollectionViewController: OrderButtonClickable {
                                                                   price: price)]
 
         navigationController?.pushViewController(cartViewController, animated: true)
+    }
+
+}
+
+extension StoreCollectionViewController: FoodSelectable {
+
+    func foodSelected(foodInfo: FoodInfoModel, amount: Int) {
+//        <#code#>
     }
 
 }
