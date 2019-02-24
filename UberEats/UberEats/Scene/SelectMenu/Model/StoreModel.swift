@@ -13,7 +13,6 @@ let basicNumberOfItems = 1
 let menuStartSection = 3
 
 enum CellId: String {
-    case temp = "tempId"
     case stretchyHeader = "stretchyHeaderId"
     case tempHeader = "tempHeaderId"
     case tempFooter = "tempFooterId"

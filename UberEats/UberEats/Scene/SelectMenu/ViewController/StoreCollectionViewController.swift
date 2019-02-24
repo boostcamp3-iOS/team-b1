@@ -218,7 +218,6 @@ class StoreCollectionViewController: UICollectionViewController {
 
         // cell
         collectionView.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: CellId.menuDetail.rawValue)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: CellId.temp.rawValue)
 
         let timeAndLocationNib = UINib(nibName: XibName.timeAndLocation.rawValue, bundle: nil)
         self.collectionView.register(timeAndLocationNib, forCellWithReuseIdentifier: CellId.timeAndLocation.rawValue)
@@ -343,7 +342,9 @@ class StoreCollectionViewController: UICollectionViewController {
         }
 
         switch section {
-        case 0, 1, 2:
+        case 0:
+            return 0
+        case 1, 2:
             return basicNumberOfItems
         default:
             let categoryId: String = "category" + String(section - DistanceBetween.menuAndRest + 1)
@@ -371,8 +372,6 @@ class StoreCollectionViewController: UICollectionViewController {
         }
 
         switch indexPath.section {
-        case 0:
-            identifier = CellId.temp.rawValue
         case 1:
             identifier = CellId.timeAndLocation.rawValue
         case 2:
