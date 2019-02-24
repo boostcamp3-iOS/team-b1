@@ -58,13 +58,11 @@ class StoreCollectionViewController: UICollectionViewController {
     private let sectionHeader = UICollectionView.elementKindSectionHeader
     private let sectionFooter = UICollectionView.elementKindSectionFooter
 
-    lazy var moveCartButton: OrderButton = {
-        let button = OrderButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.orderButtonText = "카트보기"
-        button.orderButtonClickable = self
-        button.isHidden = true
-        return button
+    lazy var moveCartView: MoveCartView = {
+        let view = MoveCartView()
+        view.moveCartButton.orderButtonClickable = self
+        view.isHidden = true
+        return view
     }()
 
     lazy var dataIndicator: UIActivityIndicatorView = {
@@ -102,7 +100,6 @@ class StoreCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupData()
         setupLayout()
         setupCollectionViewLayout()
@@ -158,7 +155,7 @@ class StoreCollectionViewController: UICollectionViewController {
         view.addSubview(backButton)
         view.addSubview(likeButton)
         view.addSubview(menuBarCollectionView)
-        view.addSubview(moveCartButton)
+        view.addSubview(moveCartView)
         menuBarCollectionView.addSubview(floatingView)
 
         storeTitleView.setupConstraint()
@@ -188,10 +185,10 @@ class StoreCollectionViewController: UICollectionViewController {
             likeButton.widthAnchor.constraint(equalToConstant: buttonSize),
             likeButton.heightAnchor.constraint(equalToConstant: buttonSize),
 
-            moveCartButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            moveCartButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            moveCartButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            moveCartButton.heightAnchor.constraint(equalToConstant: 50)
+            moveCartView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            moveCartView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            moveCartView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            moveCartView.heightAnchor.constraint(equalToConstant: 85)
             ])
     }
 
@@ -805,10 +802,10 @@ extension StoreCollectionViewController: FoodSelectable {
 
         orderFoods.append(orderInfo)
         totalPrice += orderInfo.amount * orderInfo.price
-        moveCartButton.setAmount(price: totalPrice)
+        moveCartView.moveCartButton.setAmount(price: totalPrice)
 
         if !orderFoods.isEmpty {
-            moveCartButton.isHidden = false
+            moveCartView.isHidden = false
         }
     }
 
