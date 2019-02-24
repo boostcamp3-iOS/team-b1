@@ -11,7 +11,7 @@ import DependencyContainer
 import ServiceInterface
 import Common
 
-class FoodItemDetailsViewController: UIViewController, QuantityValueChanged {
+class FoodItemDetailsViewController: UIViewController {
 
     @IBOutlet weak var toolbar: UIView!
 
@@ -34,6 +34,8 @@ class FoodItemDetailsViewController: UIViewController, QuantityValueChanged {
     @IBOutlet weak var foodImage: UIImageView!
 
     private let foodOptionService: FoodOptionService = DependencyContainer.share.getDependency(key: .foodOptionService)
+
+    weak var foodSelectable: FoodSelectable?
 
     var foodInfo: FoodInfoModel? {
         didSet {
@@ -95,6 +97,8 @@ class FoodItemDetailsViewController: UIViewController, QuantityValueChanged {
 
         tableView.rowHeight = UITableView.automaticDimension
         orderButton.layer.cornerRadius = FoodDetailDimensions.orderButtonCornerRadius
+        setAmountWithOrderButton(foodInfo: foodInfo)
+        orderButton.orderButtonClickable = self
         loadData()
     }
 
@@ -118,24 +122,41 @@ class FoodItemDetailsViewController: UIViewController, QuantityValueChanged {
         }
     }
 
-    func quantityValueChanged(newQuantity: Int) {
-        orderButton?.orderButtonText = "카트에 \(newQuantity) 추가"
-    }
-
     @IBAction func clickedBackButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-    }
-
-    @IBAction func clickedCartButton(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Cart", bundle: nil)
-        let cartViewController = storyboard.instantiateViewController(withIdentifier: "CartVC") as! CartViewController
-        self.navigationController?.pushViewController(cartViewController, animated: true)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return self.style
     }
 
+}
+
+extension FoodItemDetailsViewController: OrderButtonClickable, QuantityValueChanged {
+
+    func quantityValueChanged(newQuantity: Int) {
+        orderButton?.orderButtonText = "카트에 \(newQuantity) 추가"
+        setAmountWithOrderButton(foodInfo: foodInfo, quantity: newQuantity)
+
+    }
+
+    private func setAmountWithOrderButton(foodInfo: FoodInfoModel?, quantity: Int = 1) {
+        guard let foodInfo = foodInfo else {
+            return
+        }
+        orderButton?.setAmount(quantity: quantity, price: foodInfo.price)
+    }
+
+    func onClickedOrderButton(_ sender: Any) {
+        guard let foodInfo = foodInfo,
+            let amount = orderButton?.amount else {
+            return
+        }
+
+        foodSelectable?.foodSelected(foodInfo: foodInfo, amount: amount)
+
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension FoodItemDetailsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -212,4 +233,8 @@ extension FoodItemDetailsViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+}
+
+protocol FoodSelectable: class {
+    func foodSelected(foodInfo: FoodInfoModel, amount: Int)
 }
