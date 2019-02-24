@@ -16,6 +16,7 @@ class CartViewController: UIViewController {
     fileprivate var cartItems = [[CartItemModelType]](repeating: [],
                                                       count: CartSection.allCases.count)
 
+    var storeImageURL: String?
     var cartModel: CartModel = CartModel.empty() {
         didSet {
             setUpCartModel()
@@ -112,6 +113,7 @@ extension CartViewController: OrderButtonClickable {
 
         deliveryStartVC.storeLocationInfo = cartModel.storeInfo.location
         deliveryStartVC.orders = orderInfoModels
+        deliveryStartVC.storeImageURL = storeImageURL
 
         self.navigationController?.pushViewController(deliveryStartVC, animated: true)
     }

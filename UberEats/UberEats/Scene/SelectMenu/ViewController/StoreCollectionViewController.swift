@@ -302,7 +302,7 @@ class StoreCollectionViewController: UICollectionViewController {
             }
 
             foodOptionViewController.foodSelectable = self
-            
+
             foodOptionViewController.foodInfo = FoodInfoModel(name: food.foodName,
                                                               supportingExplanation: food.foodDescription,
                                                               price: food.basePrice,
@@ -791,6 +791,8 @@ extension StoreCollectionViewController: OrderButtonClickable {
         cartViewController.cartModel = CartModel.init(storeInfo: storeInfo, deilveryInfo: deliveryInfoModel, foodOrderedInfo: nil)
 
         cartViewController.orderInfoModels = orderFoods
+
+        cartViewController.storeImageURL = store.lowImageURL
 
         navigationController?.pushViewController(cartViewController, animated: true)
     }

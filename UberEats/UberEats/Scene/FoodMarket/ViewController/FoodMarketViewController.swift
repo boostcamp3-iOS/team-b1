@@ -135,7 +135,7 @@ class ItemViewController: UIViewController {
 
     private var moreRests: [StoreForView] = []
 
-    private var completeState: (state: Bool, storeName: String, storeImageURL: String)?
+    var completeState: (state: Bool, storeName: String, storeImageURL: String)?
 
     override func viewDidLoad() {
         super.viewDidLoad()

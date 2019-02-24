@@ -30,6 +30,7 @@ class LocationViewController: UIViewController {
     var storeName: String?
     var storeLocationInfo: Location?
     var storeLocation = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    var storeImageURL: String?
 
     private let sectionHeader = UICollectionView.elementKindSectionHeader
     private let sectionFooter = UICollectionView.elementKindSectionFooter
@@ -539,6 +540,18 @@ extension LocationViewController: ChangeScrollDelegate {
 extension LocationViewController: DeliveryCompleteDelegate {
     func moveToFoodMarket() {
         // 여기서 배달완료 상태값 바꿔주면 될 것 같습니다.
+        let foodMarketStoryboard = UIStoryboard(name: "ItemView", bundle: nil)
+        guard let foodMarketViewController = foodMarketStoryboard.instantiateViewController(withIdentifier: "itemView")
+            as? ItemViewController else {
+                return
+        }
+
+        guard let storeName = storeName,
+            let storeImageURL = storeImageURL else {
+                return
+        }
+
+        foodMarketViewController.completeState = (state: false, storeName: storeName, storeImageURL: storeImageURL)
         navigationController?.popToRootViewController(animated: true)
     }
 }
