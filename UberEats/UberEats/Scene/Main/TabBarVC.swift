@@ -13,28 +13,24 @@ class TabBarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let foodMarketStroyBoard = UIStoryboard(name: "ItemView", bundle: nil)
-
-        let foodMarketViewController = foodMarketStroyBoard.instantiateViewController(withIdentifier: "NavigationVC")
+        let foodMarketViewController = UIStoryboard.ItemView.instantiateViewController(withIdentifier: "NavigationVC")
         foodMarketViewController.tabBarItem = UITabBarItem(title: nil,
                                                            image: UIImage(named: "btnTabbarHome"),
                                                            selectedImage: UIImage(named: "btnTabbarHome"))
 
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-
-        let searchViewController = mainStoryBoard.instantiateViewController(withIdentifier: "searchView")
+        let searchViewController = UIStoryboard.main.instantiateViewController(withIdentifier: "searchView")
 
         searchViewController.tabBarItem = UITabBarItem(title: nil,
                                                        image: UIImage(named: "btnTabbarSearchActive"),
                                                        selectedImage: UIImage(named: "btnTabbarSearchActive"))
 
-        let orderHistoryViewController = mainStoryBoard.instantiateViewController(withIdentifier: "orderHistory")
+        let orderHistoryViewController = UIStoryboard.main.instantiateViewController(withIdentifier: "orderHistory")
 
         orderHistoryViewController.tabBarItem = UITabBarItem(title: nil,
                                                              image: UIImage(named: "btnTabbarOrder"),
                                                              selectedImage: UIImage(named: "btnTabbarOrder"))
 
-        let myPageViewController = mainStoryBoard.instantiateViewController(withIdentifier: "myPage")
+        let myPageViewController = UIStoryboard.main.instantiateViewController(withIdentifier: "myPage")
 
         myPageViewController.tabBarItem = UITabBarItem(title: nil,
                                                        image: UIImage(named: "btnTabbarMypageActive"),
@@ -50,6 +46,21 @@ class TabBarVC: UITabBarController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+    }
+
+}
+
+extension UIStoryboard {
+    static var main: UIStoryboard {
+        return UIStoryboard(name: "Main", bundle: Bundle.main)
+    }
+
+    static var ItemView: UIStoryboard {
+        return UIStoryboard(name: "ItemView", bundle: Bundle.main)
+    }
+
+    static var chatView: UIStoryboard {
+        return UIStoryboard(name: "Chatting", bundle: Bundle.main)
     }
 
 }

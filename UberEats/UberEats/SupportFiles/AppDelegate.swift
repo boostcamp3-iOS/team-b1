@@ -25,7 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyAphHHY5LL8tq4QOepg2cCFASelCbSLa0E")
         
         window = UIWindow(frame: UIScreen.main.bounds)
-
+        
+        //let ChatVC = UIStoryboard.chatView.instantiateViewController(withIdentifier: "ChattingViewController")
         window?.rootViewController = TabBarVC()
 
         window?.makeKeyAndVisible()

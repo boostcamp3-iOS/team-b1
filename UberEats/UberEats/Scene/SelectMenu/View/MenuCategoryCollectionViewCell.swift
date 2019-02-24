@@ -28,7 +28,7 @@ class MenuCategoryCollectionViewCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        sectionNameLabel.textColor = .black
-        sectionName = nil
+        //sectionNameLabel.textColor = .black
+        //sectionName = nil
     }
 }

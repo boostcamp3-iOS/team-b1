@@ -18,6 +18,8 @@ class SeeMoreRestTableViewCell: UITableViewCell {
     @IBOutlet weak var promotion: UILabel!
     @IBOutlet weak var deliveryTime: UILabel!
 
+    var confirmURL: URL?
+
     var moreRests: StoreForView? {
         didSet {
 
@@ -25,9 +27,15 @@ class SeeMoreRestTableViewCell: UITableViewCell {
                 return
             }
 
+            guard let cellURL = URL(string: moreRest.mainImage) else {
+                return
+            }
             name.text = moreRest.name
             category.text = moreRest.category
             deliveryTime.text = moreRest.deliveryTime
+            promotion.text = moreRest.promotion
+
+            confirmURL = cellURL
         }
     }
 
@@ -36,7 +44,6 @@ class SeeMoreRestTableViewCell: UITableViewCell {
             guard let moreFood = moreFoods else {
                 return
             }
-
             name.text = moreFood.foodName
             category.text = moreFood.categoryName
             deliveryTime.text = moreFood.foodDescription

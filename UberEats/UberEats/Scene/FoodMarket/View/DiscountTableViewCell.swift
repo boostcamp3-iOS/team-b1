@@ -1,4 +1,5 @@
 import UIKit
+import Common
 
 class DiscountTableViewCell: UITableViewCell {
 

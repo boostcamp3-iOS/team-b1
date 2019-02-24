@@ -775,6 +775,7 @@ extension FoodMarketViewController: UICollectionViewDelegateFlowLayout {
         }
         return tableViewSection.getEdgeInset
     }
+
 }
 
 extension UICollectionViewCell {

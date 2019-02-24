@@ -19,42 +19,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vaz-jk-P3p">
-                                <rect key="frame" x="0.0" y="43.999999999999993" width="375" height="97.333333333333314"/>
+                                <rect key="frame" x="0.0" y="44.000000000000007" width="375" height="109.66666666666669"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ie-1I-pYZ">
-                                        <rect key="frame" x="165" y="34" width="46" height="37"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="loginAction:" destination="Cxa-Fy-Bvm" eventType="touchUpInside" id="jbu-yD-RN9"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xey-QB-92S">
-                                        <rect key="frame" x="279.66666666666669" y="33.666666666666671" width="30" height="30"/>
-                                        <state key="normal" title="전송"/>
-                                        <connections>
-                                            <action selector="sendMessages:" destination="Cxa-Fy-Bvm" eventType="touchUpInside" id="Dzu-kC-GSJ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNm-xU-eEo">
-                                        <rect key="frame" x="36" y="33.666666666666671" width="30" height="30"/>
-                                        <state key="normal" title="전화"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNm-xU-eEo">
+                                        <rect key="frame" x="24" y="19" width="26" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="전화" image="icBackB"/>
                                         <connections>
                                             <action selector="callAction:" destination="Cxa-Fy-Bvm" eventType="touchUpInside" id="p7Q-sC-DMN"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="중현" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iiy-A6-2Fq">
+                                        <rect key="frame" x="20" y="58" width="56" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ho-5J-6pm">
+                                        <rect key="frame" x="329" y="18" width="31" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btnCall"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="우버 Motorbike " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paD-lW-Azq">
+                                        <rect key="frame" x="238" y="66" width="122" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="7Ie-1I-pYZ" firstAttribute="centerX" secondItem="Vaz-jk-P3p" secondAttribute="centerX" id="5aH-9G-06K"/>
-                                    <constraint firstItem="xey-QB-92S" firstAttribute="centerY" secondItem="7Ie-1I-pYZ" secondAttribute="centerY" id="JH2-qE-VI3"/>
-                                    <constraint firstItem="xey-QB-92S" firstAttribute="leading" secondItem="7Ie-1I-pYZ" secondAttribute="trailing" constant="69" id="MzE-qZ-4DT"/>
-                                    <constraint firstItem="7Ie-1I-pYZ" firstAttribute="centerY" secondItem="Vaz-jk-P3p" secondAttribute="centerY" id="U44-TK-in6"/>
-                                    <constraint firstItem="ZNm-xU-eEo" firstAttribute="centerY" secondItem="Vaz-jk-P3p" secondAttribute="centerY" id="cmE-hI-HkX"/>
-                                    <constraint firstItem="ZNm-xU-eEo" firstAttribute="leading" secondItem="Vaz-jk-P3p" secondAttribute="leading" constant="36" id="wx7-aj-v8C"/>
-                                </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rba-p3-DqZ">
-                                <rect key="frame" x="0.0" y="141.33333333333331" width="375" height="670.66666666666674"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rba-p3-DqZ" userLabel="collection">
+                                <rect key="frame" x="0.0" y="153.66666666666669" width="375" height="658.33333333333326"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JAs-GV-jyn">
                                     <size key="itemSize" width="50" height="50"/>
@@ -77,34 +75,55 @@
                                     <outlet property="delegate" destination="Cxa-Fy-Bvm" id="nvk-QN-WNj"/>
                                 </connections>
                             </collectionView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="메시지를 입력하세요..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GZh-bz-n5Z">
-                                <rect key="frame" x="16" y="701.33333333333337" width="343" height="43.666666666666629"/>
-                                <nil key="textColor"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="D1g-KD-yt4" userLabel="message">
+                                <rect key="frame" x="12" y="705" width="347" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fQZ-ZS-e46"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xey-QB-92S">
+                                <rect key="frame" x="319" y="705" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="dlV-Jg-nSD"/>
+                                </constraints>
+                                <state key="normal" title="전송"/>
+                                <connections>
+                                    <action selector="sendMessages:" destination="Cxa-Fy-Bvm" eventType="touchUpInside" id="Dzu-kC-GSJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Vaz-jk-P3p" firstAttribute="height" secondItem="PRp-Rc-GFN" secondAttribute="height" multiplier="0.12" id="1Hw-Zt-XP6"/>
-                            <constraint firstItem="GZh-bz-n5Z" firstAttribute="height" secondItem="rba-p3-DqZ" secondAttribute="height" multiplier="53:812" id="2TW-AR-xph"/>
+                            <constraint firstItem="Vaz-jk-P3p" firstAttribute="height" secondItem="PRp-Rc-GFN" secondAttribute="height" multiplier="0.135" id="1Hw-Zt-XP6"/>
+                            <constraint firstItem="xey-QB-92S" firstAttribute="bottom" secondItem="D1g-KD-yt4" secondAttribute="bottom" id="FSa-X8-qyN"/>
                             <constraint firstAttribute="bottom" secondItem="rba-p3-DqZ" secondAttribute="bottom" id="H6e-TX-Uzl"/>
-                            <constraint firstItem="k7V-oB-ydL" firstAttribute="trailing" secondItem="GZh-bz-n5Z" secondAttribute="trailing" constant="16" id="HPV-9u-mz2"/>
                             <constraint firstItem="rba-p3-DqZ" firstAttribute="leading" secondItem="k7V-oB-ydL" secondAttribute="leading" id="Jyz-30-N9A"/>
                             <constraint firstItem="Vaz-jk-P3p" firstAttribute="leading" secondItem="k7V-oB-ydL" secondAttribute="leading" id="Mxb-0B-pfx"/>
-                            <constraint firstItem="GZh-bz-n5Z" firstAttribute="bottom" secondItem="k7V-oB-ydL" secondAttribute="bottom" constant="-33" id="Ywg-Vw-l8Q"/>
+                            <constraint firstItem="xey-QB-92S" firstAttribute="centerY" secondItem="D1g-KD-yt4" secondAttribute="centerY" id="O0r-vt-J6g"/>
+                            <constraint firstItem="xey-QB-92S" firstAttribute="height" secondItem="D1g-KD-yt4" secondAttribute="height" id="RyM-Da-2nL"/>
+                            <constraint firstItem="D1g-KD-yt4" firstAttribute="trailing" secondItem="xey-QB-92S" secondAttribute="trailing" id="T5F-dG-vPe"/>
+                            <constraint firstItem="D1g-KD-yt4" firstAttribute="bottom" secondItem="k7V-oB-ydL" secondAttribute="bottom" constant="-33" id="a0u-fi-J74"/>
                             <constraint firstItem="rba-p3-DqZ" firstAttribute="top" secondItem="Vaz-jk-P3p" secondAttribute="bottom" id="aT9-TB-9nL"/>
-                            <constraint firstItem="rba-p3-DqZ" firstAttribute="trailing" secondItem="k7V-oB-ydL" secondAttribute="trailing" id="eo8-js-mfD"/>
+                            <constraint firstItem="k7V-oB-ydL" firstAttribute="trailing" secondItem="D1g-KD-yt4" secondAttribute="trailing" constant="16" id="cwr-Cw-Q2Y"/>
                             <constraint firstItem="Vaz-jk-P3p" firstAttribute="trailing" secondItem="k7V-oB-ydL" secondAttribute="trailing" id="mwn-pO-Laz"/>
                             <constraint firstItem="Vaz-jk-P3p" firstAttribute="top" secondItem="k7V-oB-ydL" secondAttribute="top" id="pnt-W3-14N"/>
-                            <constraint firstItem="GZh-bz-n5Z" firstAttribute="leading" secondItem="k7V-oB-ydL" secondAttribute="leading" constant="16" id="rc2-j5-3S0"/>
+                            <constraint firstItem="D1g-KD-yt4" firstAttribute="leading" secondItem="k7V-oB-ydL" secondAttribute="leading" constant="12" id="tjJ-8E-iXi"/>
+                            <constraint firstAttribute="trailing" secondItem="rba-p3-DqZ" secondAttribute="trailing" id="wrE-5o-Rur"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="k7V-oB-ydL"/>
                     </view>
                     <connections>
+                        <outlet property="chatMessageBottomConstraint" destination="a0u-fi-J74" id="19q-l1-wfo"/>
+                        <outlet property="chatMessageHeightConstraint" destination="fQZ-ZS-e46" id="TSf-VU-6Tb"/>
+                        <outlet property="chatMessageLeadingConstraint" destination="tjJ-8E-iXi" id="lFF-qo-RB3"/>
+                        <outlet property="chatMessageTrailingConstraint" destination="cwr-Cw-Q2Y" id="u8B-kh-PR9"/>
                         <outlet property="chattingCollecionView" destination="rba-p3-DqZ" id="Kqc-ei-2PC"/>
                         <outlet property="deliveryInfoVIew" destination="Vaz-jk-P3p" id="Bwl-UI-hch"/>
-                        <outlet property="messageTextField" destination="GZh-bz-n5Z" id="bba-wy-ha0"/>
+                        <outlet property="messageTextField" destination="D1g-KD-yt4" id="S8d-dy-AWs"/>
+                        <outlet property="sendButton" destination="xey-QB-92S" id="2Ge-RM-YtZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y0Y-oC-9kB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -112,4 +131,8 @@
             <point key="canvasLocation" x="148" y="151.47783251231527"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btnCall" width="21" height="21"/>
+        <image name="icBackB" width="20" height="17"/>
+    </resources>
 </document>

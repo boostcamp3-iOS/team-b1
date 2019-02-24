@@ -30,3 +30,11 @@ public struct FoodMarketForNetwork {
         self.moreRests = moreRests
     }
 }
+
+public struct moreRestForNetwork {
+    public let resultRest: [StoreForView]
+
+    public init(resultRest: [StoreForView]) {
+        self.resultRest = resultRest
+    }
+}

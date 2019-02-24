@@ -7,7 +7,7 @@ class ItemCollectionViewFlowLayout: UICollectionViewFlowLayout {
         if let attributes = super.layoutAttributesForElements(in: rect) {
             for (_, attribute) in attributes.enumerated() {
                 if attribute.indexPath.section == 0 {
-                    attribute.frame.origin.y = 2
+                    attribute.frame.origin.y = 4
                 } else {
                     attribute.frame.origin.y = 80
                 }

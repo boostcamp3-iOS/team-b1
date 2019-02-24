@@ -28,7 +28,7 @@ class StoreServiceImp: StoreService {
             let data = data else {
                 return
             }
-                
+            
             do {
                 let store: StoreForView = try JSONDecoder().decode(StoreForView.self, from: data)
                 

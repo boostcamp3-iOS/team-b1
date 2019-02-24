@@ -457,8 +457,7 @@ extension LocationViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath == IndexPath(row: 0, section: 0) {
-            let storyBoard = UIStoryboard.init(name: "Chatting", bundle: nil)
-            let chattingVC = storyBoard.instantiateViewController(withIdentifier: "ChattingViewController")
+            let chattingVC = UIStoryboard.chatView.instantiateViewController(withIdentifier: "ChattingViewController")
 
             present(chattingVC, animated: true, completion: nil)
         } else if indexPath == IndexPath(row: 0, section: 1) {

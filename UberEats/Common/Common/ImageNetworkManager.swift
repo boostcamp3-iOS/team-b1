@@ -28,7 +28,6 @@ public class ImageNetworkManager {
             if error != nil {
                 return
             }
-
             guard let data = data else {
                 return
             }

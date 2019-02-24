@@ -17,6 +17,8 @@ class NearestCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var deliveryTime: UILabel!
     @IBOutlet weak var promotion: UILabel!
 
+    var confirmURL: URL?
+
     var nearestRest: StoreForView? {
         didSet {
             guard let restaurant = nearestRest else {
@@ -27,6 +29,12 @@ class NearestCollectionViewCell: UICollectionViewCell {
             category.text = restaurant.category
             deliveryTime.text = restaurant.deliveryTime
             promotion.text = restaurant.promotion
+
+            guard let cellURL = URL(string: restaurant.mainImage) else {
+                return
+            }
+
+            confirmURL = cellURL
         }
     }
 
@@ -39,7 +47,7 @@ class NearestCollectionViewCell: UICollectionViewCell {
             return 260
         } else {
             promotion.isHidden = false
-            return 280.46875
+            return 272
         }
     }
 
@@ -55,6 +63,7 @@ class NearestCollectionViewCell: UICollectionViewCell {
         mainImage.layer.cornerRadius = 3
         mainImage.layer.masksToBounds = true
 
+        mainImage.image = nil
     }
 
     override func prepareForReuse() {

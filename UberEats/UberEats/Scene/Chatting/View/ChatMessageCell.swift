@@ -27,6 +27,11 @@ class ChatMesageCell: UICollectionViewCell {
     var bubbleViewLeadingAnchor: NSLayoutConstraint?
     var bubbleViewHeightAnchor: NSLayoutConstraint?
 
+    var messageViewLeadingAnchor: NSLayoutConstraint?
+    var messageViewTrailingAnchor: NSLayoutConstraint?
+    var messageViewTopAnchor: NSLayoutConstraint?
+    var messageViewBottomAnchor: NSLayoutConstraint?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -34,29 +39,31 @@ class ChatMesageCell: UICollectionViewCell {
         addSubview(messageLabel)
 
         bubbleViewWidhAnchor = chatBubbleView.widthAnchor.constraint(equalToConstant: 300)
+
         bubbleViewLeadingAnchor = chatBubbleView.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                                           constant: 3)
         bubbleViewTrailingAnchor = chatBubbleView.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                                             constant: -10)
         bubbleViewHeightAnchor = chatBubbleView.heightAnchor.constraint(equalToConstant: 1000)
 
-        bubbleViewWidhAnchor?.isActive = true
-        bubbleViewLeadingAnchor?.isActive = true
-        bubbleViewTrailingAnchor?.isActive = true
-        bubbleViewHeightAnchor?.isActive = true
+        messageViewLeadingAnchor = messageLabel.leadingAnchor.constraint(equalTo: chatBubbleView.leadingAnchor,
+                                                                         constant: 10)
+        messageViewTrailingAnchor = messageLabel.trailingAnchor.constraint(equalTo: chatBubbleView.trailingAnchor,
+                                                                           constant: -8)
+        messageViewTopAnchor = messageLabel.topAnchor.constraint(equalTo: chatBubbleView.topAnchor)
+        messageViewBottomAnchor = messageLabel.bottomAnchor.constraint(equalTo: chatBubbleView.bottomAnchor)
 
         NSLayoutConstraint.activate([
-            chatBubbleView.topAnchor.constraint(equalTo: topAnchor),
-            chatBubbleView.heightAnchor.constraint(equalTo: heightAnchor),
+            bubbleViewWidhAnchor ?? .init(),
+            bubbleViewTrailingAnchor ?? .init(),
+            bubbleViewLeadingAnchor ?? .init(),
+            bubbleViewHeightAnchor ?? .init(),
 
-            messageLabel.leadingAnchor.constraint(equalTo: chatBubbleView.leadingAnchor,
-                                                  constant: 10),
-            messageLabel.trailingAnchor.constraint(equalTo: chatBubbleView.trailingAnchor,
-                                                   constant: -8),
-            messageLabel.topAnchor.constraint(equalTo: chatBubbleView.topAnchor),
-            messageLabel.bottomAnchor.constraint(equalTo: chatBubbleView.bottomAnchor)
-            ])
-
+            messageViewLeadingAnchor ?? .init(),
+            messageViewTrailingAnchor ?? .init(),
+            messageViewTopAnchor ?? .init(),
+            messageViewBottomAnchor ?? .init()
+        ])
     }
 
     required init?(coder aDecoder: NSCoder) {

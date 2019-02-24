@@ -10,26 +10,53 @@ import Firebase
 
 // swiftlint:disable all
 // 채팅방에서 delivertUID를 알고 있고 서로 1대일 채팅 한다는 가정을 하자.
-class ChattingViewController: UIViewController, UITextFieldDelegate {
-    
+class ChattingViewController: UIViewController {
     @IBOutlet private weak var deliveryInfoVIew: UIView!
     @IBOutlet private weak var chattingCollecionView: UICollectionView!
-    @IBOutlet private weak var messageTextField: UITextField!
+    
+    @IBOutlet weak var messageTextField: UITextView!
+    
+    @IBOutlet weak var chatMessageLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var chatMessageBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var chatMessageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var chatMessageTrailingConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var sendButton: UIButton!
     
     private let chatMessageCellId = "chatMessageCellId"
     
     private var messages: [Message] = []
     
+    private lazy var defaultTextFieldOriginY: CGFloat = {
+       return self.messageTextField.frame.origin.y
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupChattingCollectionView()
-        setupTextFieldNoti()
         observeMessages()
         
-        messageTextField.delegate = self
+        setupChattingCollectionView()
         
-        messageTextField.dropShadow(color: .gray, offSet: CGSize.zero)
+        addNotificationObserver()
+        
+        sendButton.isHidden = true
+        
+        messageTextField.delegate = self
+        messageTextField.dropShadow(color: .gray, opacity: 0.2, offSet: CGSize(width: 1, height: -1), radius: 5.0, scale: true)
+        messageTextField.returnKeyType = .send
+        
+        chatMessageHeightConstraint.priority = UILayoutPriority(750)
+        chatMessageLeadingConstraint.priority = UILayoutPriority(750)
+        chatMessageTrailingConstraint.priority = UILayoutPriority(750)
+        chatMessageBottomConstraint.priority = UILayoutPriority(750)
+    }
+    
+    public func textViewDidChange(_ textView: UITextView) {
+        if textView.text.last == "\n" { //Check if last char is newline
+            textView.text.removeLast()
+            sendMessaage()
+        }
     }
     
     private func observeMessages() {
@@ -47,16 +74,13 @@ class ChattingViewController: UIViewController, UITextFieldDelegate {
                         return
                     }
                     //guard let timestamp = dictionary["timestamp"] as? String else {return}
-                    
                     let messageInstance = Message(text: text, userEmail: userEmail)
                     self?.messages.append(messageInstance)
                     self?.chattingCollecionView.reloadData()
                     
                     self?.scrollToBottom()
-                    self?.chattingCollecionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
                 }
             })
-            
         }
     }
     
@@ -69,95 +93,45 @@ class ChattingViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private func setupTextFieldNoti() {
+    private func addNotificationObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)),
                                                name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)),
+//                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
-    
-    @objc private func keyboardWillShow(_ notification: NSNotification) {
-        adjustingHeight(show: true, notification: notification)
-    }
-    
-    @objc private func keyboardWillHide(_ notification: NSNotification) {
-        adjustingHeight(show: false, notification: notification)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func adjustingHeight(show:Bool, notification:NSNotification) {
-        
-        guard let notificationUserInfo = notification.userInfo else {
-            return
-        }
-        
-        var userInfo = notificationUserInfo
-        
-        guard let userInfokeyboardFrame = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else {
-            return
-        }
-        
-        let keyboardFrame: CGRect = userInfokeyboardFrame.cgRectValue
-        
-        guard let animationDurarion = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {
-            return
-        }
-        
-        var changeInHeight = (keyboardFrame.height) * (show ? -1 : 1)
-        
-        if changeInHeight > 0 {
-           changeInHeight -= 5
-        }
-        
-        UIView.animate(withDuration: animationDurarion, animations: { () -> Void in
-            //self.bottomConstraint.constant += changeInHeight
-            self.view.frame.origin.y += changeInHeight
-            //self.chattingCollecionView.frame.origin.y += changeInHeight
-        })
-    }
-    
+
     private func setupChattingCollectionView() {
         chattingCollecionView.delegate = self
         chattingCollecionView.dataSource = self
+        
+        chattingCollecionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(keyboardHide)))
+        
         chattingCollecionView.register(ChatMesageCell.self, forCellWithReuseIdentifier: chatMessageCellId)
         
-        chattingCollecionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
-        chattingCollecionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+        chattingCollecionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         
         chattingCollecionView.alwaysBounceVertical = true
-        let indexPathOfMessage = IndexPath(item: messages.count - 1, section: 0)
-        
-        chattingCollecionView.scrollToItem(at: indexPathOfMessage, at: .bottom, animated: true)
         chattingCollecionView.reloadData()
         
         let cellSize = CGSize(width: 300, height: 300)
         let layout = UICollectionViewFlowLayout()
-        
         layout.itemSize = cellSize
-        //chattingCollecionView.setCollectionViewLayout(layout, animated: true)
-        //self.scrollToBottom()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        //self.scrollToBottom()
+        
+        chattingCollecionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 110, right: 10)
     }
     
     func scrollToBottom() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {
-                return
+        DispatchQueue.main.async {
+            if self.messages.count > 0 {
+                let lastIndex = IndexPath(item: self.messages.count-1, section: 0)
+                self.chattingCollecionView.scrollToItem(at: lastIndex, at: .bottom, animated: false)
             }
-            
-            let lastIndex = IndexPath(item: self.messages.count - 1, section: 0)
-            self.chattingCollecionView.scrollToItem(at: lastIndex, at: .bottom, animated: false)
         }
     }
     
-    @IBAction private func sendMessages(_ sender: Any) {
+    private func sendMessaage() {
         let messageRef = FirebaseDataService.instance.messageRef.childByAutoId()
         
         //let userUID = "9HOhFlNg8jhYLP8sW2cz9ecjABE2"
@@ -169,7 +143,9 @@ class ChattingViewController: UIViewController, UITextFieldDelegate {
             "timestamp": NSNumber(value: Date().timeIntervalSince1970)
         ]
         
-        messageRef.updateChildValues(data) { (error, ref) in 
+        self.messageTextField.text = ""
+        
+        messageRef.updateChildValues(data) { (error, ref) in
             guard error == nil else {
                 return
             }
@@ -182,11 +158,75 @@ class ChattingViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction private func loginAction(_ sender: Any) {
+    @IBAction private func sendMessages(_ sender: Any) {
+        sendMessaage()
+    }
+    
+}
+
+//MARK: - UITextViewDelegate
+extension ChattingViewController: UITextViewDelegate {
+    
+    @objc private func keyboardWillShow(_ notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            UIView.animate(withDuration: 0.9, delay: 0.0, options: .curveEaseIn, animations: {
+                
+                
+                self.chattingCollecionView.setContentOffset(CGPoint(x: 0, y: self.chattingCollecionView.contentSize.height - (self.view.frame.height * 0.135 + 90) ), animated: true)
+                
+                self.chattingCollecionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 15, right: 10)
+                
+                self.chatMessageTrailingConstraint.constant = 0
+                self.chatMessageLeadingConstraint.constant = 0
+                
+                self.chatMessageBottomConstraint.constant -= (keyboardSize.height - 33)
+                
+                self.view.layoutIfNeeded()
+                
+            }, completion: nil)
+        }
+    }
+    
+    @objc private func keyboardHide() {
         
+        self.messageTextField.endEditing(true)
+        
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            self.chattingCollecionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 89, right: 0)
+            
+            //self.chatMessageTrailingConstraint.constant = 16
+            self.chatMessageLeadingConstraint.constant = 16
+            
+            self.chatMessageBottomConstraint.constant = -33
+            
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        sendButton.isHidden = false
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        sendButton.isHidden = true
+    }
+    
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (textView.text?.count ?? 0) % 20 == 0 && (textView.text?.count ?? 0) != 0{
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                self.chatMessageHeightConstraint.constant += 30
+                self.view.layoutIfNeeded()
+            })
+        }
+        
+        return true
     }
 }
 
+//MARK: - CollectionviewDelegate
 extension ChattingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -212,6 +252,7 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
         
         if let text = messages[indexPath.item].text {
             cell.bubbleViewWidhAnchor?.constant = text.estimateCGRect.width + 32
+            cell.bubbleViewHeightAnchor?.constant = text.estimateCGRect.height + 15
         }
         
         cell.fromEmail(userEmail: fromEmail)
@@ -234,34 +275,11 @@ extension ChattingViewController: UICollectionViewDelegate, UICollectionViewData
             height = text.estimateCGRect.height
         }
         
+        
         return CGSize(width: view.frame.width, height: height + 15)
     }
 }
 
-extension UITextField {
-    //뷰 라운드 처리 설정
-    func makeRounded(cornerRadius : CGFloat?) {
-        if let cornerRad = cornerRadius {
-            self.layer.cornerRadius = cornerRad
-        } else {
-            self.layer.cornerRadius = self.layer.frame.height / 2
-        }
-        self.layer.masksToBounds = true
-    }
-    
-    //뷰 그림자 설정
-    //color: 색상, opacity: 그림자 투명도, offset: 그림자 위치, radius: 그림자 크기
-    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
-        layer.cornerRadius = 10.0
-        layer.shadowColor = color.cgColor
-        layer.shadowOffset = offSet
-        layer.shadowOpacity = opacity
-        layer.shadowRadius = radius
-        layer.shadowPath = nil
-        layer.shouldRasterize = true
-    }
-    
-}
 
 extension UITextField {
     
@@ -284,5 +302,19 @@ extension UITextField {
             UIColor.lightGray.cgColor
         
         self.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
+    }
+}
+
+extension UITextView {
+    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = offSet
+        layer.shadowRadius = radius
+        
+        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 2
     }
 }

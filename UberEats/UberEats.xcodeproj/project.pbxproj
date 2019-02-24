@@ -10,6 +10,7 @@
 		842CC7B921FEBC100045D084 /* StoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CC7B821FEBC100045D084 /* StoreCollectionViewController.swift */; };
 		84333AC32202CDA3007372DE /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84333AC22202CDA3007372DE /* ChattingViewController.swift */; };
 		84333AC52202CDB5007372DE /* Chatting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84333AC42202CDB5007372DE /* Chatting.storyboard */; };
+		8434817D2221775F00C56E04 /* DeliveryCompleteStaticTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434817C2221775F00C56E04 /* DeliveryCompleteStaticTableCell.swift */; };
 		843B05122203D9240082FEFF /* FirebaseSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B05112203D9240082FEFF /* FirebaseSingleton.swift */; };
 		843B05182203E6F40082FEFF /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B05172203E6F40082FEFF /* ChatModel.swift */; };
 		843B051A220405540082FEFF /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B0519220405540082FEFF /* ChatMessageCell.swift */; };
@@ -187,6 +188,7 @@
 		842CC7B821FEBC100045D084 /* StoreCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewController.swift; sourceTree = "<group>"; };
 		84333AC22202CDA3007372DE /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
 		84333AC42202CDB5007372DE /* Chatting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chatting.storyboard; sourceTree = "<group>"; };
+		8434817C2221775F00C56E04 /* DeliveryCompleteStaticTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryCompleteStaticTableCell.swift; sourceTree = "<group>"; };
 		843B05112203D9240082FEFF /* FirebaseSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSingleton.swift; sourceTree = "<group>"; };
 		843B05172203E6F40082FEFF /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		843B0519220405540082FEFF /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
@@ -601,6 +603,7 @@
 				8445E2CF221D0B9900965746 /* SearchAndSeeTableViewCell.swift */,
 				8445E2D1221D114C00965746 /* MoreRestTitleTableViewCell.swift */,
 				8445E2D3221D166300965746 /* RestaurtSeeMoreCollectionViewCell.swift */,
+				8434817C2221775F00C56E04 /* DeliveryCompleteStaticTableCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1130,6 +1133,7 @@
 				84333AC32202CDA3007372DE /* ChattingViewController.swift in Sources */,
 				D1F96F0221FE8D9400D79396 /* ItemSizeDelegate.swift in Sources */,
 				D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */,
+				8434817D2221775F00C56E04 /* DeliveryCompleteStaticTableCell.swift in Sources */,
 				D196FE9D220DB48100F522C8 /* LocationModel.swift in Sources */,
 				995D904422106DE800DCA964 /* DeliveryAddressCell.swift in Sources */,
 				99E42A47221E954A00A38D4F /* UIButton+Border.swift in Sources */,
@@ -1395,13 +1399,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P55BH5C78Q;
+				DEVELOPMENT_TEAM = 6958JMS7R4;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1414,13 +1418,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P55BH5C78Q;
+				DEVELOPMENT_TEAM = 6958JMS7R4;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
