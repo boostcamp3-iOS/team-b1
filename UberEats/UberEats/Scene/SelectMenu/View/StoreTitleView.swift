@@ -21,14 +21,14 @@ class StoreTitleView: UIView {
     private var storeViewHeightConstraint = NSLayoutConstraint()
 
     let titleLabel: UILabel = {
-        let label = UILabel().setupWithFontSize(22)
+        let label = UILabel().setupWithFontSize(LabelFontSize.titleLabel)
         label.numberOfLines = 2
         return label
     }()
 
-    let detailLabel = UILabel().setupWithFontSize(15)
+    let detailLabel = UILabel().setupWithFontSize(LabelFontSize.detailLabelAndTimeGradeLabel)
 
-    let timeAndGradeLabel = UILabel().setupWithFontSize(15)
+    let timeAndGradeLabel = UILabel().setupWithFontSize(LabelFontSize.detailLabelAndTimeGradeLabel)
 
     let clockImageView = UIImageView().initImageView("icClock")
 
@@ -169,26 +169,43 @@ class StoreTitleView: UIView {
             titleLabelTrailingConstraint.constant = -Metrix.titleLabelLeadingAndTrailingMargin
 
         } else if currentScroll < Metrix.scrollLimit && currentScroll > 0 {
+
             storeViewWidthConstraint.constant = currentScroll * 0.2
             storeViewHeightConstraint.constant = -(currentScroll * 0.2)
-            titleLabelTopConstraint.constant = (currentScroll * 0.2) + Metrix.titleLabelTopMargin
-            detailLabel.alpha = 1 - currentScroll / Metrix.scrollLimit
-            timeAndGradeLabel.alpha = 0.8 - currentScroll / Metrix.scrollLimit
-            clockImageView.alpha = 0.8 - currentScroll / Metrix.scrollLimit
 
-            titleLabelLeadingConstraint.constant = currentScroll * 0.1 + Metrix.titleLabelLeadingAndTrailingMargin
-            titleLabelTrailingConstraint.constant = -(currentScroll * 0.1 + Metrix.titleLabelLeadingAndTrailingMargin)
+            titleLabelTopConstraint.constant = (currentScroll * 0.2)
+                                                    + Metrix.titleLabelTopMargin
+            titleLabelLeadingConstraint.constant = currentScroll * 0.1
+                                                        + Metrix.titleLabelLeadingAndTrailingMargin
+            titleLabelTrailingConstraint.constant = -(currentScroll * 0.1
+                                                        + Metrix.titleLabelLeadingAndTrailingMargin)
+
+            detailLabel.alpha = AnimationValueOfStoreInfoView.basicAlpha
+                                    - currentScroll / Metrix.scrollLimit
+            timeAndGradeLabel.alpha = AnimationValueOfStoreInfoView.basicAlpha - currentScroll / Metrix.scrollLimit
+            clockImageView.alpha = AnimationValueOfStoreInfoView.basicAlpha - currentScroll / Metrix.scrollLimit
 
         } else if currentScroll > Metrix.scrollLimit {
-            storeViewTopConstraint.constant = 0
-            storeViewWidthConstraint.constant = storeTitleView.frame.width * 0.1
-            storeViewHeightConstraint.constant = -38
 
-            titleLabelTopConstraint.constant = Metrix.titleLabelTopMargin * 2.3
+            storeViewTopConstraint.constant = 0
+            storeViewWidthConstraint.constant = storeTitleView.frame.width
+                                                    * AnimationValueOfStoreInfoView.widthConstantRatioAfterSticky
+            storeViewHeightConstraint.constant = AnimationValueOfStoreInfoView.heightConstantAfterSticky
+
+            titleLabelTopConstraint.constant = Metrix.titleLabelTopMargin * AnimationValueOfStoreInfoView.titleTopConstantRatioAfterSticky
             titleLabelLeadingConstraint.constant = buttonSize + 20
             titleLabelTrailingConstraint.constant = -(buttonSize + 20)
+
         }
     }
+}
+
+private struct AnimationValueOfStoreInfoView {
+    static let basicAlpha: CGFloat = 1
+
+    static let heightConstantAfterSticky: CGFloat = -38
+    static let widthConstantRatioAfterSticky: CGFloat = 0.1
+    static let titleTopConstantRatioAfterSticky: CGFloat = 2.3
 }
 
 private struct Metrix {
@@ -200,4 +217,9 @@ private struct Metrix {
     static let labelTopMargin: CGFloat = 15
     static let labelLeadingAndTrailingMargin: CGFloat = 25
     static let timeAndGradeLabelBottomMargin: CGFloat = 25
+}
+
+private struct LabelFontSize {
+    static let titleLabel: CGFloat = 22
+    static let detailLabelAndTimeGradeLabel: CGFloat = 15
 }
