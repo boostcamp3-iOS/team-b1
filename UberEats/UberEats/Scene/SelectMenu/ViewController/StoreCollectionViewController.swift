@@ -30,7 +30,8 @@ class StoreCollectionViewController: UICollectionViewController {
     var storeId: String?
     var foodId: String?
 
-    var orderFoods: [OrderInfoModel] = []
+    private var orderFoods: [OrderInfoModel] = []
+    private var totalPrice = 0
     private var store: StoreForView?
     private var foods: [FoodForView] = []
 
@@ -57,12 +58,11 @@ class StoreCollectionViewController: UICollectionViewController {
     private let sectionHeader = UICollectionView.elementKindSectionHeader
     private let sectionFooter = UICollectionView.elementKindSectionFooter
 
-    lazy var moveCartButton: OrderButton = {
-        let button = OrderButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.orderButtonText = "카트보기"
-        button.orderButtonClickable = self
-        return button
+    lazy var moveCartView: MoveCartView = {
+        let view = MoveCartView()
+        view.moveCartButton.orderButtonClickable = self
+        view.isHidden = true
+        return view
     }()
 
     lazy var dataIndicator: UIActivityIndicatorView = {
@@ -100,7 +100,6 @@ class StoreCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupData()
         setupLayout()
         setupCollectionViewLayout()
@@ -124,27 +123,27 @@ class StoreCollectionViewController: UICollectionViewController {
             self?.storeTitleView.store = store
             self?.store = store
 
-            self?.collectionView.reloadData()
-        }
+            self?.foodsService.requestFoods(storeId: storeId, dispatchQueue: .global()) { [weak self] (response) in
+                guard response.isSuccess,
+                    let foods = response.value?.foods else {
+                        return
+                }
 
-        foodsService.requestFoods(storeId: storeId, dispatchQueue: .global()) { [weak self] (response) in
-            guard response.isSuccess,
-                let foods = response.value?.foods else {
-                return
+                self?.foods = foods
+                self?.seperateCategory()
+
+                self?.collectionView.reloadData()
+                self?.menuBarCollectionView.reloadData()
+
+                self?.setupFloatingView()
+                self?.setupCollectionView()
+                self?.pushFoodDetail()
+                self?.dataIndicator.stopAnimating()
+                self?.collectionView.isScrollEnabled = true
             }
 
-            self?.foods = foods
-            self?.seperateCategory()
-
-            self?.collectionView.reloadData()
-            self?.menuBarCollectionView.reloadData()
-
-            self?.setupFloatingView()
-            self?.setupCollectionView()
-            self?.pushFoodDetail()
-            self?.dataIndicator.stopAnimating()
-            self?.collectionView.isScrollEnabled = true
         }
+
     }
 
     private func setupLayout() {
@@ -152,15 +151,11 @@ class StoreCollectionViewController: UICollectionViewController {
 
         collectionView.addSubview(storeTitleView)
         collectionView.addSubview(dataIndicator)
-        var scrollviewNormal = UIScrollView.DecelerationRate.normal.rawValue
-        var scrollviewFast = UIScrollView.DecelerationRate.fast.rawValue
-        collectionView.decelerationRate = UIScrollView.DecelerationRate(rawValue: 0.9700)
 
-        //UIScrollViewDecelerationRateNormal - (UIScrollViewDecelerationRateNormal - UIScrollViewDecelerationRateFast)/2.0
         view.addSubview(backButton)
         view.addSubview(likeButton)
         view.addSubview(menuBarCollectionView)
-        view.addSubview(moveCartButton)
+        view.addSubview(moveCartView)
         menuBarCollectionView.addSubview(floatingView)
 
         storeTitleView.setupConstraint()
@@ -190,10 +185,10 @@ class StoreCollectionViewController: UICollectionViewController {
             likeButton.widthAnchor.constraint(equalToConstant: buttonSize),
             likeButton.heightAnchor.constraint(equalToConstant: buttonSize),
 
-            moveCartButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            moveCartButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            moveCartButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            moveCartButton.heightAnchor.constraint(equalToConstant: 50)
+            moveCartView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            moveCartView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            moveCartView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            moveCartView.heightAnchor.constraint(equalToConstant: 85)
             ])
     }
 
@@ -302,6 +297,8 @@ class StoreCollectionViewController: UICollectionViewController {
             guard let food = selectedFood else {
                 return
             }
+
+            foodOptionViewController.foodSelectable = self
 
             foodOptionViewController.foodInfo = FoodInfoModel(name: food.foodName,
                                                               supportingExplanation: food.foodDescription,
@@ -556,6 +553,8 @@ class StoreCollectionViewController: UICollectionViewController {
                         return
                 }
 
+                foodOptionViewController.foodSelectable = self
+
                 let food = foods[indexPath.item - 1]
                 foodOptionViewController.foodInfo = FoodInfoModel.init(name: food.foodName,
                                                                        supportingExplanation: food.foodDescription,
@@ -721,8 +720,12 @@ extension StoreCollectionViewController: UICollectionViewDelegateFlowLayout {
                          height: HeightsOfCell.menuBarAndMenu)
         default:
             if indexPath.item != 0 {
-                if foods[indexPath.item - 1].foodDescription == "" {
-                    return .init(width: view.frame.width - 2 * padding, height: 120)
+                if foods[indexPath.item - 1].foodDescription == ""
+                    && foods[indexPath.item - 1].foodImageURL != "" {
+                    return .init(width: view.frame.width - 2 * padding, height: 130)
+                } else if foods[indexPath.item - 1].foodDescription == ""
+                    && foods[indexPath.item - 1].foodImageURL == "" {
+                    return .init(width: view.frame.width - 2 * padding, height: 90)
                 } else {
                     let commentString: String = foods[indexPath.item - 1].foodDescription + "\n" +
                         foods[indexPath.item - DistanceBetween.titleAndFoodCell].foodName + "\n" +
@@ -775,16 +778,6 @@ extension StoreCollectionViewController: OrderButtonClickable {
             return
         }
 
-        var foodName = ""
-        var price = 0
-
-        foods.forEach {
-            if foodId == $0.id {
-                foodName = $0.foodName
-                price = $0.basePrice
-            }
-        }
-
         let storeInfo = StoreInfoModel.init(name: store.name, deliveryTime: store.deliveryTime, location: store.location)
         let deliveryInfoModel = DeilveryInfoModel.init(locationImage: "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/airInTheCafe.jpeg?raw=true",
                                                        detailedAddress: "서울특별시 강남구 역삼1동 강남대로 382",
@@ -793,11 +786,27 @@ extension StoreCollectionViewController: OrderButtonClickable {
                                                        roomNumber: 101)
 
         cartViewController.cartModel = CartModel.init(storeInfo: storeInfo, deilveryInfo: deliveryInfoModel, foodOrderedInfo: nil)
-        cartViewController.orderInfoModels = [OrderInfoModel.init(amount: 1,
-                                                                  orderName: foodName,
-                                                                  price: price)]
+
+        cartViewController.orderInfoModels = orderFoods
+
+        cartViewController.storeImageURL = store.lowImageURL
 
         navigationController?.pushViewController(cartViewController, animated: true)
+    }
+
+}
+
+extension StoreCollectionViewController: FoodSelectable {
+
+    func foodSelected(orderInfo: OrderInfoModel) {
+
+        orderFoods.append(orderInfo)
+        totalPrice += orderInfo.amount * orderInfo.price
+        moveCartView.moveCartButton.setAmount(price: totalPrice)
+
+        if !orderFoods.isEmpty {
+            moveCartView.isHidden = false
+        }
     }
 
 }

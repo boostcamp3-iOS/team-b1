@@ -16,6 +16,7 @@ class CartViewController: UIViewController {
     fileprivate var cartItems = [[CartItemModelType]](repeating: [],
                                                       count: CartSection.allCases.count)
 
+    var storeImageURL: String?
     var cartModel: CartModel = CartModel.empty() {
         didSet {
             setUpCartModel()
@@ -34,6 +35,8 @@ class CartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         orderButton.orderButtonClickable = self
+        orderButton.orderButtonText = "주문하기"
+        orderButton.orderInfos = orderInfoModels
         tableView.reloadData()
     }
 
@@ -82,6 +85,7 @@ class CartViewController: UIViewController {
         cartItems[CartSection.order.rawValue] = orderInfoModels.map({
             CartItemModelType.order($0)
         })
+
         orderButton?.orderInfos = orderInfoModels
     }
 
@@ -109,6 +113,7 @@ extension CartViewController: OrderButtonClickable {
 
         deliveryStartVC.storeLocationInfo = cartModel.storeInfo.location
         deliveryStartVC.orders = orderInfoModels
+        deliveryStartVC.storeImageURL = storeImageURL
 
         self.navigationController?.pushViewController(deliveryStartVC, animated: true)
     }

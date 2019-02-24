@@ -128,6 +128,7 @@
 		D17155C1221CF98300BBC5DD /* LineSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17155C0221CF98300BBC5DD /* LineSeparatorView.swift */; };
 		D196FE9D220DB48100F522C8 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D196FE9C220DB48100F522C8 /* LocationModel.swift */; };
 		D199236222045BAB00C7C857 /* UIButton+initButtonWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D199236122045BAB00C7C857 /* UIButton+initButtonWithImage.swift */; };
+		D1A1C1772222AD4B00A643AB /* MoveCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A1C1762222AD4B00A643AB /* MoveCartView.swift */; };
 		D1AF1E9E21F9A5A6004CA3A5 /* TempCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9121F9A5A6004CA3A5 /* TempCollectionReusableView.swift */; };
 		D1AF1E9F21F9A5A6004CA3A5 /* StoreTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9221F9A5A6004CA3A5 /* StoreTitleView.swift */; };
 		D1AF1EA021F9A5A6004CA3A5 /* MenuCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AF1E9321F9A5A6004CA3A5 /* MenuCategoryCollectionViewCell.swift */; };
@@ -306,6 +307,7 @@
 		D17155C0221CF98300BBC5DD /* LineSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineSeparatorView.swift; sourceTree = "<group>"; };
 		D196FE9C220DB48100F522C8 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		D199236122045BAB00C7C857 /* UIButton+initButtonWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+initButtonWithImage.swift"; sourceTree = "<group>"; };
+		D1A1C1762222AD4B00A643AB /* MoveCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCartView.swift; sourceTree = "<group>"; };
 		D1AF1E9121F9A5A6004CA3A5 /* TempCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempCollectionReusableView.swift; sourceTree = "<group>"; };
 		D1AF1E9221F9A5A6004CA3A5 /* StoreTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTitleView.swift; sourceTree = "<group>"; };
 		D1AF1E9321F9A5A6004CA3A5 /* MenuCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -834,6 +836,7 @@
 				D1146C9B221A493300F24F6D /* MenuSectionCollectionViewCell.swift */,
 				D1146C9C221A493300F24F6D /* MenuSectionCollectionViewCell.xib */,
 				D17155C0221CF98300BBC5DD /* LineSeparatorView.swift */,
+				D1A1C1762222AD4B00A643AB /* MoveCartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1207,6 +1210,7 @@
 				D118B7D32213A79E00E5A85E /* UserLocationView.swift in Sources */,
 				84DC184421F9A51D008EE6D3 /* NearestCollectionViewCell.swift in Sources */,
 				D1146C9D221A493300F24F6D /* MenuSectionCollectionViewCell.swift in Sources */,
+				D1A1C1772222AD4B00A643AB /* MoveCartView.swift in Sources */,
 				99E42A35221D81BA00A38D4F /* CheckBoxCell.swift in Sources */,
 				D107D21B22150B4200322379 /* LocationTableViewCell.swift in Sources */,
 				D118B7D722143D3F00E5A85E /* ChangeScrollDelegate.swift in Sources */,
@@ -1399,13 +1403,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6958JMS7R4;
+				DEVELOPMENT_TEAM = P55BH5C78Q;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1418,13 +1422,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6958JMS7R4;
+				DEVELOPMENT_TEAM = P55BH5C78Q;
 				INFOPLIST_FILE = UberEats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats3";
+				PRODUCT_BUNDLE_IDENTIFIER = "team-b1.UberEats2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
