@@ -34,6 +34,8 @@ class CartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         orderButton.orderButtonClickable = self
+        orderButton.orderButtonText = "주문하기"
+        orderButton.orderInfos = orderInfoModels
         tableView.reloadData()
     }
 
@@ -82,6 +84,7 @@ class CartViewController: UIViewController {
         cartItems[CartSection.order.rawValue] = orderInfoModels.map({
             CartItemModelType.order($0)
         })
+
         orderButton?.orderInfos = orderInfoModels
     }
 

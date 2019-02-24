@@ -33,6 +33,8 @@ class FoodItemDetailsViewController: UIViewController {
 
     @IBOutlet weak var foodImage: UIImageView!
 
+    private var quantity: Int = 0
+
     private let foodOptionService: FoodOptionService = DependencyContainer.share.getDependency(key: .foodOptionService)
 
     weak var foodSelectable: FoodSelectable?
@@ -137,6 +139,7 @@ extension FoodItemDetailsViewController: OrderButtonClickable, QuantityValueChan
     func quantityValueChanged(newQuantity: Int) {
         orderButton?.orderButtonText = "카트에 \(newQuantity) 추가"
         setAmountWithOrderButton(foodInfo: foodInfo, quantity: newQuantity)
+        quantity = newQuantity
 
     }
 
@@ -150,10 +153,12 @@ extension FoodItemDetailsViewController: OrderButtonClickable, QuantityValueChan
     func onClickedOrderButton(_ sender: Any) {
         guard let foodInfo = foodInfo,
             let amount = orderButton?.amount else {
-            return
+                return
         }
 
-        foodSelectable?.foodSelected(foodInfo: foodInfo, amount: amount)
+        let orderInfo = OrderInfoModel.init(amount: quantity, orderName: foodInfo.name, price: foodInfo.price)
+
+        foodSelectable?.foodSelected(orderInfo: orderInfo)
 
         self.navigationController?.popViewController(animated: true)
     }
@@ -236,5 +241,5 @@ extension FoodItemDetailsViewController: UITableViewDelegate, UITableViewDataSou
 }
 
 protocol FoodSelectable: class {
-    func foodSelected(foodInfo: FoodInfoModel, amount: Int)
+    func foodSelected(orderInfo: OrderInfoModel)
 }

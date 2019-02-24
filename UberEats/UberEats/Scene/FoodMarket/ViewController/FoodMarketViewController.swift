@@ -183,7 +183,7 @@ class ItemViewController: UIViewController {
     }
 
     private func initFoodMarket() {
-        
+
         foodMarketService.requestFoodMarket(dispatchQueue: DispatchQueue.global()) { [weak self] (dataResponse) in
             guard dataResponse.isSuccess,
                 let recommendFood = dataResponse.value?.recommendFood,
@@ -207,7 +207,7 @@ class ItemViewController: UIViewController {
     }
 
     private func setupTableView() {
-        
+
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
 
@@ -219,7 +219,7 @@ class ItemViewController: UIViewController {
     }
 
     @objc func autoScrolledBanner() {
-        
+
         let nextPageOfPageControl: Int = pageControl.currentPage + 1
 
         let point = nextPageOfPageControl >= bannerImagesURL.count ?
@@ -230,7 +230,7 @@ class ItemViewController: UIViewController {
     }
 
     private func addBannerImageView() {
-        
+
         var frame = CGRect(origin: CGPoint.zero, size: CGSize.zero)
 
         for index in 0..<bannerImagesURL.count {
@@ -252,13 +252,13 @@ class ItemViewController: UIViewController {
     }
 
     private func setupPageControl() {
-        
+
         pageControl.numberOfPages = bannerImagesURL.count
         pageControl.addTarget(self, action: #selector(changePage), for: .valueChanged)
     }
 
     private func setupScrollView() {
-        
+
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.delegate = self
 
@@ -273,7 +273,7 @@ class ItemViewController: UIViewController {
     }
 
     @objc private func changePage() {
-        
+
         let frame = CGRect(origin: CGPoint.zero, size: CGSize.zero)
         let changedPageNumber = pageControl.currentPage
 
@@ -287,13 +287,13 @@ class ItemViewController: UIViewController {
 extension ItemViewController: UIScrollViewDelegate {
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        
+
         if scrollView == self.scrollView {
             bannerTimer.invalidate()
         }
     }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
+
         if scrollView == self.scrollView {
             bannerTimer = .scheduledTimer(timeInterval: 4,
                                           target: self,
