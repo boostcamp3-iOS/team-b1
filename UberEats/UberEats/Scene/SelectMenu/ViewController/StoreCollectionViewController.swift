@@ -119,7 +119,6 @@ class StoreCollectionViewController: UICollectionViewController {
                 let store = response.value?.store else {
                 return
             }
-
             self?.storeTitleView.store = store
             self?.store = store
 

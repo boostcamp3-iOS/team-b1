@@ -15,15 +15,17 @@ class ItemViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    // MARK: - ScrollView
-    @IBOutlet weak var scrollView: UIScrollView!
-
-     lazy var indicator: SplashIndicatorView = {
+    lazy var indicator: SplashIndicatorView = {
         let view = SplashIndicatorView()
         view.frame = self.view.frame
         view.center = self.view.center
         return view
     }()
+
+    private var completeState: (state: Bool, storeName: String, storeImageURL: String)?
+
+    // MARK: - ScrollView
+    @IBOutlet weak var scrollView: UIScrollView!
 
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl(frame: CGRect(x: UIDevice.current.pageControlX,
@@ -64,9 +66,11 @@ class ItemViewController: UIViewController {
     }()
 
     private let mustSelectSection = 6
+
     private let mustNotSelectRow = 0
 
     private let moreSeeCellWidth = 100
+
     private let moreSeeCellHeight = 100
 
     private let moreSeeData = 1
@@ -79,26 +83,19 @@ class ItemViewController: UIViewController {
 
     private let collectionViewDataSection = 0
 
-    private lazy var dataIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.frame = self.view.frame
-        indicator.center = self.view.center
-        indicator.hidesWhenStopped = true
-        indicator.style = .gray
-        indicator.backgroundColor = .white
-        return indicator
-    }()
-
-    // MARK: - Data
+    // MARK: - DependencyContainer
     private var foodMarketService: FoodMarketService = DependencyContainer.share.getDependency(key: .foodMarketService)
 
+    // MARK: - TableViewCell
     private var recommendFoodStaticTableCell = RecomendTableCell(frame: CGRect(origin: CGPoint.zero,
                                                                                size: CGSize.init()))
 
-    private var restaurtSeeMoreCollectionViewCell = RestaurtSeeMoreCollectionViewCell()
-
     private var deliveryCompleteStaticTableCell = DeliveryCompleteStaticTableCell()
 
+    // MARK: - CollectionViewCell
+    private var restaurtSeeMoreCollectionViewCell = RestaurtSeeMoreCollectionViewCell()
+
+    // MARK: - Data
     private var recommendFood: [FoodForView] = [] {
         didSet {
             recommendFoodStaticTableCell.collectionView.delegate = self
@@ -163,11 +160,6 @@ class ItemViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-    }
-
     @IBAction func touchUpSettingLocation(_ sender: Any) {
         present(SettingLocationViewController(), animated: true, completion: nil)
     }
@@ -194,6 +186,7 @@ class ItemViewController: UIViewController {
                 let moreRests = dataResponse.value?.moreRests else {
                     return
             }
+
             self?.nearestRests = nearestRest
             self?.bannerImagesURL = bannerImagesURL
             self?.expectTimeRests = exepectTimeRests
@@ -396,7 +389,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         }
         switch tableviewSection {
         case .bannerScroll:
-            deliveryCompleteStaticTableCell.storeInfo = (state: true, storeName: "hihi", storeImageURL: "gogossing")
+            deliveryCompleteStaticTableCell.storeInfo = (state: true, storeName: "피자헛 강남 논현점 Pizza Hut GangNam Nonhyeon", storeImageURL: "gogossing")
             return deliveryCompleteStaticTableCell
         case .recommendFood:
             return recommendFoodStaticTableCell

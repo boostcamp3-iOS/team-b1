@@ -8,7 +8,7 @@ class ChatMesageCell: UICollectionViewCell {
         return label
     }()
 
-    let chatBubbleView: UIView = {
+    private let chatBubbleView: UIView = {
         let chatBubbleView = UIView()
         chatBubbleView.layer.cornerRadius = 10
         chatBubbleView.layer.masksToBounds = true
@@ -16,7 +16,7 @@ class ChatMesageCell: UICollectionViewCell {
         return chatBubbleView
     }()
 
-    let isReadLabel: UILabel = {
+    private let isReadLabel: UILabel = {
         let isRead = UILabel()
         isRead.translatesAutoresizingMaskIntoConstraints = false
         return isRead
@@ -42,15 +42,20 @@ class ChatMesageCell: UICollectionViewCell {
 
         bubbleViewLeadingAnchor = chatBubbleView.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                                           constant: 3)
+
         bubbleViewTrailingAnchor = chatBubbleView.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                                             constant: -10)
+
         bubbleViewHeightAnchor = chatBubbleView.heightAnchor.constraint(equalToConstant: 1000)
 
         messageViewLeadingAnchor = messageLabel.leadingAnchor.constraint(equalTo: chatBubbleView.leadingAnchor,
                                                                          constant: 10)
+
         messageViewTrailingAnchor = messageLabel.trailingAnchor.constraint(equalTo: chatBubbleView.trailingAnchor,
                                                                            constant: -8)
+
         messageViewTopAnchor = messageLabel.topAnchor.constraint(equalTo: chatBubbleView.topAnchor)
+
         messageViewBottomAnchor = messageLabel.bottomAnchor.constraint(equalTo: chatBubbleView.bottomAnchor)
 
         NSLayoutConstraint.activate([
@@ -90,9 +95,9 @@ class ChatMesageCell: UICollectionViewCell {
             bubbleViewLeadingAnchor?.isActive = false
             bubbleViewTrailingAnchor?.isActive = true
         } else {
-            messageLabel.backgroundColor = .blue
+            messageLabel.backgroundColor = UIColor(red: 0.00, green: 0.58, blue: 1.00, alpha: 1.0)
             messageLabel.textColor = .white
-            chatBubbleView.backgroundColor = .blue
+            chatBubbleView.backgroundColor = UIColor(red: 0.00, green: 0.58, blue: 1.00, alpha: 1.0)
             chatBubbleView.layer.maskedCorners = [.layerMaxXMinYCorner,
                                                   .layerMaxXMaxYCorner,
                                                   .layerMinXMaxYCorner]
