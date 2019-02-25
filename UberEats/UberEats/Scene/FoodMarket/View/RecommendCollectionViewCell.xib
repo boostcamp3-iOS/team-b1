@@ -48,7 +48,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OuP-Tn-80Y" userLabel="Line3">
-                                        <rect key="frame" x="0.0" y="52.5" width="70.5" height="20"/>
+                                        <rect key="frame" x="0.0" y="52.5" width="45.5" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25-35 분" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cor-hx-BB3">
                                                 <rect key="frame" x="0.0" y="0.0" width="45.5" height="20"/>
@@ -57,13 +57,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="kLh-bF-c1A"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a8f-IF-hCA">
-                                                <rect key="frame" x="53.5" y="0.0" width="17" height="20"/>
-                                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -119,7 +112,6 @@
             <connections>
                 <outlet property="categoryLabel" destination="Saz-5z-Sdd" id="F1Z-7x-yO8"/>
                 <outlet property="commentLabel" destination="ieC-xR-Grw" id="f3K-Oe-AI9"/>
-                <outlet property="gradeLabel" destination="a8f-IF-hCA" id="UqG-lG-PPO"/>
                 <outlet property="image" destination="5jX-Jq-NAO" id="0rM-mT-lQW"/>
                 <outlet property="label" destination="h9C-H8-sg3" id="ZNE-EB-hNj"/>
                 <outlet property="minuteLabel" destination="Cor-hx-BB3" id="5fq-d2-Jcg"/>

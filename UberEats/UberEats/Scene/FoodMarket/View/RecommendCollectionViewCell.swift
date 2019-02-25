@@ -17,7 +17,6 @@ class RecommendCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var categoryLabel: UILabel!
     @IBOutlet var minuteLabel: UILabel!
-    @IBOutlet var gradeLabel: UILabel!
     @IBOutlet var commentLabel: UILabel!
 
     @IBOutlet weak var starStackView: UIStackView!
@@ -36,6 +35,7 @@ class RecommendCollectionViewCell: UICollectionViewCell {
             label.text = recommendFood.foodName
             commentLabel.text = recommendFood.foodDescription
             categoryLabel.text = recommendFood.categoryName
+            minuteLabel.text = "\(recommendFood.basePrice.formattedWithSeparator)원"
 
             guard let cellURL = URL(string: recommendFood.foodImageURL) else {
                 return
