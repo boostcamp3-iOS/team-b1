@@ -17,7 +17,16 @@ class NearestCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var deliveryTime: UILabel!
     @IBOutlet weak var promotion: UILabel!
 
+    @IBOutlet weak var price: UILabel!
+
+    @IBOutlet weak var starStackView: UIStackView!
+
+    @IBOutlet weak var rater: UILabel!
+    @IBOutlet weak var star: UIImageView!
     var confirmURL: URL?
+
+    private let smallCellHeight: CGFloat = 245
+    private let bigCellHeight: CGFloat = 269
 
     var nearestRest: StoreForView? {
         didSet {
@@ -27,11 +36,19 @@ class NearestCollectionViewCell: UICollectionViewCell {
 
             name.text = restaurant.name
             category.text = restaurant.category
-            deliveryTime.text = restaurant.deliveryTime
+            deliveryTime.text = "\(restaurant.deliveryTime) 분"
             promotion.text = restaurant.promotion
+            price.text = "\(restaurant.rate.score)"
+            rater.text = "(\(restaurant.rate.numberOfRater))"
 
             guard let cellURL = URL(string: restaurant.mainImage) else {
                 return
+            }
+
+            if restaurant.promotion == "" {
+                starStackView.isHidden = true
+            } else {
+                starStackView.isHidden = false
             }
 
             confirmURL = cellURL
@@ -40,19 +57,21 @@ class NearestCollectionViewCell: UICollectionViewCell {
 
     func isExistPromotion() -> CGFloat {
         guard let nearestRest = nearestRest else {
-            return 260
+            return smallCellHeight
         }
         if nearestRest.promotion == "" {
             promotion.isHidden = true
-            return 260
+            return smallCellHeight
         } else {
             promotion.isHidden = false
-            return 272
+            return bigCellHeight
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        star.image = UIImage(named: "star")
 
         self.contentView.layer.cornerRadius = 5
         self.contentView.layer.borderWidth = 1.0

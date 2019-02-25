@@ -4,7 +4,7 @@ class SearchAndSeeTableViewCell: UITableViewCell {
 
     public let discountLabel: UILabel = {
         let label = UILabel()
-        label.text = "SearchAndSeeTableViewCell"
+        label.text = "검색 및 보기"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

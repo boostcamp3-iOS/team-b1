@@ -206,6 +206,7 @@ class ItemViewController: UIViewController {
         tableView.bringSubviewToFront(pageControl)
 
         tableView.register(UINib.TableViewCellNIB, forCellReuseIdentifier: tableViewCellId)
+
         tableView.register(UINib.SeeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
     }
 
@@ -385,6 +386,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         guard let tableviewSection = TableViewSection(rawValue: indexPath.section) else {
             return .init()
         }
+
         switch tableviewSection {
         case .bannerScroll:
             deliveryCompleteStaticTableCell.storeInfo = (state: true, storeName: "피자헛 강남 논현점 Pizza Hut GangNam Nonhyeon", storeImageURL: "gogossing")
@@ -444,13 +446,11 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
                 }
 
                 if moreRests.count > indexPath.row {
-
                     moreRestTableViewCell.moreRests = moreRests[indexPath.row]
 
                     guard let imageURL = URL(string: moreRests[indexPath.item].mainImage) else {
                         return moreRestTableViewCell
                     }
-
                     ImageNetworkManager.shared.getImageByCache(imageURL: imageURL) { [weak moreRestTableViewCell] (downloadImage, error) in
                         if error != nil {
                             return
@@ -460,7 +460,6 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
                         }
                         moreRestTableViewCell?.mainImage.image = downloadImage
                     }
-
                 }
                 return moreRestTableViewCell
             }
@@ -480,9 +479,13 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             if indexPath.row == restMoreSeeTableViewRow {
                 return heightOfMoreRestTitle
             } else {
-                return tableViewSection.heightOfTableViewCell()
+                if moreRests[indexPath.row].promotion == "" {
+                    return 240
+                } else {
+                    return 267
+                }
+                //return tableViewSection.heightOfTableViewCell()
             }
-
         default:
             return tableViewSection.heightOfTableViewCell()
         }

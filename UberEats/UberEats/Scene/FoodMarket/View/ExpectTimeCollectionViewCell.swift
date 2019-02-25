@@ -18,6 +18,13 @@ class ExpectTimeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var rate: UILabel!
     @IBOutlet weak var promotion: UILabel!
 
+    @IBOutlet weak var star: UIImageView!
+    @IBOutlet weak var starStackView: UIStackView!
+
+    @IBOutlet weak var rater: UILabel!
+    private let smallCellHeight: CGFloat = 248
+    private let bigCellHeight: CGFloat = 269
+
     var confirmURL: URL?
 
     var expectTimeRest: StoreForView? {
@@ -32,9 +39,16 @@ class ExpectTimeCollectionViewCell: UICollectionViewCell {
 
             name.text = expectTimeRest.name
             category.text = expectTimeRest.category
-            deliveryTime.text = expectTimeRest.deliveryTime
-            rate.text = "\(expectTimeRest.rate.numberOfRater)"
+            deliveryTime.text = "\(expectTimeRest.deliveryTime) 분"
+            rate.text = "\(expectTimeRest.rate.score)"
             promotion.text = expectTimeRest.promotion
+            rater.text = "(\(expectTimeRest.rate.numberOfRater))"
+
+            if expectTimeRest.promotion == "" {
+                starStackView.isHidden = true
+            } else {
+                starStackView.isHidden = false
+            }
 
             confirmURL = cellURL
 
@@ -43,19 +57,21 @@ class ExpectTimeCollectionViewCell: UICollectionViewCell {
 
     func isExistPromotion() -> CGFloat {
         guard let expectTimeRest = expectTimeRest else {
-            return 260
+            return smallCellHeight
         }
         if expectTimeRest.promotion == "" {
             promotion.isHidden = true
-            return 260
+            return smallCellHeight
         } else {
             promotion.isHidden = false
-            return 272
+            return bigCellHeight
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        star.image = UIImage(named: "star")
 
         self.contentView.layer.cornerRadius = 5
         self.contentView.layer.borderWidth = 1.0

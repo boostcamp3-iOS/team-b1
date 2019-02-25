@@ -598,7 +598,6 @@
 				84DC183C21F9A51D008EE6D3 /* NearestCollectionViewCell.swift */,
 				84DC183F21F9A51D008EE6D3 /* NearestCollectionViewCell.xib */,
 				84DC184F21F9AD7C008EE6D3 /* ItemView.storyboard */,
-				99342CC221FB12CF0029DB10 /* UberEatsTests */,
 				D13B8210221C26A900100451 /* SplashIndicatorView.swift */,
 				847CB24D221BE5E1000298EC /* RecomendTableCell.swift */,
 				8445E2CD221CFD8F00965746 /* DiscountTableViewCell.swift */,
@@ -606,6 +605,7 @@
 				8445E2D1221D114C00965746 /* MoreRestTitleTableViewCell.swift */,
 				8445E2D3221D166300965746 /* RestaurtSeeMoreCollectionViewCell.swift */,
 				8434817C2221775F00C56E04 /* DeliveryCompleteStaticTableCell.swift */,
+				99342CC221FB12CF0029DB10 /* UberEatsTests */,
 			);
 			path = View;
 			sourceTree = "<group>";

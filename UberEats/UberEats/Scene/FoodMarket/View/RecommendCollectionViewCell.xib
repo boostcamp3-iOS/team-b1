@@ -30,25 +30,25 @@
                                     <constraint firstAttribute="height" constant="140" id="sF4-b0-JPj"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="6al-RW-xG2">
-                                <rect key="frame" x="12" y="164" width="287" height="90"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="6al-RW-xG2" userLabel="labelStackView">
+                                <rect key="frame" x="12" y="164" width="287" height="94"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="케이에프씨 광화문 KFC Gwanghwamun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9C-H8-sg3">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="케이에프씨 광화문 KFC Gwanghwamun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9C-H8-sg3">
                                         <rect key="frame" x="0.0" y="0.0" width="280.5" height="20.5"/>
                                         <accessibility key="accessibilityConfiguration" identifier="recommendName"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="$$ * 치컨 * 버거" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Saz-5z-Sdd">
-                                        <rect key="frame" x="0.0" y="27.5" width="88" height="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="$$ * 치컨 * 버거" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Saz-5z-Sdd">
+                                        <rect key="frame" x="0.0" y="28.5" width="88" height="16"/>
                                         <accessibility key="accessibilityConfiguration" identifier="recommendCategory"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OuP-Tn-80Y" userLabel="Line3">
-                                        <rect key="frame" x="0.0" y="50.5" width="70.5" height="20"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OuP-Tn-80Y" userLabel="Line3">
+                                        <rect key="frame" x="0.0" y="52.5" width="45.5" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25-35 분" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cor-hx-BB3">
                                                 <rect key="frame" x="0.0" y="0.0" width="45.5" height="20"/>
@@ -61,25 +61,30 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a8f-IF-hCA">
-                                                <rect key="frame" x="53.5" y="0.0" width="17" height="20"/>
-                                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="N2I-px-Zex" userLabel="starStackView">
+                                        <rect key="frame" x="0.0" y="80.5" width="191" height="13.5"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4sM-6x-HgI">
+                                                <rect key="frame" x="0.0" y="0.0" width="13.5" height="13.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" priority="750" constant="13.5" id="By4-nE-TUE"/>
+                                                    <constraint firstAttribute="width" priority="750" constant="13.5" id="GLl-OJ-VX2"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정직한 음식이 만드는 행복한 세상! KFC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ieC-xR-Grw">
+                                                <rect key="frame" x="16.5" y="0.0" width="174.5" height="13.5"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="recommendPromotion"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="정직한 음식이 만드는 행복한 세상! KFC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ieC-xR-Grw">
-                                        <rect key="frame" x="0.0" y="77.5" width="174.5" height="12.5"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="recommendPromotion"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="ZpP-Cd-Hns"/>
+                                    <constraint firstAttribute="height" priority="750" constant="90" id="ZpP-Cd-Hns"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -91,6 +96,7 @@
                             <constraint firstItem="5jX-Jq-NAO" firstAttribute="leading" secondItem="8ii-8O-EtO" secondAttribute="leading" priority="999" constant="9" id="K76-pu-ZoT"/>
                             <constraint firstAttribute="trailing" secondItem="5jX-Jq-NAO" secondAttribute="trailing" constant="9" id="d3z-Gw-RYB"/>
                             <constraint firstItem="6al-RW-xG2" firstAttribute="top" secondItem="5jX-Jq-NAO" secondAttribute="bottom" constant="15" id="kNB-TA-3I0"/>
+                            <constraint firstAttribute="bottom" secondItem="6al-RW-xG2" secondAttribute="bottom" constant="12" id="uWX-bA-eBv"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -106,13 +112,14 @@
             <connections>
                 <outlet property="categoryLabel" destination="Saz-5z-Sdd" id="F1Z-7x-yO8"/>
                 <outlet property="commentLabel" destination="ieC-xR-Grw" id="f3K-Oe-AI9"/>
-                <outlet property="gradeLabel" destination="a8f-IF-hCA" id="UqG-lG-PPO"/>
                 <outlet property="image" destination="5jX-Jq-NAO" id="0rM-mT-lQW"/>
                 <outlet property="label" destination="h9C-H8-sg3" id="ZNE-EB-hNj"/>
                 <outlet property="minuteLabel" destination="Cor-hx-BB3" id="5fq-d2-Jcg"/>
+                <outlet property="star" destination="4sM-6x-HgI" id="Xos-RL-dyC"/>
+                <outlet property="starStackView" destination="N2I-px-Zex" id="ErJ-8Q-Zi0"/>
                 <outlet property="view" destination="8ii-8O-EtO" id="89u-cR-jd5"/>
             </connections>
-            <point key="canvasLocation" x="113" y="209"/>
+            <point key="canvasLocation" x="112.8" y="208.69565217391306"/>
         </collectionViewCell>
     </objects>
     <resources>
