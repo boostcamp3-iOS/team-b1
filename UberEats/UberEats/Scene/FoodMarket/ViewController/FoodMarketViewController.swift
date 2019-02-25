@@ -22,7 +22,11 @@ class ItemViewController: UIViewController {
         return view
     }()
 
-    var completeState: (state: Bool, storeName: String, storeImageURL: String)?
+    var completeState: (state: Bool, storeName: String, storeImageURL: String)? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     // MARK: - ScrollView
     @IBOutlet weak var scrollView: UIScrollView!
@@ -135,10 +139,6 @@ class ItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        completeState = (state: false, storeName: "", storeImageURL: "")
-
-        tabBarController?.view.addSubview(indicator)
-
         initFoodMarket()
 
         setupTableView()
@@ -150,12 +150,24 @@ class ItemViewController: UIViewController {
                                       selector: #selector(autoScrolledBanner),
                                       userInfo: nil,
                                       repeats: true)
+
+        tabBarController?.view.addSubview(indicator)
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(false, animated: false)
+
+        guard let completeState = completeState else {
+            return
+        }
+
+        if completeState.state {
+                self.tableView.reloadData()
+        }
     }
 
     @IBAction func touchUpSettingLocation(_ sender: Any) {
@@ -353,9 +365,11 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
         switch tableViewSection {
         case .bannerScroll:
+
             guard let completeState = completeState else {
                 return 0
             }
+
             if completeState.state {
                 return 1
             } else {

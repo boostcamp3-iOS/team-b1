@@ -550,10 +550,14 @@ extension LocationViewController: ChangeScrollDelegate {
 extension LocationViewController: DeliveryCompleteDelegate {
     func moveToFoodMarket() {
         // 여기서 배달완료 상태값 바꿔주면 될 것 같습니다.
-        let foodMarketStoryboard = UIStoryboard(name: "ItemView", bundle: nil)
-        guard let foodMarketViewController = foodMarketStoryboard.instantiateViewController(withIdentifier: "itemView")
-            as? ItemViewController else {
-                return
+//        let foodMarketStoryboard = UIStoryboard(name: "ItemView", bundle: nil)
+//        guard let foodMarketViewController = foodMarketStoryboard.instantiateViewController(withIdentifier: "itemView")
+//            as? ItemViewController else {
+//                return
+//        }
+
+        guard let foodMarketViewController = navigationController?.viewControllers[0] as? ItemViewController else {
+            return
         }
 
         guard let storeName = storeName,
@@ -561,7 +565,8 @@ extension LocationViewController: DeliveryCompleteDelegate {
                 return
         }
 
-        foodMarketViewController.completeState = (state: false, storeName: storeName, storeImageURL: storeImageURL)
+        foodMarketViewController.completeState = (state: true, storeName: storeName, storeImageURL: storeImageURL)
+
         navigationController?.popToRootViewController(animated: true)
     }
 }
