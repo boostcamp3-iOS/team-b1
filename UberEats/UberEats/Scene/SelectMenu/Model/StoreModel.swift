@@ -35,21 +35,12 @@ enum NumberOfSection: Int {
     case collectionView = 7
 }
 
-enum SectionInStoreView: Int {
-    case stretchyHeader = 0
-    case timeAndLocation
-    case menu
-    // 예비
-    case foodOne
-    case foodTwo
-    case foodThree
-    case foodFour
-}
-
 struct ValuesForStoreView {
     static let widthMultiplier: CGFloat = 0.9
     static let heightMultiplier: CGFloat = 0.5
     static let distanceBetweenHeightAfterStick: CGFloat = 38
+    static let basicWidthConstant: CGFloat = 0
+    static let basicHeightConstant: CGFloat = 0
 }
 
 struct ValuesForCollectionView {
@@ -84,7 +75,6 @@ struct HeightsOfHeader {
     static let timeAndLocation: CGFloat = 1
     static let menuBarAndMenu: CGFloat = 0
     static let food: CGFloat = 0
-//    static let menus: CGFloat = 70
 }
 
 struct HeightsOfCell {
@@ -92,6 +82,8 @@ struct HeightsOfCell {
 
     static let timeAndLocationMultiplier: CGFloat = 0.15
     static let food: CGFloat = 50
+    static let foodWhenNoContentAndImage: CGFloat = 130
+    static let foodWhenNoContentAndNoImage: CGFloat = 90
     static let empty: CGFloat = 0
 }
 
@@ -105,4 +97,9 @@ struct AnimationValues {
     static let scrollLimit: CGFloat = 171
     static let delay: TimeInterval = 0
     static let duration: TimeInterval = 0.3
+}
+
+struct ElementKind {
+    static let sectionHeader = UICollectionView.elementKindSectionHeader
+    static let sectionFooter = UICollectionView.elementKindSectionFooter
 }
