@@ -3683,6 +3683,237 @@
         "storeId": "store13",
         "categoryId": "category2",
         "categoryName": "분식 Side Menu"
+    },
+    {
+        "id": "food1",
+        "foodName": "파무침 골뱅이 치킨 Green Onion & Whelk Chicke",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 22000,
+        "storeId": "store14",
+        "categoryId": "category1",
+        "categoryName": "레몬점 한정메뉴! Only Here! Must Try!"
+    },
+    {
+        "id": "food2",
+        "foodName": "청양고추 유린치킨 Cheongyang Pepper Yulinchikin",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 22000,
+        "storeId": "store14",
+        "categoryId": "category1",
+        "categoryName": "레몬점 한정메뉴! Only Here! Must Try!"
+    },
+    {
+        "id": "food3",
+        "foodName": "황금 올리브 Golden Olive Fried Chicken",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/goldenOlive.jpeg?raw=true",
+        "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/goldenOlive_low.jpeg?raw=true",
+        "basePrice": 18000,
+        "storeId": "store14",
+        "categoryId": "category2",
+        "categoryName": "오리지널 Original"
+    },
+    {
+        "id": "food4",
+        "foodName": "황금올리브속안심 Golden Olive Sok Ansim",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 17000,
+        "storeId": "store14",
+        "categoryId": "category2",
+        "categoryName": "오리지널 Original"
+    },
+    {
+        "id": "food5",
+        "foodName": "황금올리브핫윙 Golden Olive Hot-Wing",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 18000,
+        "storeId": "store14",
+        "categoryId": "category2",
+        "categoryName": "오리지널 Original"
+    },
+    {
+        "id": "food6",
+        "foodName": "순살크래커 Boneless Cracker Chicken",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 18000,
+        "storeId": "store14",
+        "categoryId": "category2",
+        "categoryName": "오리지널 Original"
+    },
+    {
+        "id": "food7",
+        "foodName": "바삭칸치킨 Potato Flour Fried Chicken",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 16000,
+        "storeId": "store14",
+        "categoryId": "category2",
+        "categoryName": "오리지널 Original"
+    },
+    {
+        "id": "food8",
+        "foodName": "순살 바사칸치킨 Sunsal Potato Flour Fried Chicken",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/sunsalPotatoFlourFriedChicken.jpeg?raw=true",
+        "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/sunsalPotatoFlourFriedChicken_low.jpeg?raw=true",
+        "basePrice": 18000,
+        "storeId": "store14",
+        "categoryId": "category2",
+        "categoryName": "오리지널 Original"
+    },
+    {
+        "id": "food9",
+        "foodName": "황금양념 반반",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/banban.jpeg?raw=true",
+        "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/banban_low.jpeg?raw=true",
+        "basePrice": 19000,
+        "storeId": "store14",
+        "categoryId": "category3",
+        "categoryName": "스페셜 & 양념 Special & Seasoning"
+    },
+    {
+        "id": "food10",
+        "foodName": "소이갈릭스 Soy Garlic",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/soyGarlic.jpeg?raw=true",
+        "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/soyGarlic_low.jpeg?raw=true",
+        "basePrice": 18900,
+        "storeId": "store14",
+        "categoryId": "category3",
+        "categoryName": "스페셜 & 양념 Special & Seasoning"
+    },
+    {
+        "id": "food11",
+        "foodName": "허니 갈릭스 Chicken with Honey Garlic Sauce",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/honeyGarlic.jpeg?raw=true",
+        "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/honeyGarlic_low.jpeg?raw=true",
+        "basePrice": 18900,
+        "storeId": "store14",
+        "categoryId": "category3",
+        "categoryName": "스페셜 & 양념 Special & Seasoning"
+    },
+    {
+        "id": "food12",
+        "foodName": "치즐링 Cheesling Chicken",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 19000,
+        "storeId": "store14",
+        "categoryId": "category3",
+        "categoryName": "스페셜 & 양념 Special & Seasoning"
+    },
+    {
+        "id": "food13",
+        "foodName": "써프라이드 Surfried",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/surfried.jpeg?raw=true",
+        "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/surfried_low.jpeg?raw=true",
+        "basePrice": 19900,
+        "storeId": "store14",
+        "categoryId": "category3",
+        "categoryName": "스페셜 & 양념 Special & Seasoning"
+    },
+    {
+        "id": "food14",
+        "foodName": "시크릿양념치킨 Secret Seasoning Chicken",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 19500,
+        "storeId": "store14",
+        "categoryId": "category3",
+        "categoryName": "스페셜 & 양념 Special & Seasoning"
+    },
+    {
+        "id": "food15",
+        "foodName": "바사칸치킨 양념 Potato Flour Fried Chicken Seasoned",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 17000,
+        "storeId": "store14",
+        "categoryId": "category3",
+        "categoryName": "스페셜 & 양념 Special & Seasoning"
+    },
+    {
+        "id": "food16",
+        "foodName": "빠리치킨 Paris Chicken",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 19000,
+        "storeId": "store14",
+        "categoryId": "category3",
+        "categoryName": "스페셜 & 양념 Special & Seasoning"
+    },
+    {
+        "id": "food17",
+        "foodName": "마라핫치킨 Mara Hot Chicken",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 18900,
+        "storeId": "store14",
+        "categoryId": "category3",
+        "categoryName": "스페셜 & 양념 Special & Seasoning"
+    },
+    {
+        "id": "food18",
+        "foodName": "치킨강정 Chicken Gangjeong",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 19000,
+        "storeId": "store14",
+        "categoryId": "category3",
+        "categoryName": "스페셜 & 양념 Special & Seasoning"
+    },
+    {
+        "id": "food19",
+        "foodName": "자메이카 통다리 구이 Grilled Chicken Drumsticks with Jamaican Sauce",
+        "foodDescription": "",
+        "foodImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/grilledChickenDrumsticks.jpeg?raw=true",
+        "lowImageURL": "https://github.com/boostcamp3-iOS/team-b1/blob/master/images/FoodMarket/Stores/BBQ/grilledChickenDrumsticks_low.jpeg?raw=true",
+        "basePrice": 19500,
+        "storeId": "store14",
+        "categoryId": "category4",
+        "categoryName": "구이류 Grilled Chicken"
+    },
+    {
+        "id": "food20",
+        "foodName": "스모크치킨 Smoked Chicken",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 17500,
+        "storeId": "store14",
+        "categoryId": "category4",
+        "categoryName": "구이류 Grilled Chicken"
+    },
+    {
+        "id": "food21",
+        "foodName": "매달구 Madalgu",
+        "foodDescription": "",
+        "foodImageURL": "",
+        "lowImageURL": "",
+        "basePrice": 19500,
+        "storeId": "store14",
+        "categoryId": "category4",
+        "categoryName": "구이류 Grilled Chicken"
     }
 ]
 
