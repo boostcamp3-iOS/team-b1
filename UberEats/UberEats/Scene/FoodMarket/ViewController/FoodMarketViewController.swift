@@ -22,7 +22,7 @@ class ItemViewController: UIViewController {
         return view
     }()
 
-    private var completeState: (state: Bool, storeName: String, storeImageURL: String)?
+    var completeState: (state: Bool, storeName: String, storeImageURL: String)?
 
     // MARK: - ScrollView
     @IBOutlet weak var scrollView: UIScrollView!
@@ -132,12 +132,10 @@ class ItemViewController: UIViewController {
 
     private var moreRests: [StoreForView] = []
 
-    var completeState: (state: Bool, storeName: String, storeImageURL: String)?
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        completeState = (state: true, storeName: "", storeImageURL: "")
+        completeState = (state: false, storeName: "", storeImageURL: "")
 
         tabBarController?.view.addSubview(indicator)
 

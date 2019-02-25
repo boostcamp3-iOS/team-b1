@@ -60,10 +60,13 @@ class FoodItemDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         initView()
     }
 
     private func initView() {
+        coverToolBarText.text = foodInfo?.name
+
         self.coveredToolBarBottom.constant = -toolbar.frame.height
 
         // 리펙토링할 것 급한 이유로 우선 개발
@@ -151,8 +154,7 @@ extension FoodItemDetailsViewController: OrderButtonClickable, QuantityValueChan
     }
 
     func onClickedOrderButton(_ sender: Any) {
-        guard let foodInfo = foodInfo,
-            let amount = orderButton?.amount else {
+        guard let foodInfo = foodInfo else {
                 return
         }
 
@@ -184,7 +186,6 @@ extension FoodItemDetailsViewController: UITableViewDelegate, UITableViewDataSou
         var foodOptions = [FoodOptionItemModelType]()
         foodOptions.append(FoodOptionItemModelType.foodInfo(foodInfo))
         foodOptionItemModels.append(foodOptions)
-        coverToolBarText?.text = foodInfo.name
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
