@@ -134,7 +134,7 @@ public extension UIDevice {
         case 1136://iPhones_5_5s_5c_SE
             return 40
         case 1334://iPhones_6_6s_7_8
-            return 10
+            return 3
         case 1792://iPhone_XR
             return 5
         case 1920, 2208://iPhones_6Plus_6sPlus_7Plus_8Plus

@@ -81,8 +81,6 @@ class NearestCollectionViewCell: UICollectionViewCell {
 
         mainImage.layer.cornerRadius = 3
         mainImage.layer.masksToBounds = true
-
-        mainImage.image = nil
     }
 
     override func prepareForReuse() {
