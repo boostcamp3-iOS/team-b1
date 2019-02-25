@@ -46,6 +46,8 @@ class SeeMoreRestViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(dataIndicator)
 
+        tableView.separatorStyle = .none
+
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),

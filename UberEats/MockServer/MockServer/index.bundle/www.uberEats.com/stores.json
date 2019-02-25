@@ -39,12 +39,12 @@
         "longtitude": 127.030378
     },
     "rate": {
-        "score": 0,
+        "score": 4.5,
         "numberOfRater": 0
     },
     "isNewStore": false,
     "numberOfCategory": 7,
-    "promotion": ""
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력"
 },
 {
     "id": "store3",
@@ -68,7 +68,7 @@
     },
     "isNewStore": true,
     "numberOfCategory": 7,
-    "promotion": ""
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력"
 },
 {
     "id" : "store4",
@@ -188,7 +188,7 @@
     },
     "isNewStore": false,
     "numberOfCategory": 7,
-    "promotion": ""
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력"
 },
 {
     "id" : "store9",
@@ -236,7 +236,7 @@
     },
     "isNewStore": false,
     "numberOfCategory": 1,
-    "promotion": ""
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력"
 },
 {
     "id" : "store11",
@@ -260,7 +260,7 @@
     },
     "isNewStore": false,
     "numberOfCategory": 4,
-    "promotion": ""
+    "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력"
 },
 {
     "id" : "store12",
@@ -279,7 +279,7 @@
         "longtitude": 127.027642
     },
     "rate": {
-        "score": 0,
+        "score": 4.5,
         "numberOfRater": 0
     },
     "isNewStore": false,
@@ -332,8 +332,7 @@
     },
     "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력",
     "isNewStore": false,
-    "numberOfCategory": 4,
-    "promotion": ""
+    "numberOfCategory": 5
 },
 {
     "id" : "store15",
@@ -357,8 +356,7 @@
     },
     "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력",
     "isNewStore": false,
-    "numberOfCategory": 5,
-    "promotion": ""
+    "numberOfCategory": 5
 },
 {
     "id" : "store16",
@@ -382,8 +380,7 @@
     },
     "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력",
     "isNewStore": false,
-    "numberOfCategory": 5,
-    "promotion": ""
+    "numberOfCategory": 5
 },
 {
     "id" : "store17",
@@ -407,8 +404,7 @@
     },
     "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력",
     "isNewStore": false,
-    "numberOfCategory": 5,
-    "promotion": ""
+    "numberOfCategory": 5
 },
 {
     "id" : "store18",
@@ -432,8 +428,7 @@
     },
     "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력",
     "isNewStore": false,
-    "numberOfCategory": 5,
-    "promotion": ""
+    "numberOfCategory": 5
 },
 {
     "id" : "store19",
@@ -457,8 +452,7 @@
     },
     "promotion": "[하루종일] 신규회원 50% 할인코드 SEOUL50입력",
     "isNewStore": false,
-    "numberOfCategory": 5,
-    "promotion": ""
+    "numberOfCategory": 5
 },
 {
     "id" : "store20",

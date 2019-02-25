@@ -18,7 +18,13 @@ class SeeMoreRestTableViewCell: UITableViewCell {
     @IBOutlet weak var promotion: UILabel!
     @IBOutlet weak var deliveryTime: UILabel!
 
+    @IBOutlet weak var star: UIImageView!
+
+    @IBOutlet weak var rater: UILabel!
     var confirmURL: URL?
+
+    private let smallCellHeight: CGFloat = 250
+    private let bigCellHeight: CGFloat = 267
 
     var moreRests: StoreForView? {
         didSet {
@@ -30,12 +36,32 @@ class SeeMoreRestTableViewCell: UITableViewCell {
             guard let cellURL = URL(string: moreRest.mainImage) else {
                 return
             }
+
             name.text = moreRest.name
             category.text = moreRest.category
             deliveryTime.text = moreRest.deliveryTime
             promotion.text = moreRest.promotion
+            rate.text = "\(moreRest.rate.score)"
+            rater.text = "(\(moreRest.rate.numberOfRater))"
+
+            if moreRest.promotion == "" {
+                star.isHidden = true
+            } else {
+                star.isHidden = false
+            }
 
             confirmURL = cellURL
+        }
+    }
+
+    func isExistFoodDescription() -> CGFloat {
+        guard let moreRests = moreRests else {
+            return smallCellHeight
+        }
+        if moreRests.promotion == "" {
+            return smallCellHeight
+        } else {
+            return bigCellHeight
         }
     }
 
@@ -44,6 +70,7 @@ class SeeMoreRestTableViewCell: UITableViewCell {
             guard let moreFood = moreFoods else {
                 return
             }
+
             name.text = moreFood.foodName
             category.text = moreFood.categoryName
             deliveryTime.text = moreFood.foodDescription
@@ -52,6 +79,8 @@ class SeeMoreRestTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        star.image = UIImage(named: "star")
         selectionStyle = .none
 
         mainImage.layer.cornerRadius = 3
