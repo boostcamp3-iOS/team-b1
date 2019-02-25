@@ -39,3 +39,19 @@ struct DelivererInfo {
     let phoneNumber: String
     let email: String
 }
+
+enum Distance: Double {
+    case lessThanOneKM = 0
+    case oneKM
+    case twoKM
+    case threeKM
+
+    var range: Range<Int> {
+        switch self {
+        case .lessThanOneKM : return 0 ..< 1000
+        case .oneKM : return 1000 ..< 2000
+        case .twoKM : return 2000 ..< 3000
+        case .threeKM : return 3000 ..< 4000
+        }
+    }
+}
