@@ -341,9 +341,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BIv-p1-NLc" userLabel="CoverToolBar">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="81.333333333333329"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWD-Om-um2">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWD-Om-um2">
                                         <rect key="frame" x="50" y="61.333333333333336" width="275" height="0.0"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -415,7 +414,7 @@
                     </view>
                     <connections>
                         <outlet property="coverToolBar" destination="BIv-p1-NLc" id="QeK-c4-aDd"/>
-                        <outlet property="coverToolBarText" destination="AWD-Om-um2" id="BnL-fn-Ugf"/>
+                        <outlet property="coverToolBarText" destination="AWD-Om-um2" id="f1G-kS-4qk"/>
                         <outlet property="coveredToolBarBottom" destination="flB-v5-TJU" id="gfY-An-pHF"/>
                         <outlet property="foodImage" destination="GKf-1d-ulH" id="gjV-EK-VzI"/>
                         <outlet property="orderButton" destination="X1F-bz-1bE" id="Rcy-8Q-3jq"/>

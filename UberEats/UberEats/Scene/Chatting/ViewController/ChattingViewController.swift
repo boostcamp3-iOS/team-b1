@@ -20,7 +20,7 @@ class ChattingViewController: UIViewController {
     @IBOutlet weak var chatMessageTrailingConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var sendButton: UIButton!
-    
+
     var delivererInfo: DelivererInfo?
     private let chatMessageCellId = "chatMessageCellId"
 

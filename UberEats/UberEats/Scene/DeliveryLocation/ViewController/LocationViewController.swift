@@ -91,6 +91,7 @@ class LocationViewController: UIViewController {
             }
 
             self.backButton.setImage(UIImage(named: "btnClose"), for: .normal)
+            self.coveredBackButton.setImage(UIImage(named: "btnClose"), for: .normal)
             self.deliveryStartView.isHidden = false
             self.deliveryStartInfoHeight = 130
             self.orderDetailCollectionView.contentInset = UIEdgeInsets(top: self.view.frame.height * 0.4
@@ -466,7 +467,7 @@ extension LocationViewController: UICollectionViewDelegate {
             guard let chattingVC = UIStoryboard.chatView.instantiateViewController(withIdentifier: "ChattingViewController") as? ChattingViewController else {
                 return
             }
-            
+
             chattingVC.delivererInfo = delivererInfo
 
             present(chattingVC, animated: true, completion: nil)
