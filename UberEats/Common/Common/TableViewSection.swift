@@ -147,4 +147,25 @@ public extension UIDevice {
             return 5
         }
     }
+
+    var keyboardAppearBottomEdgeInset: CGFloat {
+        switch UIScreen.main.nativeBounds.height {
+        case 960://iPhones_4_4S
+            return 40
+        case 1136://iPhones_5_5s_5c_SE
+            return 40
+        case 1334://iPhones_6_6s_7_8
+            return 272
+        case 1792://iPhone_XR
+            return 5
+        case 1920, 2208://iPhones_6Plus_6sPlus_7Plus_8Plus
+            return 5
+        case 2436://iPhones_X_XS
+            return 300
+        case 2688://iPhone_XSMax
+            return 5
+        default://unknown
+            return 5
+        }
+    }
 }

@@ -26,8 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        //let ChatVC = UIStoryboard.chatView.instantiateViewController(withIdentifier: "ChattingViewController")
-        window?.rootViewController = TabBarVC()
+        let ChatVC = UIStoryboard.chatView.instantiateViewController(withIdentifier: "ChattingViewController")
+        
+        window?.rootViewController = ChatVC
 
         window?.makeKeyAndVisible()
         

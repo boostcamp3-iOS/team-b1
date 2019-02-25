@@ -21,35 +21,42 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vaz-jk-P3p">
                                 <rect key="frame" x="0.0" y="44.000000000000007" width="375" height="109.66666666666669"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNm-xU-eEo">
-                                        <rect key="frame" x="24" y="19" width="26" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNm-xU-eEo">
+                                        <rect key="frame" x="12" y="12" width="52" height="22"/>
                                         <state key="normal" title="전화" image="icBackB"/>
                                         <connections>
                                             <action selector="callAction:" destination="Cxa-Fy-Bvm" eventType="touchUpInside" id="p7Q-sC-DMN"/>
+                                            <action selector="moveToParentVC:" destination="Cxa-Fy-Bvm" eventType="touchUpInside" id="v5E-hA-zCu"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="중현" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iiy-A6-2Fq">
-                                        <rect key="frame" x="20" y="58" width="56" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="중현" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iiy-A6-2Fq">
+                                        <rect key="frame" x="11.999999999999996" y="71" width="41.666666666666657" height="28.666666666666671"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ho-5J-6pm">
-                                        <rect key="frame" x="329" y="18" width="31" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ho-5J-6pm">
+                                        <rect key="frame" x="339" y="15" width="21" height="22"/>
                                         <state key="normal" image="btnCall"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="우버 Motorbike " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paD-lW-Azq">
-                                        <rect key="frame" x="238" y="66" width="122" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="우버 Motorbike " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paD-lW-Azq">
+                                        <rect key="frame" x="244.33333333333334" y="74.333333333333329" width="115.66666666666666" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Iiy-A6-2Fq" secondAttribute="bottom" constant="10" id="3Zy-2r-bdT"/>
+                                    <constraint firstAttribute="trailing" secondItem="paD-lW-Azq" secondAttribute="trailing" constant="15" id="F0C-b3-Xw9"/>
+                                    <constraint firstItem="ZNm-xU-eEo" firstAttribute="leading" secondItem="Vaz-jk-P3p" secondAttribute="leading" constant="12" id="NCj-yJ-ekH"/>
+                                    <constraint firstAttribute="bottom" secondItem="paD-lW-Azq" secondAttribute="bottom" constant="15" id="dji-4S-gac"/>
+                                    <constraint firstItem="Iiy-A6-2Fq" firstAttribute="leading" secondItem="Vaz-jk-P3p" secondAttribute="leading" constant="12" id="h8n-28-5Bu"/>
+                                    <constraint firstItem="1Ho-5J-6pm" firstAttribute="top" secondItem="Vaz-jk-P3p" secondAttribute="top" constant="15" id="jub-0c-bUT"/>
+                                    <constraint firstItem="ZNm-xU-eEo" firstAttribute="top" secondItem="Vaz-jk-P3p" secondAttribute="top" constant="12" id="kpE-qi-t29"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Ho-5J-6pm" secondAttribute="trailing" constant="15" id="m9C-CO-cmI"/>
+                                </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rba-p3-DqZ" userLabel="collection">
                                 <rect key="frame" x="0.0" y="153.66666666666669" width="375" height="658.33333333333326"/>
@@ -128,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y0Y-oC-9kB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="148" y="151.47783251231527"/>
+            <point key="canvasLocation" x="-321" y="123"/>
         </scene>
     </scenes>
     <resources>
