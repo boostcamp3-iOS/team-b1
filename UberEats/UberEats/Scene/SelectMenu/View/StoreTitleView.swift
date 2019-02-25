@@ -155,14 +155,16 @@ class StoreTitleView: UIView {
 
     public func changedContentOffset(currentScroll: CGFloat, headerHeight: CGFloat) {
 
-        titleLabel.numberOfLines = currentScroll > (Metrix.scrollLimit - 10) ? 1 : 2
+        titleLabel.numberOfLines = currentScroll > (Metrix.scrollLimit - 10)
+                                    ? NumberOfLinesInLabel.oneLine.rawValue
+                                    : NumberOfLinesInLabel.twoLines.rawValue
 
         storeViewTopConstraint.constant = Metrix.titleTopMargin - currentScroll
 
         if currentScroll < 0 {
 
-            storeViewWidthConstraint.constant = 0
-            storeViewHeightConstraint.constant = 0
+            storeViewWidthConstraint.constant = ValuesForStoreView.basicWidthConstant
+            storeViewHeightConstraint.constant = ValuesForStoreView.basicHeightConstant
 
             titleLabelTopConstraint.constant = Metrix.titleLabelTopMargin
             titleLabelLeadingConstraint.constant = Metrix.titleLabelLeadingAndTrailingMargin
@@ -222,4 +224,9 @@ private struct Metrix {
 private struct LabelFontSize {
     static let titleLabel: CGFloat = 22
     static let detailLabelAndTimeGradeLabel: CGFloat = 15
+}
+
+private enum NumberOfLinesInLabel: Int {
+    case oneLine = 1
+    case twoLines = 2
 }
