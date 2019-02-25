@@ -16,6 +16,7 @@ class SeeMoreRestViewController: UIViewController {
 
     private var tableView: UITableView = {
         let tableView = UITableView()
+
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -62,13 +63,20 @@ class SeeMoreRestViewController: UIViewController {
         initFoodMarket(section: collectionViewTag)
         setupTableView()
 
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+//        navigationController?.navigationBar.backItem?.setLeftBarButton(UIBarButtonItem(image: #imageLiteral(resourceName: "blackArrow"), style: .plain, target: self, action: #selector(popAction)), animated: true)
         navigationController?.setNavigationBarHidden(false, animated: false)
-        navigationController?.navigationItem.backBarButtonItem?.title = ""
-        navigationController?.navigationItem.backBarButtonItem?.tintColor = UIColor.black
+    }
+
+    @objc private func popAction() {
+        self.navigationController?.popViewController(animated: true)
     }
 
     private func setupTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
 
         let SeeMoreRestTableViewCellNIB = UINib(nibName: "SeeMoreRestTableViewCell", bundle: nil)
         tableView.register(SeeMoreRestTableViewCellNIB, forCellReuseIdentifier: "SeeMoreRestTableViewCellId")
@@ -135,7 +143,7 @@ class SeeMoreRestViewController: UIViewController {
 
 }
 
-extension SeeMoreRestViewController: UITableViewDataSource {
+extension SeeMoreRestViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         if let foods = self.foods {
@@ -147,6 +155,23 @@ extension SeeMoreRestViewController: UITableViewDataSource {
         }
 
         return 0
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            guard let collectionViewController = UIStoryboard.main.instantiateViewController(withIdentifier: "CollectionViewController")
+                as? StoreCollectionViewController else {
+                    return
+            }
+
+            guard let stores = stores else {
+                return
+            }
+
+            collectionViewController.passingData(status: SelectState.store(stores[indexPath.row].id))
+
+            tabBarController?.tabBar.isHidden = true
+            navigationController?.setNavigationBarHidden(true, animated: false)
+            navigationController?.pushViewController(collectionViewController, animated: true)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
