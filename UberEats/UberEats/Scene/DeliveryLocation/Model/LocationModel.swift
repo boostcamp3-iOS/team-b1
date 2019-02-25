@@ -36,4 +36,6 @@ struct DelivererInfo {
     let rate: Int
     let image: UIImage?
     let vehicle: String
+    let phoneNumber: String
+    let email: String
 }

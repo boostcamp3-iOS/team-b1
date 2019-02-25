@@ -23,7 +23,12 @@ class LocationViewController: UIViewController {
     private let moveCurrentLocationButton = UIButton().initButtonWithImage("btCurrentlocation")
     private let contactButton = UIButton().initButtonWithImage("btInquiry")
 
-    private let delivererInfo = DelivererInfo.init(name: "중현", rate: 100, image: UIImage(named: "deliverer"), vehicle: "motorbike")
+    private let delivererInfo = DelivererInfo.init(name: "중현",
+                                                   rate: 100,
+                                                   image: UIImage(named: "deliverer"),
+                                                   vehicle: "motorbike",
+                                                   phoneNumber: "01020313421",
+                                                   email: "delivery@gmail.com")
 
     var orders: [OrderInfoModel]?
 
@@ -458,7 +463,11 @@ extension LocationViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath == IndexPath(row: 0, section: 0) {
-            let chattingVC = UIStoryboard.chatView.instantiateViewController(withIdentifier: "ChattingViewController")
+            guard let chattingVC = UIStoryboard.chatView.instantiateViewController(withIdentifier: "ChattingViewController") as? ChattingViewController else {
+                return
+            }
+            
+            chattingVC.delivererInfo = delivererInfo
 
             present(chattingVC, animated: true, completion: nil)
         } else if indexPath == IndexPath(row: 0, section: 1) {
