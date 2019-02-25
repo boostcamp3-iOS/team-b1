@@ -11,8 +11,8 @@
     },
     "favorites": true,
     "location": {
-        "latitude": 37.499862,
-        "longtitude": 127.030378
+        "latitude": 37.500004,
+        "longtitude": 127.042760
     },
     "rate": {
         "score": 4.5,
@@ -35,8 +35,8 @@
     },
     "favorites": false,
     "location": {
-        "latitude": 37.499862,
-        "longtitude": 127.030378
+        "latitude": 37.498924,
+        "longtitude": 127.026056
     },
     "rate": {
         "score": 4.5,
@@ -59,8 +59,8 @@
     },
     "favorites": true,
     "location": {
-        "latitude": 37.499862,
-        "longtitude": 127.030378
+        "latitude": 37.499750,
+        "longtitude": 127.028967
     },
     "rate": {
         "score": 4.7,
@@ -83,8 +83,8 @@
     },
     "favorites": true,
     "location": {
-        "latitude": 37.499862,
-        "longtitude": 127.030378
+        "latitude": 37.499074,
+        "longtitude": 127.036238
     },
     "rate": {
         "score": 4.7,
@@ -107,8 +107,8 @@
     },
     "favorites": false,
     "location": {
-        "latitude": 37.499862,
-        "longtitude": 127.030378
+        "latitude": 37.502674,
+        "longtitude": 127.027421
     },
     "rate": {
         "score": 4.5,
@@ -155,8 +155,8 @@
     },
     "favorites": true,
     "location": {
-        "latitude": 37.499862,
-        "longtitude": 127.030378
+        "latitude": 37.498810,
+        "longtitude": 127.029360
     },
     "rate": {
         "score": 4.5,

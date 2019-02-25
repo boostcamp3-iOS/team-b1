@@ -34,7 +34,6 @@ class LocationViewController: UIViewController {
 
     var storeName: String?
     var storeLocationInfo: Location?
-    var storeLocation = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     var storeImageURL: String?
 
     private let sectionHeader = UICollectionView.elementKindSectionHeader
@@ -45,7 +44,8 @@ class LocationViewController: UIViewController {
     private let userWindow = UserLocationView()
     private let storeWindow = StoreLocationView()
     private let locationManager = CLLocationManager()
-    private var userLocation = CLLocationCoordinate2D(latitude: 37.49646975398706, longitude: 127.02905088660754)
+    private var storeLocationCoordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+    private var userLocationCoordinate = CLLocationCoordinate2D(latitude: 37.49646975398706, longitude: 127.02905088660754)
 
     private var userMarker = GMSMarker()
     private var storeMarker = GMSMarker()
@@ -110,14 +110,15 @@ class LocationViewController: UIViewController {
             return
         }
 
-        storeLocation = CLLocationCoordinate2D(latitude: locationInfo.latitude,
+        storeLocationCoordinate = CLLocationCoordinate2D(latitude: locationInfo.latitude,
                                                          longitude: locationInfo.longtitude)
 
         locationManager.customInit(delegate: self)
+        let zoom = getZoomValue(userLocation2D: userLocationCoordinate, storeLocation2D: storeLocationCoordinate)
 
-        let camera = GMSCameraPosition(latitude: (userLocation.latitude + storeLocation.latitude) / 2,
-                                       longitude: (userLocation.longitude + storeLocation.longitude) / 2,
-                                       zoom: 16)
+        let camera = GMSCameraPosition(latitude: (userLocationCoordinate.latitude + storeLocationCoordinate.latitude) / 2,
+                                       longitude: (userLocationCoordinate.longitude + storeLocationCoordinate.longitude) / 2,
+                                       zoom: zoom)
 
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView?.padding = UIEdgeInsets(top: 0,
@@ -129,13 +130,30 @@ class LocationViewController: UIViewController {
         mapView?.delegate = self
         orderDetailCollectionView.backgroundView = mapView
 
-        userMarker = GMSMarker(position: userLocation)
+        userMarker = GMSMarker(position: userLocationCoordinate)
         userMarker.icon = UIImage(named: "icMarkUser")
         userMarker.map = mapView
 
-        storeMarker = GMSMarker(position: storeLocation)
+        storeMarker = GMSMarker(position: storeLocationCoordinate)
         storeMarker.icon = UIImage(named: "icMarkDelivery")
         storeMarker.map = mapView
+    }
+
+    private func getZoomValue(userLocation2D: CLLocationCoordinate2D, storeLocation2D: CLLocationCoordinate2D) -> Float {
+        let userLocation = CLLocation(latitude: userLocation2D.latitude, longitude: userLocation2D.longitude)
+        let storeLocation = CLLocation(latitude: storeLocation2D.latitude, longitude: storeLocation2D.longitude)
+
+        let distance = userLocation.distance(from: storeLocation)
+
+        if distance > 3000 {
+            return 13
+        } else if distance > 2000 {
+            return 14
+        } else if distance > 1000 {
+            return 15
+        } else {
+            return 16
+        }
     }
 
     private func setupLayout() {
@@ -278,8 +296,8 @@ class LocationViewController: UIViewController {
     }
 
     @objc private func touchUpMoveCurrentLocationButton(_: UIButton) {
-        mapView?.animate(to: GMSCameraPosition(latitude: (userLocation.latitude + storeLocation.latitude) / 2,
-                                                longitude: (userLocation.longitude + storeLocation.longitude) / 2,
+        mapView?.animate(to: GMSCameraPosition(latitude: (userLocationCoordinate.latitude + storeLocationCoordinate.latitude) / 2,
+                                                longitude: (userLocationCoordinate.longitude + storeLocationCoordinate.longitude) / 2,
                                                 zoom: 17))
     }
 }
