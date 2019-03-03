@@ -22,16 +22,6 @@ class DeliveryStartNoticeView: UIView {
         return imageView
     }()
 
-    var delivererName: String? {
-        didSet {
-            guard let delivererName = delivererName else {
-                return
-            }
-
-            deliveryStartLabel.text = "밖에서 " + delivererName + "님을 만날 준비를 하세요."
-        }
-    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
@@ -61,6 +51,10 @@ class DeliveryStartNoticeView: UIView {
             deliveryStartLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             deliveryStartLabel.leadingAnchor.constraint(equalTo: carImageView.trailingAnchor, constant: 20)
             ])
+    }
+
+    func configure(delivererName: String) {
+        deliveryStartLabel.text = "밖에서 " + delivererName + "님을 만날 준비를 하세요."
     }
 
 }

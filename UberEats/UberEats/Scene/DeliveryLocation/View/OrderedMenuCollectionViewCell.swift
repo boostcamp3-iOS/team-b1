@@ -63,10 +63,7 @@ class OrderedMenuCollectionViewCell: UICollectionViewCell {
             ])
     }
 
-    func configure(orderInfo: OrderInfoModel?) {
-        guard let orderInfo = orderInfo else {
-            return
-        }
+    func configure(orderInfo: OrderInfoModel) {
         orderMenuLabel.text = orderInfo.orderName
         numberOfFoodLabel.text = String(orderInfo.amount)
     }

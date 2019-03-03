@@ -108,11 +108,19 @@ extension CartViewController: OrderButtonClickable {
             return
         }
 
-        deliveryStartVC.storeName = cartModel.storeInfo.name
-        let deliveryTimes = cartModel.storeInfo.deliveryTime.components(separatedBy: "-")
+        let delivererInfo = DelivererInfo.init(name: "중현",
+                                               rate: 100,
+                                               image: UIImage(named: "deliverer"),
+                                               vehicle: "motorbike",
+                                               phoneNumber: "01020313421",
+                                               email: "delivery@gmail.com")
+
+        deliveryStartVC.locationInfoDataSource = LocationInfoDataSourece(storeName: cartModel.storeInfo.name,
+                                                                         orders: orderInfoModels,
+                                                                         delivererInfo: delivererInfo,
+                                                                         locationViewController: deliveryStartVC)
 
         deliveryStartVC.storeLocationInfo = cartModel.storeInfo.location
-        deliveryStartVC.orders = orderInfoModels
         deliveryStartVC.storeImageURL = storeImageURL
 
         self.navigationController?.pushViewController(deliveryStartVC, animated: true)

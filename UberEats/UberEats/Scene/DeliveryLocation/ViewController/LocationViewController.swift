@@ -12,53 +12,39 @@ import CoreLocation
 import Common
 
 class LocationViewController: UIViewController {
-    private let topInset: CGFloat = 450
-    private var deliveryStartInfoHeight: CGFloat = 0
 
     @IBOutlet weak var coveredBackButton: UIButton!
     @IBOutlet weak var coveredContactButton: UIButton!
 
     private var zoom: Float = 0
-    private let backButton = UIButton().initButtonWithImage("blackArrow")
-    private let moveCurrentLocationButton = UIButton().initButtonWithImage("btCurrentlocation")
-    private let contactButton = UIButton().initButtonWithImage("btInquiry")
-
-    private let delivererInfo = DelivererInfo.init(name: "중현",
-                                                   rate: 100,
-                                                   image: UIImage(named: "deliverer"),
-                                                   vehicle: "motorbike",
-                                                   phoneNumber: "01020313421",
-                                                   email: "delivery@gmail.com")
-
-    var orders: [OrderInfoModel]?
-
-    var storeName: String?
-    var storeLocationInfo: Location?
-    var storeImageURL: String?
-
-    private let sectionHeader = UICollectionView.elementKindSectionHeader
-    private let sectionFooter = UICollectionView.elementKindSectionFooter
-
-    private let deliveryStartView = DeliveryStartNoticeView()
     private var mapView: GMSMapView?
-    private let userWindow = UserLocationView()
-    private let storeWindow = StoreLocationView()
-    private let locationManager = CLLocationManager()
+    private var userMarker = GMSMarker()
+    private var storeMarker = GMSMarker()
+    private var isStartingDelivery: Bool = false
+    private var deliveryStartInfoHeight: CGFloat = 0
     private var storeLocationCoordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     private var userLocationCoordinate = CLLocationCoordinate2D(latitude: 37.49646975398706, longitude: 127.02905088660754)
 
-    private var userMarker = GMSMarker()
-    private var storeMarker = GMSMarker()
+    private let topInset: CGFloat = 450
+    private let userWindow = UserLocationView()
+    private let storeWindow = StoreLocationView()
+    private let locationManager = CLLocationManager()
+    private let deliveryStartView = DeliveryStartNoticeView()
+    private let backButton = UIButton().initButtonWithImage("blackArrow")
+    private let contactButton = UIButton().initButtonWithImage("btInquiry")
+    private let moveCurrentLocationButton = UIButton().initButtonWithImage("btCurrentlocation")
 
-    private var isStartingDelivery: Bool = false
+    var storeImageURL: String?
+    var storeLocationInfo: Location?
+    var locationInfoDataSource: LocationInfoDataSourece?
 
-    let contactLabel: UILabel = {
+    private let contactLabel: UILabel = {
         let label = UILabel().setupWithFontSize(11)
         label.text = "문의하기"
         return label
     }()
 
-    lazy var orderDetailCollectionView: UICollectionView = {
+    private lazy var orderDetailCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
@@ -77,10 +63,9 @@ class LocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        storeWindow.storeName = storeName
-
         orderDetailCollectionView.delegate = self
-        orderDetailCollectionView.dataSource = self
+        orderDetailCollectionView.dataSource = locationInfoDataSource
+
         setupMapView()
         setupLayout()
         setupCollectionView()
@@ -106,9 +91,12 @@ class LocationViewController: UIViewController {
     }
 
     private func setupMapView() {
-        guard let locationInfo = storeLocationInfo else {
+        guard let locationInfo = storeLocationInfo,
+            let storeName = locationInfoDataSource?.storeName else {
             return
         }
+
+        storeWindow.configure(storeName: storeName)
 
         storeLocationCoordinate = CLLocationCoordinate2D(latitude: locationInfo.latitude,
                                                          longitude: locationInfo.longtitude)
@@ -140,28 +128,11 @@ class LocationViewController: UIViewController {
         storeMarker.map = mapView
     }
 
-    private func getZoomValue(userLocation2D: CLLocationCoordinate2D,
-                              storeLocation2D: CLLocationCoordinate2D) -> Float {
-        let userLocation = CLLocation(latitude: userLocation2D.latitude,
-                                      longitude: userLocation2D.longitude)
-        let storeLocation = CLLocation(latitude: storeLocation2D.latitude,
-                                       longitude: storeLocation2D.longitude)
-
-        let distance = userLocation.distance(from: storeLocation)
-
-        if distance > 3000 {
-            return 13
-        } else if distance > 2000 {
-            return 14
-        } else if distance > 1000 {
-            return 15
-        } else {
-            return 16
-        }
-    }
-
     private func setupLayout() {
-        deliveryStartView.delivererName = delivererInfo.name
+        guard let delivererName = locationInfoDataSource?.delivererInfo.name else {
+            return
+        }
+        deliveryStartView.configure(delivererName: delivererName)
 
         view.addSubview(orderDetailCollectionView)
         orderDetailCollectionView.backgroundView?.addSubview(moveCurrentLocationButton)
@@ -236,67 +207,44 @@ class LocationViewController: UIViewController {
             ])
     }
 
-    private func getButtonTopConstraint(_ height: CGFloat) -> CGFloat {
-        switch height {
-        case 960, 1136, 1334, 1920, 2208:
-            return 25
-        case 1792, 2436, 2688:
-            return 45
-        default:
-            return 0
-        }
-    }
-
     private func setupCollectionView() {
         //headers
         let deliveryManInfoHeaderNib = UINib(nibName: "DeliveryManInfoCollectionReusableView",
                                              bundle: nil)
 
-        orderDetailCollectionView.register(deliveryManInfoHeaderNib,
-                                           forSupplementaryViewOfKind: sectionHeader,
-                                           withReuseIdentifier: Identifiers.deliveryManInfoHeaderId)
+        orderDetailCollectionView.register(nib: deliveryManInfoHeaderNib,
+                                           DeliveryManInfoCollectionReusableView.self,
+                                           kind: ElementKind.sectionHeader)
 
         let arrivalTimeHeaderNib = UINib(nibName: "OrderCheckingCollectionReusableView",
                                          bundle: nil)
 
-        orderDetailCollectionView.register(arrivalTimeHeaderNib,
-                                           forSupplementaryViewOfKind: sectionHeader,
-                                           withReuseIdentifier: Identifiers.arrivalTimeHeaderId)
+        orderDetailCollectionView.register(nib: arrivalTimeHeaderNib,
+                                           OrderCheckingCollectionReusableView.self,
+                                           kind: ElementKind.sectionHeader)
 
         orderDetailCollectionView.register(OrderNameCollectionReusableView.self,
-                                           forSupplementaryViewOfKind: sectionHeader,
-                                           withReuseIdentifier: Identifiers.orderNameHeaderId)
-
-        orderDetailCollectionView.register(TempCollectionReusableView.self,
-                                           forSupplementaryViewOfKind: sectionHeader,
-                                           withReuseIdentifier: Identifiers.tempHeaderId)
+                                           kind: ElementKind.sectionHeader)
 
         orderDetailCollectionView.register(SeparatorCollectionReusableView.self,
-                                           forSupplementaryViewOfKind: sectionHeader,
-                                           withReuseIdentifier: Identifiers.separatorHeaderId)
+                                           kind: ElementKind.sectionHeader)
 
         //footers
         orderDetailCollectionView.register(SeparatorCollectionReusableView.self,
-                                           forSupplementaryViewOfKind: sectionFooter,
-                                           withReuseIdentifier: Identifiers.separatorFooterId)
+                                           kind: ElementKind.sectionFooter)
 
         orderDetailCollectionView.register(TotalPriceCollectionReusableView.self,
-                                           forSupplementaryViewOfKind: sectionFooter,
-                                           withReuseIdentifier: Identifiers.totalPriceFooterId)
+                                           kind: ElementKind.sectionFooter)
 
         orderDetailCollectionView.register(TempCollectionReusableView.self,
-                                           forSupplementaryViewOfKind: sectionFooter,
-                                           withReuseIdentifier: Identifiers.tempFooterId)
+                                           kind: ElementKind.sectionFooter)
 
         //cells
-        orderDetailCollectionView.register(OrderCancelCollectionViewCell.self,
-                                           forCellWithReuseIdentifier: Identifiers.orderCancelCellId)
+        orderDetailCollectionView.register(OrderCancelCollectionViewCell.self)
 
-        orderDetailCollectionView.register(OrderedMenuCollectionViewCell.self,
-                                           forCellWithReuseIdentifier: Identifiers.orderMenuCellId)
+        orderDetailCollectionView.register(OrderedMenuCollectionViewCell.self)
 
-        orderDetailCollectionView.register(SaleCollectionViewCell.self,
-                                           forCellWithReuseIdentifier: Identifiers.saleCellId)
+        orderDetailCollectionView.register(SaleCollectionViewCell.self)
 
     }
 
@@ -311,9 +259,9 @@ class LocationViewController: UIViewController {
 
     @objc private func touchUpMoveCurrentLocationButton(_: UIButton) {
         mapView?.animate(to: GMSCameraPosition(latitude: (userLocationCoordinate.latitude
-                                                    + storeLocationCoordinate.latitude) / 2,
+                                                            + storeLocationCoordinate.latitude) / 2,
                                                 longitude: (userLocationCoordinate.longitude
-                                                    + storeLocationCoordinate.longitude) / 2,
+                                                            + storeLocationCoordinate.longitude) / 2,
                                                 zoom: zoom))
     }
 }
@@ -355,162 +303,8 @@ extension LocationViewController: UIScrollViewDelegate {
         mapView?.alpha = getMapViewAlpha(currentScroll)
         navigationController?.updateNavigationBarStatus(currentScroll,
                                                         deliveryStartInfoHeight)
-
     }
 
-}
-
-extension LocationViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
-        guard let section = SectionName(rawValue: section) else {
-            return 0
-        }
-
-        switch section {
-        case .orders:
-            return orders?.count ?? 0
-        default:
-            return 1
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        guard let section = SectionName(rawValue: indexPath.section) else {
-            return .init()
-        }
-
-        var identifier = ""
-
-        switch section {
-        case .deliveryManInfo:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.orderCancelCellId,
-                                                                for: indexPath) as? OrderCancelCollectionViewCell else {
-                return .init()
-            }
-
-            cell.configure(status: true)
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak cell] in
-                cell?.configure(status: false)
-            }
-
-            return cell
-        case .timeDetail:
-            identifier = Identifiers.orderCancelCellId
-        case .orders:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.orderMenuCellId,
-                                                                for: indexPath) as? OrderedMenuCollectionViewCell else {
-                return .init()
-            }
-
-            cell.configure(orderInfo: orders?[indexPath.item])
-
-            return cell
-        case .sale:
-            identifier = Identifiers.saleCellId
-        }
-
-        return collectionView.dequeueReusableCell(withReuseIdentifier: identifier,
-                                                  for: indexPath)
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
-
-        guard let section = SectionName(rawValue: indexPath.section) else {
-            return .init()
-        }
-
-        var identifier = ""
-
-        if kind == UICollectionView.elementKindSectionHeader {
-            switch section {
-            case .deliveryManInfo:
-                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: Identifiers.deliveryManInfoHeaderId,
-                                                                             for: indexPath) as? DeliveryManInfoCollectionReusableView else {
-                    return .init()
-                }
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak header] in
-                    header?.isHidden = false
-                }
-
-                header.delivererInfo = delivererInfo
-                header.delegate = self
-
-                return header
-            case .timeDetail:
-                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: Identifiers.arrivalTimeHeaderId,
-                                                                             for: indexPath) as? OrderCheckingCollectionReusableView else {
-                    return .init()
-                }
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 15) { [weak header] in
-                    header?.progressStatus = .preparingFood
-                }
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak header] in
-                    header?.progressStatus = .delivering
-                }
-
-                let currentTime = NSDate().addingTimeInterval(60)
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "hh:mm a"
-
-                header.configure(storeName: storeName,
-                                 time: dateFormatter.string(from: currentTime as Date),
-                                 status: .verifyingOrder)
-
-                header.changeScrollDelegate = self
-                header.deliveryCompleteDelegate = self
-
-                return header
-            case .orders:
-                identifier = Identifiers.orderNameHeaderId
-            case .sale:
-                identifier = Identifiers.separatorHeaderId
-            }
-        } else {
-            switch section {
-            case .deliveryManInfo, .timeDetail:
-                identifier = Identifiers.separatorFooterId
-            case .orders:
-                guard let footer
-                    = collectionView
-                        .dequeueReusableSupplementaryView(ofKind: kind,
-                                                          withReuseIdentifier: Identifiers.totalPriceFooterId,
-                                                          for: indexPath) as? TotalPriceCollectionReusableView else {
-                    return .init()
-                }
-
-                var totalPrice = 0
-
-                orders?.forEach {
-                    totalPrice = $0.price * $0.amount
-                }
-
-                footer.configure(totalPrice: String(totalPrice.formattedWithSeparator))
-
-                return footer
-            case .sale:
-                identifier = Identifiers.tempFooterId
-            }
-        }
-
-        return collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                               withReuseIdentifier: identifier,
-                                                               for: indexPath)
-    }
 }
 
 extension LocationViewController: UICollectionViewDelegate {
@@ -523,7 +317,7 @@ extension LocationViewController: UICollectionViewDelegate {
                 return
             }
 
-            chattingVC.delivererInfo = delivererInfo
+            chattingVC.delivererInfo = locationInfoDataSource?.delivererInfo
 
             present(chattingVC, animated: true, completion: nil)
         } else if indexPath == IndexPath(row: 0, section: 1) {
@@ -605,7 +399,7 @@ extension LocationViewController: DeliveryCompleteDelegate {
             return
         }
 
-        guard let storeName = storeName,
+        guard let storeName = locationInfoDataSource?.storeName,
             let storeImageURL = storeImageURL else {
                 return
         }

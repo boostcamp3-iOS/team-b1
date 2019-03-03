@@ -23,16 +23,6 @@ class StoreLocationView: UIView {
         return label
     }()
 
-    var storeName: String? {
-        didSet {
-            guard let storeName = storeName else {
-                return
-            }
-
-            locationLabel.text = storeName
-        }
-    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupContentView()
@@ -66,5 +56,9 @@ class StoreLocationView: UIView {
         layer.shadowOpacity = 0.3
         layer.shadowOffset = CGSize(width: 0, height: 5)
         layer.shadowRadius = 10
+    }
+
+    func configure(storeName: String) {
+        locationLabel.text = storeName
     }
 }

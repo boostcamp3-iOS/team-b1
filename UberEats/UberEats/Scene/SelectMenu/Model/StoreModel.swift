@@ -13,17 +13,6 @@ let buttonSize: CGFloat = 25
 let basicNumberOfItems = 1
 let menuStartSection = 3
 
-enum CellId: String {
-    case stretchyHeader = "stretchyHeaderId"
-    case tempHeader = "tempHeaderId"
-    case tempFooter = "tempFooterId"
-    case timeAndLocation = "timeAndLocationId"
-    case menu = "menuId"
-    case menuCategory = "menuCategoryId"
-    case menuDetail = "menuDetailId"
-    case menuSection = "menuSectionId"
-}
-
 enum XibName: String {
     case timeAndLocation = "TimeAndLocationCollectionViewCell"
     case search = "SearchCollectionViewCell"

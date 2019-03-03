@@ -14,19 +14,7 @@ class DeliveryManInfoCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var deliveryManNameLabel: UILabel!
     @IBOutlet weak var vehicleLabel: UILabel!
 
-    var delegate: ChangeScrollDelegate?
-
-    var delivererInfo: DelivererInfo? {
-        didSet {
-            guard let delivererInfo = delivererInfo else {
-                return
-            }
-
-            deliveryManImageView.image = delivererInfo.image
-            deliveryManNameLabel.text = delivererInfo.name
-            vehicleLabel.text = delivererInfo.vehicle
-        }
-    }
+    weak var changeScrollDelegate: ChangeScrollDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +27,12 @@ class DeliveryManInfoCollectionReusableView: UICollectionReusableView {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        delegate?.scrollToTop()
+        changeScrollDelegate?.scrollToTop()
+    }
+
+    func configure(delivererInfo: DelivererInfo) {
+        deliveryManImageView.image = delivererInfo.image
+        deliveryManNameLabel.text = delivererInfo.name
+        vehicleLabel.text = delivererInfo.vehicle
     }
 }

@@ -146,6 +146,7 @@
 		D1E86851222A9677005CB945 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E86850222A9677005CB945 /* Reusable.swift */; };
 		D1E86853222AA80D005CB945 /* MainCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E86852222AA80D005CB945 /* MainCollectionViewDataSource.swift */; };
 		D1E86855222AA857005CB945 /* MenuCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E86854222AA857005CB945 /* MenuCollectionViewDataSource.swift */; };
+		D1E86857222BBA77005CB945 /* LocationInfoDataSourece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E86856222BBA77005CB945 /* LocationInfoDataSourece.swift */; };
 		D1EA630221FA9B1D0024CD68 /* SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */; };
 		D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */; };
 		D1F3A8F22212E606000448DD /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3A8F12212E606000448DD /* StoreModel.swift */; };
@@ -330,6 +331,7 @@
 		D1E86850222A9677005CB945 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		D1E86852222AA80D005CB945 /* MainCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		D1E86854222AA857005CB945 /* MenuCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		D1E86856222BBA77005CB945 /* LocationInfoDataSourece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfoDataSourece.swift; sourceTree = "<group>"; };
 		D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarDelegate.swift; sourceTree = "<group>"; };
 		D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D1F3A8F12212E606000448DD /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				D196FE9C220DB48100F522C8 /* LocationModel.swift */,
+				D1E86856222BBA77005CB945 /* LocationInfoDataSourece.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1233,6 +1236,7 @@
 				D1A1C1772222AD4B00A643AB /* MoveCartView.swift in Sources */,
 				99E42A35221D81BA00A38D4F /* CheckBoxCell.swift in Sources */,
 				D107D21B22150B4200322379 /* LocationTableViewCell.swift in Sources */,
+				D1E86857222BBA77005CB945 /* LocationInfoDataSourece.swift in Sources */,
 				D118B7D722143D3F00E5A85E /* ChangeScrollDelegate.swift in Sources */,
 				8443049A22154B2000FCFADB /* FoodMarketSelectState.swift in Sources */,
 				D1CED1BC22074759007626B4 /* OrderedMenuCollectionViewCell.swift in Sources */,
