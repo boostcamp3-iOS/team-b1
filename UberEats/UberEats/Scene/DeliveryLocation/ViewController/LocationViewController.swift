@@ -486,9 +486,10 @@ extension LocationViewController: UICollectionViewDataSource {
                 identifier = Identifiers.separatorFooterId
             case .orders:
                 guard let footer
-                    = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                      withReuseIdentifier: Identifiers.totalPriceFooterId,
-                                                                      for: indexPath) as? TotalPriceCollectionReusableView else {
+                    = collectionView
+                        .dequeueReusableSupplementaryView(ofKind: kind,
+                                                          withReuseIdentifier: Identifiers.totalPriceFooterId,
+                                                          for: indexPath) as? TotalPriceCollectionReusableView else {
                     return .init()
                 }
 
