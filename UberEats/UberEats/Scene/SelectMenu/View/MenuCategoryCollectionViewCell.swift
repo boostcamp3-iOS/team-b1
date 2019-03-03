@@ -12,23 +12,16 @@ class MenuCategoryCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var sectionNameLabel: UILabel!
 
-    var sectionName: String? {
-        didSet {
-            guard let sectionName = sectionName else {
-                return
-            }
-
-            sectionNameLabel.text = sectionName
-        }
-    }
-
     func setColor(by isSelected: Bool) {
         sectionNameLabel?.textColor = isSelected ? .white : .black
     }
 
+    func configure(sectionName: String) {
+        sectionNameLabel.text = sectionName
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
-        //sectionNameLabel.textColor = .black
-        //sectionName = nil
     }
+
 }

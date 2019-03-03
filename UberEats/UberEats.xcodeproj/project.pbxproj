@@ -143,13 +143,14 @@
 		D1CED1BF22075039007626B4 /* OrderCheckingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CED1BD22075039007626B4 /* OrderCheckingCollectionReusableView.swift */; };
 		D1CED1C022075039007626B4 /* OrderCheckingCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1CED1BE22075039007626B4 /* OrderCheckingCollectionReusableView.xib */; };
 		D1CED1C2220756C7007626B4 /* OrderCancelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CED1C1220756C7007626B4 /* OrderCancelCollectionViewCell.swift */; };
+		D1E86851222A9677005CB945 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E86850222A9677005CB945 /* Reusable.swift */; };
+		D1E86853222AA80D005CB945 /* MainCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E86852222AA80D005CB945 /* MainCollectionViewDataSource.swift */; };
+		D1E86855222AA857005CB945 /* MenuCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E86854222AA857005CB945 /* MenuCollectionViewDataSource.swift */; };
 		D1EA630221FA9B1D0024CD68 /* SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */; };
 		D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */; };
 		D1F3A8F22212E606000448DD /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3A8F12212E606000448DD /* StoreModel.swift */; };
-		D1F796C62223D40700B72391 /* StoreCollectionViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F796C52223D40700B72391 /* StoreCollectionViewController+DataSource.swift */; };
 		D1F796CA2223D5B100B72391 /* StoreCollectionViewController+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F796C92223D5B100B72391 /* StoreCollectionViewController+ScrollDelegate.swift */; };
 		D1F796CC2223D5D900B72391 /* StoreCollectionViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F796CB2223D5D900B72391 /* StoreCollectionViewController+Delegate.swift */; };
-		D1F796D02223D82500B72391 /* StoreCollectionViewController+CustomDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F796CF2223D82500B72391 /* StoreCollectionViewController+CustomDelegates.swift */; };
 		D1F96F0221FE8D9400D79396 /* ItemSizeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F96F0121FE8D9400D79396 /* ItemSizeDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -326,13 +327,14 @@
 		D1CED1BD22075039007626B4 /* OrderCheckingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCheckingCollectionReusableView.swift; sourceTree = "<group>"; };
 		D1CED1BE22075039007626B4 /* OrderCheckingCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderCheckingCollectionReusableView.xib; sourceTree = "<group>"; };
 		D1CED1C1220756C7007626B4 /* OrderCancelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCancelCollectionViewCell.swift; sourceTree = "<group>"; };
+		D1E86850222A9677005CB945 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		D1E86852222AA80D005CB945 /* MainCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		D1E86854222AA857005CB945 /* MenuCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarDelegate.swift; sourceTree = "<group>"; };
 		D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D1F3A8F12212E606000448DD /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
-		D1F796C52223D40700B72391 /* StoreCollectionViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreCollectionViewController+DataSource.swift"; sourceTree = "<group>"; };
 		D1F796C92223D5B100B72391 /* StoreCollectionViewController+ScrollDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreCollectionViewController+ScrollDelegate.swift"; sourceTree = "<group>"; };
 		D1F796CB2223D5D900B72391 /* StoreCollectionViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreCollectionViewController+Delegate.swift"; sourceTree = "<group>"; };
-		D1F796CF2223D82500B72391 /* StoreCollectionViewController+CustomDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreCollectionViewController+CustomDelegates.swift"; sourceTree = "<group>"; };
 		D1F96F0121FE8D9400D79396 /* ItemSizeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSizeDelegate.swift; sourceTree = "<group>"; };
 		DEC6C5CD7778A868430235B7 /* Pods-UberEats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UberEats/Pods-UberEats.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -856,10 +858,9 @@
 				D1EA630121FA9B1D0024CD68 /* SearchBarDelegate.swift */,
 				D1EA630521FAAA1F0024CD68 /* SearchViewController.swift */,
 				842CC7B821FEBC100045D084 /* StoreCollectionViewController.swift */,
-				D1F796C52223D40700B72391 /* StoreCollectionViewController+DataSource.swift */,
 				D1F796CB2223D5D900B72391 /* StoreCollectionViewController+Delegate.swift */,
 				D1F796C92223D5B100B72391 /* StoreCollectionViewController+ScrollDelegate.swift */,
-				D1F796CF2223D82500B72391 /* StoreCollectionViewController+CustomDelegates.swift */,
+				D1E86850222A9677005CB945 /* Reusable.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -868,6 +869,8 @@
 			isa = PBXGroup;
 			children = (
 				D1F3A8F12212E606000448DD /* StoreModel.swift */,
+				D1E86852222AA80D005CB945 /* MainCollectionViewDataSource.swift */,
+				D1E86854222AA857005CB945 /* MenuCollectionViewDataSource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1141,6 +1144,7 @@
 				84DC184A21F9ACE0008EE6D3 /* FoodMarketViewController.swift in Sources */,
 				995D903D22104ECE00DCA964 /* CartViewController.swift in Sources */,
 				995D904622119D3600DCA964 /* FoodsOrderedByOthersCell.swift in Sources */,
+				D1E86855222AA857005CB945 /* MenuCollectionViewDataSource.swift in Sources */,
 				D1CED1C2220756C7007626B4 /* OrderCancelCollectionViewCell.swift in Sources */,
 				D107D22F2215875F00322379 /* CloseDelegate.swift in Sources */,
 				99E42A2A221ADC5600A38D4F /* FoodModels.swift in Sources */,
@@ -1148,7 +1152,6 @@
 				84333AC32202CDA3007372DE /* ChattingViewController.swift in Sources */,
 				D1F96F0221FE8D9400D79396 /* ItemSizeDelegate.swift in Sources */,
 				D1AF1EB021F9A654004CA3A5 /* StretchyHeaderLayout.swift in Sources */,
-				D1F796C62223D40700B72391 /* StoreCollectionViewController+DataSource.swift in Sources */,
 				8434817D2221775F00C56E04 /* DeliveryCompleteStaticTableCell.swift in Sources */,
 				D196FE9D220DB48100F522C8 /* LocationModel.swift in Sources */,
 				995D904422106DE800DCA964 /* DeliveryAddressCell.swift in Sources */,
@@ -1165,6 +1168,7 @@
 				D107D21D22150E1D00322379 /* UIImageView+Init.swift in Sources */,
 				D1EA630621FAAA1F0024CD68 /* SearchViewController.swift in Sources */,
 				D115BBB721F9D66100C57809 /* TimeAndLocationCollectionViewCell.swift in Sources */,
+				D1E86851222A9677005CB945 /* Reusable.swift in Sources */,
 				D1135C302210114C0032F103 /* DeliveryStartNoticeView.swift in Sources */,
 				847CB24E221BE5E1000298EC /* RecomendTableCell.swift in Sources */,
 				D107D22D2215823000322379 /* ToolBarView.swift in Sources */,
@@ -1188,13 +1192,13 @@
 				84604F212205928100212A00 /* Message.swift in Sources */,
 				843B05182203E6F40082FEFF /* ChatModel.swift in Sources */,
 				8445E2D2221D114C00965746 /* MoreRestTitleTableViewCell.swift in Sources */,
+				D1E86853222AA80D005CB945 /* MainCollectionViewDataSource.swift in Sources */,
 				9956F7F121F98468004E9854 /* AppDelegate.swift in Sources */,
 				D1F796CA2223D5B100B72391 /* StoreCollectionViewController+ScrollDelegate.swift in Sources */,
 				D107D22B22154DCD00322379 /* SettingLocationModel.swift in Sources */,
 				84FB11AA22017A90002C5F46 /* SeeMoreRestTableViewCell.swift in Sources */,
 				D1AF1EA621F9A5A6004CA3A5 /* StretchyHeaderView.swift in Sources */,
 				996F6BC82212F6690052CC36 /* CALayer+Border.swift in Sources */,
-				D1F796D02223D82500B72391 /* StoreCollectionViewController+CustomDelegates.swift in Sources */,
 				D17155BF221CE4D500BBC5DD /* UILabel+.swift in Sources */,
 				995D9042221062D300DCA964 /* CartModels.swift in Sources */,
 				D102A68E22083853004B458C /* SeparatorCollectionReusableView.swift in Sources */,

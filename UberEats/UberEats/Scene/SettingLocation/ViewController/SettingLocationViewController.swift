@@ -57,15 +57,20 @@ class SettingLocationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        toolBarView.delegate = self
-        tapGesture.delegate = self
+
+        setupDelegateAndDataSource()
         setupLayout()
         setupTableView()
     }
 
-    private func setupTableView() {
-        deliveryDetailTableView.dataSource = self
+    private func setupDelegateAndDataSource() {
+        tapGesture.delegate = self
+        toolBarView.delegate = self
         deliveryDetailTableView.delegate = self
+        deliveryDetailTableView.dataSource = self
+    }
+
+    private func setupTableView() {
 
         //cells
         deliveryDetailTableView.register(NewAddressTableViewCell.self,
@@ -154,11 +159,13 @@ extension SettingLocationViewController: UITableViewDataSource {
 
         switch section {
         case .newAddress:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SettingLocationCellId.newAddress.rawValue, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingLocationCellId.newAddress.rawValue,
+                                                     for: indexPath)
             return cell
         case .location:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingLocationCellId.location.rawValue, for: indexPath) as? LocationTableViewCell else {
-            return .init()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingLocationCellId.location.rawValue,
+                                                           for: indexPath) as? LocationTableViewCell else {
+                return .init()
             }
 
             cell.locationInfo = locationInfo[indexPath.row]
@@ -181,7 +188,7 @@ extension SettingLocationViewController: UITableViewDataSource {
             let anotherIndex = IndexPath(row: anotherRow, section: 1)
 
             guard let anotherCell = tableView.cellForRow(at: anotherIndex) as? LocationTableViewCell,
-            let cell = tableView.cellForRow(at: indexPath) as? LocationTableViewCell else {
+                let cell = tableView.cellForRow(at: indexPath) as? LocationTableViewCell else {
                 return
             }
 
@@ -202,7 +209,8 @@ extension SettingLocationViewController: UITableViewDataSource {
 
 extension SettingLocationViewController: UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView,
+                   heightForHeaderInSection section: Int) -> CGFloat {
         guard let section = SectionOfSettingLocation(rawValue: section) else {
             return .init()
         }

@@ -10,25 +10,12 @@ import UIKit
 
 class OrderedMenuCollectionViewCell: UICollectionViewCell {
 
-    private struct NumberForCell {
-        static let foodLabelLeadingAndTrailingMargin: CGFloat = 20
-
-        static let orderMenuLabelFontSize: CGFloat = 15
-        static let orderMenuLabelLeadingMargin: CGFloat = 20
-        static let orderMenuLabelNumberOfLines: Int = 2
-
-        static let numberOfFoodLabelFontSize: CGFloat = 13
-        static let numberOfFoodLabelSize: CGFloat = 15
-        static let numberOfFoodBorderWidth: CGFloat = 1
-    }
-
     let numberOfFoodLabel: UILabel = {
         let label = UILabel().setupWithFontSize(NumberForCell.numberOfFoodLabelFontSize)
         label.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor
         label.layer.borderWidth = NumberForCell.numberOfFoodBorderWidth
         label.textAlignment = .center
         label.textColor = .darkGray
-        label.text = "1"
         return label
     }()
 
@@ -38,26 +25,6 @@ class OrderedMenuCollectionViewCell: UICollectionViewCell {
         label.textColor = .darkGray
         return label
     }()
-
-    var numberOfFood: Int? {
-        didSet {
-            guard let numberOfFood = numberOfFood else {
-                return
-            }
-
-            numberOfFoodLabel.text = String(numberOfFood)
-        }
-    }
-
-    var foodName: String? {
-        didSet {
-            guard let foodName = foodName else {
-                return
-            }
-
-            orderMenuLabel.text = foodName
-        }
-    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,11 +37,11 @@ class OrderedMenuCollectionViewCell: UICollectionViewCell {
 
     private func setupLayout() {
         backgroundColor = .white
+
         addSubview(numberOfFoodLabel)
         addSubview(orderMenuLabel)
 
         NSLayoutConstraint.activate([
-
             numberOfFoodLabel
                 .leadingAnchor.constraint(equalTo: leadingAnchor,
                                           constant: NumberForCell.foodLabelLeadingAndTrailingMargin),
@@ -95,4 +62,24 @@ class OrderedMenuCollectionViewCell: UICollectionViewCell {
                             constant: -NumberForCell.foodLabelLeadingAndTrailingMargin)
             ])
     }
+
+    func configure(orderInfo: OrderInfoModel?) {
+        guard let orderInfo = orderInfo else {
+            return
+        }
+        orderMenuLabel.text = orderInfo.orderName
+        numberOfFoodLabel.text = String(orderInfo.amount)
+    }
+}
+
+private struct NumberForCell {
+    static let foodLabelLeadingAndTrailingMargin: CGFloat = 20
+
+    static let orderMenuLabelFontSize: CGFloat = 15
+    static let orderMenuLabelLeadingMargin: CGFloat = 20
+    static let orderMenuLabelNumberOfLines: Int = 2
+
+    static let numberOfFoodLabelFontSize: CGFloat = 13
+    static let numberOfFoodLabelSize: CGFloat = 15
+    static let numberOfFoodBorderWidth: CGFloat = 1
 }

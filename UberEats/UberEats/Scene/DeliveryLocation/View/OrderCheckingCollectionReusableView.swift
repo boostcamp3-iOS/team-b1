@@ -15,30 +15,11 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var arrivalTimeTitleLabel: UILabel!
     @IBOutlet weak var currentProgressLabel: UILabel!
     @IBOutlet weak var deliveryProgressSlider: UISlider!
+
     var sliderTimer = Timer()
 
     weak var changeScrollDelegate: ChangeScrollDelegate?
     weak var deliveryCompleteDelegate: DeliveryCompleteDelegate?
-
-    var titleName: String? {
-        didSet {
-            guard let titleName = titleName else {
-                return
-            }
-
-            storeNameLabel.text = titleName
-        }
-    }
-
-    var arrivalTime: String? {
-        didSet {
-            guard let arrivalTime = arrivalTime else {
-                return
-            }
-
-            arrivalTimeLabel.text = arrivalTime
-        }
-    }
 
     var progressStatus: ProgressStatus? {
         didSet {
@@ -70,10 +51,20 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
                              repeats: false)
     }
 
+    func configure(storeName: String?, time: String, status: ProgressStatus) {
+        guard let storeName = storeName else {
+            return
+        }
+
+        storeNameLabel.text = storeName
+        arrivalTimeLabel.text = time
+        progressStatus = status
+    }
+
     @objc private func setupSliderAnimation(_: Timer) {
         deliveryProgressSlider.value = 10
 
-        UIView.animate(withDuration: 3,
+        UIView.animate(withDuration: 60,
                        animations: { [weak self] in
                         self?.layoutIfNeeded()
             }, completion: { [weak self] _ in

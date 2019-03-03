@@ -12,24 +12,24 @@ import Common
 class FoodCollectionViewCell: UICollectionViewCell {
 
     private static let holderImage = UIImage(named: "foodPlaceHolder")
+    private let priceLabel = UILabel().setupWithFontSize(Metrix.foodContentsAndPriceLabelFontSize)
 
     var priceLabelBottomConstraint = NSLayoutConstraint()
     var foodImageViewWidthConstraint = NSLayoutConstraint()
+    var imageURL: String?
 
-    let foodNameLabel: UILabel = {
+    private let foodNameLabel: UILabel = {
         let label = UILabel().setupWithFontSize(Metrix.foodNameLabelFontSize)
         label.numberOfLines = Metrix.labelNumberOfLine
         return label
     }()
 
-    let foodContentsLabel: UILabel = {
+    private let foodContentsLabel: UILabel = {
         let label = UILabel().setupWithFontSize(Metrix.foodContentsAndPriceLabelFontSize)
         label.numberOfLines = Metrix.labelNumberOfLine
         label.textColor = .gray
         return label
     }()
-
-    let priceLabel = UILabel().setupWithFontSize(Metrix.foodContentsAndPriceLabelFontSize)
 
     let foodImageView: UIImageView = {
         let imageView = UIImageView()
@@ -39,18 +39,6 @@ class FoodCollectionViewCell: UICollectionViewCell {
         imageView.layer.borderWidth = 0.5
         return imageView
     }()
-
-    var food: FoodForView? {
-        didSet {
-            guard let food = food else {
-                return
-            }
-
-            foodNameLabel.text = food.foodName
-            foodContentsLabel.text = food.foodDescription
-            priceLabel.text = "￦" + food.basePrice.formattedWithSeparator
-        }
-    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,15 +52,6 @@ class FoodCollectionViewCell: UICollectionViewCell {
         addSubview(priceLabel)
         addSubview(foodImageView)
 
-        priceLabelBottomConstraint = NSLayoutConstraint(item: priceLabel,
-                                                        attribute: .bottom,
-                                                        relatedBy: .equal,
-                                                        toItem: self,
-                                                        attribute: .bottom,
-                                                        multiplier: 1,
-                                                        constant: -10)
-        priceLabelBottomConstraint.isActive = true
-
         foodImageViewWidthConstraint = foodImageView.widthAnchor.constraint(equalToConstant: Metrix.imageViewWidth)
         foodImageViewWidthConstraint.isActive = true
 
@@ -83,6 +62,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
                                                    constant: Metrix.leadingMargin),
             foodNameLabel.trailingAnchor.constraint(equalTo: foodImageView.leadingAnchor,
                                                     constant: -Metrix.trailingMargin),
+            foodNameLabel.heightAnchor.constraint(lessThanOrEqualToConstant: 50),
 
             foodContentsLabel.topAnchor.constraint(equalTo: foodNameLabel.bottomAnchor,
                                                    constant: Metrix.topMargin),
@@ -104,6 +84,16 @@ class FoodCollectionViewCell: UICollectionViewCell {
                                                     constant: -Metrix.trailingMargin),
             foodImageView.heightAnchor.constraint(equalToConstant: Metrix.imageViewHeight)
             ])
+    }
+
+    func configure(food: FoodForView) {
+        self.imageURL = food.lowImageURL
+
+        foodNameLabel.text = food.foodName
+        foodContentsLabel.text = food.foodDescription
+        priceLabel.text = "￦" + food.basePrice.formattedWithSeparator
+
+        foodImageViewWidthConstraint.constant = (food.lowImageURL == "") ? 0 : 100
     }
 
     required init?(coder aDecoder: NSCoder) {
