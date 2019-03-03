@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 enum SectionName: Int {
     case deliveryManInfo = 0
@@ -53,5 +54,36 @@ enum Distance: Double {
         case .twoKM : return 2000 ..< 3000
         case .threeKM : return 3000 ..< 4000
         }
+    }
+}
+
+func getButtonTopConstraint(_ height: CGFloat) -> CGFloat {
+    switch height {
+    case 960, 1136, 1334, 1920, 2208:
+        return 25
+    case 1792, 2436, 2688:
+        return 45
+    default:
+        return 0
+    }
+}
+
+func getZoomValue(userLocation2D: CLLocationCoordinate2D,
+                  storeLocation2D: CLLocationCoordinate2D) -> Float {
+    let userLocation = CLLocation(latitude: userLocation2D.latitude,
+                                  longitude: userLocation2D.longitude)
+    let storeLocation = CLLocation(latitude: storeLocation2D.latitude,
+                                   longitude: storeLocation2D.longitude)
+
+    let distance = userLocation.distance(from: storeLocation)
+
+    if distance > 3000 {
+        return 13
+    } else if distance > 2000 {
+        return 14
+    } else if distance > 1000 {
+        return 15
+    } else {
+        return 16
     }
 }
