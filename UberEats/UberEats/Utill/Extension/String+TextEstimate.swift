@@ -14,10 +14,12 @@ extension String {
         let size = CGSize(width: 200, height: 1000)
         let option = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
 
-        return NSString(string: self).boundingRect(with: size,
-                                                   options: option,
-                                                   attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)],
-                                                   context: nil)
+        return NSString(string: self)
+                .boundingRect(with: size,
+                              options: option,
+                              attributes: [NSAttributedString.Key.font:
+                                           UIFont.systemFont(ofSize: 16)],
+                              context: nil)
     }
 
     func getEstimateCGRectWith(_ fontSize: CGFloat) -> CGRect {
@@ -25,9 +27,11 @@ extension String {
         let size = CGSize(width: width, height: 500)
         let option = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
 
-        return NSString(string: self).boundingRect(with: size,
-                                                   options: option,
-                                                   attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize)],
-                                                   context: nil)
+        return NSString(string: self)
+                .boundingRect(with: size,
+                              options: option,
+                              attributes: [NSAttributedString.Key.font:
+                                           UIFont.systemFont(ofSize: fontSize)],
+                              context: nil)
     }
 }
