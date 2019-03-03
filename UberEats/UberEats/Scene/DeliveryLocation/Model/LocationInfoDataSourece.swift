@@ -43,7 +43,8 @@ class LocationInfoDataSourece: NSObject, UICollectionViewDataSource {
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let section = SectionName(rawValue: indexPath.section) else {
             return .init()
         }
@@ -84,8 +85,9 @@ class LocationInfoDataSourece: NSObject, UICollectionViewDataSource {
             switch section {
             case .deliveryManInfo:
                 let header
-                    = collectionView.dequeueReusableSupplementaryView(for: indexPath,
-                                                                      kind: kind) as DeliveryManInfoCollectionReusableView
+                    = collectionView
+                        .dequeueReusableSupplementaryView(for: indexPath,
+                                                          kind: kind) as DeliveryManInfoCollectionReusableView
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak header] in
                     header?.isHidden = false
@@ -112,12 +114,14 @@ class LocationInfoDataSourece: NSObject, UICollectionViewDataSource {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "hh:mm a"
 
+                guard let locationViewController = locationViewController else {
+                    return .init()
+                }
+
                 header.configure(storeName: storeName,
                                  time: dateFormatter.string(from: currentTime as Date),
-                                 status: .verifyingOrder)
-
-                header.changeScrollDelegate = locationViewController
-                header.deliveryCompleteDelegate = locationViewController
+                                 status: .verifyingOrder,
+                                 locationViewController: locationViewController)
 
                 return header
             case .orders:
@@ -133,13 +137,14 @@ class LocationInfoDataSourece: NSObject, UICollectionViewDataSource {
                 return collectionView.dequeueReusableSupplementaryView(for: indexPath,
                                                                        kind: kind) as SeparatorCollectionReusableView
             case .orders:
-                let footer = collectionView.dequeueReusableSupplementaryView(for: indexPath,
-                                                                             kind: kind) as TotalPriceCollectionReusableView
+                let footer
+                    = collectionView.dequeueReusableSupplementaryView(for: indexPath,
+                                                                      kind: kind) as TotalPriceCollectionReusableView
 
                 var totalPrice = 0
 
                 orders.forEach {
-                    totalPrice = $0.price * $0.amount
+                    totalPrice += $0.price * $0.amount
                 }
 
                 footer.configure(totalPrice: String(totalPrice.formattedWithSeparator))

@@ -16,22 +16,6 @@ enum SectionName: Int {
     case sale
 }
 
-struct Identifiers {
-    static let deliveryManInfoHeaderId: String = "deliveryManInfo"
-    static let arrivalTimeHeaderId: String = "orderChecking"
-    static let orderNameHeaderId: String = "orderName"
-    static let separatorHeaderId: String = "separator"
-    static let tempHeaderId: String = "tempHeader"
-
-    static let separatorFooterId: String = "separator"
-    static let totalPriceFooterId: String = "totalPrice"
-    static let tempFooterId: String = "tempFooter"
-
-    static let orderCancelCellId: String = "orderCancel"
-    static let orderMenuCellId: String = "orderedMenu"
-    static let saleCellId: String = "saleCell"
-}
-
 struct DelivererInfo {
     let name: String
     let rate: Int

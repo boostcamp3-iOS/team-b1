@@ -51,16 +51,6 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
                              repeats: false)
     }
 
-    func configure(storeName: String?, time: String, status: ProgressStatus) {
-        guard let storeName = storeName else {
-            return
-        }
-
-        storeNameLabel.text = storeName
-        arrivalTimeLabel.text = time
-        progressStatus = status
-    }
-
     @objc private func setupSliderAnimation(_: Timer) {
         deliveryProgressSlider.value = 10
 
@@ -74,6 +64,17 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         changeScrollDelegate?.scrollToTop()
+    }
+
+    func configure(storeName: String,
+                   time: String,
+                   status: ProgressStatus,
+                   locationViewController: LocationViewController) {
+        storeNameLabel.text = storeName
+        arrivalTimeLabel.text = time
+        progressStatus = status
+        changeScrollDelegate = locationViewController
+        deliveryCompleteDelegate = locationViewController
     }
 }
 

@@ -14,7 +14,7 @@ class DeliveryManInfoCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var deliveryManNameLabel: UILabel!
     @IBOutlet weak var vehicleLabel: UILabel!
 
-    var changeScrollDelegate: ChangeScrollDelegate?
+    weak var changeScrollDelegate: ChangeScrollDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
