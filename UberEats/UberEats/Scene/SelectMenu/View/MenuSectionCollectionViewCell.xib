@@ -35,7 +35,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="339" height="55"/>
             <connections>
-                <outlet property="menuLabel" destination="qhc-AG-G5M" id="sa5-Ny-SyD"/>
+                <outlet property="categoryNameLabel" destination="qhc-AG-G5M" id="ft7-Hc-y4e"/>
             </connections>
             <point key="canvasLocation" x="368.80000000000001" y="156.07196401799101"/>
         </collectionViewCell>

@@ -10,21 +10,15 @@ import UIKit
 
 class MenuSectionCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var menuLabel: UILabel!
+    @IBOutlet weak var categoryNameLabel: UILabel!
 
-    var menuTitle: String? {
-        didSet {
-            guard let menuTitle = self.menuTitle else {
-                return
-            }
-
-            menuLabel.text = menuTitle
-        }
+    func configure(categoryName: String) {
+        categoryNameLabel.text = categoryName
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        menuLabel.text = nil
+        categoryNameLabel.text = nil
     }
 
 }

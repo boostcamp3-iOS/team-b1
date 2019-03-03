@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Common
 
 let buttonSize: CGFloat = 25
 let basicNumberOfItems = 1
@@ -82,7 +83,7 @@ struct HeightsOfCell {
 
     static let timeAndLocationMultiplier: CGFloat = 0.15
     static let food: CGFloat = 50
-    static let foodWhenNoContentAndImage: CGFloat = 130
+    static let foodWhenNoContentAndImage: CGFloat = 110
     static let foodWhenNoContentAndNoImage: CGFloat = 90
     static let empty: CGFloat = 0
 }
@@ -102,4 +103,37 @@ struct AnimationValues {
 struct ElementKind {
     static let sectionHeader = UICollectionView.elementKindSectionHeader
     static let sectionFooter = UICollectionView.elementKindSectionFooter
+}
+
+func seperateCategory(foods: [FoodForView]) -> ([String], [String: [FoodForView]]) {
+    var categoryOfFood: [String: [FoodForView]] = [:]
+    var categorys: [String] = []
+
+    foods.forEach {
+        if !categoryOfFood.keys.contains($0.categoryId) {
+            categoryOfFood.updateValue([], forKey: $0.categoryId)
+            categorys.append($0.categoryName)
+        }
+
+        categoryOfFood[$0.categoryId]?.append($0)
+    }
+
+    return (categorys, categoryOfFood)
+}
+
+func getCellHeight(food: FoodForView) -> CGFloat {
+    let isEmptyDescription = food.foodDescription.isEmpty
+    let isEmptyImageURL = food.foodImageURL.isEmpty
+
+    if isEmptyDescription && isEmptyImageURL {
+        return HeightsOfCell.foodWhenNoContentAndNoImage
+    } else if !isEmptyDescription && !isEmptyImageURL {
+        let descriptionEstimate = food.foodDescription.getEstimateCGRectWith(19)
+        let nameEstimate = food.foodName.getEstimateCGRectWith(15)
+        let priceEstimate = String(food.basePrice).getEstimateCGRectWith(15)
+
+        return descriptionEstimate.height + nameEstimate.height + priceEstimate.height + 50
+    } else {
+        return 110
+    }
 }

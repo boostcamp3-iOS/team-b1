@@ -12,7 +12,6 @@ import Common
 class StoreTitleView: UIView {
 
     private var storeTitleView = UIView()
-
     private var titleLabelLeadingConstraint = NSLayoutConstraint()
     private var titleLabelTrailingConstraint = NSLayoutConstraint()
     private var titleLabelTopConstraint = NSLayoutConstraint()
@@ -20,34 +19,15 @@ class StoreTitleView: UIView {
     private var storeViewWidthConstraint = NSLayoutConstraint()
     private var storeViewHeightConstraint = NSLayoutConstraint()
 
-    let titleLabel: UILabel = {
+    private let detailLabel = UILabel().setupWithFontSize(LabelFontSize.detailLabelAndTimeGradeLabel)
+    private let timeAndGradeLabel = UILabel().setupWithFontSize(LabelFontSize.detailLabelAndTimeGradeLabel)
+    private let clockImageView = UIImageView().initImageView("icClock")
+
+    private let titleLabel: UILabel = {
         let label = UILabel().setupWithFontSize(LabelFontSize.titleLabel)
-        label.numberOfLines = 2
+        label.numberOfLines = NumberOfLinesInLabel.twoLines.rawValue
         return label
     }()
-
-    let detailLabel = UILabel().setupWithFontSize(LabelFontSize.detailLabelAndTimeGradeLabel)
-
-    let timeAndGradeLabel = UILabel().setupWithFontSize(LabelFontSize.detailLabelAndTimeGradeLabel)
-
-    let clockImageView = UIImageView().initImageView("icClock")
-
-    var store: StoreForView? {
-        didSet {
-            guard let store = store else {
-                return
-            }
-
-            titleLabel.text = store.name
-            detailLabel.text = store.category
-            timeAndGradeLabel.text = store.deliveryTime + "분"
-            if store.rate.score != 0 {
-                timeAndGradeLabel.text?.append(" " + String(store.rate.score) + " ★ ("
-                                                + String(store.rate.numberOfRater) + ")")
-            }
-
-        }
-    }
 
     convenience init(_ storeTitleView: UIView) {
         self.init(frame: CGRect.zero)
@@ -79,7 +59,7 @@ class StoreTitleView: UIView {
         layer.shadowRadius = 10
     }
 
-    func setupLayout() {
+    private func setupLayout() {
 
         addSubview(titleLabel)
         addSubview(detailLabel)
@@ -108,7 +88,8 @@ class StoreTitleView: UIView {
             detailLabel.trailingAnchor.constraint(equalTo: trailingAnchor,
                                                   constant: -Metrix.labelLeadingAndTrailingMargin),
 
-            clockImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrix.labelLeadingAndTrailingMargin),
+            clockImageView.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                    constant: Metrix.labelLeadingAndTrailingMargin),
             clockImageView.centerYAnchor.constraint(equalTo: timeAndGradeLabel.centerYAnchor),
             clockImageView.widthAnchor.constraint(equalToConstant: 15),
             clockImageView.heightAnchor.constraint(equalToConstant: 15),
@@ -184,8 +165,10 @@ class StoreTitleView: UIView {
 
             detailLabel.alpha = AnimationValueOfStoreInfoView.basicAlpha
                                     - currentScroll / Metrix.scrollLimit
-            timeAndGradeLabel.alpha = AnimationValueOfStoreInfoView.basicAlpha - currentScroll / Metrix.scrollLimit
-            clockImageView.alpha = AnimationValueOfStoreInfoView.basicAlpha - currentScroll / Metrix.scrollLimit
+            timeAndGradeLabel.alpha = AnimationValueOfStoreInfoView.basicAlpha
+                                        - currentScroll / Metrix.scrollLimit
+            clockImageView.alpha = AnimationValueOfStoreInfoView.basicAlpha
+                                        - currentScroll / Metrix.scrollLimit
 
         } else if currentScroll > Metrix.scrollLimit {
 
@@ -194,10 +177,21 @@ class StoreTitleView: UIView {
                                                     * AnimationValueOfStoreInfoView.widthConstantRatioAfterSticky
             storeViewHeightConstraint.constant = AnimationValueOfStoreInfoView.heightConstantAfterSticky
 
-            titleLabelTopConstraint.constant = Metrix.titleLabelTopMargin * AnimationValueOfStoreInfoView.titleTopConstantRatioAfterSticky
+            titleLabelTopConstraint.constant = Metrix.titleLabelTopMargin
+                                                    * AnimationValueOfStoreInfoView.titleTopConstantRatioAfterSticky
             titleLabelLeadingConstraint.constant = buttonSize + 20
             titleLabelTrailingConstraint.constant = -(buttonSize + 20)
 
+        }
+    }
+
+    func configure(store: StoreForView) {
+        titleLabel.text = store.name
+        detailLabel.text = store.category
+        timeAndGradeLabel.text = store.deliveryTime + "분"
+        if store.rate.score != 0 {
+            timeAndGradeLabel.text?.append(" " + String(store.rate.score) + " ★ ("
+                + String(store.rate.numberOfRater) + ")")
         }
     }
 }

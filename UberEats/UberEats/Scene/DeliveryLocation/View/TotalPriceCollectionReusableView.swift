@@ -13,7 +13,6 @@ class TotalPriceCollectionReusableView: UICollectionReusableView {
     let totalPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "합계: ₩12,200"
         return label
     }()
 
@@ -50,5 +49,9 @@ class TotalPriceCollectionReusableView: UICollectionReusableView {
             billButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
 
             ])
+    }
+
+    func configure(totalPrice: String) {
+        totalPriceLabel.text = "￦" + totalPrice
     }
 }

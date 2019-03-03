@@ -43,7 +43,9 @@ extension StoreCollectionViewController {
         return .init(width: 0, height: 0)
     }
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView,
+                                 didSelectItemAt indexPath: IndexPath) {
+
         if collectionView == menuBarCollectionView {
 
             movingFloatingView(collectionView, indexPath)
@@ -51,7 +53,10 @@ extension StoreCollectionViewController {
             if !isScrolling {
                 let sectionIndex: Int = indexPath.item + DistanceBetween.menuAndRest
                 let indexToMove = IndexPath(item: 0, section: sectionIndex)
-                self.collectionView.selectItem(at: indexToMove, animated: true, scrollPosition: .top)
+
+                self.collectionView.selectItem(at: indexToMove,
+                                               animated: true,
+                                               scrollPosition: .top)
             }
         } else {
             switch indexPath.section {
@@ -63,14 +68,19 @@ extension StoreCollectionViewController {
                 }
 
                 let foodOptionStoryboard = UIStoryboard(name: "FoodItemDetails", bundle: nil)
-                guard let foodOptionViewController = foodOptionStoryboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
+
+                guard let foodOptionViewController
+                    = foodOptionStoryboard.instantiateViewController(withIdentifier: "FoodItemDetailsVC")
                     as? FoodItemDetailsViewController else {
                         return
                 }
 
                 foodOptionViewController.foodSelectable = self
 
-                let food = foods[indexPath.item - 1]
+                guard let food = mainCollectionViewDataSource?.foods[indexPath.item - 1] else {
+                    return
+                }
+
                 foodOptionViewController.foodInfo = FoodInfoModel.init(name: food.foodName,
                                                                        supportingExplanation: food.foodDescription,
                                                                        price: food.basePrice,
@@ -79,19 +89,29 @@ extension StoreCollectionViewController {
                 navigationController?.pushViewController(foodOptionViewController, animated: true)
             }
         }
+
     }
 
-    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? MenuCategoryCollectionViewCell else {
+    override func collectionView(_ collectionView: UICollectionView,
+                                 didDeselectItemAt indexPath: IndexPath) {
+        guard let cell
+            = collectionView.cellForItem(at: indexPath) as? MenuCategoryCollectionViewCell else {
             return
         }
 
         cell.setColor(by: false)
     }
 
+    override func collectionView(_ collectionView: UICollectionView,
+                                 willDisplay cell: UICollectionViewCell,
+                                 forItemAt indexPath: IndexPath) {
+        menuBarCollectionView.sendSubviewToBack(floatingView)
+    }
+
     private func movingFloatingView(_ collectionView: UICollectionView, _ indexPath: IndexPath) {
 
-        guard let cell = collectionView.cellForItem(at: indexPath) as? MenuCategoryCollectionViewCell else {
+        guard let cell
+            = collectionView.cellForItem(at: indexPath) as? MenuCategoryCollectionViewCell else {
             return
         }
 
@@ -99,9 +119,12 @@ extension StoreCollectionViewController {
         // cell을 가장 상위로 이동시킨다.
         collectionView.bringSubviewToFront(cell)
 
-        let estimatedForm = categorys[indexPath.item].estimateCGRect
+        guard let estimatedForm = menuBarDataSource?.categorys[indexPath.item].estimateCGRect else {
+            return
+        }
 
-        floatingViewWidthConstraint.constant = estimatedForm.width + ValuesForFloatingView.widthPadding
+        floatingViewWidthConstraint.constant = estimatedForm.width
+                                               + ValuesForFloatingView.widthPadding
 
         floatingViewLeadingConstraint.constant = cell.frame.minX
 
@@ -109,14 +132,17 @@ extension StoreCollectionViewController {
                        delay: AnimationValues.delay,
                        options: .curveEaseOut,
                        animations: { [weak self] in
-                        self?.menuBarCollectionView.layoutIfNeeded()
-            }, completion: nil)
+                           self?.menuBarCollectionView.layoutIfNeeded()
+                       },
+                       completion: nil)
 
         cell.setColor(by: true)
 
         // 선택한 셀을 가장 왼쪽으로 붙게 설정
         let sectionIndx = IndexPath(item: indexPath.item, section: 0)
-        collectionView.selectItem(at: sectionIndx, animated: true, scrollPosition: .left)
+        collectionView.selectItem(at: sectionIndx,
+                                  animated: true,
+                                  scrollPosition: .left)
 
     }
 }

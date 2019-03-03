@@ -10,7 +10,7 @@ import UIKit
 
 class StretchyHeaderView: UICollectionReusableView {
 
-    lazy var gradientView: CAGradientLayer = {
+    private lazy var gradientView: CAGradientLayer = {
         let gradient = CAGradientLayer()
         gradient.frame = self.bounds
         gradient.startPoint = CGPoint(x: 0, y: 0)
@@ -37,7 +37,7 @@ class StretchyHeaderView: UICollectionReusableView {
         setupLayout()
     }
 
-    func setupLayout() {
+    private func setupLayout() {
         addSubview(headerImageView)
         headerImageView.layer.addSublayer(gradientView)
 

@@ -28,13 +28,19 @@ class OrderCancelCollectionViewCell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
 
-    func setupLayout() {
+    private func setupLayout() {
         backgroundColor = .white
+
         addSubview(cancelLabel)
 
         NSLayoutConstraint.activate([
             cancelLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             cancelLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
             ])
+    }
+
+    func configure(status: Bool) {
+        cancelLabel.text = "연락처"
+        isHidden = status
     }
 }
