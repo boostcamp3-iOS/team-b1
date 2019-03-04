@@ -7,30 +7,24 @@
 
 위와 같은 기능을 구현해보고자 전세계적으로 사용하는 음식 주문 및 배달 앱 우버이츠(UberEats)의 주문 사이클을 모방하고자 한다.
 
-## 구현하고자한 전체적인 Cycle
+## 구현하고자한 주문 사이클
 <div>
 <img src="/images/uberEatsCycle.jpeg">
 </div>
 
 ## 스크린샷
-
-
-## MenuSelect
-
 <div>
-<img src="/images/MainView.png" width="170" style="float: left; margin-right: 10px;"/>
-<img src="/images/SelectMenu.png" width="170">
-<img src="/images/DetailMenu.png" width="170">
-<img src="/images/Cart.jpg" width="170">
+<img src="/images/uberEatsGifs/splash.gif" width="170" style="float: left; margin-right: 10px;"/>
+<img src="/images/uberEatsGifs/foodMarket.gif" width="170" style="float: left; margin-right: 10px;"/>
+<img src="/images/uberEatsGifs/store.gif" width="170" style="float: left; margin-right: 10px;"/>
+<img src="/images/uberEatsGifs/foodOption.gif" width="170" style="float: left; margin-right: 10px;"/>
 </div>
 
-## Delivery
 
 <div>
-<img src="/images/ChattingView.png" width="170">
-<img src="/images/MapViewBeforeDelivery.jpg" width="170">
-<img src="/images/MapViewStartDelivery.png" width="170">
-<img src="/images/DeliverySuccess.png" width="170">
+<img src="/images/uberEatsGifs/cart.gif" width="170" style="float: left; margin-right: 10px;"/>
+<img src="/images/uberEatsGifs/deliveryMap.gif" width="170" style="float: left; margin-right: 10px;"/>
+<img src="/images/uberEatsGifs/deliveryStart.gif" width="170" style="float: left; margin-right: 10px;"/>
 </div>
 
 ## 모듈 다이어그램
