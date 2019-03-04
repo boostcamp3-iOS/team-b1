@@ -7,6 +7,7 @@
 
 위와 같은 기능을 구현해보고자 전세계적으로 사용하는 음식 주문 및 배달 앱 우버이츠(UberEats)의 주문 사이클을 모방하고자 한다.
 
+
 ## 구현하고자한 주문 사이클
 <div>
 <img src="/images/uberEatsCycle.jpeg">
@@ -15,15 +16,30 @@
 ## 스크린샷
 <div>
 <img src="/images/uberEatsGifs/splash.gif" width="170" style="float: left; margin-right: 10px;"/>
+</div>
+splash 화면
+
+<div>
 <img src="/images/uberEatsGifs/foodMarket.gif" width="170" style="float: left; margin-right: 10px;"/>
+</div>
+
+<div>
 <img src="/images/uberEatsGifs/store.gif" width="170" style="float: left; margin-right: 10px;"/>
+</div>
+
+<div>
 <img src="/images/uberEatsGifs/foodOption.gif" width="170" style="float: left; margin-right: 10px;"/>
 </div>
 
-
 <div>
 <img src="/images/uberEatsGifs/cart.gif" width="170" style="float: left; margin-right: 10px;"/>
+</div>
+
+<div>
 <img src="/images/uberEatsGifs/deliveryMap.gif" width="170" style="float: left; margin-right: 10px;"/>
+</div>
+  
+<div>
 <img src="/images/uberEatsGifs/deliveryStart.gif" width="170" style="float: left; margin-right: 10px;"/>
 </div>
 
