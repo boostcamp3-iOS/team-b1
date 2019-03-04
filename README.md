@@ -15,31 +15,16 @@
 
 ## 스크린샷
 <div>
-<img src="/images/uberEatsGifs/splash.gif" width="170" style="float: left; margin-right: 10px;"/>
+<img src="/images/uberEatsGifs/splash.gif" width="170" style="float: left; margin-right: 20px;"/>
+<img src="/images/uberEatsGifs/foodMarket.gif" width="170" style="float: left; margin-right: 20px;"/>
+<img src="/images/uberEatsGifs/store.gif" width="170" style="float: left; margin-right: 20px;"/>
+<img src="/images/uberEatsGifs/foodOption.gif" width="170" style="float: left; margin-right: 20px;"/>
 </div>
 
 <div>
-<img src="/images/uberEatsGifs/foodMarket.gif" width="170" style="float: left; margin-right: 10px;"/>
-</div>
-
-<div>
-<img src="/images/uberEatsGifs/store.gif" width="170" style="float: left; margin-right: 10px;"/>
-</div>
-
-<div>
-<img src="/images/uberEatsGifs/foodOption.gif" width="170" style="float: left; margin-right: 10px;"/>
-</div>
-
-<div>
-<img src="/images/uberEatsGifs/cart.gif" width="170" style="float: left; margin-right: 10px;"/>
-</div>
-
-<div>
-<img src="/images/uberEatsGifs/deliveryMap.gif" width="170" style="float: left; margin-right: 10px;"/>
-</div>
-  
-<div>
-<img src="/images/uberEatsGifs/deliveryStart.gif" width="170" style="float: left; margin-right: 10px;"/>
+<img src="/images/uberEatsGifs/cart.gif" width="170" style="float: left; margin-right: 20px;"/>
+<img src="/images/uberEatsGifs/deliveryMap.gif" width="170" style="float: left; margin-right: 20px;"/>
+<img src="/images/uberEatsGifs/deliveryStart.gif" width="170" style="float: left; margin-right: 20px;"/>
 </div>
 
 ## 모듈 다이어그램
