@@ -17,7 +17,6 @@
 <div>
 <img src="/images/uberEatsGifs/splash.gif" width="170" style="float: left; margin-right: 10px;"/>
 </div>
-splash 화면
 
 <div>
 <img src="/images/uberEatsGifs/foodMarket.gif" width="170" style="float: left; margin-right: 10px;"/>
