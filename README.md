@@ -5,15 +5,20 @@
 * 배달중인 배달원의 실시간 위치 확인 가능
 * 직관적이고 깔끔한 UI와 애니메이션 처리
 
-위와 같은 기능을 구현해보고자 전세계적으로 사용하는 음식 주문 및 배달 앱 우버이츠(UberEats)의 주문 사이클을 모방하고자 한다.
+위와 같은 기능을 구현해보고자 전세계적으로 사용하는 음식 주문 및 배달 앱 우버이츠(UberEats)의 주문 사이클을 모방하고자 한다.  
+
 
 
 ## 구현하고자한 주문 사이클
+
 <div>
 <img src="/images/uberEatsCycle.jpeg">
 </div>
 
+
+
 ## 스크린샷
+
 <div>
 <img src="/images/uberEatsGifs/splash.gif" width="170" style="float: left; margin-right: 20px;"/>
 <img src="/images/uberEatsGifs/foodMarket.gif" width="170" style="float: left; margin-right: 20px;"/>
@@ -27,11 +32,15 @@
 <img src="/images/uberEatsGifs/deliveryStart.gif" width="170" style="float: left; margin-right: 20px;"/>
 </div>
 
+
+
 ## 모듈 다이어그램
 
 <div>
 <img src="/images/UberEats.png"/>
 </div>
+
+
 
 ## KeyColor
 
