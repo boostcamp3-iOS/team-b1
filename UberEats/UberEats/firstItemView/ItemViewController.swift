@@ -1,4 +1,3 @@
-
 //  ItemViewController.swift
 //  uberEats
 //
@@ -10,39 +9,39 @@ import UIKit
 
 class ItemViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var tableView: UITableView!
-    
+
     @IBOutlet var scrollView: UIScrollView!
-    private var images: [String] = ["1_1", "2_1", "3_1","4_1","5_1","6_1"]
-    private var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-    private var labelString: [String] = ["추천요리","가까운 인기 레스토랑","예상 시간 30분 이하","Uber Eats 신규 레스토랑","주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
-    private var gameTimer: Timer!
-    private var collectionViewItems:[Int] = []
-    
     private var images: [String] = ["1_1", "2_1", "3_1", "4_1", "5_1", "6_1"]
-    
     private var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-    
+    private var labelString: [String] = ["추천요리", "가까운 인기 레스토랑", "예상 시간 30분 이하", "Uber Eats 신규 레스토랑", "주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
+    private var gameTimer: Timer!
+    private var collectionViewItems: [Int] = []
+
+    private var images: [String] = ["1_1", "2_1", "3_1", "4_1", "5_1", "6_1"]
+
+    private var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+
     private var labelString: [String] = ["추천요리", "가까운 인기 레스토랑", "예상 시간 30분 이하", "Uber Eats 신규 레스토랑",
                                          "주문시 5천원 할인 받기", "가나다라", "마바사", "아자차카", "타파하", "아아아앙아", "집에", "가고", "싶다"]
     private var gameTimer: Timer!
-    
+
     private var collectionViewItems: [Int] = []
-    
+
     private var bannerImages: [String] = ["1_1", "2_1", "3_1", "4_1", "5_1", "6_1"]
-    
+
     private var bannerTimer: Timer!
-    
+
     private var isScrolledByUser: Bool!
-    
+
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl(frame: CGRect(x: 50, y: scrollView.frame.height - 40,
                                                       width: scrollView.frame.width - 280, height: 37))
         pageControl.currentPage = 0
         return pageControl
     }()
-    
+
     private static let numberOfSection = 8
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -110,11 +109,11 @@ class ItemViewController: UIViewController, UIScrollViewDelegate {
 
         scrollView.scrollRectToVisible(frame, animated: true)
     }
-    
+
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         bannerTimer.invalidate()
     }
-    
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         bannerTimer = Timer.scheduledTimer(timeInterval: 4, target: self,
                                            selector: #selector(scrolledBanner), userInfo: nil, repeats: true)
@@ -151,7 +150,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             return 10
         }
     }
-    
+
     func setupTableViewCell(indexPath: IndexPath) -> TableViewCell {
         let tableNIB = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(tableNIB, forCellReuseIdentifier: "TableViewCellId")
@@ -161,19 +160,19 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         }
         tablecell.selectionStyle = .none
         tablecell.collectionView.tag = indexPath.section
-        
+
         return tablecell
     }
-    
+
     func setupCollectionViewCell(indexPath: IndexPath, nibName: String, tablecell: TableViewCell) {
         let NIB = UINib(nibName: nibName, bundle: nil)
         tablecell.addSubview(tablecell.collectionView)
         tablecell.collectionView.register(NIB, forCellWithReuseIdentifier: nibName + "Id")
-        
+
         tablecell.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
         tablecell.collectionView.backgroundColor = UIColor(displayP3Red: 247 / 255, green: 247 / 255,
                                                            blue: 247 / 255, alpha: 1.0)
-        
+
         let section = Section(rawValue: indexPath.section)!
         switch section {
         case .recommendFood:
@@ -187,7 +186,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             tablecell.recommendLabel.text = ""
         }
-        
+
         tablecell.collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [
@@ -197,12 +196,12 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
                 tablecell.collectionView.heightAnchor.constraint(equalTo: tablecell.heightAnchor, multiplier: 0.833)
             ]
         )
-        
+
         tablecell.collectionView.delegate = self
         tablecell.collectionView.dataSource = self
         tablecell.collectionView.reloadData()
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = Section(rawValue: indexPath.section)!
         switch section {
@@ -252,7 +251,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
             }
         case .searchAndSee:
             let tablecell = setupTableViewCell(indexPath: indexPath)
-            
+
             tablecell.recommendLabel.text = "주문시 5천원 할인 받기"
             tablecell.collectionView.removeFromSuperview()
             return tablecell
@@ -284,7 +283,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         //return UIDevice.current.screenType.tableCellSize(for: Section.init(rawValue: indexPath.row)
 
     }
-    
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return view.frame.height * (10/812)
     }
@@ -292,7 +291,7 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+
         let section = Section(rawValue: collectionView.tag)!
         switch section {
         case .bannerScroll:
@@ -309,12 +308,12 @@ extension ItemViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return 0
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+
         collectionView.showsHorizontalScrollIndicator = false
-        
+
         let section = Section(rawValue: collectionView.tag)!
         switch section {
         case .bannerScroll:
@@ -356,11 +355,11 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+
         guard let section = Section(rawValue: collectionView.tag) else {
             preconditionFailure("")
         }
-        
+
         switch section {
         case .recommendFood:
             return CGSize(width: tableView.frame.width * 0.6, height: tableView.frame.width * 0.61 * 0.92)
@@ -372,7 +371,7 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: 400, height: 400)
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch collectionView.tag {
         case 0:
@@ -391,7 +390,6 @@ extension ItemViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 
-    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {

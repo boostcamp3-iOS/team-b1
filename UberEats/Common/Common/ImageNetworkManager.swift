@@ -24,10 +24,13 @@ public class ImageNetworkManager {
     }
 
     private func downloadImage(imageURL: URL, complection: @escaping (UIImage?, Error?) -> Void) {
+
         session.dataTask(with: imageURL) { [weak self] (data, _, error) in
+
             if error != nil {
                 return
             }
+
             guard let data = data else {
                 return
             }
@@ -41,6 +44,7 @@ public class ImageNetworkManager {
             DispatchQueue.main.async {
                 complection(image, nil)
             }
+
         }.resume()
     }
 

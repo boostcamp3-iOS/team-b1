@@ -33,7 +33,6 @@ class DependencyPool {
         
         return dependency as! T
     }
-    
 }
 
 enum DependencyPoolError: Error {
