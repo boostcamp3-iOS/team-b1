@@ -12,13 +12,10 @@ public extension HTTPURLResponse {
 
     var httpStatusCode: HTTPStatusCode {
         get {
-
             guard let code = HTTPStatusCode(rawValue: statusCode) else {
                 return HTTPStatusCode.nil
             }
-
             return code
         }
     }
-
 }

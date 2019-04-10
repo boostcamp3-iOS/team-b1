@@ -23,6 +23,7 @@ class OrderCheckingCollectionReusableView: UICollectionReusableView {
 
     var progressStatus: ProgressStatus? {
         didSet {
+
             guard let status = progressStatus else {
                 return
             }

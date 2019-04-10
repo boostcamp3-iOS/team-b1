@@ -424,8 +424,6 @@
 			isa = PBXGroup;
 			children = (
 				99342CCC21FB13110029DB10 /* Utill */,
-				99342CC321FB12CF0029DB10 /* UberEatsTests.swift */,
-				99342CC521FB12CF0029DB10 /* Info.plist */,
 			);
 			path = UberEatsTests;
 			sourceTree = "<group>";
@@ -443,7 +441,6 @@
 		99342CCC21FB13110029DB10 /* Utill */ = {
 			isa = PBXGroup;
 			children = (
-				99342CCF21FB13790029DB10 /* ThrottlerTests.swift */,
 			);
 			path = Utill;
 			sourceTree = "<group>";
@@ -463,7 +460,6 @@
 			isa = PBXGroup;
 			children = (
 				9956F7ED21F98468004E9854 /* UberEats.app */,
-				99342CC121FB12CF0029DB10 /* UberEatsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -897,7 +893,6 @@
 			);
 			name = UberEatsTests;
 			productName = UberEatsTests;
-			productReference = 99342CC121FB12CF0029DB10 /* UberEatsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		9956F7EC21F98468004E9854 /* UberEats */ = {
@@ -1122,8 +1117,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99342CD021FB13790029DB10 /* ThrottlerTests.swift in Sources */,
-				99342CC421FB12CF0029DB10 /* UberEatsTests.swift in Sources */,
+				99342CD021FB13790029DB10 /* (null) in Sources */,
+				99342CC421FB12CF0029DB10 /* (null) in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
